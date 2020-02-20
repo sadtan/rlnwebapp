@@ -1,0 +1,24 @@
+{
+  "name": "rlnwebapp",
+  "version": "1.0.0",
+  "description": "Server - App web para el repositorio virtual del proyecto \"Remendar lo Nuevo\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sadtan/rlnwebapp.git"
+  },
+  "keywords": [
+    "rln",
+    "repositorio",
+    "virtual"
+  ],
+  "author": "jsph",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sadtan/rlnwebapp/issues"
+  },
+  "homepage": "https://github.com/sadtan/rlnwebapp#readme"
+}
