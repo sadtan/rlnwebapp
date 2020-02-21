@@ -20,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/sadtan/rlnwebapp/issues"
   },
-  "homepage": "https://github.com/sadtan/rlnwebapp#readme"
+  "homepage": "https://github.com/sadtan/rlnwebapp#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  }
 }
