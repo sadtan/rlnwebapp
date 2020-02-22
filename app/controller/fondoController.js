@@ -1,6 +1,7 @@
 "use strict";
 
-
+var AWSUtils = import("../utils/awsConfig.js");
+//var awsUils = new AWSUtils(); 
 
 module.exports = (pool) => {
     var FondoModel = require("../model/fondoModel")(pool);
@@ -12,6 +13,7 @@ module.exports = (pool) => {
             try {
                 var fondos = await fondo.getAllFondos();
                 res.render("fondos/show.ejs", {fondos});
+                AWSUtils.listBuckets();
             } catch (error) {
                 console.log(error)
                 res.send(error);
