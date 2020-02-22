@@ -1,23 +1,10 @@
 "use strict"
 
-var mysql = require("mysql")
-
 class Database  
 {
-    constructor () 
+    constructor (pool) 
     {
-        var parsedCredentials = {
-            host: "database-1.ccd10d51wnps.us-east-2.rds.amazonaws.com",
-            user: process.env.SQL_USER,
-            password: process.env.SQL_PASS,
-            database: "undbtest"
-        }
-        this.con = mysql.createPool(parsedCredentials);
-        // this.con.connect((err) => 
-        // {
-        //     if (err) throw err;
-        //     console.log("db Connected");
-        // });
+        this.con = pool;
     }
 
     query (sql, args) 
@@ -30,7 +17,6 @@ class Database
 
                 this.con.query(sql, this.con.escape(args), (err, rows) =>
                 {
-                    
                     connection.destroy();
                     //console.log("Connection Released");
                     if (err) return reject(err);
