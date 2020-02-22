@@ -21,10 +21,9 @@ var IndexRoutes = require("./app/routes/indexRoutes.js");
 var FondoRoutes = require("./app/routes/fondoRoutes.js");
 
 app.use("/fondos", FondoRoutes);
-
 app.use("/", IndexRoutes);
 
-var port = process.env.port || 8080;
+var port = process.env.PORT || 3000;
 
 app.listen(port, () => {
     console.log("Server up an running on port: " + port)

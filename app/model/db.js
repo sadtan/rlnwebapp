@@ -4,9 +4,14 @@ var mysql = require("mysql")
 
 class Database  
 {
-    constructor (credentials) 
+    constructor () 
     {
-        var parsedCredentials = JSON.parse(credentials);
+        var parsedCredentials = {
+            host: "database-1.ccd10d51wnps.us-east-2.rds.amazonaws.com",
+            user: process.env.SQL_USER,
+            password: process.env.SQL_PASS,
+            database: "undbtest"
+        }
         this.con = mysql.createPool(parsedCredentials);
         // this.con.connect((err) => 
         // {
@@ -26,8 +31,8 @@ class Database
                 this.con.query(sql, this.con.escape(args), (err, rows) =>
                 {
                     
-                    connection.release()
-                    console.log("Connection Released");
+                    connection.destroy();
+                    //console.log("Connection Released");
                     if (err) return reject(err);
 
                     resolve(rows)
@@ -50,7 +55,7 @@ class Database
     }
 }
 
-module.exports = (credentials) =>  new Database(credentials)
+module.exports =  Database
 
 // var mysql = require("mysql");
 // console.log(process.env.SQL_PASS);

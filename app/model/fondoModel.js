@@ -1,4 +1,5 @@
-var sql = require("../model/db.js")(process.env.DB_CREDENTIALS_JSON);
+var DB = require("../model/db.js");
+var sql = new DB();
 
 class FondoModel 
 {
