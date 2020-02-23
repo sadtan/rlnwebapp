@@ -1,0 +1,8 @@
+<%- include('./partials/header') -%> 
+
+    <h1 style="color: red; display: inline-block;">ERROR</h1> <h1 style="display: inline-block;"><%= data.error.errno %></h1>
+    <h4><%= data.error.name %></h4>
+    <hr style="width: 200;">
+    <p><%= data.message %></p>
+
+<%- include('./partials/footer') -%>

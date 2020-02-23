@@ -6,6 +6,7 @@ module.exports = (pool) =>
     
     var FondoModel = require("../model/fondoModel")(pool);
     var fondoModel = new FondoModel();
+    var awsUtils = new AWSUtils();
 
     class FondoController
     {
@@ -26,6 +27,7 @@ module.exports = (pool) =>
 
         async getById(id)
         {
+            //console.log(await awsUtils.getUrl("f0a38b6eb7b8caf9383eeb1c58e95017.jpg"));
             return new Promise(async (resolve, reject) => 
             {
                 try {

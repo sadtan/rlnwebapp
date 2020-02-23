@@ -4,9 +4,9 @@
 }
 
 @media only screen and (min-width: 600px) {
-    .responsive, hr {
+    /* .responsive, hr {
         display: none
-    }
+    } */
     body {
         font-family: "Montserrat", sans-serif;
         background: #f6f5f7;

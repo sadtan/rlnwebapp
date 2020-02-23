@@ -21,12 +21,12 @@ module.exports = (pool) =>
         } catch (error)
         {
             resFormat = resHandler.setResponse(error.errno, error);
-            resHandler.handleResponse(req, res, resFormat);
+            resHandler.handleResponse(req, res, resFormat, "error");
         }
         
     });
 
-    router.get("/:id", async (req, res) => 
+    router.get("/:id(\\d+)/", async (req, res) => 
     {
         
         var resFormat = {};
@@ -39,7 +39,7 @@ module.exports = (pool) =>
         } catch (error)
         {
             resFormat = resHandler.setResponse(error.errno, error);
-            resHandler.handleResponse(req, res, resFormat);
+            resHandler.handleResponse(req, res, resFormat, "error");
         }
         
     });

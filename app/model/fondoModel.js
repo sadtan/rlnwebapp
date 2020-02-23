@@ -18,7 +18,6 @@ module.exports = (pool) =>
                     resolve(data);
 
                 } catch (error) {
-                    console.log(error);
                     reject( new Errors.SQLError("Error de Base de datos: " + error.message));
                 } 
             });
@@ -31,8 +30,10 @@ module.exports = (pool) =>
                     var queryStr = "SELECT * FROM fondos WHERE fondo_id = " + id;
                     var data = await sql.query(queryStr);
 
+                    if (!data[0]) throw new Errors.NotFound("Sitio no encontrado");
                     //var [a, b, c] = await Promise.all([sql1.query(queryStr), sql2.query(queryStr), sql3.query(queryStr)]);
                     resolve(data);
+                    
 
                 } catch (error) {
                     reject( new Errors.SQLError("Error de Base de datos: " + error.message));

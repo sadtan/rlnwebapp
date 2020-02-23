@@ -34,6 +34,11 @@ module.exports = (BucketName) =>
             });
         }
 
+        async getUrl(key)
+        {
+            return await generatePresignedUrl(key);
+        }
+
         listBuckets () 
         {
             s3.listBuckets(function(err, data) {
@@ -46,21 +51,40 @@ module.exports = (BucketName) =>
         }
     }
 
-    function generatePresignedUrl (KeyValue)
+    async function generatePresignedUrl (KeyValue)
     {
         try {
-            let fileParams = 
+            let params = 
             {
                 Bucket: BucketName,
-                Key: KeyValue,
-                Expires: 60
+                Key: KeyValue
             }
-            return(s3.getSignedUrl('getObject', fileParams));
-        } catch (err) {
-            console.log(err);
-            throw err;
+
+            try {
+                const headCode = await s3.headObject(params).promise();
+
+                let fileParams = 
+                {
+                    Bucket: BucketName,
+                    Key: KeyValue,
+                    Expires: 60
+                }
+
+                console.log("w")
+                return(s3.getSignedUrl('getObject', fileParams));
+
+            } catch (headErr)
+            {
+                //console.log(headErr);
+                return KeyValue;
+            }
+            
+        } catch (err) 
+        {
+            return(KeyValue);
         }
     }
+
 
     return AWSUtils;
 }

@@ -18,7 +18,7 @@ router.get("/aws-health", (req, res) => {
 
 router.get("*", (req, res) => {
     var resFormat = resHandler.setResponse(404, new Errors.NotFound('Sitio No Encontrado'));
-    resHandler.handleJsonResponse(res, resFormat);
+    resHandler.handleResponse(req, res, resFormat, "error");
 });
 
 module.exports = router;

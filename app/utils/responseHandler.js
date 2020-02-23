@@ -50,8 +50,7 @@ module.exports.ResHandler = () =>
         {
             if (req.headers['content-type'] == 'application/json')
                 return res.status(resFormat.status).json(resFormat);
-
-            return res.render(viewFile, {data: resFormat.data})
+            return res.render(viewFile, {data: resFormat})
         }
     }
 
