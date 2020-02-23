@@ -8,8 +8,8 @@ var express = require("express"),
     router = express.Router();
 
 router.get("/", (req, res) => {
+    //var resFormat = resHandler.setResponse()
     res.render("index");
-    //console.log(req.subdomains);
 });
 
 router.get("/aws-health", (req, res) => {
@@ -17,21 +17,8 @@ router.get("/aws-health", (req, res) => {
 });
 
 router.get("*", (req, res) => {
-    var status = 404;
-    var resFormat = resHandler.setResponse(status, new Errors.NotFound('Sitio No Encontrado'));
+    var resFormat = resHandler.setResponse(404, new Errors.NotFound('Sitio No Encontrado'));
     resHandler.handleJsonResponse(res, resFormat);
 });
 
 module.exports = router;
-
-// res.sendStatus(200)
-// // === res.status(200).send('OK')
-
-// res.sendStatus(403)
-// // === res.status(403).send('Forbidden')
-
-// res.sendStatus(404)
-// // === res.status(404).send('Not Found')
-
-// res.sendStatus(500)
-// // === res.status(500).send('Internal Server Error')

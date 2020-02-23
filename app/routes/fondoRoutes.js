@@ -16,12 +16,30 @@ module.exports = (pool) =>
         try 
         {
             resFormat = resHandler.setResponse(200, null, await controller.getAll());
-            resHandler.handleRenderResponse(res, resFormat, "fondos/index");
+            resHandler.handleResponse(req, res, resFormat, "fondos/showall");
 
         } catch (error)
         {
             resFormat = resHandler.setResponse(error.errno, error);
-            resHandler.handleJsonResponse(res, resFormat);
+            resHandler.handleResponse(req, res, resFormat);
+        }
+        
+    });
+
+    router.get("/:id", async (req, res) => 
+    {
+        
+        var resFormat = {};
+        try 
+        {
+            resFormat = resHandler.setResponse(200, null, await controller.getById(req.params.id));
+            //resFormat = resHandler.setResponse(200, null, "");
+            resHandler.handleResponse(req, res, resFormat, "fondos/show");
+
+        } catch (error)
+        {
+            resFormat = resHandler.setResponse(error.errno, error);
+            resHandler.handleResponse(res, resFormat);
         }
         
     });

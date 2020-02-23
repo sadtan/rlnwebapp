@@ -18,8 +18,8 @@ app.use(express.static(__dirname + "/views"));
 
 // Configure Routes
 var Pool = require("./dbpool.js");
-var IndexRoutes = require("./app/routes/indexRoutes.js");
 var FondoRoutes = require("./app/routes/fondoRoutes.js")(Pool);
+var IndexRoutes = require("./app/routes/indexRoutes.js");
 
 app.use("/fondos", FondoRoutes);
 app.use("/", IndexRoutes);

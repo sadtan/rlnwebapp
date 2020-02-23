@@ -28,14 +28,13 @@ module.exports = (pool) =>
         {
             return new Promise(async (resolve, reject) => {
                 try {
-                    var queryStr = "SELECT * FROM fondos";
+                    var queryStr = "SELECT * FROM fondos WHERE fondo_id = " + id;
                     var data = await sql.query(queryStr);
 
                     //var [a, b, c] = await Promise.all([sql1.query(queryStr), sql2.query(queryStr), sql3.query(queryStr)]);
                     resolve(data);
 
                 } catch (error) {
-                    console.log(error);
                     reject( new Errors.SQLError("Error de Base de datos: " + error.message));
                 } 
             });

@@ -5,7 +5,7 @@ module.exports = (pool) =>
 {
     
     var FondoModel = require("../model/fondoModel")(pool);
-    var fondo = new FondoModel();
+    var fondoModel = new FondoModel();
 
     class FondoController
     {
@@ -14,17 +14,31 @@ module.exports = (pool) =>
             return new Promise(async (resolve, reject) => 
             {
                 try {
-                    var fondos = await fondo.getAllFondos();
+                    var fondos = await fondoModel.getAllFondos();
                     resolve (fondos);
 
-                 } catch (error) 
+                } catch (error) 
                 {
                     reject( error );
                 };
-            });
-            
+            });   
         }
 
+        async getById(id)
+        {
+            return new Promise(async (resolve, reject) => 
+            {
+                try {
+                    var fondo = await fondoModel.getById(id);
+                    resolve (fondo);
+
+                } catch (error) 
+                {
+                    console.log(error)
+                    reject( error );
+                };
+            });   
+        }
     }
     return FondoController;
 }

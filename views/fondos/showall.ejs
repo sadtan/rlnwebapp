@@ -1,0 +1,11 @@
+<%- include('../partials/header') -%> <% for (fondo in data) { %>
+
+<div class="form-container">
+  <% for (field in data[fondo]) {%>
+  <strong><%= field %>: </strong> <%= data[fondo][field] %>
+  <br />
+  <% } %>
+  <hr />
+</div>
+
+<% } %> <%- include('../partials/footer') -%>
