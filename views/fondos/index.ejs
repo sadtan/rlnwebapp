@@ -1,0 +1,7 @@
+<% for (fondo in fondos) { %>
+    <% for (field in fondos[fondo]) {%>
+        <strong><%= field %>: </strong> <%= fondos[fondo][field] %>
+        <br>
+    <% } %>
+    <hr>
+<% } %>

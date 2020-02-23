@@ -11,7 +11,7 @@ class Database
     {
         return new Promise((resolve, reject) => 
         {
-            this.con.getConnectionAsync((error, connection) => 
+            this.con.getConnection((error, connection) => 
             {
                 if (error) throw error;
 

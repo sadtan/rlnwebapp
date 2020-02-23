@@ -1,50 +1,69 @@
+"use strict"
 const AWS = require("aws-sdk");
 
 AWS.config.update({region: 'us-east-2'});
-
-// Create S3 service object
-s3 = new AWS.S3({apiVersion: '2006-03-01'});
 
 // Generate Temporal Credentials
 // Configure Aws SDK
 AWS.config.update({region: 'us-east-2'});
 
 // Create S3 service object
-s3 = new AWS.S3({apiVersion: '2006-03-01'});
+var s3 = new AWS.S3({apiVersion: '2006-03-01'});
 
-class AWSUtils 
+module.exports = (BucketName) => 
 {
-    constructor ()
+    class AWSUtils 
     {
-        this.bucketParams = {
-            Bucket: "elasticbeanstalk-us-east-2-951620661084",
-            Delimiter: "/",
-            Prefix: ""
+        constructor ()
+        {
+            this.bucketParams = {
+                Bucket: BucketName,
+                Delimiter: "/",
+                Prefix: ""
+            }
+        }
+
+        listFiles() 
+        {
+            s3.listObjectsV2(this.bucketParams, function(err, data) {
+                if (err) throw new Error(err);
+                //console.log(data.Contents);
+                data.Contents.forEach((file) => {
+                    console.log(generatePresignedUrl(file["Key"]));
+                })
+            });
+        }
+
+        listBuckets () 
+        {
+            s3.listBuckets(function(err, data) {
+                if (err) {
+                    console.log("Error", err);
+                } else {
+                    console.log("Success", data.Buckets);
+                }
+            });
         }
     }
 
-    generatePresignedUrl = (KeyValue) =>
+    function generatePresignedUrl (KeyValue)
     {
         try {
-            presignedGETURL = s3.getSignedUrl('getObject', bucketParams);
-            return(presignedGETURL);
+            let fileParams = 
+            {
+                Bucket: BucketName,
+                Key: KeyValue,
+                Expires: 60
+            }
+            return(s3.getSignedUrl('getObject', fileParams));
         } catch (err) {
             console.log(err);
             throw err;
         }
     }
 
-    listBuckets = () => 
-    {
-        s3.listBuckets(function(err, data) {
-            if (err) {
-                console.log("Error", err);
-            } else {
-                console.log("Success", data.Buckets);
-            }
-        });
-    }
-
+    return AWSUtils;
 }
 
-module.exports = () => new AWSUtils;
+
+

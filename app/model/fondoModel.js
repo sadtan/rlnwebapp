@@ -1,26 +1,44 @@
 var DB = require("../model/db.js");
+const Errors  = require('../utils/errors.js');
+
 
 module.exports = (pool) => 
 {
     var sql = new DB(pool);
     class FondoModel 
     {
-        async getAllFondos(result)
+        async getAllFondos()
         {
-            
-            var queryStr = "SELECT * FROM fondos";
-            try {
-                var data = await sql.query(queryStr);
+            return new Promise(async (resolve, reject) => {
+                try {
+                    var queryStr = "SELECT * FROM fondos";
+                    var data = await sql.query(queryStr);
 
-                //var [a, b, c] = await Promise.all([sql1.query(queryStr), sql2.query(queryStr), sql3.query(queryStr)]);
-            
-                return data;
+                    //var [a, b, c] = await Promise.all([sql1.query(queryStr), sql2.query(queryStr), sql3.query(queryStr)]);
+                    resolve(data);
 
-            } catch (error) {
-                //await sql.close();
-                return Promise.reject(error);
-            } 
+                } catch (error) {
+                    console.log(error);
+                    reject( new Errors.SQLError("Error de Base de datos: " + error.message));
+                } 
+            });
+        }
 
+        async getById(id)
+        {
+            return new Promise(async (resolve, reject) => {
+                try {
+                    var queryStr = "SELECT * FROM fondos";
+                    var data = await sql.query(queryStr);
+
+                    //var [a, b, c] = await Promise.all([sql1.query(queryStr), sql2.query(queryStr), sql3.query(queryStr)]);
+                    resolve(data);
+
+                } catch (error) {
+                    console.log(error);
+                    reject( new Errors.SQLError("Error de Base de datos: " + error.message));
+                } 
+            });
         }
     }
 

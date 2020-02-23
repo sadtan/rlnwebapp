@@ -1,5 +1,9 @@
 "use strict";
 
+const ResHandler      = require("../utils/responseHandler.js").ResHandler();
+const resHandler      = new ResHandler();
+const Errors          = require('../utils/errors.js');
+
 var express = require("express"),
     router = express.Router();
 
@@ -13,8 +17,9 @@ router.get("/aws-health", (req, res) => {
 });
 
 router.get("*", (req, res) => {
-    res.status(404).send('Not Found');
-    console.log(req.originalUrl);
+    var status = 404;
+    var resFormat = resHandler.setResponse(status, new Errors.NotFound('Sitio No Encontrado'));
+    resHandler.handleJsonResponse(res, resFormat);
 });
 
 module.exports = router;

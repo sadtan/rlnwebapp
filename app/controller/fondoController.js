@@ -1,24 +1,30 @@
 "use strict";
+var AWSUtils = require("../utils/awsConfig.js")("archivorln");
 
-var AWSUtils = import("../utils/awsConfig.js");
-//var awsUils = new AWSUtils(); 
-
-module.exports = (pool) => {
+module.exports = (pool) => 
+{
+    
     var FondoModel = require("../model/fondoModel")(pool);
     var fondo = new FondoModel();
+
     class FondoController
     {
-        async getAllFondos(req, res)
+        async getAll()
         {
-            try {
-                var fondos = await fondo.getAllFondos();
-                res.render("fondos/show.ejs", {fondos});
-                AWSUtils.listBuckets();
-            } catch (error) {
-                console.log(error)
-                res.send(error);
-            };
+            return new Promise(async (resolve, reject) => 
+            {
+                try {
+                    var fondos = await fondo.getAllFondos();
+                    resolve (fondos);
+
+                 } catch (error) 
+                {
+                    reject( error );
+                };
+            });
+            
         }
+
     }
     return FondoController;
 }

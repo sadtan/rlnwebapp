@@ -3,11 +3,28 @@
 var express = require("express"),
     router  = express.Router();
 
-module.exports = (pool) => {
+module.exports = (pool) => 
+{
     const FondoController = require("../controller/fondoController.js")(pool);
-    const controller = new FondoController();
+    const controller      = new FondoController();
+    const ResHandler      = require("../utils/responseHandler.js").ResHandler();
+    const resHandler      = new ResHandler();
 
-    router.get("/", (req, res) => controller.getAllFondos(req, res));
+    router.get("/", async (req, res) => 
+    {
+        var resFormat = {};
+        try 
+        {
+            resFormat = resHandler.setResponse(200, null, await controller.getAll());
+            resHandler.handleRenderResponse(res, resFormat, "fondos/index");
+
+        } catch (error)
+        {
+            resFormat = resHandler.setResponse(error.errno, error);
+            resHandler.handleJsonResponse(res, resFormat);
+        }
+        
+    });
 
     return router;
 }
