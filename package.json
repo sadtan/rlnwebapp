@@ -27,7 +27,9 @@
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
+    "farmhash": "^3.0.0",
     "http-status-codes": "^1.4.0",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "mysql-cache": "^2.1.2"
   }
 }

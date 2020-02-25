@@ -11,19 +11,19 @@ class Database
     {
         return new Promise((resolve, reject) => 
         {
-            this.con.getConnection((error, connection) => 
-            {
-                if (error) throw error;
+            // this.con.getConnection((error, connection) => 
+            // {
+                //if (error) throw error;
 
-                this.con.query(sql, this.con.escape(args), (err, rows) =>
+                this.con.query({sql, params: args}, (err, rows, cache) =>
                 {
-                    connection.destroy();
-                    //console.log("Connection Released");
+                //     connection.destroy();
+                //     //console.log("Connection Released");
                     if (err) return reject(err);
 
                     resolve(rows)
                 })
-            })
+            // })
             
         })
     }
