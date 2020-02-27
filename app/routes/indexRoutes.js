@@ -9,7 +9,7 @@ var express = require("express"),
 
 router.get("/", (req, res) => {
     //var resFormat = resHandler.setResponse()
-    res.render("index");
+    res.redirect("/fondos");
 });
 
 router.get("/aws-health", (req, res) => {

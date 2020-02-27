@@ -26,8 +26,8 @@ module.exports = (pool, table, alias) =>
         {
             return new Promise(async (resolve, reject) => {
                 try {
-                    var queryStr = "SELECT * FROM " + table  +" WHERE " + alias + "_id = " + id;
-                    var data = await sql.query(queryStr);
+                    var queryStr = "SELECT * FROM " + table  +" WHERE " + alias + "_id = ?";
+                    var data = await sql.query(queryStr, id);
 
                     if (!data[0]) throw new Errors.NotFound("Sitio no encontrado");
                     //var [a, b, c] = await Promise.all([sql1.query(queryStr), sql2.query(queryStr), sql3.query(queryStr)]);
@@ -44,8 +44,8 @@ module.exports = (pool, table, alias) =>
         {
             return new Promise(async (resolve, reject) => {
                 try {
-                    var queryStr = "SELECT * FROM " + table  +" WHERE " + alias + "_id = " + fk;
-                    var data = await sql.query(queryStr);
+                    var queryStr = "SELECT * FROM " + table  +" WHERE " + alias + "_id = ?";
+                    var data = await sql.query(queryStr, fk);
 
                     if (!data[0]) throw new Errors.NotFound("Sitio no encontrado");
                     //var [a, b, c] = await Promise.all([sql1.query(queryStr), sql2.query(queryStr), sql3.query(queryStr)]);

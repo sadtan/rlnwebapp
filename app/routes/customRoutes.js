@@ -22,7 +22,7 @@ module.exports = function (app, pool, m_table, m_alias)
 
 
             resFormat = resHandler.setResponse(200, null, data);
-            resHandler.handleResponse(req, res, resFormat, "general/showall");
+            resHandler.handleResponse(req, res, resFormat, "general/showAllCards");
 
         } catch (error)
         {

@@ -1,6 +1,6 @@
 <%- include('../partials/header') -%>
 
-<div class="form-container">
+<div class="container" style="width: 50%; padding: 20px 4vw">
   <% fondo = data.data[data.data['main']][0]%>
   <% for (field in fondo) {%>
   <% if (field != 'dep') { %>
@@ -27,7 +27,6 @@
     } %>
 
   <% } %>
-  <hr />
 </div>
 
 <%- include('../partials/footer') -%>
