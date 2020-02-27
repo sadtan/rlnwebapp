@@ -11,20 +11,29 @@ class Database
     {
         return new Promise((resolve, reject) => 
         {
-            // this.con.getConnection((error, connection) => 
-            // {
-                //if (error) throw error;
+            this.con.query({sql, params: args}, (err, rows, cache) =>
+            {
+                if (err) return reject(err);
 
-                this.con.query({sql, params: args}, (err, rows, cache) =>
-                {
-                //     connection.destroy();
-                //     //console.log("Connection Released");
-                    if (err) return reject(err);
+                resolve(rows)
+            })
+        })
+    }
 
-                    resolve(rows)
-                })
-            // })
-            
+    querySearch (sql, args) 
+    {
+        return new Promise((resolve, reject) => 
+        {
+            this.con.query({
+                sql, 
+                params: args,
+                cache: false
+            }, (err, rows, cache) =>
+            {
+                if (err) return reject(err);
+
+                resolve(rows)
+            })
         })
     }
 

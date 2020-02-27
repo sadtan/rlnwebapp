@@ -24,7 +24,7 @@ async function getData(url, method, data) {
 function renderData(url, data) {
   getData(url, "GET").then(response => {
     if (response.success) {
-      data = response.data;
+      data = response.data[response.data.main];
       for (field in data[0]) console.log(field);
     } else {
       console.error(response.message);
@@ -32,4 +32,4 @@ function renderData(url, data) {
   });
 }
 
-renderData("/fondos");
+renderData("/lugares");

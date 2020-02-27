@@ -1,0 +1,33 @@
+<%- include('../partials/header') -%>
+
+<div class="form-container">
+  <% fondo = data.data[data.data['main']][0]%>
+  <% for (field in fondo) {%>
+  <% if (field != 'dep') { %>
+      <strong><%= field %>: </strong> <%= fondo[field] %>
+      <br />
+  <% } else {  %> 
+    <%
+    dep = fondo[field]
+      for (let depField in dep) {
+      %>
+      <strong><%=depField%>: </strong>
+      <ul>
+        <%
+        for (depProp in dep[depField][0]) {%>
+          <li>
+            <strong> <%= depProp %>:</strong> <%= dep[depField][0][depProp] %>
+          </li>
+        <%
+        } %>
+      </ul>
+      <%
+      } %>
+    <%
+    } %>
+
+  <% } %>
+  <hr />
+</div>
+
+<%- include('../partials/footer') -%>

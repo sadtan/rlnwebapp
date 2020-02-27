@@ -3,10 +3,7 @@
     box-sizing: border-box;
 }
 
-@media only screen and (min-width: 600px) {
-    /* .responsive, hr {
-        display: none
-    } */
+/* @media only screen and (min-width: 600px) {
     body {
         font-family: "Montserrat", sans-serif;
         background: #f6f5f7;
@@ -37,7 +34,6 @@
         text-decoration: none;
         margin: 15px 0
     }
-    /* container */
     .container {
         text-align: center;
         background: white;
@@ -49,7 +45,6 @@
         max-width: 100%;
         min-height: 480px;
     }
-    /* forms */
     .form-container  {
         background: #fff;
         display: flex;
@@ -103,7 +98,6 @@
         background: transparent;
         border-color: #FFF;
     }
-    /* positioning */
     .form-container {
         position: absolute;
         top: 0;
@@ -120,7 +114,6 @@
         width: 50%;
         z-index: 1;
     }
-    /* overlays */
     .overlay-container {
         position: absolute;
         top: 0;
@@ -167,22 +160,22 @@
     .overlay-left {
         transform: translateX(-20%);
     }
-    /* animation */
-    /* move signin to the right */
+    
+
     .container.right-panel-active .sign-in-container {
         transform: translateX(100%);
     }
-    /* move overlay to left */
+
     .container.right-panel-active .overlay-container {
         transform: translateX(-100%);
     }
-    /* birng sign up over sign in */
+
     .container.right-panel-active .sign-up-container {
         transform: translateX(100%);
         opacity: 1;
         z-index: 5;
     }
-    /* move overlay back to right */
+
     .container.right-panel-active .overlay {
         transform: translateX(50%);
     }
@@ -192,11 +185,11 @@
     .container.right-panel-active .overlay-right {
         transform: translate(20%);
     }
-}
+} */
 
 /* responsive */
 
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 100px) {
     .overlay-container {
         display: none;
     }
