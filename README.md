@@ -47,9 +47,3 @@ $ git push origin design
 * [node - npm](https://nodejs.org/en/download/) - Runtime y administrador de dependencias
 * [EJS](https://ejs.co/) - Libreria frontend
 
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
