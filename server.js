@@ -34,6 +34,16 @@ class App
         this.app.use(express.static(__dirname + "/public"));
         this.app.use(express.static(__dirname + "/views"));
 
+        this.app.set('isAdminLogged', false);
+
+        this.app.locals = 
+        {
+            admin: 
+            {
+                isLogged: false,
+            }
+        };
+
         /**
          *  Properties to be used by the class App
          */ 
@@ -52,6 +62,8 @@ class App
         require("./app/routes/customRoutes.js")(this.app, Pool, "colecciones", "coleccion");
         require("./app/routes/customRoutes.js")(this.app, Pool, "lugares", "lugar");
         require("./app/routes/customRoutes.js")(this.app, Pool, "hechos", "hecho");
+
+        require("./app/routes/adminRoutes.js")(this.app, Pool, "fondos", "fondo");
         
 
         require("./app/routes/indexRoutes.js" )(this.app);

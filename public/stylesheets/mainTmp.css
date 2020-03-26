@@ -86,7 +86,7 @@ ul {
     width: 100%;
 }
 
-.showcase .text button {
+.showcase .text button, .error button {
     background-color: #FFF; /* Green */
     border: 2px solid #0202F7;
     color: #0202F7;
@@ -99,14 +99,14 @@ ul {
     transition: all 0.3s ease-in
 }
 
-.showcase .text button:hover {
+.showcase .text button:hover, .error button {
     width: 110px;
     margin-left: 5px;
     cursor: pointer;
 }
 
 
-.showcase .text button:hover i {
+.showcase .text button:hover i, .error button {
     margin-left: 5px;
 }
 
@@ -161,7 +161,7 @@ ul {
     justify-content: center;
 }
 
-.home-cards .content button {
+.home-cards .content button, .error button {
     background-color: #FFF; 
     border: 2px solid #0202F7;
     color: #0202F7;
@@ -174,7 +174,7 @@ ul {
     transition: all 0.1s ease-in
 }
 
-.home-cards .content button:hover {
+.home-cards .content button:hover, .error button {
     width: 110px;
     margin-left: 5px;
     cursor: pointer;
@@ -298,6 +298,15 @@ ul {
     margin: auto;
 } 
 
+input[type=text]
+{
+    width: 200px;
+    border: none;
+    border-bottom: 1px solid black;
+    margin-top: 40px;
+    outline: none;
+}
+
 @media(max-width: 700px) {
     .menu-btn {
         display: block;
@@ -383,7 +392,7 @@ ul {
     .right-footer hr {
         display: block;
     }
-    .showcase .text button {
+    .showcase .text button, .error button {
         width: 100px;
         height: 20px;
         border-radius: 10px;

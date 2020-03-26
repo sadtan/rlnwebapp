@@ -45,7 +45,6 @@ module.exports = (pool, table, alias) =>
             return new Promise(async (resolve, reject) => {
                 try {
                     var queryStr = "SELECT * FROM " + table  +" WHERE " + alias + "_id = " + fk;
-                    console.log(queryStr);
                     var data = await sql.query(queryStr);
 
                     if (!data[0]) throw new Errors.NotFound("Sitio no encontrado");

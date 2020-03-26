@@ -18,7 +18,6 @@ module.exports = function (app, pool, m_table, m_alias)
         {
             data[m_table] = await controller.getAll();
             data = await reqBatchHandler.AttachDependencies(data, m_table, pool);
-            console.log(data);
 
             resFormat = resHandler.setResponse(200, null, data);
             resHandler.handleResponse(req, res, resFormat, m_table, "showAllCards");

@@ -25,6 +25,7 @@
     <i class="fas fa-bars fa-2x"></i>
 </div>
 <body>
+    <% if (!admin.isLogged) { %>
     <div class="container">
         <div class="main-nav">
             <h3><a href="/">_ARCHIVO TEXTIL <br> DIGITAL</a></h3>
@@ -43,7 +44,26 @@
             </ul>
         </div>
     </div>
-    
+    <% } else { %>
+        
+    <div class="container">
+        <div class="main-nav">
+            <h3><a href="/">_ARCHIVO TEXTIL <br> DIGITAL</a></h3>
+            <ul class="main-menu">
+                
+            </ul>
+            <ul class="right-menu">
+                <li><a href="/admin/fondos">fondos</a></li>
+                <li><a href="/admin/colecciones">colecciones</a></li>
+                <li><a href="/admin/lugares">lugares</a></li>
+                <li><a href="/admin/hechos">lugares</a></li>
+                <li><a href="/admin/piezas">lugares</a></li>
+                <li><a href="/admin-logut">salir</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <% } %>
     <script>
         document.querySelector('.menu-btn').addEventListener
         ('click', () => document.querySelector('.right-menu')

@@ -1,0 +1,11 @@
+<%- include('../partials/header') -%>
+<div class="error">
+    <h3>Entrar Como Administrador</h3>
+    <form action="/admin-login" method="POST">
+        <label for="pass">Contraseña:</label>
+        <input type="text" name="pass" class="text-input">
+        <br>
+        <button type="submit">Entrar</button>
+    </form>
+    <%= admin.isLogged %>
+</div>

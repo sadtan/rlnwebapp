@@ -1,4 +1,0 @@
-{
-    "value": "[{\"coleccion_id\":1,\"coleccion_nombre\":\"Telones\",\"coleccion_codigo\":\"GAC-001\",\"coleccion_tipo\":2,\"coleccion_cantidad_piezas\":5,\"coleccion_creacion\":\"2002\",\"coleccion_contexto\":null,\"coleccion_documentos_json\":null,\"fk_fondo\":1,\"fk_lugar\":1}]",
-    "expire": "1583856529055"
-}
