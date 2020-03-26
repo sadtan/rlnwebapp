@@ -18,18 +18,21 @@ module.exports.AttachDependencies = async (data, m_table, pool) =>
             if (field.substring(0, 2) == "fk")
             {
                 var fk = data[m_table][i][field];
-                var alias = field.substring(3, field.length);
-                var table = lookupAlias[alias];
-                if (data[m_table][i]['dep'] == undefined)
-                    data[m_table][i]['dep'] = {}
-                var CustomController = CreateCustomController(
-                    pool, 
-                    table, 
-                    alias
-                );
-                var customController = new CustomController();
-
-                data[m_table][i]['dep'][alias] = await customController.getByFk(fk);
+                if (fk)
+                {
+                    var alias = field.substring(3, field.length);
+                    var table = lookupAlias[alias];
+                    if (data[m_table][i]['dep'] == undefined)
+                        data[m_table][i]['dep'] = {}
+                    var CustomController = CreateCustomController(
+                        pool, 
+                        table, 
+                        alias
+                    );
+                    var customController = new CustomController();
+    
+                    data[m_table][i]['dep'][alias] = await customController.getByFk(fk);
+                }
             }
 
         data['main'] = m_table;

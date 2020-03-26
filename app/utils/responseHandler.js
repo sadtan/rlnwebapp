@@ -46,7 +46,7 @@ module.exports.ResHandler = () =>
             return res.render(viewFile, {data: resFormat.data})
         }
 
-        handleResponse(req, res, resFormat, viewFile)
+        handleResponse(req, res, resFormat, viewPath, viewFile)
         {
             //console.log(resFormat);
             if (req.headers['content-type'] == 'application/json')
@@ -55,7 +55,7 @@ module.exports.ResHandler = () =>
             // if (!resFormat.error.errno)
             //     console.log(resFormat.data);
 
-            return res.render(viewFile, {data: resFormat})
+            return res.render(viewPath + "/" + viewFile, {data: resFormat})
         }
     }
 

@@ -1,6 +1,5 @@
 "use strict";
 
-
 var reqBatchHandler = require("../utils/requestBatchHandler");
 
 module.exports = function (app, pool, m_table, m_alias) 
@@ -19,15 +18,15 @@ module.exports = function (app, pool, m_table, m_alias)
         {
             data[m_table] = await controller.getAll();
             data = await reqBatchHandler.AttachDependencies(data, m_table, pool);
-
+            console.log(data);
 
             resFormat = resHandler.setResponse(200, null, data);
-            resHandler.handleResponse(req, res, resFormat, "general/showAllCards");
+            resHandler.handleResponse(req, res, resFormat, m_table, "showAllCards");
 
         } catch (error)
         {
             resFormat = resHandler.setResponse(error.errno, error);
-            resHandler.handleResponse(req, res, resFormat, "error");
+            resHandler.handleResponse(req, res, resFormat, "utils", "error");
         }
         
     });
@@ -44,12 +43,12 @@ module.exports = function (app, pool, m_table, m_alias)
             data = await reqBatchHandler.AttachDependencies(data, m_table, pool);
 
             resFormat = resHandler.setResponse(200, null, data);
-            resHandler.handleResponse(req, res, resFormat, "general/show");
+            resHandler.handleResponse(req, res, resFormat, m_table, "show");
 
         } catch (error)
         {
             resFormat = resHandler.setResponse(error.errno, error);
-            resHandler.handleResponse(req, res, resFormat, "error");
+            resHandler.handleResponse(req, res, resFormat, "utils", "error");
         }
         
     });
@@ -74,7 +73,7 @@ module.exports = function (app, pool, m_table, m_alias)
         } catch (error)
         {
             resFormat = resHandler.setResponse(error.errno, error);
-            resHandler.handleResponse(req, res, resFormat, "error");
+            resHandler.handleResponse(req, res, resFormat, "utils", "error");
         }
         
     });
