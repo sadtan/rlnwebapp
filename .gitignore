@@ -1,3 +1,4 @@
 package-lock.json
 RLNWebApp.zip
 node_modules/
+.env
