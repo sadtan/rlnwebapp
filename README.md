@@ -11,6 +11,7 @@ Node.js
 Clonar el repositiorio
 ```
 $ git clone https://github.com/sadtan/rlnwebapp
+$ cd rlnwebapp
 ```
 
 Ir a la rama de implementación de administrador
@@ -28,7 +29,7 @@ Instalar dependencias
 $ npm i
 ```
 
-Solicitar el archivo .env y agregarlo al directorio principal
+Obtener archivo .env y agregarlo al directorio principal
 
 ### Ejecutar
 
