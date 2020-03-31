@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "css": "node-sass --output-style --include-path scss scss/estilo.scss public/css/estilo.css",
+    "watch": "nodemon -e scss -x \"npm run css\""
   },
   "repository": {
     "type": "git",
@@ -33,6 +35,7 @@
     "graphql": "^14.6.0",
     "http-status-codes": "^1.4.0",
     "mysql": "^2.18.1",
-    "mysql-cache": "^2.1.2"
+    "mysql-cache": "^2.1.2",
+    "node-sass": "^4.13.1"
   }
 }
