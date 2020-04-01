@@ -1,2 +1,21 @@
-p {
-  background-color: red; }
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap");
+body {
+  width: 100%;
+  margin: 0;
+  font-family: 'CircularStd', sans-serif;
+  font-weight: 600; }
+
+/* ------------ fuentes ------------- */
+@font-face {
+  font-family: "CircularStd";
+  src: url("../fonts/CircularStd-Book.eot");
+  src: url("../fonts/CircularStd-Book.eot?#iefix") format("embedded-opentype"), url("../fonts/CircularStd-Book.woff") format("woff"), url("../fonts/CircularStd-Book.ttf") format("truetype"), url("../fonts/CircularStd-Book.svg#bcc26993292869431e54c666aafa8fcd") format("svg");
+  font-weight: 400;
+  font-style: normal; }
+
+@font-face {
+  font-family: "CircularStd";
+  src: url("../fonts/CircularStd-Bold.eot");
+  src: url("../fonts/CircularStd-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/CircularStd-Bold.woff") format("woff"), url("../fonts/CircularStd-Bold.ttf") format("truetype"), url("../fonts/CircularStd-Bold.svg#bcc26993292869431e54c666aafa8fcd") format("svg");
+  font-weight: 600;
+  font-style: normal; }
