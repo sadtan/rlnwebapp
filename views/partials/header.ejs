@@ -23,20 +23,24 @@
 <body>
 
     <% if (!admin.isLogged) { %>
-    <section class= "header">
+    <section class= "header ">
+
         <div class="container">
-            <h1><a href="/">_ARCHIVO DIGITAL DE <br> TEXTILES TESTMONIALES </a></h1>
-            <ul class="right-menu">
-                <li><a href="/fondos">fondos</a></li>
-                <li><a href="/colecciones">colecciones</a></li>
-                <li><a href="/lugares">lugares</a></li>
-                <li>
-                    <a href="/search">
-                        <i class="fas fa-search"></i>
+            <div class="row align-items-center justify-content-between">
+                <h1 class="col col-lg-6">
+                    <a href="/" class="logo">
+                        _ARCHIVO DIGITAL DE <br> TEXTILES TESTIMONIALES 
                     </a>
-                </li>
-            </ul>
+                </h1>
+
+                <nav class="menu col col col-lg-5">
+                    <a href="/search"> Busqueda </a> 
+                    <a href="/lugares"> Mapa </a>
+                    <a href="/"> Sobre el archivo </a> 
+                </nav>
+            </div>
         </div>
+
     </section>
     <% } else { %>
         

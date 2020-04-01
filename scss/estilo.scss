@@ -2,13 +2,61 @@ $azul: #2727E5;
 $rojo: #FC4141;
 $amarillo: #FEDB31;
 $negro: #161616;
+$blanco: #FFF;
+
+$circular: "CircularStd", sans-serif;
+$inter: 'Inter', sans-serif;
 
 body {
     width: 100%;
     margin: 0;
-    font-family: 'CircularStd', sans-serif;
-    font-weight: 600;
+    font-family: $inter;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
+
+a {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+
+.container, .row {
+    height: 100%;
+}
+
+
+.header {
+    background-color: $azul;
+    height: 150px;
+    
+    .menu a {
+        color: $blanco;
+        font-family: $inter;
+        font-weight: light;
+        text-transform: uppercase;
+        float: right;
+        padding: 0 10px;
+
+        &:hover {
+            color: $amarillo;
+        }
+    }
+
+    .logo {
+        font-size: 28px;
+        font-family: $circular;
+        font-weight: 600;
+        color: $blanco;
+        
+    }
+}
+
+
 
 
 /* ------------ fuentes ------------- */

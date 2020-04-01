@@ -2,8 +2,35 @@
 body {
   width: 100%;
   margin: 0;
-  font-family: 'CircularStd', sans-serif;
-  font-weight: 600; }
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+a {
+  text-decoration: none; }
+  a:hover {
+    text-decoration: none; }
+
+.container, .row {
+  height: 100%; }
+
+.header {
+  background-color: #2727E5;
+  height: 150px; }
+  .header .menu a {
+    color: #FFF;
+    font-family: "Inter", sans-serif;
+    font-weight: light;
+    text-transform: uppercase;
+    float: right;
+    padding: 0 10px; }
+    .header .menu a:hover {
+      color: #FEDB31; }
+  .header .logo {
+    font-size: 28px;
+    font-family: "CircularStd", sans-serif;
+    font-weight: 600;
+    color: #FFF; }
 
 /* ------------ fuentes ------------- */
 @font-face {
