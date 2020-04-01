@@ -14,9 +14,16 @@ a {
 .container, .row {
   height: 100%; }
 
+.col {
+  margin-bottom: 0; }
+
+/* ---- ESTILOS HEADER ----*/
 .header {
   background-color: #2727E5;
   height: 150px; }
+  @media only screen and (max-width: 992px) {
+    .header {
+      height: 90px; } }
   .header .menu a {
     color: #FFF;
     font-family: "Inter", sans-serif;
@@ -31,6 +38,9 @@ a {
     font-family: "CircularStd", sans-serif;
     font-weight: 600;
     color: #FFF; }
+    @media only screen and (max-width: 992px) {
+      .header .logo {
+        font-size: 20px; } }
 
 /* ------------ fuentes ------------- */
 @font-face {
