@@ -5,27 +5,33 @@ body {
   width: 100%;
   margin: 0;
   font-family: "Inter", sans-serif;
+  z-index: -2;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
+  body.disable-scroll {
+    overflow: hidden; }
 
 a {
   text-decoration: none; }
   a:hover {
     text-decoration: none; }
 
-.container, .row {
-  height: 100%; }
-
-.col {
-  margin-bottom: 0; }
-
 /* ---- ESTILOS HEADER ----*/
 .header {
   background-color: #2727E5;
-  height: 150px; }
+  height: 130px;
+  transition: height 1s;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000; }
   @media only screen and (max-width: 992px) {
     .header {
-      height: 90px; } }
+      height: 80px; } }
+  .header .container, .header .row {
+    height: 100%; }
+  .header .col {
+    margin-bottom: 0; }
   .header .menu a {
     color: #FFF;
     font-family: "Inter", sans-serif;
@@ -39,15 +45,46 @@ a {
     font-size: 28px;
     font-family: "CircularStd", sans-serif;
     font-weight: 600;
-    color: #FFF; }
+    color: #FFF;
+    transition: font-size 0.1s; }
     @media only screen and (max-width: 992px) {
       .header .logo {
         font-size: 20px; } }
+    @media only screen and (max-width: 576px) {
+      .header .logo {
+        font-size: 18px; } }
   .header .burguer {
     width: 40px;
     height: auto;
     padding: 0;
     margin: 20px; }
+    .header .burguer:hover {
+      margin: 19px;
+      width: 42px; }
+    @media only screen and (max-width: 576px) {
+      .header .burguer {
+        width: 30px; } }
+
+section.dropdown {
+  background-color: #2727E5;
+  position: fixed;
+  top: -195px;
+  width: 100%;
+  transition: top 1s;
+  z-index: 999; }
+  section.dropdown.down {
+    top: 80px; }
+  section.dropdown a {
+    border-top: solid white 1px;
+    display: block;
+    color: #FFF;
+    font-family: "Inter", sans-serif;
+    font-weight: light;
+    text-transform: uppercase;
+    padding: 20px 0;
+    text-align: center; }
+    section.dropdown a:hover {
+      color: #FEDB31; }
 
 /* ------------ FUENTES ------------- */
 @font-face {

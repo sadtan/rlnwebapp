@@ -23,7 +23,7 @@
 <body>
 
     <% if (!admin.isLogged) { %>
-    <section class= "header ">
+    <section class= "header">
 
         <div class="container">
             <div class="row align-items-center justify-content-between">
@@ -33,18 +33,27 @@
                     </a>
                 </h1>
 
-                <nav class="menu col col col-lg-6 col-md-7  d-none d-md-block">
+                <nav class="menu col col-lg-6 col-md-7 d-none d-md-block">
                     <a href="/search"> Busqueda </a> 
                     <a href="/lugares"> Mapa </a>
                     <a href="/"> Sobre el archivo </a> 
                 </nav>
 
                 <img class="d-md-none burguer" src="/img/burguer.png"/>
-
             </div>
         </div>
 
     </section>
+
+    <section class="dropdown">
+        <nav class="menu">
+            <a  href="/search"> Busqueda </a> 
+            <a  href="/lugares"> Mapa </a>
+            <a  href="/"> Sobre el archivo </a> 
+        </nav>
+    </section>
+
+
     <% } else { %>
         
     <div class="container">
@@ -66,11 +75,13 @@
 
     <% } %>
     <script>
-        document.querySelector('.menu-btn').addEventListener
-        ('click', () => document.querySelector('.right-menu')
-        .classList.toggle('show'));
+
+            $('.burguer').click( function() {
+                $('.dropdown').toggleClass("down");
+                $("body").toggleClass("disable-scroll");
+            });
+
     </script>
-    <!-- showcase -->
     
 
     

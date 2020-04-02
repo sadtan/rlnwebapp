@@ -39,9 +39,14 @@ body {
     width: 100%;
     margin: 0;
     font-family: $inter;
+    z-index: -2;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    &.disable-scroll {
+        overflow: hidden;
+    }
 }
 
 a {
@@ -53,22 +58,30 @@ a {
 }
 
 
-.container, .row {
-    height: 100%;
-}
-.col {
-    margin-bottom: 0;
-}
+
 
 
 /* ---- ESTILOS HEADER ----*/
 
 .header {
     background-color: $azul;
-    height: 150px;
+    height: 130px;
+    transition: height 1s;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 
     @media #{$large-and-down} { 
-        height: 90px;
+        height: 80px;
+    }
+
+    .container, .row {
+        height: 100%;
+    }
+
+    .col {
+        margin-bottom: 0;
     }
     
     .menu a {
@@ -89,9 +102,14 @@ a {
         font-family: $circular;
         font-weight: 600;
         color: $blanco;
+        transition: font-size 0.1s;
 
         @media #{$large-and-down} { 
             font-size: 20px;
+        }
+
+        @media #{$small-and-down} { 
+            font-size: 18px;
         }
         
     }
@@ -101,6 +119,43 @@ a {
         height: auto;
         padding: 0;
         margin: 20px;
+
+        &:hover {
+           margin: 19px;
+           width: 42px;
+        }
+
+        @media #{$small-and-down} { 
+            width: 30px;
+        }
+    }
+}
+
+section.dropdown {
+    background-color: $azul;
+    position: fixed;
+    top: -195px;
+    width: 100%;
+    transition: top 1s;
+    z-index: 999;
+
+    &.down {
+        top: 80px;
+    }
+
+    a {
+        border-top: solid white 1px;
+        display: block;
+        color: $blanco;
+        font-family: $inter;
+        font-weight: light;
+        text-transform: uppercase;
+        padding: 20px 0;
+        text-align: center;
+
+        &:hover {
+            color: $amarillo;
+        }
     }
 }
 
