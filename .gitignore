@@ -3,3 +3,4 @@ RLNWebApp.zip
 node_modules/
 .env
 tmp/
+public/.DS_Store

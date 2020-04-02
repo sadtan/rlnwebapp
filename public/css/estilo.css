@@ -43,6 +43,11 @@ a {
     @media only screen and (max-width: 992px) {
       .header .logo {
         font-size: 20px; } }
+  .header .burguer {
+    width: 40px;
+    height: auto;
+    padding: 0;
+    margin: 20px; }
 
 /* ------------ FUENTES ------------- */
 @font-face {
