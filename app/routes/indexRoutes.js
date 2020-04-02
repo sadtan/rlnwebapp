@@ -18,7 +18,7 @@ module.exports = (app) =>
         if (req.body.pass == process.env.ADMIN_PASS)
         {
             app.locals.admin.isLogged = true;
-            res.redirect("/admin-login");
+            res.redirect("/admin/fondos");
         }
         else
         {

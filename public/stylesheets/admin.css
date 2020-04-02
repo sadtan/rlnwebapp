@@ -1,0 +1,53 @@
+main
+{
+    display: flex;
+    align-items: row;
+    justify-content: space-between;
+}
+
+.form-class {
+    padding-right: 40px;
+    width: 100%;
+    display: flex;
+    align-items: left;
+}
+
+table 
+{
+    margin-top: 40px;
+}
+
+td {
+    height: 40px;
+}
+
+input[type=text]
+{
+    width: 200px;
+    border: none;
+    border-bottom: 1px solid black;
+    margin-top: 0px;
+    outline: none;
+}
+
+.admin-cards button, .form-class button{
+    background-color: #FFF; 
+    border: 1px solid #0202F7;
+    color: #0202F7;
+    height: 35px;
+    margin: 40px 0;
+    width: 120px;
+    text-align: center;
+    outline:none;
+    transition: all 0.1s ease-in
+}
+
+.admin-cards  button:hover, .form-class button:hover {
+    width: 110px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.admin-cards {
+    width: 100%;
+}

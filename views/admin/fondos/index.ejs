@@ -1,4 +1,73 @@
 <%- include('../../partials/header') -%>
-<div class="error">
-    <h3>Fondos</h3>
+<link rel="stylesheet" href="/stylesheets/admin.css">
+<main>
+    <style>
+        button {
+            display: inline-block;
+        }
+    </style>
+
+<div class="admin-cards">
+<% 
+    var fondos = data.data[data.data['main']]
+    for (var i = 0; i < fondos.length; ++i) {
+    if (fondos[i]['dep'] != undefined)
+        dep = fondos[i]['dep']
+    lugar = dep['lugar'][0]
+%>
+    <div class="content">
+    <h3><%=fondos[i]['fondo_nombre']%></h13>
+    <!-- <p><%=fondos[i]['fondo_caracterizacion']%></p> -->
+    <a href="/fondos/<%=fondos[i]['fondo_id']%>">
+        <button>editar</button>
+    </a>
+    <a href="/fondos/<%=fondos[i]['fondo_id']%>">
+        <button style="color: red; border-color: red;">eliminar</button>
+    </a>
+    </div>
+<%
+    }
+%>
+
 </div>
+
+<div class="form-class">
+    <form action="/admin-login" method="POST">
+        <table>
+            <tr>
+                <td><label for="pass">nombre</label></td>
+                <td><input type="text" name="fondo[nombre]" class="text-input"></td>
+            </tr>
+            <tr>
+                <td><label for="pass">lugar</label></td>
+                <td><input type="text" name="fondo[lugar]" class="text-input"></td>
+            </tr>
+            <tr>
+                <td><label for="pass">tipo</label></td>
+                <td><input type="text" name="fondo[tipo]" class="text-input"></td>
+            </tr>
+            <tr>
+                <td><label for="pass">imagen</label></td>
+                <td><input type="text" name="fondo[imagen]" class="text-input"></td>
+            </tr>
+            <tr>
+                <td><label for="pass">reseña</label></td>
+                <td><textarea name="fondo[reseña]" id="" cols="30" rows="1"> </textarea></td>
+            </tr>
+            <tr>
+                <td><label for="pass">sociopolitico</label></td>
+                <td><textarea name="fondo[sociopolitico]" id="" cols="30" rows="1"> </textarea></td>
+            </tr>
+            <tr>
+                <td><label for="pass">fondo_caracterizacion</label></td>
+                <td><textarea name="fondo[sociopolitico]" id="" cols="30" rows="1"> </textarea></td>
+            </tr>
+        </table>
+        
+        
+        <br>
+        <button type="submit">Crear</button>
+    </form>
+</div>
+
+</main>
