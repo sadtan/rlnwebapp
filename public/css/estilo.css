@@ -96,14 +96,14 @@ section.dropdown {
 /* ---- ESTILOS FOOTER ----*/
 footer {
   background-color: #2727E5;
-  padding: 35px 0 15px 0;
+  padding-top: 35px;
   margin-top: 10vh;
   color: #FFF; }
   footer .logo {
     margin-bottom: 30px; }
   @media only screen and (min-width: 577px) {
     footer {
-      padding: 45px 0 20px 0; } }
+      padding-top: 45px; } }
   @media only screen and (min-width: 993px) {
     footer .left-footer p {
       max-width: 60%; } }
@@ -118,6 +118,32 @@ footer {
   footer .right-footer a {
     display: block;
     padding: 0 0 5px 0; }
+  footer .bottom-footer {
+    background-color: #161616;
+    padding: 20px 0;
+    margin-top: 15px; }
+    footer .bottom-footer p {
+      margin-bottom: 0;
+      color: #C2C2C2; }
+    footer .bottom-footer a {
+      color: #C2C2C2;
+      text-decoration: underline; }
+      footer .bottom-footer a:hover {
+        color: #FFF; }
+    footer .bottom-footer .icons {
+      display: flex;
+      align-items: center; }
+      @media only screen and (max-width: 576px) {
+        footer .bottom-footer .icons {
+          padding-left: 0; } }
+      footer .bottom-footer .icons a img {
+        width: 24px;
+        height: 24px; }
+      footer .bottom-footer .icons a {
+        text-decoration: none;
+        padding-right: 15px; }
+        footer .bottom-footer .icons a:hover img {
+          padding: 0.5px; }
 
 /* ------------ FUENTES ------------- */
 @font-face {

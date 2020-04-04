@@ -6,6 +6,8 @@ $rojo: #FC4141;
 $amarillo: #FEDB31;
 $negro: #161616;
 $blanco: #FFF;
+$gris-claro: #C2C2C2;
+
 
 $circular: "CircularStd", sans-serif;
 $inter: 'Inter', sans-serif;
@@ -170,7 +172,7 @@ section.dropdown {
 /* ---- ESTILOS FOOTER ----*/
 footer {
     background-color: $azul;
-    padding: 35px 0 15px 0;
+    padding-top: 35px;
     margin-top: 10vh;
     color: $blanco;
 
@@ -179,7 +181,7 @@ footer {
     }
 
     @media #{$medium-and-up} { 
-        padding: 45px 0 20px 0;
+        padding-top: 45px;
     }
 
     .left-footer {
@@ -210,6 +212,51 @@ footer {
             padding: 0 0 5px 0;
         }
     } 
+
+    .bottom-footer {
+        background-color: $negro;
+        padding: 20px 0;
+        margin-top: 15px;
+
+        p {
+            margin-bottom: 0;
+            color: $gris-claro;
+        }
+
+        a {
+            color: $gris-claro;
+            text-decoration: underline;
+
+            &:hover {
+                color: $blanco;
+            }
+        }
+
+        .icons {
+            display: flex;
+            align-items: center;
+
+            @media #{$small-and-down} { 
+                padding-left: 0;
+            }
+
+            a img {    
+                width: 24px;
+                height: 24px;
+            }
+
+            a {
+                text-decoration: none;
+                padding-right: 15px;
+
+                &:hover {
+                    img {
+                        padding: 0.5px;
+                    }
+                }
+            }
+        }
+    }
 }
 
 /* ------------ FUENTES ------------- */
