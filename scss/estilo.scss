@@ -94,8 +94,7 @@ a {
     background-color: $azul;
     height: 130px;
     transition: height 1s;
-    position: fixed;
-    top: 0;
+    position: relative;
     width: 100%;
     z-index: 1000;
 
