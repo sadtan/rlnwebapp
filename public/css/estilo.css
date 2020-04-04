@@ -97,7 +97,8 @@ footer {
   background-color: #2727E5;
   padding-top: 35px;
   margin-top: 10vh;
-  color: #FFF; }
+  color: #FFF;
+  position: relative; }
   footer .logo {
     margin-bottom: 30px; }
   @media only screen and (min-width: 577px) {
@@ -143,7 +144,12 @@ footer {
         padding-right: 15px; }
         footer .bottom-footer .icons a:hover img {
           padding: 0.5px; }
+  footer .arrow {
+    position: absolute;
+    width: 36px;
+    right: 5%; }
 
+/* ---- ESTILOS HOME ----*/
 /* ------------ FUENTES ------------- */
 @font-face {
   font-family: "CircularStd";
