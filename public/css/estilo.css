@@ -75,7 +75,7 @@ section.dropdown {
   section.dropdown.down {
     top: 80px; }
   section.dropdown a {
-    border-top: solid white 1px;
+    border-top: solid #FFF 1px;
     display: block;
     color: #FFF;
     font-family: "Inter", sans-serif;
@@ -86,6 +86,7 @@ section.dropdown {
     section.dropdown a:hover {
       color: #FEDB31; }
 
+/* ---- ESTILOS FOOTER ----*/
 /* ------------ FUENTES ------------- */
 @font-face {
   font-family: "CircularStd";
