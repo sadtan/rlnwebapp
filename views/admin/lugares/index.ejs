@@ -7,71 +7,78 @@
         }
     </style>
 
-<div class="admin-cards">
-    <table>
-<% 
+    <div class="admin-cards">
+        <table>
+            <% 
     var fondos = data.data[data.data['main']]
     for (var i = 0; i < fondos.length; ++i) {
 %>
-        <tr>
-            <td><p><%=fondos[i]['nombre']%></ap></td>
-            <td><a href="/fondos/<%=fondos[i]['id']%>">
-                <button>editar</button>
-            </a></td>
-            <td><a href="/fondos/<%=fondos[i]['id']%>">
-                <button style="color: red; border-color: red;">eliminar</button>
-            </a></td>
-        </tr>
-    
-    <!-- <p><%=fondos[i]['fondo_caracterizacion']%></p> -->
-<%
+            <tr>
+                <td>
+                    <p><%=fondos[i]['nombre']%></ap>
+                </td>
+                <td><a href="/fondos/<%=fondos[i]['id']%>">
+                        <button>editar</button>
+                    </a></td>
+                <td><a href="/fondos/<%=fondos[i]['id']%>">
+                        <button style="color: red; border-color: red;">eliminar</button>
+                    </a></td>
+            </tr>
+
+            <!-- <p><%=fondos[i]['fondo_caracterizacion']%></p> -->
+            <%
     }
 %>
-</table>
-</div>
-
-<div class="form-class">
-    <form action="/admin/lugares" method="POST">
-        <table>
-            <tr>
-                <td><label for="pass">nombre</label></td>
-                <td><input type="text" name="lugar[nombre]" class="text-input"></td>
-            </tr>
-            <tr>
-                <td><label for="pass">pais</label></td>
-                <td><input type="text" name="lugar[pais]" class="text-input"></td>
-            </tr>
-            <tr>
-                <td><label for="pass">departamento</label></td>
-                <td><input type="text" name="lugar[departamento]" class="text-input"></td>
-            </tr>
-            <tr>
-                <td><label for="pass">localidad</label></td>
-                <td><input type="text" name="lugar[localidad]" class="text-input"></td>
-            </tr>
-            <tr>
-                <td><label for="pass">direccion</label></td>
-                <td><input type="text" name="lugar[direccion]" class="text-input"></td>
-            </tr>
-            </tr>
-            <tr>
-                <td><label for="pass">latitud</label></td>
-                <td><input type="number" name="lugar[latitud]" class="text-input"></td>
-            </tr>
-            <tr>
-                <td><label for="pass">longitud</label></td>
-                <td><input type="number" name="lugar[longitu]" class="text-input"></td>
-            </tr>
-            <tr>
-                <td><label for="pass">tipo</label></td>
-                <td><input type="number" name="lugar[nombre]" class="text-input" min="0" max="1"></td>
-            </tr>
         </table>
-        
-        
-        <br>
-        <button type="submit">Crear</button>
-    </form>
-</div>
+    </div>
+
+    <div class="form-class">
+        <form action="/admin/lugares" method="POST">
+            <table>
+                <tr>
+                    <td><label for="pass">nombre</label></td>
+                    <td><input type="text" name="lugar[nombre]" class="text-input"></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">país</label></td>
+                    <td><input type="text" name="lugar[pais]" class="text-input"></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">departamento</label></td>
+                    <td><input type="text" name="lugar[departamento]" class="text-input"></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">localidad</label></td>
+                    <td><input type="text" name="lugar[localidad]" class="text-input"></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">dirección</label></td>
+                    <td><input type="text" name="lugar[direccion]" class="text-input"></td>
+                </tr>
+                </tr>
+                <tr>
+                    <td><label for="pass">latitud</label></td>
+                    <td><input type="number" name="lugar[latitud]" class="text-input"></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">longitud</label></td>
+                    <td><input type="number" name="lugar[longitu]" class="text-input"></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">tipo</label></td>
+                    <td>
+                        <select id="tipo" name="lugar[tipo]">
+                            <option value="0">privado</option>
+                            <option value="1">publico</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+
+
+            <br>
+            <button type="submit">Crear</button>
+        </form>
+    </div>
 
 </main>
