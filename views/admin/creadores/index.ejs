@@ -16,12 +16,12 @@
     lugar = dep['lugar'][0]
 %>
     <div class="content">
-    <h3><%=fondos[i]['fondo_nombre']%></h13>
+    <p><%=fondos[i]['nombre']%></ap>
     <!-- <p><%=fondos[i]['fondo_caracterizacion']%></p> -->
-    <a href="/fondos/<%=fondos[i]['fondo_id']%>">
+    <a href="/fondos/<%=fondos[i]['id']%>">
         <button>editar</button>
     </a>
-    <a href="/fondos/<%=fondos[i]['fondo_id']%>">
+    <a href="/fondos/<%=fondos[i]['id']%>">
         <button style="color: red; border-color: red;">eliminar</button>
     </a>
     </div>
@@ -59,8 +59,8 @@
                 <td><textarea name="fondo[sociopolitico]" id="" cols="30" rows="1"> </textarea></td>
             </tr>
             <tr>
-                <td><label for="pass">fondo_caracterizacion</label></td>
-                <td><textarea name="fondo[sociopolitico]" id="" cols="30" rows="1"> </textarea></td>
+                <td><label for="pass">caracterizacion</label></td>
+                <td><textarea name="fondo[caracterizacion]" id="" cols="30" rows="1"> </textarea></td>
             </tr>
         </table>
         

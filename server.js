@@ -65,6 +65,7 @@ class App
         require("./app/routes/customRoutes.js")(this.app, Pool, "piezas");
 
         require("./app/routes/adminRoutes.js")(this.app, Pool, "creadores");
+        require("./app/routes/adminRoutes.js")(this.app, Pool, "lugares");
         
 
         require("./app/routes/indexRoutes.js" )(this.app);
