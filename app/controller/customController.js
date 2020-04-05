@@ -4,7 +4,7 @@ var awsUtils = new AWSUtils();
 
 module.exports = (pool, table, alias) => 
 {
-    var CustomModel = require("../model/customModel")(pool, table, alias);
+    var CustomModel = require("../model/customModel")(pool, table);
     var customModel = new CustomModel();
     
     class CustomController

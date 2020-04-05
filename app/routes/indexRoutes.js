@@ -36,7 +36,7 @@ module.exports = (app) =>
 
     app.get("/", (req, res) => 
     {
-        res.redirect("/fondos");
+        res.redirect("/creadores");
     });
     
     app.get("/aws-health", (_, res) => 

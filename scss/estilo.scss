@@ -1,0 +1,290 @@
+
+/* ----- VARIABLES ----- */
+
+$azul: #2727E5;
+$rojo: #FC4141;
+$amarillo: #FEDB31;
+$negro: #161616;
+$blanco: #FFF;
+$gris-claro: #C2C2C2;
+
+$circular: "CircularStd", sans-serif;
+$inter: 'Inter', sans-serif;
+
+$small-screen: 576px !default;
+$medium-screen: 768px !default;
+$large-screen: 992px !default;
+$extralarge-screen: 1200px !default;
+
+$small-screen-up: 577px !default;
+$medium-screen-up: 767px !default;
+$large-screen-up: 993px !default;
+$extralarge-screen-up: 1201px !default;
+
+$medium-and-up: "only screen and (min-width : #{$small-screen-up})" !default;
+$large-and-up: "only screen and (min-width : #{$medium-screen-up})" !default;
+$extra-large-and-up: "only screen and (min-width : #{$large-screen-up})" !default;
+
+$small-and-down: "only screen and (max-width : #{$small-screen})" !default;
+$medium-and-down: "only screen and (max-width : #{$medium-screen})" !default;
+$large-and-down: "only screen and (max-width : #{$large-screen})" !default;
+$extralarge-and-down: "only screen and (max-width : #{$extralarge-screen})" !default;
+
+$medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width : #{$medium-screen})" !default;
+$extra-large-only: "only screen and (min-width : #{$large-screen-up}) and (max-width : #{$extralarge-screen})" !default;
+
+
+/* ----- ESTILOS GENERALES ----- */
+
+body {
+    width: 100%;
+    margin: 0;
+    font-family: $inter;
+    z-index: -2;
+    font-size: 16px;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    &.disable-scroll {
+        overflow: hidden;
+    }
+
+    @media #{$small-and-down} { 
+        font-size: 14px;
+    }
+
+}
+
+a {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.logo {
+    font-size: 28px;
+    font-family: $circular;
+    font-weight: 600;
+    color: $blanco;
+    transition: font-size 0.1s;
+
+    @media #{$large-and-down} { 
+        font-size: 20px;
+    }
+
+    @media #{$small-and-down} { 
+        font-size: 18px;
+    } 
+
+    &:hover {
+        color: $blanco;
+    }
+}
+
+
+
+
+/* ---- ESTILOS HEADER ----*/
+
+.header {
+    background-color: $azul;
+    height: 130px;
+    transition: height 1s;
+    position: relative;
+    width: 100%;
+    z-index: 1000;
+
+    @media #{$large-and-down} { 
+        height: 80px;
+    }
+
+    .container, .row {
+        height: 100%;
+    }
+
+    .col {
+        margin-bottom: 0;
+    }
+    
+    .menu a {
+        color: $blanco;
+        font-family: $inter;
+        font-weight: light;
+        text-transform: uppercase;
+        float: right;
+        padding: 0 10px;
+
+        &:hover {
+            color: $amarillo;
+        }
+    }
+
+    .burguer {
+        width: 40px;
+        height: auto;
+        padding: 0;
+        margin: 20px;
+
+        &:hover {
+           margin: 19px;
+           width: 42px;
+        }
+
+        @media #{$small-and-down} { 
+            width: 30px;
+        }
+    }
+}
+
+section.dropdown {
+    background-color: $azul;
+    position: fixed;
+    top: -195px;
+    width: 100%;
+    transition: top 1s;
+    z-index: 999;
+
+    &.down {
+        top: 80px;
+    }
+
+    a {
+        border-top: solid $blanco 1px;
+        display: block;
+        color: $blanco;
+        font-family: $inter;
+        font-weight: light;
+        text-transform: uppercase;
+        padding: 20px 0;
+        text-align: center;
+
+        &:hover {
+            color: $amarillo;
+        }
+    }
+}
+
+/* ---- ESTILOS FOOTER ----*/
+footer {
+    background-color: $azul;
+    padding-top: 35px;
+    margin-top: 10vh;
+    color: $blanco;
+    position: relative;
+
+    .logo {
+        margin-bottom: 30px;
+    }
+
+    @media #{$medium-and-up} { 
+        padding-top: 45px;
+    }
+
+    .left-footer {
+        
+
+        @media #{$extra-large-and-up} { 
+            p {
+                max-width: 60%;
+            }
+        }
+    }
+
+   a {
+        color: $blanco;
+        font-family: $inter;
+        font-weight: light;
+        text-transform: none;
+        line-height: 1.3;
+
+        &:hover {
+            color: $amarillo;
+        }
+    } 
+
+    .right-footer {
+        a {
+            display: block;
+            padding: 0 0 5px 0;
+        }
+    } 
+
+    .bottom-footer {
+        background-color: $negro;
+        padding: 20px 0;
+        margin-top: 15px;
+
+        p {
+            margin-bottom: 0;
+            color: $gris-claro;
+        }
+
+        a {
+            color: $gris-claro;
+            text-decoration: underline;
+
+            &:hover {
+                color: $blanco;
+            }
+        }
+
+        .icons {
+            display: flex;
+            align-items: center;
+
+            @media #{$small-and-down} { 
+                padding-left: 0;
+            }
+
+            a img {    
+                width: 24px;
+                height: 24px;
+            }
+
+            a {
+                text-decoration: none;
+                padding-right: 15px;
+
+                &:hover {
+                    img {
+                        padding: 0.5px;
+                    }
+                }
+            }
+        }
+    }
+
+    .arrow {
+        position: absolute;
+        width: 36px;
+        right: 5%;
+    }
+}
+
+
+/* ---- ESTILOS HOME ----*/
+
+
+
+/* ------------ FUENTES ------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap');
+
+@font-face {
+    font-family: "CircularStd";
+    src: url("../fonts/CircularStd-Book.eot");
+    src: url("../fonts/CircularStd-Book.eot?#iefix") format("embedded-opentype"), url("../fonts/CircularStd-Book.woff") format("woff"), url("../fonts/CircularStd-Book.ttf") format("truetype"), url("../fonts/CircularStd-Book.svg#bcc26993292869431e54c666aafa8fcd") format("svg");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "CircularStd";
+    src: url("../fonts/CircularStd-Bold.eot");
+    src: url("../fonts/CircularStd-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/CircularStd-Bold.woff") format("woff"), url("../fonts/CircularStd-Bold.ttf") format("truetype"), url("../fonts/CircularStd-Bold.svg#bcc26993292869431e54c666aafa8fcd") format("svg");
+    font-weight: 600;
+    font-style: normal;
+  }
