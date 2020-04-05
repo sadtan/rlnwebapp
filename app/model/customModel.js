@@ -1,7 +1,7 @@
 var DB = require("../model/db.js");
 const Errors  = require('../utils/errors.js');
 
-module.exports = (pool, table, alias) => 
+module.exports = (pool, table) => 
 {
     var sql = new DB(pool);
     class Model 
@@ -26,7 +26,7 @@ module.exports = (pool, table, alias) =>
         {
             return new Promise(async (resolve, reject) => {
                 try {
-                    var queryStr = "SELECT * FROM " + table  +" WHERE " + alias + "_id = ?";
+                    var queryStr = "SELECT * FROM " + table  +" WHERE id = ?";
                     var data = await sql.query(queryStr, id);
 
                     if (!data[0]) throw new Errors.NotFound("Sitio no encontrado");
@@ -44,7 +44,7 @@ module.exports = (pool, table, alias) =>
         {
             return new Promise(async (resolve, reject) => {
                 try {
-                    var queryStr = "SELECT * FROM " + table  +" WHERE " + alias + "_id = " + fk;
+                    var queryStr = "SELECT * FROM " + table  +" WHERE " + " id = " + fk;
                     var data = await sql.query(queryStr);
 
                     if (!data[0]) throw new Errors.NotFound("Sitio no encontrado");
@@ -62,7 +62,7 @@ module.exports = (pool, table, alias) =>
         {
             return new Promise(async (resolve, reject) => {
                 try {
-                    var queryStr = "SELECT * FROM " + table  +" WHERE " + alias + "_id = " + fk;
+                    var queryStr = "SELECT * FROM " + table  +" WHERE id = " + fk;
                     var data = await sql.querySearch(queryStr);
 
                     if (!data[0]) throw new Errors.NotFound("Sitio no encontrado");

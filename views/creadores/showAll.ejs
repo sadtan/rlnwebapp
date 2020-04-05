@@ -4,7 +4,7 @@
 <header class="showcase">
     <div class="text">
         <p>
-            Un espacio digital abierto
+            aaaUn espacio digital abierto
             para la documentación,
             conservación y consulta de
             textiles que narran la vida en
@@ -22,17 +22,17 @@
 </div>
 <div class="home-cards">
 <% 
-    var fondos = data.data[data.data['main']]
-    for (var i = 0; i < fondos.length; ++i) {
-    if (fondos[i]['dep'] != undefined)
-        dep = fondos[i]['dep']
+    var creadores = data.data[data.data['main']]
+    for (var i = 0; i < creadores.length; ++i) {
+    if (creadores[i]['dep'] != undefined)
+        dep = creadores[i]['dep']
     lugar = dep['lugar'][0]
 %>
     <div class="card-img">
         <img src="/img/image--002.jpg" alt="">
     </div>
     <div class="content">
-<%  if (fondos[i]['dep'] != undefined) { %>
+<%  if (creadores[i]['dep'] != undefined) { %>
     <p class="card-lugar">
         <%=lugar['lugar_departamento']%>, 
         <%=lugar['lugar_localidad']%>
@@ -40,9 +40,9 @@
 <%
     }
 %>
-    <h1><%=fondos[i]['fondo_nombre']%></h1>
-    <p><%=fondos[i]['fondo_caracterizacion']%></p>
-    <a href="/fondos/<%=fondos[i]['fondo_id']%>">
+    <h1><%=creadores[i]['nombre']%></h1>
+    <p><%=creadores[i]['caracterizacion']%></p>
+    <a href="/creadores/<%=creadores[i]['id']%>">
         <button>Conocer más</button>
     </a>
     </div>

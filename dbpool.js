@@ -38,7 +38,7 @@ var parsedCredentials = {
             else 
                 return 0    
         }
-
+ 
         return( useDefaultTypeCasting() );
         }
 }

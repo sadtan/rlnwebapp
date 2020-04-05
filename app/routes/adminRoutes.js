@@ -2,9 +2,9 @@
 
 var reqBatchHandler = require("../utils/requestBatchHandler");
 
-module.exports = function (app, pool, m_table, m_alias) 
+module.exports = function (app, pool, m_table) 
 {
-    const MainController  = require("../controller/customController.js")(pool, m_table, m_alias);
+    const MainController  = require("../controller/customController.js")(pool, m_table);
     const controller      = new MainController();
     const ResHandler      = require("../utils/responseHandler.js").ResHandler();
     const resHandler      = new ResHandler();
