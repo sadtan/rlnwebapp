@@ -4,3 +4,4 @@ node_modules/
 .env
 tmp/
 public/.DS_Store
+.DS_Store

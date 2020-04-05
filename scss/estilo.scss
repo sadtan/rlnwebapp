@@ -6,6 +6,7 @@ $rojo: #FC4141;
 $amarillo: #FEDB31;
 $negro: #161616;
 $blanco: #FFF;
+$gris-claro: #C2C2C2;
 
 $circular: "CircularStd", sans-serif;
 $inter: 'Inter', sans-serif;
@@ -40,6 +41,7 @@ body {
     margin: 0;
     font-family: $inter;
     z-index: -2;
+    font-size: 16px;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -47,6 +49,11 @@ body {
     &.disable-scroll {
         overflow: hidden;
     }
+
+    @media #{$small-and-down} { 
+        font-size: 14px;
+    }
+
 }
 
 a {
@@ -57,6 +64,25 @@ a {
     }
 }
 
+.logo {
+    font-size: 28px;
+    font-family: $circular;
+    font-weight: 600;
+    color: $blanco;
+    transition: font-size 0.1s;
+
+    @media #{$large-and-down} { 
+        font-size: 20px;
+    }
+
+    @media #{$small-and-down} { 
+        font-size: 18px;
+    } 
+
+    &:hover {
+        color: $blanco;
+    }
+}
 
 
 
@@ -67,8 +93,7 @@ a {
     background-color: $azul;
     height: 130px;
     transition: height 1s;
-    position: fixed;
-    top: 0;
+    position: relative;
     width: 100%;
     z-index: 1000;
 
@@ -95,23 +120,6 @@ a {
         &:hover {
             color: $amarillo;
         }
-    }
-
-    .logo {
-        font-size: 28px;
-        font-family: $circular;
-        font-weight: 600;
-        color: $blanco;
-        transition: font-size 0.1s;
-
-        @media #{$large-and-down} { 
-            font-size: 20px;
-        }
-
-        @media #{$small-and-down} { 
-            font-size: 18px;
-        }
-        
     }
 
     .burguer {
@@ -144,7 +152,7 @@ section.dropdown {
     }
 
     a {
-        border-top: solid white 1px;
+        border-top: solid $blanco 1px;
         display: block;
         color: $blanco;
         font-family: $inter;
@@ -158,6 +166,108 @@ section.dropdown {
         }
     }
 }
+
+/* ---- ESTILOS FOOTER ----*/
+footer {
+    background-color: $azul;
+    padding-top: 35px;
+    margin-top: 10vh;
+    color: $blanco;
+    position: relative;
+
+    .logo {
+        margin-bottom: 30px;
+    }
+
+    @media #{$medium-and-up} { 
+        padding-top: 45px;
+    }
+
+    .left-footer {
+        
+
+        @media #{$extra-large-and-up} { 
+            p {
+                max-width: 60%;
+            }
+        }
+    }
+
+   a {
+        color: $blanco;
+        font-family: $inter;
+        font-weight: light;
+        text-transform: none;
+        line-height: 1.3;
+
+        &:hover {
+            color: $amarillo;
+        }
+    } 
+
+    .right-footer {
+        a {
+            display: block;
+            padding: 0 0 5px 0;
+        }
+    } 
+
+    .bottom-footer {
+        background-color: $negro;
+        padding: 20px 0;
+        margin-top: 15px;
+
+        p {
+            margin-bottom: 0;
+            color: $gris-claro;
+        }
+
+        a {
+            color: $gris-claro;
+            text-decoration: underline;
+
+            &:hover {
+                color: $blanco;
+            }
+        }
+
+        .icons {
+            display: flex;
+            align-items: center;
+
+            @media #{$small-and-down} { 
+                padding-left: 0;
+            }
+
+            a img {    
+                width: 24px;
+                height: 24px;
+            }
+
+            a {
+                text-decoration: none;
+                padding-right: 15px;
+
+                &:hover {
+                    img {
+                        padding: 0.5px;
+                    }
+                }
+            }
+        }
+    }
+
+    .arrow {
+        position: absolute;
+        width: 36px;
+        right: 5%;
+    }
+}
+
+
+/* ---- ESTILOS HOME ----*/
+
+
 
 /* ------------ FUENTES ------------- */
 

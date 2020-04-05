@@ -17,80 +17,107 @@
 
     </head>
 
-    <div class="menu-btn">
-        <i class="fas fa-bars fa-2x"></i>
-    </div>
-
     <body>
 
         <% if (!admin.isLogged) { %>
         <section class="header">
 
             <div class="container">
+
                 <div class="row align-items-center justify-content-between">
+
                     <h1 class="col col-lg-6 col-md-5 col-sm-10">
+
                         <a href="/" class="logo">
+
                             _ARCHIVO DIGITAL DE <br> TEXTILES TESTIMONIALES
+
                         </a>
+
                     </h1>
 
                     <nav class="menu col col-lg-6 col-md-7 d-none d-md-block">
-                        <a href="/search"> Busqueda </a>
+
+                        <a href="/search"> Búsqueda </a>
+
                         <a href="/lugares"> Mapa </a>
+
                         <a href="/"> Sobre el archivo </a>
+
                     </nav>
 
-                    <img class="d-md-none burguer" src="/img/burguer.png" />
+                    <img class="d-md-none burguer" src="/img/icons/burguer.png" />
+
                 </div>
+
             </div>
 
         </section>
 
         <section class="dropdown">
+
             <nav class="menu">
-                <a href="/search"> Busqueda </a>
+
+                <a href="/search"> Búsqueda </a>
                 <a href="/lugares"> Mapa </a>
                 <a href="/"> Sobre el archivo </a>
+
             </nav>
+
         </section>
 
 
         <% } else { %>
 
+
         <section class="header">
 
             <div class="container">
+
                 <div class="row align-items-center justify-content-between">
+
                     <h1 class="col col-lg-6 col-md-5 col-sm-10">
+
                         <a href="/" class="logo">
+
                             _ARCHIVO DIGITAL DE <br> TEXTILES TESTIMONIALES
+
                         </a>
+
                     </h1>
 
                     <nav class="menu col col-lg-6 col-md-7 d-none d-md-block">
+
                         <a href="/admin/creadores">creadores</a>
                         <a href="/admin/colecciones">colecciones</a>
                         <a href="/admin/lugares">lugares</a>
-                        <a href="/admin/hechos">hechos</a>
-                        <a href="/admin/piezas">piezas</a>
+                        <a href="/admin/hechos">lugares</a>
+                        <a href="/admin/piezas">lugares</a>
                         <a href="/admin-logut">salir</a>
+
                     </nav>
 
-                    <img class="d-md-none burguer" src="/img/burguer.png" />
+                    <img class="d-md-none burguer" src="/img/icons/burguer.png" />
+
                 </div>
+
             </div>
 
         </section>
 
         <section class="dropdown">
+
             <nav class="menu">
+
                 <a href="/admin/creadores">creadores</a>
                 <a href="/admin/colecciones">colecciones</a>
                 <a href="/admin/lugares">lugares</a>
                 <a href="/admin/hechos">hechos</a>
                 <a href="/admin/piezas">piezas</a>
                 <a href="/admin-logut">salir</a>
+
             </nav>
+
         </section>
 
         <!-- <div class="container">
@@ -100,22 +127,14 @@
 
                 </ul>
                 <ul class="right-menu">
-                    <li><a href="/admin/creadores">creadores</a></li>
+                    <li><a href="/admin/fondos">fondos</a></li>
                     <li><a href="/admin/colecciones">colecciones</a></li>
                     <li><a href="/admin/lugares">lugares</a></li>
-                    <li><a href="/admin/hechos">hechos</a></li>
-                    <li><a href="/admin/piezas">piezas</a></li>
+                    <li><a href="/admin/hechos">lugares</a></li>
+                    <li><a href="/admin/piezas">lugares</a></li>
                     <li><a href="/admin-logut">salir</a></li>
                 </ul>
             </div>
         </div> -->
 
         <% } %>
-        <script>
-
-            $('.burguer').click(function () {
-                $('.dropdown').toggleClass("down");
-                $("body").toggleClass("disable-scroll");
-            });
-
-        </script>
