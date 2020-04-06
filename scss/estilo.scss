@@ -327,7 +327,6 @@ footer {
         margin-bottom: 5vh;
     }
 
-
     .text {
         .btn {
             margin-top: 40px;
@@ -360,7 +359,29 @@ footer {
     img {
         width: 100%;
         height: auto;
-    }   
+    }
+    
+    .chevron {
+        width: 24px;
+        height: auto;
+        margin: 0 auto;
+        animation: bounce 2s infinite;
+    }
+}
+
+
+
+/* ----- ANIMACIONES -----*/
+@keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-20px);
+        }
+        60% {
+          transform: translateY(-10px);
+        }  
 }
 
 
