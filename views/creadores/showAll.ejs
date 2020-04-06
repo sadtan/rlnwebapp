@@ -1,22 +1,30 @@
 <%- include('../partials/header') -%> 
 
 <main>
-<header class="showcase">
-    <div class="text">
-        <p>
-            Un espacio digital abierto
-            para la documentación,
-            conservación y consulta de
-            textiles que narran la vida en
-            medio del conflicto armado.
-        </p>
-        <button href="#">Ver más <i>></i></button>
+
+<section class="home-section container top btm">
+    <div class="row align-items-center">
+        <div class="text col col-12 col-lg-6  order-2-lg">
+            <h2 class="about-text">
+                Un espacio digital abierto para la documentación, conservación y consulta de textiles que narran la vida en medio del conflicto armado en Colombia.
+            </h2>
+            <button class="btn white" href="#">
+                Saber más 
+
+                <img class="arrow-btn" src="/img/icons/arrow-btn.png">
+
+            </button>
+        </div>
+
+        <div class="img first-on-large col col-12 col-lg-6  order-1-lg">
+            <img src="/img/home.png" alt="">
+        </div>
+
     </div>
-    <div class="img">
-        <img src="/img/image--012.jpg" alt="">
-    </div>
-    
-</header>
+
+</section>
+
+<!--
 <div class="chevron">
     <i class="fas fa-chevron-down"></i>
 </div>
@@ -71,5 +79,6 @@
         
     </div>
 </div>
+-->
 
 <%- include('../partials/footer') -%>

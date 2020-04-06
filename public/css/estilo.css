@@ -35,6 +35,46 @@ a {
   .logo:hover {
     color: #FFF; }
 
+h2 {
+  font-family: "CircularStd", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.3; }
+  @media only screen and (max-width: 768px) {
+    h2 {
+      font-size: 26px; } }
+  @media only screen and (max-width: 576px) {
+    h2 {
+      font-size: 22px; } }
+
+.btn {
+  font-family: "CircularStd", sans-serif;
+  font-size: 18px;
+  padding: 5px 20px;
+  border-radius: 30px; }
+  .btn.white {
+    border: 2px solid #2727E5;
+    color: #2727E5; }
+  .btn.blue {
+    background-color: #2727E5;
+    color: #FFF; }
+  @media only screen and (max-width: 576px) {
+    .btn {
+      font-size: 16px;
+      padding: 4px 16px; } }
+
+.top {
+  margin-top: 10vh; }
+
+.btm {
+  margin-bottom: 10vh; }
+
+@media only screen and (max-width: 992px) {
+  .order-1-lg {
+    order: 1; }
+  .order-2-lg {
+    order: 2; } }
+
 /* ---- ESTILOS HEADER ----*/
 .header {
   background-color: #2727E5;
@@ -150,6 +190,30 @@ footer {
     right: 5%; }
 
 /* ---- ESTILOS HOME ----*/
+.home-section .col {
+  margin-bottom: 5vh; }
+
+.home-section .text .btn {
+  margin-top: 40px; }
+  .home-section .text .btn img {
+    width: 33px;
+    height: auto;
+    margin-left: 10px; }
+  .home-section .text .btn:hover img {
+    margin-left: 12px;
+    margin-right: -2px; }
+
+@media only screen and (max-width: 992px) {
+  .home-section .text {
+    text-align: center;
+    margin: 0 auto; }
+    .home-section .text .btn {
+      margin-top: 20px; } }
+
+.home-section img {
+  width: 100%;
+  height: auto; }
+
 /* ------------ FUENTES ------------- */
 @font-face {
   font-family: "CircularStd";

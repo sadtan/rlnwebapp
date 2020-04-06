@@ -84,6 +84,61 @@ a {
     }
 }
 
+h2 {
+    font-family: $circular;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.3;
+
+    @media #{$medium-and-down} { 
+        font-size: 26px;
+    } 
+
+    @media #{$small-and-down} { 
+        font-size: 22px;
+    } 
+}
+
+.btn {
+    font-family: $circular;
+    font-size: 18px;
+    padding: 5px 20px;
+    border-radius: 30px;
+    
+
+    &.white {
+        border: 2px solid $azul;
+        color: $azul;
+    }
+
+    &.blue {
+        background-color: $azul;
+        color: $blanco;
+    }
+
+    @media #{$small-and-down} { 
+        font-size: 16px;
+        padding: 4px 16px;
+    } 
+}
+
+.top {
+    margin-top: 10vh;
+}
+
+.btm {
+    margin-bottom: 10vh;
+}
+
+@media #{$large-and-down} { 
+    .order-1-lg {
+        order: 1;
+    }
+
+    .order-2-lg {
+        order: 2;
+    }
+}
 
 
 
@@ -142,7 +197,7 @@ a {
 section.dropdown {
     background-color: $azul;
     position: fixed;
-    top: -195px;
+    top: -400px;
     width: 100%;
     transition: top 1s;
     z-index: 999;
@@ -266,6 +321,47 @@ footer {
 
 
 /* ---- ESTILOS HOME ----*/
+
+.home-section {
+    .col {
+        margin-bottom: 5vh;
+    }
+
+
+    .text {
+        .btn {
+            margin-top: 40px;
+    
+            img {
+                width: 33px;
+                height: auto;
+                margin-left: 10px;
+            }
+    
+            &:hover {
+                img {
+                    margin-left: 12px;
+                    margin-right: -2px;
+                }
+    
+            }
+        }
+    
+        @media #{$large-and-down} { 
+            text-align: center;
+            margin: 0 auto;
+
+            .btn {
+                margin-top: 20px;
+            }
+        }
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }   
+}
 
 
 
