@@ -2,7 +2,7 @@
 
 <main>
 
-<section class="home-section container top btm">
+<section class="home-section container top btm home-intro">
     <div class="row align-items-center">
         <div class="text col col-12 col-lg-6  order-2-lg">
             <h2 class="about-text">
@@ -27,7 +27,7 @@
 
 </section>
 
-<section class="home-section preview-fondo container top ">
+<section class="home-section preview-fondos container top ">
     <% 
     var creadores = data.data[data.data['main']]
     for (var i = 0; i < creadores.length; ++i) {
@@ -36,18 +36,22 @@
     lugar = dep['lugar'][0]
     %>
 
-    <div class="fondo row align-items-center btm ">
-        <div class="img col col-12 col-lg-6 top">
-            <img src="/img/linea_mampujan.png" alt=""> 
-            <img src="/img/azul_mampujan.jpg" alt="" style="display:none">
+    <div class="fondo row align-items-center btm">
+        <div class="img col col-12 col-lg-6">
+            <img class="linea" src="/img/linea_mampujan.jpg" alt=""> 
+            <img class="azul" src="/img/azul_mampujan.jpg" alt="">
         </div>
 
         <%  if (creadores[i]['dep'] != undefined) { %>
-        <div class="text col col-12 col-lg-5 offset-lg-1 btm">
-            <p class="card-lugar">
+        <div class="text col col-12 col-lg-5 btm">
+            <h3 class= "lugar">
+                Mampuján, 
+                Bólivar
+            </h3>
+           <!-- <p class="card-lugar">
                 <%=lugar['lugar_departamento']%>, 
                 <%=lugar['lugar_localidad']%>
-            </p>
+            </p> --> 
         <%
             }
         %>

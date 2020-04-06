@@ -47,6 +47,13 @@ h2 {
     h2 {
       font-size: 22px; } }
 
+h3 {
+  text-transform: uppercase;
+  font-family: inter;
+  font-size: 15px;
+  color: #A9A9A9;
+  letter-spacing: 2px; }
+
 .btn {
   font-family: "CircularStd", sans-serif;
   font-size: 18px;
@@ -204,12 +211,8 @@ footer {
     margin-right: -2px; }
 
 @media only screen and (max-width: 992px) {
-  .home-section .text {
-    text-align: center;
-    margin-left: auto;
-    margin-left: right; }
-    .home-section .text .btn {
-      margin-top: 15px; } }
+  .home-section .text .btn {
+    margin-top: 15px; } }
 
 .home-section img {
   width: 100%;
@@ -223,6 +226,33 @@ footer {
   @media only screen and (max-width: 992px) {
     .home-section .chevron {
       margin-top: 5vh; } }
+
+@media only screen and (max-width: 992px) {
+  .home-intro {
+    text-align: center;
+    margin-left: auto;
+    margin-left: right; } }
+
+.preview-fondos .fondo .azul {
+  display: none; }
+
+.preview-fondos .fondo .img:hover .linea {
+  display: none; }
+
+.preview-fondos .fondo .img:hover .azul {
+  display: block; }
+
+@media only screen and (min-width: 993px) {
+  .preview-fondos :nth-child(odd) .text {
+    margin-left: 8%; }
+  .preview-fondos :nth-child(even) .text {
+    margin-right: 8%; } }
+
+.preview-fondos :nth-child(even) .img {
+  order: 2; }
+
+.preview-fondos :nth-child(even) .text {
+  order: 1; }
 
 /* ----- ANIMACIONES -----*/
 @keyframes bounce {

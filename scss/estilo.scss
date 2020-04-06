@@ -7,6 +7,7 @@ $amarillo: #FEDB31;
 $negro: #161616;
 $blanco: #FFF;
 $gris-claro: #C2C2C2;
+$gris: #A9A9A9;
 
 $circular: "CircularStd", sans-serif;
 $inter: 'Inter', sans-serif;
@@ -97,6 +98,14 @@ h2 {
     @media #{$small-and-down} { 
         font-size: 22px;
     } 
+}
+
+h3 {
+    text-transform: uppercase;
+    font-family: inter;
+    font-size: 15px;
+    color: $gris;
+    letter-spacing: 2px;
 }
 
 .btn {
@@ -347,10 +356,6 @@ footer {
         }
     
         @media #{$large-and-down} { 
-            text-align: center;
-            margin-left: auto;
-            margin-left: right;
-
             .btn {
                 margin-top: 15px;
             }
@@ -374,8 +379,58 @@ footer {
     }
 }
 
-.preview-fondo {
-   
+.home-intro {
+    @media #{$large-and-down} { 
+        text-align: center;
+        margin-left: auto;
+        margin-left: right;
+
+    }
+}
+.preview-fondos {
+
+    .fondo {
+        .azul {
+            display: none;
+        }
+
+        .img:hover {
+            .linea {
+                display: none;
+            }
+            .azul {
+                display: block;
+            }
+        }
+
+
+    }
+
+    @media #{$extra-large-and-up} { 
+
+        :nth-child(odd) {
+            .text {
+                margin-left: 8%;
+            }
+        }
+
+        :nth-child(even) {
+            .text {
+                margin-right: 8%;
+            }
+        }
+    }
+
+    :nth-child(even) {
+
+        .img {
+            order: 2;
+        }
+
+        .text {
+            order: 1;
+        }  
+    }
 }
 
 
