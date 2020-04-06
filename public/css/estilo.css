@@ -246,13 +246,11 @@ footer {
   .preview-fondos :nth-child(odd) .text {
     margin-left: 8%; }
   .preview-fondos :nth-child(even) .text {
-    margin-right: 8%; } }
-
-.preview-fondos :nth-child(even) .img {
-  order: 2; }
-
-.preview-fondos :nth-child(even) .text {
-  order: 1; }
+    margin-right: 8%; }
+  .preview-fondos :nth-child(even) .img {
+    order: 2; }
+  .preview-fondos :nth-child(even) .text {
+    order: 1; } }
 
 /* ----- ANIMACIONES -----*/
 @keyframes bounce {

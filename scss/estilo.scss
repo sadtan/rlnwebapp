@@ -418,18 +418,15 @@ footer {
             .text {
                 margin-right: 8%;
             }
+
+            .img {
+                order: 2;
+            }
+
+            .text {
+                order: 1;
+            }  
         }
-    }
-
-    :nth-child(even) {
-
-        .img {
-            order: 2;
-        }
-
-        .text {
-            order: 1;
-        }  
     }
 }
 
