@@ -27,11 +27,45 @@
 
 </section>
 
-<!--
-<div class="chevron">
-    <i class="fas fa-chevron-down"></i>
-</div>
-<div class="home-cards">
+<section class="home-section preview-fondo container top ">
+    <% 
+    var creadores = data.data[data.data['main']]
+    for (var i = 0; i < creadores.length; ++i) {
+    if (creadores[i]['dep'] != undefined)
+        dep = creadores[i]['dep']
+    lugar = dep['lugar'][0]
+    %>
+
+    <div class="fondo row align-items-center btm ">
+        <div class="img col col-12 col-lg-6 top">
+            <img src="/img/linea_mampujan.png" alt=""> 
+            <img src="/img/azul_mampujan.jpg" alt="" style="display:none">
+        </div>
+
+        <%  if (creadores[i]['dep'] != undefined) { %>
+        <div class="text col col-12 col-lg-5 offset-lg-1 btm">
+            <p class="card-lugar">
+                <%=lugar['lugar_departamento']%>, 
+                <%=lugar['lugar_localidad']%>
+            </p>
+        <%
+            }
+        %>
+            <h2><%=creadores[i]['nombre']%></h2>
+            <p> Un grupo de tejedoras que desde el 2004, cuatro años después de ser desplazadas forzosamente de sus veredas en el municipio de María La Baja en la región de los Montes de María, no han parado de tejer para reclamar y construir paz.</p>
+            <a href="/creadores/<%=creadores[i]['id']%>">
+                <button class ="btn blue">Conocer más</button>
+            </a>
+        </div>
+    </div>
+    <%
+        }
+    %>
+    
+</section>
+
+
+ <!-- <div class="home-cards">
 <% 
     var creadores = data.data[data.data['main']]
     for (var i = 0; i < creadores.length; ++i) {
@@ -51,8 +85,8 @@
 <%
     }
 %>
-    <h1><%=creadores[i]['nombre']%></h1>
-    <p><%=creadores[i]['caracterizacion']%></p>
+    <h2><%=creadores[i]['nombre']%></h2>
+    <p> Un grupo de tejedoras que desde el 2004, cuatro años después de ser desplazadas forzosamente de sus veredas en el municipio de María La Baja en la región de los Montes de María, no han parado de tejer para reclamar y construir paz.</p>
     <a href="/creadores/<%=creadores[i]['id']%>">
         <button>Conocer más</button>
     </a>
@@ -61,11 +95,11 @@
     }
 %>
 
-</div>
+</div> -->
 
 </main>
 
-<div class="hands">
+<!-- <div class="hands">
     <p class="text">
         “Transformar en el remiendo, pasar de
         una cosa que uno quiera a otra nueva, si

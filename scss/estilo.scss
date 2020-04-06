@@ -329,7 +329,7 @@ footer {
 
     .text {
         .btn {
-            margin-top: 40px;
+            margin-top: 25px;
     
             img {
                 width: 33px;
@@ -348,10 +348,11 @@ footer {
     
         @media #{$large-and-down} { 
             text-align: center;
-            margin: 0 auto;
+            margin-left: auto;
+            margin-left: right;
 
             .btn {
-                margin-top: 20px;
+                margin-top: 15px;
             }
         }
     }
@@ -366,7 +367,15 @@ footer {
         height: auto;
         margin: 0 auto;
         animation: bounce 2s infinite;
+
+        @media #{$large-and-down} { 
+            margin-top: 5vh;
+        }
     }
+}
+
+.preview-fondo {
+   
 }
 
 

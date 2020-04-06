@@ -194,7 +194,7 @@ footer {
   margin-bottom: 5vh; }
 
 .home-section .text .btn {
-  margin-top: 40px; }
+  margin-top: 25px; }
   .home-section .text .btn img {
     width: 33px;
     height: auto;
@@ -206,9 +206,10 @@ footer {
 @media only screen and (max-width: 992px) {
   .home-section .text {
     text-align: center;
-    margin: 0 auto; }
+    margin-left: auto;
+    margin-left: right; }
     .home-section .text .btn {
-      margin-top: 20px; } }
+      margin-top: 15px; } }
 
 .home-section img {
   width: 100%;
@@ -219,6 +220,9 @@ footer {
   height: auto;
   margin: 0 auto;
   animation: bounce 2s infinite; }
+  @media only screen and (max-width: 992px) {
+    .home-section .chevron {
+      margin-top: 5vh; } }
 
 /* ----- ANIMACIONES -----*/
 @keyframes bounce {
