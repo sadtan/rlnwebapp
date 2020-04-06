@@ -75,7 +75,7 @@ module.exports = (BucketName) =>
 
             } catch (headErr)
             {
-                //console.log(headErr);
+                console.log(headErr);
                 return KeyValue;
             }
             

@@ -15,7 +15,7 @@ var parsedCredentials = {
 
     hashing: 'farmhash64',
  
-    verbose: true,
+    //verbose: true,
 
     TTL: 70000,
  
