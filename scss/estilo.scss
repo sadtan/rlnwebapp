@@ -455,6 +455,40 @@ footer {
     }
 }
 
+.universidades {
+    .col {
+        margin-bottom: 50px;
+    }
+
+    @media #{$large-and-down} {
+        h2 {
+            text-align: center;
+        }
+    }
+
+    .desarrollo {
+
+        h2 {
+        font-size: 24px;
+
+        }
+
+        img {
+            height: 70px;
+        }
+    }
+
+    .apoyo  {
+        h2 {
+        font-size: 20px;
+        }
+
+        img {
+        height: 60px;
+        }
+    }
+}
+
 
 
 /* ----- ANIMACIONES -----*/
