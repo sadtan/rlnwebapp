@@ -2,74 +2,74 @@
 
 <main>
 
-<section class="home-section container top btm home-intro">
-    <div class="row align-items-center">
-        <div class="text col col-12 col-lg-6  order-2-lg">
-            <h2 class="about-text">
-                Un espacio digital abierto para la documentación, conservación y consulta de textiles que narran la vida en medio del conflicto armado en Colombia.
-            </h2>
-            <button class="btn white" href="#">
-                Saber más 
+    <section class="home-section container top btm home-intro">
+        <div class="row align-items-center">
+            <div class="text col col-12 col-lg-6  order-2-lg">
+                <h2 class="about-text">
+                    Un espacio digital abierto para la documentación, conservación y consulta de textiles que narran la vida en medio del conflicto armado en Colombia.
+                </h2>
+                <button class="btn white" href="#">
+                    Saber más 
 
-                <img class="arrow-btn" src="/img/icons/arrow-btn.svg">
+                    <img class="arrow-btn" src="/img/icons/arrow-btn.svg">
 
-            </button>
+                </button>
+            </div>
+
+            <div class="img first-on-large col col-12 col-lg-6  order-1-lg">
+                <img src="/img/home.png" alt="">
+            </div>
         </div>
 
-        <div class="img first-on-large col col-12 col-lg-6  order-1-lg">
-            <img src="/img/home.png" alt="">
-        </div>
-    </div>
-
-    <div class="row align-items-center">
-        <img class="chevron" src="/img/icons/chevron_down.svg" alt="">
-    </div>
-
-</section>
-
-<section class="home-section preview-fondos container top ">
-    <% 
-    var creadores = data.data[data.data['main']]
-    for (var i = 0; i < creadores.length; ++i) {
-    if (creadores[i]['dep'] != undefined)
-        dep = creadores[i]['dep']
-    lugar = dep['lugar'][0]
-    %>
-
-    <div class="fondo row align-items-center btm">
-        <div class="img col col-12 col-lg-6">
-            <img class="linea" src="/img/linea_mampujan.jpg" alt=""> 
-            <img class="azul" src="/img/azul_mampujan.jpg" alt="">
+        <div class="row align-items-center">
+            <img class="chevron" src="/img/icons/chevron_down.svg" alt="">
         </div>
 
-        <%  if (creadores[i]['dep'] != undefined) { %>
-        <div class="text col col-12 col-lg-5 btm">
-           <!-- <h3 class="lugar">
-                <%=lugar['lugar_departamento']%>, 
-                <%=lugar['lugar_localidad']%>
-            </p> --> 
+    </section>
+
+    <section class="home-section preview-fondos container top ">
+        <% 
+        var creadores = data.data[data.data['main']]
+        for (var i = 0; i < creadores.length; ++i) {
+        if (creadores[i]['dep'] != undefined)
+            dep = creadores[i]['dep']
+        lugar = dep['lugar'][0]
+        %>
+
+        <div class="fondo row align-items-center btm">
+            <div class="img col col-12 col-lg-6">
+                <img class="linea" src="/img/linea_mampujan.jpg" alt=""> 
+                <img class="azul" src="/img/azul_mampujan.jpg" alt="">
+            </div>
+
+            <%  if (creadores[i]['dep'] != undefined) { %>
+            <div class="text col col-12 col-lg-5 btm">
+            <!-- <h3 class="lugar">
+                    <%=lugar['lugar_departamento']%>, 
+                    <%=lugar['lugar_localidad']%>
+                </p> --> 
+            <%
+                }
+            %>
+                <h2><%=creadores[i]['nombre']%></h2>
+                <p>
+                    <%
+                    var txt = creadores[i]['caracterizacion'].substring(0, 230) + "...";
+                    txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
+                    %>
+
+                    <%=txt%>
+                </p>
+                <a href="/creadores/<%=creadores[i]['id']%>">
+                    <button class ="btn blue">Conocer más</button>
+                </a>
+            </div>
+        </div>
         <%
             }
         %>
-            <h2><%=creadores[i]['nombre']%></h2>
-            <p>
-                <%
-                var txt = creadores[i]['caracterizacion'].substring(0, 230) + "...";
-                txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
-                %>
-
-                <%=txt%>
-            </p>
-            <a href="/creadores/<%=creadores[i]['id']%>">
-                <button class ="btn blue">Conocer más</button>
-            </a>
-        </div>
-    </div>
-    <%
-        }
-    %>
-    
-</section>
+        
+    </section>
 
 </main>
 
