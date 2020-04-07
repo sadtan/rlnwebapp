@@ -1,0 +1,76 @@
+<%- include('../../partials/header') -%>
+<link rel="stylesheet" href="/stylesheets/admin.css">
+<main>
+    <style>
+        button {
+            display: inline-block;
+        }
+    </style>
+    <div class="admin-cards">
+        <h3>Hechos</h3>
+        <table>
+            <% 
+            var hechos = data.data[data.data['main']]; 
+            for (var i = 0; i < hechos.length; ++i) { 
+            %>
+            <tr>
+                <td style="padding: 0px 15px;">
+                    <p><%=hechos[i]['id']%></ap>
+                </td>
+                <td style="max-width: 400px;">
+                    <p><%=hechos[i]['relato'].substring(0, 100) + "..."%></ap>
+                </td>
+                <td>
+                    <form method="get" action="/admin/hechos/edit/<%=hechos[i]['id']%>">
+                    <button style="color: blue; border-color: blue;" type="submit">editar</button> </form>
+                <td>
+                    <form method="post" action="/admin/hechos/delete/<%=hechos[i]['id']%>?_method=DELETE">
+                    <button style="color: red; border-color: red;" type="submit">eliminar</button> </form>
+                </td>
+            </tr>
+            <% 
+            } 
+            %>
+        </table>
+    </div>
+    <div class="form-class">
+        <form action="/admin/hechos/new" method="POST">
+            <h3>Nuevo Hecho</h3>
+            <table>
+                <tr>
+                    <td><label for="pass">tipo</label></td>
+                    <td> <select id="tipo" name="obj[tipo]" required>
+                            <option value="0">violento</option>
+                            <option value="1">resistencia</option>
+                            <option value="2">sobrevivencia</option>
+                        </select> </td>
+                </tr>
+                <tr>
+                    <td><label for="pass">modalidad (;)</label></td>
+                    <td><input type="text" name="obj[modalidad]" class="text-input" required></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">relato</label></td>
+                    <td><textarea name="obj[relato]" id="" cols="33" rows="5"></textarea></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">actores</label></td>
+                    <td><input type="text" name="obj[actores]" class="text-input"></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">acciones de <br> resistencia y sobrevivencia</label></td>
+                    <td><input type="text" name="obj[acciones_resistencia_sobrevivencia]" class="text-input"></td>
+                </tr>
+                </tr>
+                <tr>
+                    <td><label for="pass">fecha</label></td>
+                    <td><input type="text" name="obj[fecha]" class="text-input"></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">lugar</label></td>
+                    <td><input type="number" name="obj[fk_lugar]" class="text-input" required></td>
+                </tr>
+            </table> <br> <button type="submit">Crear</button>
+        </form>
+    </div>
+</main>

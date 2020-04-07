@@ -34,9 +34,9 @@
     "farmhash": "^3.0.0",
     "graphql": "^14.6.0",
     "http-status-codes": "^1.4.0",
+    "method-override": "^3.0.0",
     "mysql": "^2.18.1",
     "mysql-cache": "^2.1.2"
-    
   },
   "devDependencies": {
     "nodemon": "^2.0.2",

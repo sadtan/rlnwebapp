@@ -1,7 +1,8 @@
 "use strict"
 const express = require("express"),
       bodyParser = require("body-parser"),
-      dotenv = require("dotenv");
+      dotenv = require("dotenv"),
+      methodOverride = require('method-override');
 
 class App 
 {
@@ -40,15 +41,18 @@ class App
         {
             admin: 
             {
-                isLogged: false,
+                isLogged: true,
             }
         };
+
+        this.app.use(methodOverride('_method'))
 
         /**
          *  Properties to be used by the class App
          */ 
         dotenv.config();
         const Pool = require("./dbpool");
+        const AdminPool = require("./admindb.js");
 
         /**
          * Routes configuration
@@ -64,8 +68,10 @@ class App
         require("./app/routes/customRoutes.js")(this.app, Pool, "hechos");
         require("./app/routes/customRoutes.js")(this.app, Pool, "piezas");
 
-        require("./app/routes/adminRoutes.js")(this.app, Pool, "creadores");
-        require("./app/routes/adminRoutes.js")(this.app, Pool, "lugares");
+        //require("./app/routes/adminRoutes.js")(this.app, AdminPool, "creadores");
+        require("./app/routes/adminRoutes.js")(this.app, AdminPool, "lugares");
+        require("./app/routes/adminRoutes.js")(this.app, AdminPool, "hechos");
+        require("./app/routes/adminRoutes.js")(this.app, AdminPool, "creadores");
         
 
         require("./app/routes/indexRoutes.js" )(this.app);

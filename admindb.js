@@ -15,13 +15,10 @@ var parsedCredentials = {
 
     hashing: 'farmhash64',
  
-    verbose: true,
-
-    TTL: 700,
+    verbose: false,
  
-    caching: true,
-    cacheProvider: 'file',
-    multipleStatements: true,
+    caching: false,
+    
     typeCast: function castField( field, useDefaultTypeCasting ) {
 
         // We only want to cast bit fields that have a single-bit in them. If the field

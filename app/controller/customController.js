@@ -11,6 +11,7 @@ module.exports = (pool, table, alias) =>
     {
         async getAll()
         {
+            //console.log(await awsUtils.getUrl("FONDOS/Quibdó/Ficha técnica muñecas negras_AVNQ_2.docx"));
             return new Promise(async (resolve, reject) => 
             {
                 try {
@@ -66,6 +67,58 @@ module.exports = (pool, table, alias) =>
             {
                 try {
                     var data = await customModel.getByFk(fk);
+                    resolve (data);
+
+                } catch (error) 
+                {
+                    console.log(error)
+                    reject( error );
+                };
+            });   
+        }
+
+        async addNew(obj)
+        {
+            return new Promise(async (resolve, reject) => 
+            {
+                try {
+                    var res = await customModel.addNew(obj);
+                    resolve (res);
+
+                } catch (error) 
+                {
+                    //console.log(error)
+                    reject( error );
+                };
+            });   
+        }
+
+        // DELTE
+        async deleteOne(id)
+        {
+            //console.log(await awsUtils.getUrl("f0a38b6eb7b8caf9383eeb1c58e95017.jpg"));
+            return new Promise(async (resolve, reject) => 
+            {
+                try {
+                    var data = await customModel.deleteOne(id);
+                    resolve (data);
+
+                } catch (error) 
+                {
+                    console.log(error)
+                    reject( error );
+                };
+            });   
+        }
+
+        // edit
+        async editOne(obj, id)
+        {
+            //console.log(await awsUtils.getUrl("f0a38b6eb7b8caf9383eeb1c58e95017.jpg"));
+            return new Promise(async (resolve, reject) => 
+            {
+                try {
+                    var data = await customModel.editOne(obj, id);
                     resolve (data);
 
                 } catch (error) 

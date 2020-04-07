@@ -1,0 +1,199 @@
+<%- include('../../partials/header') -%>
+<link rel="stylesheet" href="/stylesheets/admin.css">
+<script src="/scripts/ejs.js"></script>
+<% 
+console.log(data['creadores']);
+creador = data['creadores'][0];
+var tipos = ['público', 'privado', 'mixto']
+ %>
+<div class="form-class">
+    <form action="/admin/creadores/edit/<%=creador['id']%>?_method=PUT" method="post">
+        <h3>Editar creador</h3>
+        <table>
+            <tr>
+                <td><label for="pass">nombre</label></td>
+                <td><input type="text" name="obj[nombre]" class="text-input" required value="<%=creador['nombre']%>"></td>
+            </tr>
+            <tr>
+                <td><label for="pass">imagen (s3 key)</label></td>
+                <td><input type="text" name="obj[imagen_path]" class="text-input" value="<%=creador['imagen_path']%>"></td>
+            </tr>
+            <tr>
+                <td><label for="pass">descripción <br> imagen</label></td>
+                <td>
+                    <input type="text" name="obj[imagen_descripcion]" class="text-input" value="<%=creador['imagen_descripcion']%>">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pass">tipo (actual: <%=tipos[creador['tipo']]%>)</label></td>
+                <td>
+                    <select id="tipo" name="obj[tipo]">
+                        <option value="0">público</option>
+                        <option value="1">privado</option>
+                        <option value="3">mixto</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pass">reseña</label></td>
+                <td><textarea name="obj[resena]" id="" cols="33" rows="5"><%=creador['resena']%></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="pass">sociopolítico</label></td>
+                <td><textarea name="obj[sociopolitico]" id="" cols="33" rows="7"><%=creador['sociopolitico']%></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="pass">caracterización</label></td>
+                <td><textarea name="obj[caracterizacion]" id="" cols="33" rows="7"><%=creador['caracterizacion']%></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="pass">documentos</label></td>
+                <td>
+                    <button id="myBtn" style="width: 100%;"> modificar doumentos </button>
+                    <input id="json-input" type="text" name="obj[documentos_json]" class="text-input" value="<%-creador['documentos_json']%>">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pass">resp nombre</label></td>
+                <td>
+                    <input type="text" name="obj[responsable_nombre]" class="text-input" value="<%=creador['responsable_nombre']%>">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pass">resp celular</label></td>
+                <td>
+                    <input type="text" name="obj[responsable_celular]" class="text-input" value="<%=creador['responsable_celular']%>">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pass">resp correo</label></td>
+                <td>
+                    <input type="text" name="obj[responsable_correo]" class="text-input" value="<%=creador['responsable_correo']%>">
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="pass">lugar</label><a href="/admin/lugares" target="_blank"> (Ver Lugares)</a></td>
+                <td><input type="number" name="obj[fk_lugar]" class="text-input" required value="<%=creador['fk_lugar']%>"></td>
+            </tr>
+        </table>
+
+
+        <br>
+        <button type="submit">editar</button>
+        <br>
+        <a href="/admin/creadores">
+            Cancelar
+        </a>
+    </form>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+
+            <table id="myTable" style="width: 100%;">
+            </table>
+            <button id="myBtnAdd" style="margin-left: 20px;">+</button>
+            <button id="myBtnAcc" style="margin-left: 20px;">Aceptar</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get Table
+        var doc_table;
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+        var addBtn = document.getElementById("myBtnAdd");
+        var accBtn = document.getElementById("myBtnAcc");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // Get the Json
+        var json_val;
+        var json_obj; 
+
+        btn.addEventListener("click", function (event) {
+            event.preventDefault();
+            modal.style.display = "block";
+            
+            doc_table = document.getElementById("myTable");
+            json_val = document.getElementById("json-input").value;
+            doc_table.innerHTML = "";
+            json_obj = JSON.parse(json_val.replace(/(\r\n|\n|\r|')/gm, '"'))['obj'];
+            console.log(json_obj);
+            for (doc in json_obj)
+            {
+                console.log(json_obj[doc]);
+                var row = doc_table.insertRow(doc);
+                var name = row.insertCell(0);
+                var url = row.insertCell(1);
+                var del = row.insertCell(2);
+
+                name.innerHTML = '<input type="text" class="text-input" value="' + json_obj[doc]['name'] + ' ">';
+                url.innerHTML = '<input type="text" class="text-input" value="' + json_obj[doc]['url'] + ' ">';
+                del.innerHTML = '<button onClick="deleteRow('+ doc +')">&times</button>'
+                console.log(doc);
+            }
+        });
+
+        addBtn.addEventListener("click", function (event) {
+            var row = doc_table.insertRow(-1);
+            var name = row.insertCell(0);
+            var url = row.insertCell(1);
+            var del = row.insertCell(2);
+            name.innerHTML = '<input type="text" class="text-input" value=" ">';
+            url.innerHTML  = '<input type="text" class="text-input" value=" ">';
+            var lastRow = doc_table.rows.length-1;
+            del.innerHTML = '<button onClick="deleteRow('+ lastRow +')">&times</button>'
+
+        });
+
+        accBtn.addEventListener("click", function (event) {
+            var final_obj = {obj: []};
+            for (let i = 0; i < doc_table.rows.length; ++i)
+            {
+                final_obj['obj'].push({});
+                var name = doc_table.rows[i].cells[0].innerHTML;
+                var url = doc_table.rows[i].cells[1].innerHTML;
+                final_obj['obj'][i]['name'] = name.substring(45, name.length-2);
+                final_obj['obj'][i]['url'] = url.substring(45, url.length-2);
+                console.log(name);
+                console.log(final_obj['obj'][i]);
+            }
+            document.getElementById("json-input").value = "";
+            document.getElementById("json-input").value = JSON.stringify(final_obj).replace(/(\r\n|\n|\r|")/gm, "'");
+            modal.style.display = "none";
+            //console.log(JSON.stringify(final_obj).replace(/(\r\n|\n|\r|")/gm, "''"));
+        });
+
+        function deleteRow(r) 
+        {
+            doc_table.deleteRow(r);
+            for (let i = 0; i < doc_table.rows.length; ++i)
+            {
+                doc_table.rows[i].cells[2].innerHTML = '<button onClick="deleteRow('+ i +')">&times</button>';
+            }
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</div>

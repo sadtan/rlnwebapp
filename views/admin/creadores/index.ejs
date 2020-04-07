@@ -1,73 +1,165 @@
 <%- include('../../partials/header') -%>
 <link rel="stylesheet" href="/stylesheets/admin.css">
 <main>
-    <style>
-        button {
-            display: inline-block;
-        }
-    </style>
-
-<div class="admin-cards">
-<% 
-    var fondos = data.data[data.data['main']]
-    for (var i = 0; i < fondos.length; ++i) {
-    if (fondos[i]['dep'] != undefined)
-        dep = fondos[i]['dep']
-    lugar = dep['lugar'][0]
-%>
-    <div class="content">
-    <p><%=fondos[i]['nombre']%></ap>
-    <!-- <p><%=fondos[i]['fondo_caracterizacion']%></p> -->
-    <a href="/fondos/<%=fondos[i]['id']%>">
-        <button>editar</button>
-    </a>
-    <a href="/fondos/<%=fondos[i]['id']%>">
-        <button style="color: red; border-color: red;">eliminar</button>
-    </a>
-    </div>
-<%
-    }
-%>
-
-</div>
-
-<div class="form-class">
-    <form action="/admin-login" method="POST">
+    <div class="admin-cards">
+        <h3>Creadores</h3>
         <table>
+            <% 
+            var creadores = data.data[data.data['main']]; 
+            var tipos = ['público', 'privado', 'mixto']
+            for (var i = 0; i < creadores.length; ++i) { 
+            %>
             <tr>
-                <td><label for="pass">nombre</label></td>
-                <td><input type="text" name="fondo[nombre]" class="text-input"></td>
+                <td style="padding: 0px 15px;">
+                    <p><%=creadores[i]['id']%></ap>
+                </td>
+                <td>
+                    <p><%=creadores[i]['nombre'].substring(0, 40)%></ap>
+                </td>
+                <td>
+                    <form method="get" action="/admin/creadores/edit/<%=creadores[i]['id']%>">
+                        <button style="color: blue; border-color: blue;" type="submit">editar</button> </form>
+                <td>
+                    <form method="post" action="/admin/creadores/delete/<%=creadores[i]['id']%>?_method=DELETE">
+                        <button style="color: red; border-color: red;" type="submit">eliminar</button> </form>
+                </td>
             </tr>
-            <tr>
-                <td><label for="pass">lugar</label></td>
-                <td><input type="text" name="fondo[lugar]" class="text-input"></td>
-            </tr>
-            <tr>
-                <td><label for="pass">tipo</label></td>
-                <td><input type="text" name="fondo[tipo]" class="text-input"></td>
-            </tr>
-            <tr>
-                <td><label for="pass">imagen</label></td>
-                <td><input type="text" name="fondo[imagen]" class="text-input"></td>
-            </tr>
-            <tr>
-                <td><label for="pass">reseña</label></td>
-                <td><textarea name="fondo[reseña]" id="" cols="30" rows="1"> </textarea></td>
-            </tr>
-            <tr>
-                <td><label for="pass">sociopolitico</label></td>
-                <td><textarea name="fondo[sociopolitico]" id="" cols="30" rows="1"> </textarea></td>
-            </tr>
-            <tr>
-                <td><label for="pass">caracterizacion</label></td>
-                <td><textarea name="fondo[caracterizacion]" id="" cols="30" rows="1"> </textarea></td>
-            </tr>
+            <% 
+            } 
+            %>
         </table>
-        
-        
-        <br>
-        <button type="submit">Crear</button>
-    </form>
-</div>
+    </div>
+    <div class="form-class">
+        <form action="/admin/creadores/new" method="POST">
+            <h3>Nuevo Creador</h3>
+            <table>
+                <tr>
+                    <td><label for="pass">nombre</label></td>
+                    <td><input type="text" name="obj[nombre]" class="text-input" required></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">imagen (s3 key)</label></td>
+                    <td><input type="text" name="obj[imagen_path]" class="text-input"></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">descripción <br> imagen</label></td>
+                    <td>
+                        <input type="text" name="obj[imagen_descripcion]" class="text-input">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="pass">tipo</label></td>
+                    <td>
+                        <select id="tipo" name="obj[tipo]">
+                            <option value="0">público</option>
+                            <option value="1">privado</option>
+                            <option value="3">mixto</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="pass">reseña</label></td>
+                    <td><textarea name="obj[resena]" id="" cols="33" rows="5"></textarea></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">sociopolítico</label></td>
+                    <td><textarea name="obj[sociopolitico]" id="" cols="33" rows="7"></textarea></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">caracterización</label></td>
+                    <td><textarea name="obj[caracterizacion]" id="" cols="33" rows="7"></textarea></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">documentos</label></td>
+                    <td>
+                        <button id="myBtn"> editar </button>
+                        <input type="text" name="obj[documentos_json]" class="text-input">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="pass">resp nombre</label></td>
+                    <td>
+                        <input type="text" name="obj[responsable_nombre]" class="text-input">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="pass">resp celular</label></td>
+                    <td>
+                        <input type="text" name="obj[responsable_celular]" class="text-input">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="pass">resp correo</label></td>
+                    <td>
+                        <input type="text" name="obj[responsable_correo]" class="text-input">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="pass">lugar</label><a href="/admin/lugares" target="_blank"> (Ver Lugares)</a></td>
+                    <td><input type="number" name="obj[fk_lugar]" class="text-input" required></td>
+                </tr>
+            </table>
+            <br>
+            <button type="submit">Crear</button>
+        </form>
+
+        <tr>
+            <td><label for="pass">ilustración 1 (s3 key)</label></td>
+            <td>
+                <input type="text" name="obj[il_1_path]" class="text-input">
+            </td>
+        </tr>
+        <tr>
+            <td><label for="pass">ilustración 2 (s3 key)</label></td>
+            <td>
+                <input type="text" name="obj[il_2_path]" class="text-input">
+            </td>
+        </tr>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Some text in the Modal..</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // Get the Json
+        var json_val = document.getElementById("json-input");
+
+        // When the user clicks the button, open the modal 
+        btn.addEventListener("click", function (event) {
+            event.preventDefault()
+            modal.style.display = "block";
+        });
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
 
 </main>
