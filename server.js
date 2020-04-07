@@ -16,7 +16,7 @@ class App
         this.configs = 
         {
             get port() {
-                return process.env.port || 3000
+                return process.env.port || 8081
             }
         }
     }
