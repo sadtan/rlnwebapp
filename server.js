@@ -41,7 +41,7 @@ class App
         {
             admin: 
             {
-                isLogged: true,
+                isLogged: false,
             }
         };
 

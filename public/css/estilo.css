@@ -35,6 +35,53 @@ a {
   .logo:hover {
     color: #FFF; }
 
+h2 {
+  font-family: "CircularStd", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.3; }
+  @media only screen and (max-width: 768px) {
+    h2 {
+      font-size: 26px; } }
+  @media only screen and (max-width: 576px) {
+    h2 {
+      font-size: 22px; } }
+
+h3 {
+  text-transform: uppercase;
+  font-family: inter;
+  font-size: 15px;
+  color: #A9A9A9;
+  letter-spacing: 2px; }
+
+.btn {
+  font-family: "CircularStd", sans-serif;
+  font-size: 18px;
+  padding: 5px 20px;
+  border-radius: 30px; }
+  .btn.white {
+    border: 2px solid #2727E5;
+    color: #2727E5; }
+  .btn.blue {
+    background-color: #2727E5;
+    color: #FFF; }
+  @media only screen and (max-width: 576px) {
+    .btn {
+      font-size: 16px;
+      padding: 4px 16px; } }
+
+.top {
+  margin-top: 10vh; }
+
+.btm {
+  margin-bottom: 10vh; }
+
+@media only screen and (max-width: 992px) {
+  .order-1-lg {
+    order: 1; }
+  .order-2-lg {
+    order: 2; } }
+
 /* ---- ESTILOS HEADER ----*/
 .header {
   background-color: #2727E5;
@@ -150,6 +197,108 @@ footer {
     right: 5%; }
 
 /* ---- ESTILOS HOME ----*/
+.home-section .col {
+  margin-bottom: 5vh; }
+
+.home-section .text .btn {
+  margin-top: 25px; }
+  .home-section .text .btn img {
+    width: 33px;
+    height: auto;
+    margin-left: 10px; }
+  .home-section .text .btn:hover img {
+    margin-left: 12px;
+    margin-right: -2px; }
+
+@media only screen and (max-width: 992px) {
+  .home-section .text .btn {
+    margin-top: 15px; } }
+
+.home-section img {
+  width: 100%;
+  height: auto; }
+
+.home-section .chevron {
+  width: 24px;
+  height: auto;
+  margin: 0 auto;
+  animation: bounce 2s infinite; }
+  @media only screen and (max-width: 992px) {
+    .home-section .chevron {
+      margin-top: 5vh; } }
+
+@media only screen and (max-width: 992px) {
+  .home-intro {
+    text-align: center;
+    margin-left: auto;
+    margin-left: right; } }
+
+.preview-fondos .fondo .azul {
+  display: none; }
+
+.preview-fondos .fondo .img:hover .linea {
+  display: none; }
+
+.preview-fondos .fondo .img:hover .azul {
+  display: block; }
+
+@media only screen and (min-width: 993px) {
+  .preview-fondos :nth-child(odd) .text {
+    margin-left: 8%; }
+  .preview-fondos :nth-child(even) .text {
+    margin-right: 8%; }
+  .preview-fondos :nth-child(even) .img {
+    order: 2; }
+  .preview-fondos :nth-child(even) .text {
+    order: 1; } }
+
+.hero {
+  background-image: url("/img/manos.jpg");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat; }
+  .hero p {
+    padding: 150px 0;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 30px; }
+  @media only screen and (max-width: 768px) {
+    .hero {
+      background-size: 150vw; }
+      .hero p {
+        font-size: 24px;
+        padding: 80px 0; } }
+
+.universidades .col {
+  margin-bottom: 50px; }
+
+@media only screen and (max-width: 992px) {
+  .universidades h2 {
+    text-align: center; } }
+
+.universidades .desarrollo h2 {
+  font-size: 24px; }
+
+.universidades .desarrollo img {
+  height: 70px; }
+
+.universidades .apoyo h2 {
+  font-size: 20px; }
+
+.universidades .apoyo img {
+  height: 60px; }
+
+/* ----- ANIMACIONES -----*/
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0); }
+  40% {
+    transform: translateY(-20px); }
+  60% {
+    transform: translateY(-10px); } }
+
 /* ------------ FUENTES ------------- */
 @font-face {
   font-family: "CircularStd";

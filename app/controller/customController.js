@@ -11,7 +11,7 @@ module.exports = (pool, table, alias) =>
     {
         async getAll()
         {
-            //console.log(await awsUtils.getUrl("FONDOS/Quibdó/Ficha técnica muñecas negras_AVNQ_2.docx"));
+            
             return new Promise(async (resolve, reject) => 
             {
                 try {
@@ -27,7 +27,7 @@ module.exports = (pool, table, alias) =>
 
         async getById(id)
         {
-            //console.log(await awsUtils.getUrl("f0a38b6eb7b8caf9383eeb1c58e95017.jpg"));
+            
             return new Promise(async (resolve, reject) => 
             {
                 try {

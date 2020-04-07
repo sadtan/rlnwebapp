@@ -36,7 +36,7 @@ show tables;
     CREATE TABLE IF NOT EXISTS hechos (
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
         tipo INT,
-        modalidad INT,
+        modalidad TEXT,
         relato TEXT,
         descripcion TEXT,
         actores TEXT,

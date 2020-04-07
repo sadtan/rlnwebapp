@@ -1,75 +1,103 @@
 <%- include('../partials/header') -%> 
 
 <main>
-<header class="showcase">
-    <div class="text">
-        <p>
-            Un espacio digital abierto
-            para la documentación,
-            conservación y consulta de
-            textiles que narran la vida en
-            medio del conflicto armado.
-        </p>
-        <button href="#">Ver más <i>></i></button>
-    </div>
-    <div class="img">
-        <img src="/img/image--012.jpg" alt="">
-    </div>
-    
-</header>
-<div class="chevron">
-    <i class="fas fa-chevron-down"></i>
-</div>
-<div class="home-cards">
-<% 
-    var creadores = data.data[data.data['main']]
-    for (var i = 0; i < creadores.length; ++i) {
-    if (creadores[i]['dep'] != undefined)
-        dep = creadores[i]['dep']
-    lugar = dep['lugar'][0]
-%>
-    <div class="card-img">
-        <img src="/img/image--002.jpg" alt="">
-    </div>
-    <div class="content">
-<%  if (creadores[i]['dep'] != undefined) { %>
-    <p class="card-lugar">
-        <%=lugar['lugar_departamento']%>, 
-        <%=lugar['lugar_localidad']%>
-    </p>
-<%
-    }
-%>
-    <h1><%=creadores[i]['nombre']%></h1>
-    <p><%=creadores[i]['caracterizacion']%></p>
-    <a href="/creadores/<%=creadores[i]['id']%>">
-        <button>Conocer más</button>
-    </a>
-    </div>
-<%
-    }
-%>
 
-</div>
+    <section class="home-section container top btm home-intro">
+        <div class="row align-items-center">
+            <div class="text col col-12 col-lg-6  order-2-lg">
+                <h2 class="about-text">
+                    Un espacio digital abierto para la documentación, conservación y consulta de textiles que narran la vida en medio del conflicto armado en Colombia.
+                </h2>
+                <button class="btn white" href="#">
+                    Saber más 
+
+                    <img class="arrow-btn" src="/img/icons/arrow-btn.svg">
+
+                </button>
+            </div>
+
+            <div class="img first-on-large col col-12 col-lg-6  order-1-lg">
+                <img src="/img/home.png" alt="">
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+            <img class="chevron" src="/img/icons/chevron_down.svg" alt="">
+        </div>
+
+    </section>
+
+    <section class="home-section preview-fondos container top ">
+        <% 
+        var creadores = data.data[data.data['main']]
+        for (var i = 0; i < creadores.length; ++i) {
+        if (creadores[i]['dep'] != undefined)
+            dep = creadores[i]['dep']
+        lugar = dep['lugar'][0]
+        %>
+
+        <div class="fondo row align-items-center btm">
+            <div class="img col col-12 col-lg-6">
+                <img class="linea" src="/img/linea_mampujan.jpg" alt=""> 
+                <img class="azul" src="/img/azul_mampujan.jpg" alt="">
+            </div>
+
+            <%  if (creadores[i]['dep'] != undefined) { %>
+            <div class="text col col-12 col-lg-5 btm">
+            <!-- <h3 class="lugar">
+                    <%=lugar['lugar_departamento']%>, 
+                    <%=lugar['lugar_localidad']%>
+                </p> --> 
+            <%
+                }
+            %>
+                <h2><%=creadores[i]['nombre']%></h2>
+                <p>
+                    <%
+                    var txt = creadores[i]['caracterizacion'].substring(0, 230) + "...";
+                    txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
+                    %>
+
+                    <%=txt%>
+                </p>
+                <a href="/creadores/<%=creadores[i]['id']%>">
+                    <button class ="btn blue">Conocer más</button>
+                </a>
+            </div>
+        </div>
+        <%
+            }
+        %>
+        
+    </section>
 
 </main>
 
-<div class="hands">
-    <p class="text">
-        “Transformar en el remiendo, pasar de
-        una cosa que uno quiera a otra nueva, si
-        hay algo perdido transformarlo en algo
-
-        mejor”
-    </p>
-</div>
-
-<div class="universidades">
-
-    <h2>Universidades que hacen parte del proyecto</h2>
-    <div class="universidad">
-        
+<section class="hero hands btm">
+    <div class="container">
+        <p class="text">
+            <i>“Transformar en el remiendo, pasar de una cosa que uno quiera a otra nueva, si hay algo perdido transformarlo en algo mejor” </i>
+        </p>
     </div>
-</div>
+</section>
+
+<section class="universidades">
+    <div class="container">
+        <div class="row desarrollo align-items-center btm justify-content-between">
+            <h2 class="col col-12 col-lg"> Desarrollado por </h2>
+            <img class="col col-6 col-lg" src="/img/logos/udea.svg">
+            <img  class="col col-6 col-lg" src="/img/logos/unal.svg">
+            <img  class="col col-6 col-lg" src="/img/logos/militar.svg">
+            <img  class="col col-6 col-lg" src="/img/logos/andes.svg">
+        </div>
+
+        <div class="row apoyo align-items-center btm justify-content-around">
+            <h2 class="col col-12 col-lg"> Con apoyo de </h2>
+            <img  class="col col-4 col-lg" src="/img/logos/lancaster.svg">
+            <img  class="col col-4 col-lg" src="/img/logos/nottingham.svg">
+            <img  class="col col-4 col-lg"src="/img/logos/warwick.svg">
+        </div>
+    </div>
+</section>
 
 <%- include('../partials/footer') -%>

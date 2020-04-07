@@ -98,7 +98,6 @@ module.exports = (pool, table) =>
 
                     var queryStr = "INSERT INTO " + table + "(" + names + ")" + " VALUES (" + values + " ) ";
                     
-                    //console.log(queryStr);
                     var data = await sql.querySearch(queryStr);
                     resolve(data);                    
 
