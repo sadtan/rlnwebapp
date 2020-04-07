@@ -7,6 +7,7 @@ $amarillo: #FEDB31;
 $negro: #161616;
 $blanco: #FFF;
 $gris-claro: #C2C2C2;
+$gris: #A9A9A9;
 
 $circular: "CircularStd", sans-serif;
 $inter: 'Inter', sans-serif;
@@ -84,6 +85,69 @@ a {
     }
 }
 
+h2 {
+    font-family: $circular;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.3;
+
+    @media #{$medium-and-down} { 
+        font-size: 26px;
+    } 
+
+    @media #{$small-and-down} { 
+        font-size: 22px;
+    } 
+}
+
+h3 {
+    text-transform: uppercase;
+    font-family: inter;
+    font-size: 15px;
+    color: $gris;
+    letter-spacing: 2px;
+}
+
+.btn {
+    font-family: $circular;
+    font-size: 18px;
+    padding: 5px 20px;
+    border-radius: 30px;
+    
+
+    &.white {
+        border: 2px solid $azul;
+        color: $azul;
+    }
+
+    &.blue {
+        background-color: $azul;
+        color: $blanco;
+    }
+
+    @media #{$small-and-down} { 
+        font-size: 16px;
+        padding: 4px 16px;
+    } 
+}
+
+.top {
+    margin-top: 10vh;
+}
+
+.btm {
+    margin-bottom: 10vh;
+}
+
+@media #{$large-and-down} { 
+    .order-1-lg {
+        order: 1;
+    }
+
+    .order-2-lg {
+        order: 2;
+    }
+}
 
 
 
@@ -142,7 +206,7 @@ a {
 section.dropdown {
     background-color: $azul;
     position: fixed;
-    top: -195px;
+    top: -400px;
     width: 100%;
     transition: top 1s;
     z-index: 999;
@@ -266,6 +330,179 @@ footer {
 
 
 /* ---- ESTILOS HOME ----*/
+
+.home-section {
+    .col {
+        margin-bottom: 5vh;
+    }
+
+    .text {
+        .btn {
+            margin-top: 25px;
+    
+            img {
+                width: 33px;
+                height: auto;
+                margin-left: 10px;
+            }
+    
+            &:hover {
+                img {
+                    margin-left: 12px;
+                    margin-right: -2px;
+                }
+    
+            }
+        }
+    
+        @media #{$large-and-down} { 
+            .btn {
+                margin-top: 15px;
+            }
+        }
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+    
+    .chevron {
+        width: 24px;
+        height: auto;
+        margin: 0 auto;
+        animation: bounce 2s infinite;
+
+        @media #{$large-and-down} { 
+            margin-top: 5vh;
+        }
+    }
+}
+
+.home-intro {
+    @media #{$large-and-down} { 
+        text-align: center;
+        margin-left: auto;
+        margin-left: right;
+
+    }
+}
+.preview-fondos {
+
+    .fondo {
+        .azul {
+            display: none;
+        }
+
+        .img:hover {
+            .linea {
+                display: none;
+            }
+            .azul {
+                display: block;
+            }
+        }
+
+
+    }
+
+    @media #{$extra-large-and-up} { 
+
+        :nth-child(odd) {
+            .text {
+                margin-left: 8%;
+            }
+        }
+
+        :nth-child(even) {
+            .text {
+                margin-right: 8%;
+            }
+
+            .img {
+                order: 2;
+            }
+
+            .text {
+                order: 1;
+            }  
+        }
+    }
+}
+
+.hero {
+    background-image: url('/img/manos.jpg');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    p {
+        padding: 150px 0;
+        max-width: 520px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        font-size: 30px;
+    }
+
+    @media #{$medium-and-down} { 
+        background-size: 150vw;
+
+        p {
+            font-size: 24px;
+            padding: 80px 0;
+        }
+    }
+}
+
+.universidades {
+    .col {
+        margin-bottom: 50px;
+    }
+
+    @media #{$large-and-down} {
+        h2 {
+            text-align: center;
+        }
+    }
+
+    .desarrollo {
+
+        h2 {
+        font-size: 24px;
+
+        }
+
+        img {
+            height: 70px;
+        }
+    }
+
+    .apoyo  {
+        h2 {
+        font-size: 20px;
+        }
+
+        img {
+        height: 60px;
+        }
+    }
+}
+
+
+
+/* ----- ANIMACIONES -----*/
+@keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-20px);
+        }
+        60% {
+          transform: translateY(-10px);
+        }  
+}
 
 
 
