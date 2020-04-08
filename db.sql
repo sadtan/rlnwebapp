@@ -60,6 +60,10 @@ show tables;
         responsable_celular VARCHAR (15), 
         responsable_correo VARCHAR (100),
         imagen_descripcion TEXT,
+        il_1_path TEXT,
+        il_2_path TEXT,
+        img_linea_path TEXT,
+        img_azul_path TEXT,
         fk_lugar INT,
         FOREIGN KEY (fk_lugar) REFERENCES lugares (id) ON
     DELETE CASCADE

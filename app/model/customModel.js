@@ -14,6 +14,7 @@ module.exports = (pool, table) =>
                     var data = await sql.query(queryStr);
 
                     //var [a, b, c] = await Promise.all([sql1.query(queryStr), sql2.query(queryStr), sql3.query(queryStr)]);
+                    
                     resolve(data);
 
                 } catch (error) {

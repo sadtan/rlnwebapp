@@ -80,7 +80,30 @@ var tipos = ['público', 'privado', 'mixto']
                         value="<%=creador['responsable_correo']%>">
                 </td>
             </tr>
-
+            <tr>
+                <td><label for="pass">ilustración 1 (s3 key)</label></td>
+                <td>
+                    <input type="text" name="obj[il_1_path]" class="text-input" value="<%=creador['il_1_path']%>">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pass">ilustración 2 (s3 key)</label></td>
+                <td>
+                    <input type="text" name="obj[il_2_path]" class="text-input" value="<%=creador['il_2_path']%>">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pass">imagen linea (s3 key)</label></td>
+                <td>
+                    <input type="text" name="obj[img_linea_path]" class="text-input" value="<%=creador['img_linea_path']%>">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pass">imagen azul (s3 key)</label></td>
+                <td>
+                    <input type="text" name="obj[img_azul_path]" class="text-input" value="<%=creador['img_azul_path']%>">
+                </td>
+            </tr>
             <tr>
                 <td><label for="pass">lugar id</label><a href="/admin/lugares" target="_blank"> (Ver Lugares)</a></td>
                 <td><input type="number" name="obj[fk_lugar]" class="text-input" required

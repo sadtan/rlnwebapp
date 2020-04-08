@@ -16,6 +16,7 @@ module.exports = (pool, table, alias) =>
             {
                 try {
                     var data = await customModel.getAll();
+                    
                     resolve (data);
 
                 } catch (error) 
@@ -32,6 +33,19 @@ module.exports = (pool, table, alias) =>
             {
                 try {
                     var data = await customModel.getById(id);
+                    for (let i = 0; i < data.length; ++i)
+                    {
+                        for (var row in data[i])
+                        {
+                            if (row.substring(row.length - 4, row.length) == "path")
+                            {
+                                console.log(data[i][row]);
+                                console.log(await awsUtils.getUrl(data[i][row]));
+                                data[i][row] = await awsUtils.getUrl(data[i][row]);
+                            }
+                        }
+                            
+                    }
                     resolve (data);
 
                 } catch (error) 
@@ -49,6 +63,7 @@ module.exports = (pool, table, alias) =>
             {
                 try {
                     var data = await customModel.getByFk(fk);
+                    
                     resolve (data);
 
                 } catch (error) 
