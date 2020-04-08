@@ -37,10 +37,8 @@ module.exports = (pool, table, alias) =>
                     {
                         for (var row in data[i])
                         {
-                            if (row.substring(row.length - 4, row.length) == "path")
+                            if (row.substring(row.length - 4, row.length) == "path" && data[i][row] != "" && data[i][row] != "_")
                             {
-                                console.log(data[i][row]);
-                                console.log(await awsUtils.getUrl(data[i][row]));
                                 data[i][row] = await awsUtils.getUrl(data[i][row]);
                             }
                         }

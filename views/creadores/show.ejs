@@ -3,7 +3,6 @@
 <div class="container" style="width: 50%; padding: 20px 4vw">
   <% 
   fondo = data.data[data.data['main']][0];
-  console.log(fondo['imagen_path'])
   %>
   <img src="<%=fondo['imagen_path']%>" alt="">
   <% for (field in fondo) {%>
