@@ -16,7 +16,7 @@ module.exports = (pool, table, alias) =>
             {
                 try {
                     var data = await customModel.getAll();
-                    
+                    //data = await(ReplaceS3PathArr(data));
                     resolve (data);
 
                 } catch (error) 
@@ -33,37 +33,7 @@ module.exports = (pool, table, alias) =>
             {
                 try {
                     var data = await customModel.getById(id);
-                    for (let i = 0; i < data.length; ++i)
-                    {
-                        for (var row in data[i])
-                        {
-                            if (row.substring(row.length - 4, row.length) == "path")
-                            {
-                                console.log(data[i][row]);
-                                console.log(await awsUtils.getUrl(data[i][row]));
-                                data[i][row] = await awsUtils.getUrl(data[i][row]);
-                            }
-                        }
-                            
-                    }
-                    resolve (data);
-
-                } catch (error) 
-                {
-                    console.log(error)
-                    reject( error );
-                };
-            });   
-        }
-
-        async getByFk(fk)
-        {
-            //console.log(await awsUtils.getUrl("f0a38b6eb7b8caf9383eeb1c58e95017.jpg"));
-            return new Promise(async (resolve, reject) => 
-            {
-                try {
-                    var data = await customModel.getByFk(fk);
-                    
+                    data = await(ReplaceS3Path(data));
                     resolve (data);
 
                 } catch (error) 
@@ -144,7 +114,58 @@ module.exports = (pool, table, alias) =>
             });   
         }
     }
+    var ReplaceS3Path = async (data) =>
+    {
+        return new Promise(async (resolve, reject) => 
+        {
+            try {
 
+                for (let i = 0; i < data.length; ++i)
+                {
+                    for (var row in data[i])
+                    {
+                        if (row.substring(row.length - 4, row.length) == "path" && data[i][row] != "" && data[i][row] != "_")
+                        {
+                            data[i][row] = await awsUtils.getUrl(data[i][row]);
+                        }
+                    }
+                }
+                resolve(data);
+
+            } catch (error)
+            {
+                console.log(error);
+                reject(error);
+            }
+        })
+    }
+
+    var ReplaceS3PathArr = async (data) =>
+    {
+        return new Promise(async (resolve, reject) => 
+        {
+            try {
+
+                for (let i = 0; i < data.length; ++i)
+                {
+                    for (var row in data[i])
+                    {
+                        if (row.substring(row.length - 4, row.length) == "path" && data[i][row] != "" && data[i][row] != "_")
+                        {
+                            data[i][row] = await awsUtils.getUrl(data[i][row]);
+                            //console.log(data[i][row]);
+                        }
+                    }
+                }
+                resolve(data);
+
+            } catch (error)
+            {
+                console.log(error);
+                reject(error);
+            }
+        })
+    }
     return CustomController;
 }
 

@@ -69,8 +69,7 @@ module.exports = (BucketName) =>
                     Key: KeyValue,
                     Expires: 60
                 }
-
-                console.log("w")
+                
                 return(s3.getSignedUrl('getObject', fileParams));
 
             } catch (headErr)

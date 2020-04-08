@@ -6,33 +6,28 @@ const Errors     = require('../utils/errors.js');
 
 module.exports = (app) =>
 {
-    app.get("/admin-login", (req, res) =>
-    {
-        var resFormat = resHandler.setResponse(404, {});
-        //res.send(req.app.get('isAdminLogged'));
-        resHandler.handleResponse(req, res, resFormat, "admin", "login");
-    });
     
-    app.post("/admin-login", (req, res) => 
-    {
-        if (req.body.pass == process.env.ADMIN_PASS)
-        {
-            app.locals.admin.isLogged = true;
-            res.redirect("/admin/creadores");
-        }
-        else
-        {
-            res.redirect("/admin-login");
-        }
+    
+    // app.post("/admin-login", (req, res) => 
+    // {
+    //     if (req.body.pass == process.env.ADMIN_PASS)
+    //     {
+    //         app.locals.admin.isLogged = true;
+    //         res.redirect("/admin/creadores");
+    //     }
+    //     else
+    //     {
+    //         res.redirect("/admin-login");
+    //     }
         
-        console.log(req.body);
-    });
+    //     console.log(req.body);
+    // });
 
-    app.get("/admin-logut", (req, res) => 
-    {
-        app.locals.admin.isLogged = false;
-        res.redirect("/admin-login");
-    })
+    // app.get("/admin-logut", (req, res) => 
+    // {
+    //     app.locals.admin.isLogged = false;
+    //     res.redirect("/admin-login");
+    // })
 
     app.get("/", (req, res) => 
     {
