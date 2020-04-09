@@ -16,6 +16,7 @@ module.exports = (pool, table, alias) =>
             {
                 try {
                     var data = await customModel.getAll();
+                    //console.log(await awsUtils.getUrl("FONDOS/Bojayá/Registro Fotográfico/Fotografia Fondo/Fondo GAG_LJ.JPG"));
                     //data = await(ReplaceS3PathArr(data));
                     resolve (data);
 
@@ -33,7 +34,8 @@ module.exports = (pool, table, alias) =>
             {
                 try {
                     var data = await customModel.getById(id);
-                    data = await(ReplaceS3Path(data));
+                    //data = await(ReplaceS3Path(data));
+                    //awsUtils.listBuckets();
                     resolve (data);
 
                 } catch (error) 
@@ -47,7 +49,7 @@ module.exports = (pool, table, alias) =>
         // Search 
         async search(fk)
         {
-            //console.log(await awsUtils.getUrl("f0a38b6eb7b8caf9383eeb1c58e95017.jpg"));
+            //
             return new Promise(async (resolve, reject) => 
             {
                 try {
@@ -120,14 +122,13 @@ module.exports = (pool, table, alias) =>
         {
             try {
 
-                for (let i = 0; i < data.length; ++i)
+                for (var row in data[0])
                 {
-                    for (var row in data[i])
+                    //
+                    if (row.substring(row.length - 4, row.length) == "path" && data[0][row] != "" && data[0][row] != "_")
                     {
-                        if (row.substring(row.length - 4, row.length) == "path" && data[i][row] != "" && data[i][row] != "_")
-                        {
-                            data[i][row] = await awsUtils.getUrl(data[i][row]);
-                        }
+                        //console.log("d",data[0][row]);
+                        data[0][row] = await awsUtils.getUrl(data[0][row]);
                     }
                 }
                 resolve(data);
@@ -152,6 +153,7 @@ module.exports = (pool, table, alias) =>
                     {
                         if (row.substring(row.length - 4, row.length) == "path" && data[i][row] != "" && data[i][row] != "_")
                         {
+                            
                             data[i][row] = await awsUtils.getUrl(data[i][row]);
                             //console.log(data[i][row]);
                         }
