@@ -1,6 +1,19 @@
 <%- include('../partials/header') -%>
 
-<div class="container" style="width: 50%; padding: 20px 4vw">
+<div class="container pag-fondo">
+  <% 
+  fondo = data.data[data.data['main']][0];
+  %>
+
+  <section class="section-fondo img-fondo">
+    <img src="https://archivorln.s3.us-east-2.amazonaws.com/<%=fondo['imagen_path']%>" alt="">    
+  </section>
+
+</div>
+
+<%- include('../partials/footer') -%>
+
+<!-- <div class="container" style="width: 50%; padding: 20px 4vw">
   <% 
   fondo = data.data[data.data['main']][0];
   %>
@@ -30,6 +43,4 @@
     } %>
 
   <% } %>
-</div>
-
-<%- include('../partials/footer') -%>
+</div> -->
