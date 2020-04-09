@@ -82,7 +82,7 @@ module.exports = function (app, pool, m_table)
         var resFormat = {};
         try 
         {
-            data[m_table] = await controller.getByFk(req.params.id);
+            data[m_table] = await controller.getById(req.params.id);
             //data = await reqBatchHandler.AttachDependencies(data, m_table, pool);
 
             resFormat = resHandler.setResponse(200, null, data);
