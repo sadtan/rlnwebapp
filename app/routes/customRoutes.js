@@ -1,6 +1,8 @@
 "use strict";
 
 var reqBatchHandler = require("../utils/requestBatchHandler");
+var AWSUtils = require("../utils/awsConfig.js")("archivorln");
+var awsUtils = new AWSUtils();
 
 module.exports = function (app, pool, m_table) 
 {
@@ -39,6 +41,7 @@ module.exports = function (app, pool, m_table)
         try 
         {
             data[m_table] = await controller.getById(req.params.id);
+            data[m_table] = await(awsUtils.ReplaceS3Path(data[m_table]));
             data = await reqBatchHandler.AttachDependencies(data, m_table, pool);
 
             resFormat = resHandler.setResponse(200, null, data);
@@ -59,12 +62,12 @@ module.exports = function (app, pool, m_table)
         var resFormat = {};
 
         var params = req.body;
-        console.log(params);
-        
         try 
         {
             data[m_table] = await controller.getSearch(params);
-            //data = await reqBatchHandler.AttachDependencies(data, m_table, pool);
+
+            // Uncomment to replace s3 keys for presignurl's
+            //data[m_table] = await(awsUtils.ReplaceS3PathArr(data[m_table]));
 
             resFormat = resHandler.setResponse(200, null, data);
             resHandler.handleResponse(req, res, resFormat, "general/show");

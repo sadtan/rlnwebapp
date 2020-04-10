@@ -31,7 +31,7 @@ module.exports.AttachDependencies = async (data, m_table, pool) =>
                     );
                     var customController = new CustomController();
     
-                    data[m_table][i]['dep'][alias] = await customController.getByFk(fk);
+                    data[m_table][i]['dep'][alias] = await customController.getById(fk);
                 }
             }
 

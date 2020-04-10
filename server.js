@@ -1,10 +1,16 @@
 "use strict"
 const express = require("express"),
-      bodyParser = require("body-parser"),
-      dotenv = require("dotenv"),
-      methodOverride = require('method-override');
+    bodyParser = require("body-parser"),
+    dotenv = require("dotenv"),
+    methodOverride = require('method-override'),
+    session = require("express-session"),
+    cookieParser = require("cookie-parser"),
+    passport = require("passport");
 
-class App 
+dotenv.config();
+require("./config/passport")(passport);
+
+class App
 {
     constructor()
     {
@@ -13,7 +19,7 @@ class App
          /**
           * App configuration literals
           */
-        this.configs = 
+        this.configs =
         {
             get port() {
                 return process.env.port || 8081
@@ -23,6 +29,9 @@ class App
 
     applyMiddleware()
     {
+
+
+        this.app.use(cookieParser());
         this.app.use(bodyParser.urlencoded({
             extended: true
         }));
@@ -35,24 +44,23 @@ class App
         this.app.use(express.static(__dirname + "/public"));
         this.app.use(express.static(__dirname + "/views"));
 
-        this.app.set('isAdminLogged', false);
-
-        this.app.locals = 
-        {
-            admin: 
-            {
-                isLogged: false,
-            }
-        };
-
         this.app.use(methodOverride('_method'))
 
-        /**
-         *  Properties to be used by the class App
-         */ 
-        dotenv.config();
-        const Pool = require("./dbpool");
-        const AdminPool = require("./admindb.js");
+        // Passport Setup
+        this.app.use(session({
+            secret: "keyboard cat",
+            resave: false,
+            saveUninitialized: false
+        }));
+
+        this.app.use(passport.initialize());
+        this.app.use(passport.session());
+
+        this.app.use(function(req, res, next)
+        {
+            res.locals.currentUser = req.user;
+            next();
+        });
 
         /**
          * Routes configuration
@@ -62,6 +70,24 @@ class App
          * @param {string}         - Alias (Singular) of the table
          */
 
+        // this.app.use (
+        //     session ({
+        //         secret: "keyboard cat",
+        //         resave: true,
+        //         saveUninitialized: true
+        //     })
+        // );
+
+        const Pool = require("./dbpool");
+        const AdminPool = require("./admindb.js");
+
+        require("./app/routes/adminRoutes.js")(this.app, AdminPool, "creadores");
+        require("./app/routes/adminRoutes.js")(this.app, AdminPool, "lugares");
+        require("./app/routes/adminRoutes.js")(this.app, AdminPool, "hechos");
+        require("./app/routes/adminLoginRoutes.js")(this.app, passport);
+        
+
+        // NORMAL ROUTES
         require("./app/routes/customRoutes.js")(this.app, Pool, "creadores");
         require("./app/routes/customRoutes.js")(this.app, Pool, "colecciones");
         require("./app/routes/customRoutes.js")(this.app, Pool, "lugares");
@@ -69,10 +95,7 @@ class App
         require("./app/routes/customRoutes.js")(this.app, Pool, "piezas");
 
         //require("./app/routes/adminRoutes.js")(this.app, AdminPool, "creadores");
-        require("./app/routes/adminRoutes.js")(this.app, AdminPool, "lugares");
-        require("./app/routes/adminRoutes.js")(this.app, AdminPool, "hechos");
-        require("./app/routes/adminRoutes.js")(this.app, AdminPool, "creadores");
-        
+
 
         require("./app/routes/indexRoutes.js" )(this.app);
     }
