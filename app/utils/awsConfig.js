@@ -62,7 +62,6 @@ module.exports = (BucketName) =>
                         
                         if (row.substring(row.length - 4, row.length) == "path" && data[0][row] != "" && data[0][row] != "_")
                         {
-                            
                             data[0][row] = await this.getUrl(data[0][row]);
                         }
                     }
