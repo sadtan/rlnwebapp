@@ -45,7 +45,24 @@ module.exports.AttachDependencies = async (data, m_table, pool) =>
     })
 }
 
+module.exports.AttachCustom(data, fields, pool)
+{
+    try
+    {
+        
+    }
+    catch (error)
+    {
+
+    }
+}
+
 function CreateCustomController(pool, table, alias)
 {
     return require("../controller/customController.js")(pool, table, alias);
+}
+
+function CreateCustomModel(pool, table)
+{
+    return require("../model/customModel.js")(pool, table);
 }

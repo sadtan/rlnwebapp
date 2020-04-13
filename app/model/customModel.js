@@ -134,6 +134,23 @@ module.exports = (pool, table) =>
                 } 
             });
         }
+
+        async getCustom(fields, fk_field, fk_n, id = -1)
+        {
+            return new Promise((resolve, reject) => 
+            {
+                try 
+                {
+                    var queryStr = "SELECT ? FROM " + table + "where " + fk_field + " = " + fk_n;
+                    console.log(queryStr);
+                    resolve(true);
+                }
+                catch (error)
+                {
+                    reject( new Errors.SQLError("Error de Base de datos: " + error.message));
+                }
+            })
+        }
     }
 
     return Model;
