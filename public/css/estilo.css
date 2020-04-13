@@ -323,6 +323,11 @@ footer {
     .section-fondo .btn {
       margin-top: 15px; } }
 
+.caracterizacion-fondo img {
+  display: block;
+  margin-top: 2em;
+  margin-bottom: 2em; }
+
 /* --------------------------------------------------------------------- 
         ANIMACIONES 
 ---------------------------------------------------------------------*/

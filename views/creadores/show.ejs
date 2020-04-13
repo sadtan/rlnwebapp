@@ -34,13 +34,14 @@
     </h2>
   </section>
 
-  <section class="top section-fondo contexto-fondo">
+  <section class="top btm section-fondo contexto-fondo">
     <h2>
       Contexto sociopolitico
     </h2>
 
     <div class="row">
       <div class="col col-12 col-lg-6 texto">
+        
         <p>
           <%
           var txt = fondo['sociopolitico'].substring(0, 1000) + "...";
@@ -48,24 +49,33 @@
           %>
           <%=txt%>
         </p>
+
         <button class ="btn blue">
           Conocer más
         </button>
+
       </div>
 
       <div class="col col-12 col-lg-6">
-
         <img src="/img/500x600.png">
-        
+
       </div>
     </div>
 
   </section>
 
   <section class="top section-fondo caracterizacion-fondo">
+    
+    <img class="mx-auto" src="/img/700x500.png">
+
     <h2>
       Caracterización del colectivo
     </h2>  
+
+    <p class="dos-col">
+      <%=fondo['caracterizacion']%>  
+    </p>
+
   </section>
 
   <section class="top section-fondo documentos-fondo">
