@@ -85,6 +85,7 @@ class App
         require("./app/routes/adminRoutes.js")(this.app, AdminPool, "creadores");
         require("./app/routes/adminRoutes.js")(this.app, AdminPool, "lugares");
         require("./app/routes/adminRoutes.js")(this.app, AdminPool, "hechos");
+        require("./app/routes/adminRoutes.js")(this.app, AdminPool, "colecciones");
         require("./app/routes/adminLoginRoutes.js")(this.app, passport);
         
 
