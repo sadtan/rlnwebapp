@@ -41,7 +41,6 @@ module.exports = function (app, pool, m_table)
         try 
         {
             data[m_table] = await controller.getById(req.params.id);
-            data[m_table] = await(awsUtils.ReplaceS3Path(data[m_table]));
             data = await reqBatchHandler.AttachDependencies(data, m_table, pool);
 
             resFormat = resHandler.setResponse(200, null, data);

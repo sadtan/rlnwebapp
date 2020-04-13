@@ -17,7 +17,7 @@
   <% 
   fondo = data.data[data.data['main']][0];
   %>
-  <img src="<%=fondo['imagen_path']%>" alt="">
+  <img src="<%=fondo['imagen_path']%>" alt="" class="s3_img" width="200px">
   <% for (field in fondo) {%>
   <% if (field != 'dep') { %>
       <strong><%= field %>: </strong> <%= fondo[field] %>
@@ -43,4 +43,8 @@
     } %>
 
   <% } %>
-</div> -->
+</div>
+
+<script src="/scripts/s3ImageUrl.js"></script>
+
+<%- include('../partials/footer') -%>

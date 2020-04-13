@@ -80,7 +80,8 @@ class App
 
         const Pool = require("./dbpool");
         const AdminPool = require("./admindb.js");
-
+        
+        require("./app/routes/utilRoutes")(this.app);
         require("./app/routes/adminRoutes.js")(this.app, AdminPool, "creadores");
         require("./app/routes/adminRoutes.js")(this.app, AdminPool, "lugares");
         require("./app/routes/adminRoutes.js")(this.app, AdminPool, "hechos");
