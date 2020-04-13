@@ -309,13 +309,19 @@ footer {
 /* --------------------------------------------------------------------- 
         PÁGINA FONDO 
  ---------------------------------------------------------------------*/
-section.img-fondo img {
+.section-fondo p {
+  margin-top: 2em;
+  line-height: 2; }
+
+.section-fondo img {
   max-width: 100%;
   height: auto; }
 
-section.intro-fondo .resena {
-  margin-top: 2em;
-  line-height: 2; }
+.section-fondo .btn {
+  margin-top: 25px; }
+  @media only screen and (max-width: 992px) {
+    .section-fondo .btn {
+      margin-top: 15px; } }
 
 /* --------------------------------------------------------------------- 
         ANIMACIONES 

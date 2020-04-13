@@ -509,19 +509,24 @@ footer {
 /* --------------------------------------------------------------------- 
         PÁGINA FONDO 
  ---------------------------------------------------------------------*/
-section.img-fondo {
-    
+.section-fondo {
+    p {
+        margin-top: 2em;
+        line-height: 2;
+    }
+
     img {
     max-width: 100%;
     height: auto;
+
     }
-}
 
+    .btn {
+        margin-top: 25px;
 
-section.intro-fondo {
-    .resena {
-        margin-top: 2em;
-        line-height: 2;
+        @media #{$large-and-down} { 
+            margin-top: 15px;
+        }
     }
 }
 

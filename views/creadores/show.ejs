@@ -5,25 +5,73 @@
   fondo = data.data[data.data['main']][0];
   %>
 
+  <!-- Imagen del fondo -->
   <section class="section-fondo img-fondo top">
     <img class="s3_img" src="<%=fondo['imagen_path']%>" alt="">    
   </section>
 
+  <!-- Titulo, lugar y reseña -->
   <section class="top section-fondo intro-fondo">
 
-    <h3 class="lugar">
+    <h3>
       <%=fondo['dep'].lugar[0].departamento%>, 
       <%=fondo['dep'].lugar[0].localidad%>  
     </h3>
 
-    <h2 class="nombre">
+    <h2>
       <%=fondo['nombre']%>  
     </h2>
 
-    <p class="resena dos-col">
+    <p class="dos-col">
       <%=fondo['resena']%>  
     </p>
 
+  </section>
+
+  <section class="top section-fondo piezas-fondo">
+    <h2>
+      Piezas
+    </h2>
+  </section>
+
+  <section class="top section-fondo contexto-fondo">
+    <h2>
+      Contexto sociopolitico
+    </h2>
+
+    <div class="row">
+      <div class="col col-12 col-lg-6 texto">
+        <p>
+          <%
+          var txt = fondo['sociopolitico'].substring(0, 1000) + "...";
+          txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
+          %>
+          <%=txt%>
+        </p>
+        <button class ="btn blue">
+          Conocer más
+        </button>
+      </div>
+
+      <div class="col col-12 col-lg-6">
+
+        <img src="/img/500x600.png">
+        
+      </div>
+    </div>
+
+  </section>
+
+  <section class="top section-fondo caracterizacion-fondo">
+    <h2>
+      Caracterización del colectivo
+    </h2>  
+  </section>
+
+  <section class="top section-fondo documentos-fondo">
+    <h2>
+      Documentos y enlaces asociados
+    </h2>
   </section>
 
   
