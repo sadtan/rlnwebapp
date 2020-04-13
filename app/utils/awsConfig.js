@@ -49,6 +49,57 @@ module.exports = (BucketName) =>
                 }
             });
         }
+
+        async ReplaceS3Path (data) 
+        {
+            
+            return new Promise(async (resolve, reject) => 
+            {
+                try {
+                    
+                    for (var row in data[0])
+                    {
+                        
+                        if (row.substring(row.length - 4, row.length) == "path" && data[0][row] != "" && data[0][row] != "_")
+                        {
+                            data[0][row] = await this.getUrl(data[0][row]);
+                        }
+                    }
+                    resolve(data);
+
+                } catch (error)
+                {
+                    console.log(error);
+                    reject(error);
+                }
+            })
+        }
+
+    async ReplaceS3PathArr(data) 
+    {
+        return new Promise(async (resolve, reject) => 
+        {
+            try {
+
+                for (let i = 0; i < data.length; ++i)
+                {
+                    for (var row in data[i])
+                    {
+                        if (row.substring(row.length - 4, row.length) == "path" && data[i][row] != "" && data[i][row] != "_")
+                        {
+                            data[i][row] = await this.getUrl(data[i][row]);
+                        }
+                    }
+                }
+                resolve(data);
+
+            } catch (error)
+            {
+                console.log(error);
+                reject(error);
+            }
+        })
+    }
     }
 
     async function generatePresignedUrl (KeyValue)
@@ -69,8 +120,7 @@ module.exports = (BucketName) =>
                     Key: KeyValue,
                     Expires: 60
                 }
-
-                console.log("w")
+                
                 return(s3.getSignedUrl('getObject', fileParams));
 
             } catch (headErr)
@@ -85,6 +135,7 @@ module.exports = (BucketName) =>
         }
     }
 
+    
 
     return AWSUtils;
 }

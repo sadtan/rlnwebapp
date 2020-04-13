@@ -41,24 +41,6 @@ module.exports = (pool, table) =>
             });
         };
 
-        async getByFk(fk)
-        {
-            return new Promise(async (resolve, reject) => {
-                try {
-                    var queryStr = "SELECT * FROM " + table  +" WHERE " + " id = " + fk;
-                    var data = await sql.query(queryStr);
-
-                    if (!data[0]) throw new Errors.NotFound("Sitio no encontrado");
-                    //var [a, b, c] = await Promise.all([sql1.query(queryStr), sql2.query(queryStr), sql3.query(queryStr)]);
-                    resolve(data);
-                    
-
-                } catch (error) {
-                    reject( new Errors.SQLError("Error de Base de datos: " + error.message));
-                } 
-            });
-        };
-
         async search(fk)
         {
             return new Promise(async (resolve, reject) => {
@@ -152,6 +134,7 @@ module.exports = (pool, table) =>
                 } 
             });
         }
+
     }
 
     return Model;

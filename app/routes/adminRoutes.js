@@ -9,12 +9,16 @@ module.exports = function (app, pool, m_table)
     const ResHandler      = require("../utils/responseHandler.js").ResHandler();
     const resHandler      = new ResHandler();
 
-    var MiddleWare = (req, res, next) => {
-        if (app.locals.admin.isLogged) 
-            next();
-        else 
-            res.redirect("/admin-login");
-    }
+    var MiddleWare = (req, res, next) => 
+    {
+        //console.log(">> (Middle) Is auth", req.isAuthenticated());
+
+        if (req.isAuthenticated())
+		    return next();
+        // if they aren't redirect them to the home page
+        res.redirect('/admin-login');
+
+    };
 
     // Get All Custom
     app.get("/admin/" + m_table, MiddleWare, async (req, res) => 
@@ -36,7 +40,6 @@ module.exports = function (app, pool, m_table)
         }
         
     });
-
     /////////////////////////
     // Add New
     app.post("/admin/" + m_table + "/new", MiddleWare, async (req, res) => 
@@ -79,7 +82,7 @@ module.exports = function (app, pool, m_table)
         var resFormat = {};
         try 
         {
-            data[m_table] = await controller.getByFk(req.params.id);
+            data[m_table] = await controller.getById(req.params.id);
             //data = await reqBatchHandler.AttachDependencies(data, m_table, pool);
 
             resFormat = resHandler.setResponse(200, null, data);
