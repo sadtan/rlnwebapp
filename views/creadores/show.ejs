@@ -5,9 +5,28 @@
   fondo = data.data[data.data['main']][0];
   %>
 
-  <section class="section-fondo img-fondo">
+  <section class="section-fondo img-fondo top">
     <img class="s3_img" src="<%=fondo['imagen_path']%>" alt="">    
   </section>
+
+  <section class="top section-fondo intro-fondo">
+
+    <h3 class="lugar">
+      <%=fondo['dep'].lugar[0].departamento%>, 
+      <%=fondo['dep'].lugar[0].localidad%>  
+    </h3>
+
+    <h2 class="nombre">
+      <%=fondo['nombre']%>  
+    </h2>
+
+    <p class="resena dos-col">
+      <%=fondo['resena']%>  
+    </p>
+
+  </section>
+
+  
 
 </div>
 
