@@ -323,10 +323,72 @@ footer {
     .section-fondo .btn {
       margin-top: 15px; } }
 
+.img-fondo img {
+  width: 100%;
+  height: 700px;
+  object-fit: cover; }
+  @media only screen and (max-width: 992px) {
+    .img-fondo img {
+      height: 500px; } }
+
 .caracterizacion-fondo img {
   display: block;
   margin-top: 2em;
   margin-bottom: 2em; }
+
+@media only screen and (max-width: 992px) {
+  .contexto-fondo .texto {
+    order: 2; }
+  .contexto-fondo .img {
+    order: 1;
+    margin-top: 2em;
+    text-align: center; } }
+
+.piezas-fondo .prev-pieza {
+  padding-left: 0; }
+
+.piezas-fondo .italic {
+  font-style: italic;
+  color: #A9A9A9;
+  margin-top: 1em; }
+
+.piezas-fondo .container-img {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  margin-top: 2em;
+  overflow: visible; }
+  @media only screen and (max-width: 768px) {
+    .piezas-fondo .container-img {
+      height: 350px; } }
+  .piezas-fondo .container-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute; }
+  .piezas-fondo .container-img .btn {
+    position: absolute;
+    margin-top: 0;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0; }
+  .piezas-fondo .container-img .blue {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #2727E5;
+    mix-blend-mode: color;
+    opacity: 0; }
+  .piezas-fondo .container-img:hover .btn {
+    opacity: 1; }
+  .piezas-fondo .container-img:hover img {
+    -webkit-filter: grayscale(100%);
+    /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%); }
+  .piezas-fondo .container-img:hover .blue {
+    opacity: 50%; }
 
 /* --------------------------------------------------------------------- 
         ANIMACIONES 
