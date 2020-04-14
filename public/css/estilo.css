@@ -390,6 +390,19 @@ footer {
   .piezas-fondo .container-img:hover .blue {
     opacity: 50%; }
 
+.lista-docs {
+  margin-top: 2em;
+  list-style-type: none;
+  padding: 0; }
+  .lista-docs li:before {
+    content: "·"; }
+  .lista-docs li {
+    padding: 0; }
+  .lista-docs a {
+    color: #2727E5; }
+    .lista-docs a:hover {
+      text-decoration: underline; }
+
 /* --------------------------------------------------------------------- 
         ANIMACIONES 
 ---------------------------------------------------------------------*/

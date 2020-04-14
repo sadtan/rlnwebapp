@@ -56,6 +56,7 @@
 
       </div>
 
+
     <% } %>
   </section>
 
@@ -109,6 +110,15 @@
     <h2>
       Documentos y enlaces asociados
     </h2>
+    
+    <ul class="dos-col lista-docs">
+      <li> <a href=""> Conflict Textiles (2016). “Nuestras Víctimas 2 de mayo de 2002” </a> </li>
+      <li> <a href=""> Conflict Textiles (2016). “Nuestras Víctimas 2 de mayo de 2002” </a> </li>
+      <li> <a href=""> Conflict Textiles (2016). “Nuestras Víctimas 2 de mayo de 2002” </a> </li>
+      <li> <a href=""> Conflict Textiles (2016). “Nuestras Víctimas 2 de mayo de 2002” </a> </li>
+      <li> <a href=""> Conflict Textiles (2016). “Nuestras Víctimas 2 de mayo de 2002” </a> </li>
+      <li> <a href=""> Conflict Textiles (2016). “Nuestras Víctimas 2 de mayo de 2002” </a> </li>
+    </ul>
 
   </section>
 
@@ -117,41 +127,3 @@
 <script src="/scripts/s3ImageUrl.js"></script>
 
 <%- include('../partials/footer') -%>
-
-<!-- <div class="container" style="width: 50%; padding: 20px 4vw">
-  <% 
-  fondo = data.data[data.data['main']][0];
-  %>
-  <img src="<%=fondo['imagen_path']%>" alt="" class="s3_img" width="200px">
-  <% for (field in fondo) {%>
-  <% if (field != 'dep') { %>
-      <strong><%= field %>: </strong> <%= fondo[field] %>
-      <br />
-  <% } else {  %> 
-    <%
-    dep = fondo[field]
-      for (let depField in dep) {
-      %>
-      <strong><%=depField%>: </strong>
-      <ul>
-        <%
-        for (depProp in dep[depField][0]) {%>
-          <li>
-            <strong> <%= depProp %>:</strong> <%= dep[depField][0][depProp] %>
-          </li>
-        <%
-        } %>
-      </ul>
-      <%
-      } %>
-    <%
-    } %>
-
-  <% } %>
-</div>
-
-<script src="/scripts/s3ImageUrl.js"></script>
-
-<%- include('../partials/footer') -%>
-
--->

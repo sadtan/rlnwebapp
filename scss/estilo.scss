@@ -630,6 +630,27 @@ footer {
     }
 }
 
+.lista-docs {
+    margin-top: 2em;
+    list-style-type: none;
+    padding: 0;
+
+    li:before {
+        content: "·";
+    }
+
+    li {
+        padding: 0;
+    }
+
+    a {
+        color: $azul;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
 
 /* --------------------------------------------------------------------- 
         ANIMACIONES 
