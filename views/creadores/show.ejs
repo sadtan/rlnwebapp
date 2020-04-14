@@ -37,8 +37,8 @@
     <% for(var i = 0; i < fondo['piezas'].length; i++) { %>
       <div class="col col-12 col-md-6 col-lg-4 prev-pieza">
         <div class="container-img">
-
-          <img src="/img/500x600.png"> 
+          
+          <img src="<%=fondo['piezas'][i]['imagen_path']%>" class="s3_img"> 
 
           <div class="blue"></div> 
 
@@ -112,12 +112,17 @@
     </h2>
     
     <ul class="dos-col lista-docs">
-      <li> <a href=""> Conflict Textiles (2016). “Nuestras Víctimas 2 de mayo de 2002” </a> </li>
-      <li> <a href=""> Conflict Textiles (2016). “Nuestras Víctimas 2 de mayo de 2002” </a> </li>
-      <li> <a href=""> Conflict Textiles (2016). “Nuestras Víctimas 2 de mayo de 2002” </a> </li>
-      <li> <a href=""> Conflict Textiles (2016). “Nuestras Víctimas 2 de mayo de 2002” </a> </li>
-      <li> <a href=""> Conflict Textiles (2016). “Nuestras Víctimas 2 de mayo de 2002” </a> </li>
-      <li> <a href=""> Conflict Textiles (2016). “Nuestras Víctimas 2 de mayo de 2002” </a> </li>
+      <%
+       var documentos = JSON.parse(fondo['documentos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
+       //console.log(documentos)
+       for (let i = 0; i < documentos.length; ++i)
+       {
+         var documento = documentos[i]
+       
+      %>
+      <li> <a target="_blank" href="<%=documento['url']%>"> <%=documento['name']%></a> </li>
+      
+      <% } %>
     </ul>
 
   </section>
