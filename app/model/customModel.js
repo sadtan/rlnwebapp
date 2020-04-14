@@ -29,9 +29,8 @@ module.exports = (pool, table) =>
                 try {
                     var queryStr = "SELECT * FROM " + table  +" WHERE id = ?";
                     var data = await sql.query(queryStr, id);
-
+                    
                     if (!data[0]) throw new Errors.NotFound("Sitio no encontrado");
-                    //var [a, b, c] = await Promise.all([sql1.query(queryStr), sql2.query(queryStr), sql3.query(queryStr)]);
                     resolve(data);
                     
 
@@ -49,7 +48,6 @@ module.exports = (pool, table) =>
                     var data = await sql.querySearch(queryStr);
 
                     if (!data[0]) throw new Errors.NotFound("Sitio no encontrado");
-                    //var [a, b, c] = await Promise.all([sql1.query(queryStr), sql2.query(queryStr), sql3.query(queryStr)]);
                     resolve(data);
                     
 
@@ -135,6 +133,32 @@ module.exports = (pool, table) =>
             });
         }
 
+        async getCustom(fields, fk_field, fk_n, id = -1)
+        {
+            return new Promise(async (resolve, reject) => 
+            {
+                try 
+                {
+                    var m_fields = "";
+                    for (var field in fields)
+                    {
+                        m_fields += fields[field] + ','
+                    }
+
+                    m_fields = m_fields.substring(0, m_fields.length - 1);
+
+                    var queryStr = "SELECT " + m_fields +" FROM " + table + " WHERE " + fk_field + " = " + fk_n;
+
+                    var data = await sql.query(queryStr, fields);
+
+                    resolve(data);
+                }
+                catch (error)
+                {
+                    reject( new Errors.SQLError("Error de Base de datos: " + error.message));
+                }
+            })
+        }
     }
 
     return Model;

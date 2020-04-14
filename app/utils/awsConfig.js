@@ -18,20 +18,30 @@ module.exports = (BucketName) =>
         {
             this.bucketParams = {
                 Bucket: BucketName,
-                Delimiter: "/",
+                Delimiter: "FONDOS/Mampuján/Registro Fotográfico/Fotografía Piezas/",
                 Prefix: ""
             }
         }
 
         listFiles() 
         {
-            s3.listObjectsV2(this.bucketParams, function(err, data) {
-                if (err) throw new Error(err);
-                //console.log(data.Contents);
-                data.Contents.forEach((file) => {
-                    console.log(generatePresignedUrl(file["Key"]));
-                })
-            });
+            // s3.listObjectsV2(this.bucketParams, function(err, data) {
+            //     if (err) throw new Error(err);
+            //     //console.log(data.Contents);
+            //     console.log(data);
+            //     data.Contents.forEach((file) => {
+            //         //console.log(generatePresignedUrl(file["Key"]));
+            //     })
+            // });
+        }
+
+        AttachGallery(data, table)
+        {
+            for (var field in data[table][0])
+            {
+                if (field == 'galeria_path')
+                    console.log(data[table][0][field]);
+            }
         }
 
         async getUrl(key)

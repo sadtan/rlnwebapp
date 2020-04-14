@@ -85,15 +85,18 @@ class App
         require("./app/routes/adminRoutes.js")(this.app, AdminPool, "creadores");
         require("./app/routes/adminRoutes.js")(this.app, AdminPool, "lugares");
         require("./app/routes/adminRoutes.js")(this.app, AdminPool, "hechos");
+        require("./app/routes/adminRoutes.js")(this.app, AdminPool, "colecciones");
         require("./app/routes/adminLoginRoutes.js")(this.app, passport);
         
 
         // NORMAL ROUTES
+        
         require("./app/routes/customRoutes.js")(this.app, Pool, "creadores");
         require("./app/routes/customRoutes.js")(this.app, Pool, "colecciones");
         require("./app/routes/customRoutes.js")(this.app, Pool, "lugares");
         require("./app/routes/customRoutes.js")(this.app, Pool, "hechos");
         require("./app/routes/customRoutes.js")(this.app, Pool, "piezas");
+        
 
         //require("./app/routes/adminRoutes.js")(this.app, AdminPool, "creadores");
 
