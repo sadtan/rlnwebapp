@@ -29,7 +29,7 @@ module.exports = (pool, table) =>
                 try {
                     var queryStr = "SELECT * FROM " + table  +" WHERE id = ?";
                     var data = await sql.query(queryStr, id);
-
+                    
                     if (!data[0]) throw new Errors.NotFound("Sitio no encontrado");
                     resolve(data);
                     

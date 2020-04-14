@@ -5,6 +5,8 @@ var lookupAlias = {
     'coleccion': 'colecciones',
     'fondo': 'fondos',
     'pieza': 'piezas',
+    'creador': 'creadores',
+    'hecho': 'hechos'
 }
 
 module.exports.AttachDependencies = async (data, m_table, pool) => 
@@ -24,11 +26,13 @@ module.exports.AttachDependencies = async (data, m_table, pool) =>
                     var table = lookupAlias[alias];
                     if (data[m_table][i]['dep'] == undefined)
                         data[m_table][i]['dep'] = {}
+
                     var CustomController = CreateCustomController(
                         pool, 
                         table, 
                         alias
                     );
+
                     var customController = new CustomController();
     
                     data[m_table][i]['dep'][alias] = await customController.getById(fk);

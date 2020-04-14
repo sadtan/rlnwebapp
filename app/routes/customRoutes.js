@@ -37,7 +37,7 @@ module.exports = function (app, pool, m_table)
     {
         var data = {};
         var resFormat = {};
-        
+        awsUtils.listFiles();
         try 
         {
             data[m_table] = await controller.getById(req.params.id);
@@ -46,6 +46,7 @@ module.exports = function (app, pool, m_table)
             {
                 data = await reqBatchHandler.AttachCustom(data, ['titulo', 'imagen_path', 'fecha'], "fk_creador", pool, "piezas", "creadores")
             }
+            awsUtils.AttachGallery(data, "piezas");
 
             resFormat = resHandler.setResponse(200, null, data);
             resHandler.handleResponse(req, res, resFormat, m_table, "show");

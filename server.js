@@ -90,11 +90,13 @@ class App
         
 
         // NORMAL ROUTES
+        
         require("./app/routes/customRoutes.js")(this.app, Pool, "creadores");
         require("./app/routes/customRoutes.js")(this.app, Pool, "colecciones");
         require("./app/routes/customRoutes.js")(this.app, Pool, "lugares");
         require("./app/routes/customRoutes.js")(this.app, Pool, "hechos");
         require("./app/routes/customRoutes.js")(this.app, Pool, "piezas");
+        
 
         //require("./app/routes/adminRoutes.js")(this.app, AdminPool, "creadores");
 
