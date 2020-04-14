@@ -1,6 +1,6 @@
  select documentos_json from creadores;
  select contexto from colecciones;
- select * from colecciones;
+ select * from piezas;
 
  CREATE TABLE IF NOT EXISTS admins (
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,

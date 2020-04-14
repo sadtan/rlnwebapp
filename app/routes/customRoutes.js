@@ -42,6 +42,10 @@ module.exports = function (app, pool, m_table)
         {
             data[m_table] = await controller.getById(req.params.id);
             data = await reqBatchHandler.AttachDependencies(data, m_table, pool);
+            if (m_table == "creadores")
+            {
+                data = await reqBatchHandler.AttachCustom(data, ['titulo', 'imagen_path', 'fecha'], "fk_creador", pool, "piezas", "creadores")
+            }
 
             resFormat = resHandler.setResponse(200, null, data);
             resHandler.handleResponse(req, res, resFormat, m_table, "show");
