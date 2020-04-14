@@ -18,8 +18,8 @@ module.exports = (BucketName) =>
         {
             this.bucketParams = {
                 Bucket: BucketName,
-                Delimiter: "FONDOS/Mampuján/Registro Fotográfico/Fotografía Piezas/",
-                Prefix: ""
+                Delimiter: "FONDOS/Bojayá/Registro Fotográfico/Fotografía Piezas/",
+                Prefix: "FONDOS/Bojayá/Registro Fotográfico/Fotografía Piezas/"
             }
         }
 
@@ -35,13 +35,47 @@ module.exports = (BucketName) =>
             // });
         }
 
-        AttachGallery(data, table)
+        async AttachGallery(data, table)
         {
-            for (var field in data[table][0])
+            return new Promise((resolve, reject) =>
             {
-                if (field == 'galeria_path')
-                    console.log(data[table][0][field]);
-            }
+                try
+                {
+                    for (var field in data[table][0])
+                    {
+                        if (field == 'galeria_path')
+                        {
+                            this.bucketParams.Delimiter = data[table][0][field];
+                            this.bucketParams.Prefix = data[table][0][field];
+                            data[table][0]['galeria'] = [];
+                            console.log(this.bucketParams.Delimiter);
+                            s3.listObjectsV2(this.bucketParams, function(err, s3Data) {
+                                if (err) throw new Error(err);
+                                s3Data.Contents.forEach((file) => {
+                                    if (file["Key"].indexOf("jpg" ) > 0
+                                        || file["Key"].indexOf("JPG" ) > 0
+                                        || file["Key"].indexOf("png" ) > 0
+                                        || file["Key"].indexOf("PNG" ) > 0
+                                        && (
+                                            file["Key"].indexOf("Detalle" ) > 0
+                                            || file["Key"].indexOf("Plano" ) > 0
+                                        ))
+                                        {
+                                            data[table][0]['galeria'].push(file["Key"]);
+                                            resolve(data);
+                                        }
+                                })
+                            });
+                        }
+                    }
+                    
+                } catch (error)
+                {
+                    reject(error);
+                }
+                
+            })
+            
         }
 
         async getUrl(key)

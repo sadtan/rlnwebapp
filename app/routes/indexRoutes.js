@@ -29,6 +29,11 @@ module.exports = (app) =>
     //     res.redirect("/admin-login");
     // })
 
+    app.get("/acerca-de", (req, res) => 
+    {
+        res.render("about");
+    });
+
     app.get("/", (req, res) => 
     {
         res.redirect("/creadores");
