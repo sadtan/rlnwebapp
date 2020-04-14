@@ -45,7 +45,7 @@ module.exports = function (app, pool, m_table)
             data = await reqBatchHandler.AttachDependencies(data, m_table, pool);
             if (m_table == "creadores")
             {
-                data = await reqBatchHandler.AttachCustom(data, ['titulo', 'imagen_path', 'fecha'], "fk_creador", pool, "piezas", "creadores")
+                data = await reqBatchHandler.AttachCustom(data, ['id', 'titulo', 'imagen_path', 'fecha'], "fk_creador", pool, "piezas", "creadores")
             }
             if (m_table == "piezas")
                 awsUtils.AttachGallery(data, "piezas");
