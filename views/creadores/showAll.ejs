@@ -54,7 +54,7 @@
                 <h2><%=creadores[i]['nombre']%></h2>
                 <p>
                     <%
-                    var txt = creadores[i]['caracterizacion'].substring(0, 230) + "...";
+                    var txt = creadores[i]['caracterizacion'].substring(0, 230) + "L";
                     txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
                     %>
                     <%=txt%>
