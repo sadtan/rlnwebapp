@@ -112,8 +112,7 @@
     </h2>
     
     <ul class="dos-col lista-docs">
-      <%
-       var documentos = JSON.parse(fondo['documentos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
+      <%var documentos = JSON.parse(fondo['documentos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
        //console.log(documentos)
        for (let i = 0; i < documentos.length; ++i)
        {
