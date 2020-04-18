@@ -117,8 +117,17 @@ input[type=text], input[type=number]
     width: 80%;
 }
 
+.modal-content table 
+{
+    min-width: 100%;
+}
+
+.modal-content table td input {
+    min-width: 100%;
+}
+
 /* The Close Button */
-.close {
+.close, .close1, .close2, .close3 {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
@@ -126,7 +135,13 @@ input[type=text], input[type=number]
 }
 
 .close:hover,
-.close:focus {
+.close:focus, 
+.close1:hover, 
+.close1:focus,
+.close2:hover, 
+.close2:focus, 
+.close3:hover,
+.close3:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;

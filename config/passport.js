@@ -13,8 +13,6 @@ sql.query("USE " + dbconfig.database);
 // expose this function to our app using module.exports
 module.exports = function(passport) 
 {
-    
-    
 	// =========================================================================
 	// passport session setup ==================================================
 	// =========================================================================
@@ -22,9 +20,24 @@ module.exports = function(passport)
 	// passport needs ability to serialize and unserialize users out of session
     // used to serialize the user for the session
 
+
+	// setInterval(async function() {
+	// 		sql.query("SELECT 1", function(
+	// 			err,
+	// 			rows
+	// 		) {
+	// 			//console.log("rows", rows);
+	// 			if (err)
+	// 			{
+	// 				console.log(err);
+	// 			}
+	// 			console.log("REQ PASSPORT");
+	// 		});
+		
+	// }, 240000); 
+
     passport.serializeUser(function(admin, done) 
     {
-        //console.log("usr", admin);
 		done(null, admin.id);
 	});
 
@@ -36,11 +49,17 @@ module.exports = function(passport)
 			err,
 			rows
 		) {
-            //console.log("rows", rows);
+			//console.log("rows", rows);
+			if (err)
+			{
+				done(err, null);
+			}
 			done(err, rows[0]);
 		});
 		//sql.end();
 	});
+
+	
 
 	// =========================================================================
 	// LOCAL SIGNUP ============================================================

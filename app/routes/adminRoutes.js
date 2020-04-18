@@ -25,7 +25,6 @@ module.exports = function (app, pool, m_table)
     {
         var data = {};
         var resFormat = {};
-        console.log(m_table)
         try 
         {
             data[m_table] = await controller.getAll();

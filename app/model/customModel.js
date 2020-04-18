@@ -128,6 +128,7 @@ module.exports = (pool, table) =>
                     resolve(data);                    
 
                 } catch (error) {
+                    console.log(error);
                     reject( new Errors.SQLError("Error de Base de datos: " + error.message));
                 } 
             });
@@ -159,6 +160,22 @@ module.exports = (pool, table) =>
                 }
             })
         }
+
+        async select()
+        {
+            return new Promise(async (resolve, reject) => {
+                try {
+                    var queryStr = "SELECT 1";
+                    var data = await sql.querySearch(queryStr);
+                    resolve(data);
+                    
+
+                } catch (error) {
+                    reject( new Errors.SQLError("Error de Base de datos: " + error.message));
+                } 
+            });
+
+        };
     }
 
     return Model;

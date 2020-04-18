@@ -115,6 +115,24 @@ module.exports = (pool, table, alias) =>
                 };
             });   
         }
+
+        // edit
+        async select(obj, id)
+        {
+            //console.log(await awsUtils.getUrl("f0a38b6eb7b8caf9383eeb1c58e95017.jpg"));
+            return new Promise(async (resolve, reject) => 
+            {
+                try {
+                    var data = await customModel.select();
+                    resolve (data);
+
+                } catch (error) 
+                {
+                    console.log(error)
+                    reject( error );
+                };
+            });   
+        }
     }
     var ReplaceS3Path = async (data) =>
     {
