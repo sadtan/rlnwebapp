@@ -20,21 +20,24 @@ module.exports = function(passport)
 	// passport needs ability to serialize and unserialize users out of session
     // used to serialize the user for the session
 
-
-	// setInterval(async function() {
-	// 		sql.query("SELECT 1", function(
-	// 			err,
-	// 			rows
-	// 		) {
-	// 			//console.log("rows", rows);
-	// 			if (err)
-	// 			{
-	// 				console.log(err);
-	// 			}
-	// 			console.log("REQ PASSPORT");
-	// 		});
-		
-	// }, 240000); 
+	// if (process.env.STAGE == "development")
+	// {
+	// 	setInterval(async function() {
+	// 			sql.query("SELECT 1", function(
+	// 				err,
+	// 				rows
+	// 			) {
+	// 				//console.log("rows", rows);
+	// 				if (err)
+	// 				{
+	// 					console.log(err);
+	// 				}
+	// 				console.log("REQ PASSPORT");
+	// 			});
+			
+	// 	}, 140000); 
+	// }
+	
 
     passport.serializeUser(function(admin, done) 
     {

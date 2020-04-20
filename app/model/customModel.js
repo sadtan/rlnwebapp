@@ -72,13 +72,14 @@ module.exports = (pool, table) =>
                         if (obj[attr] == "" || obj[attr] == " ")
                             obj[attr] = "_"
 
+                        obj[attr]  = obj[attr].replace(/"/g, '\\"')
                         values +=  '"' + obj[attr] + '",'
                     }
                     names = names.substring(0, names.length - 1);
                     values = values.substring(0, values.length - 1);
 
                     var queryStr = "INSERT INTO " + table + "(" + names + ")" + " VALUES (" + values + " ) ";
-                    
+                    console.log(queryStr);
                     var data = await sql.querySearch(queryStr);
                     resolve(data);                    
 
@@ -117,8 +118,10 @@ module.exports = (pool, table) =>
                         if (obj[attr] == "" || obj[attr] == " ")
                             obj[attr] = "_"
 
+                        obj[attr]  = obj[attr].replace(/"/g, '\\"')
                         edit +=  '"' + obj[attr] + '",'
                     }
+                    
                     edit = edit.substring(0, edit.length - 1);
 
                     var queryStr = "UPDATE " + table + " SET " + edit + " WHERE id = " + id;
