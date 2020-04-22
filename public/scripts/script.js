@@ -11,4 +11,10 @@ $( document ).ready(function() {
     $('#subir').click( function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    $('.slick-carrousel').slick({
+        'setting-name': 'setting-value',
+        'dots': 'true'
+      });
+
 });

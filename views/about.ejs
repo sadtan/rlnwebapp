@@ -1,13 +1,14 @@
 <%- include('./partials/header') -%> 
 
-<div class="container pag-sobre">
-    <section class="image-sobre">
+
+    <div class="container pag-sobre">
+    <section class="img-sobre top">
 
         <img src="/img/sobre.svg">
 
     </section>
 
-    <section class="texto-sobre">
+    <section class="texto-sobre top">
 
         <h2>
             Sobre el archivo
@@ -21,7 +22,7 @@
 
     </section>
 
-    <section class="texto-que">
+    <section class="texto-que top">
 
         <h2>
             ¿Qué son los textiles testimoniales?
@@ -33,15 +34,42 @@
 
     </section>
 
-    <section class="carrusel">
-        <p>
+    <section class="carrusel top">
+        <p class="intro">
             El desarrollo del archivo ha sido el resultado de distintos procesos de investigación y alianzas institucionales, esta línea de tiempo muestra algunos de esos vínculos.
         </p>  
+
+        <div class="row top align-items-center btm">
+            <div class="col col-12 col-lg-6 fecha slick-carrousel">
+                <div class="carrusel-item">
+                    <h4>Junio 2016 - julio 2019</h4>
+                    <p>Repositorio digital para la documentación de textiles testimoniales del conflicto armado en Colombia Tesis de maestría en Ciencias de la Información con énfasis en memoria y sociedad. Escuela Interamericana de Bibliotecología EIB, Universidad de Antioquia, Medellín. Isabel Cristina González Arango. 
+                    </p>
+                </div>
+                <div class="carrusel-item">
+                    <h4>Julio 2017 – octubre 2019</h4>
+                    <p>Atlas visual de la memoria: repositorio digital de memorias (segunda fase), en colaboración con el Museo Casa de la Memoria de Medellín y la contribución del Comité para el Desarrollo de la Investigación - CODI, de la Universidad de Antioquia, Medellín - Colombia. Luis Carlos Toro-Tamayo, Juan Camilo Vallejo Echavarría, Darío Alexander Betancur Marín e Isabel Cristina González Arango.  
+                    </p>
+                </div>
+                <div class="carrusel-item">
+                    <h4>Septiembre 2018 - septiembre 2020</h4>
+                    <p>Remendar lo nuevo: practicando reconciliaciones a través del quehacer textil y la memoria digital en la transición al postconflicto de la Colombia rural. financiado por COLCIENCIAS y el Fondo Newton del Reino Unido en la convocatoria 791-2017. “La paz sostenible en Colombia”
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col col-12 col-lg-6 flex">
+                <img class="mx-auto" src="/img/calendar.svg">
+            </div>
+
+
+        </div>
     </section>
 
-</div>
-<h3>sobre el archivo</h3>
+    </div>
 
-
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>	
 
 <%- include('./partials/footer') -%> 

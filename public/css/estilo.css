@@ -55,6 +55,15 @@ h3 {
   color: #A9A9A9;
   letter-spacing: 2px; }
 
+h4 {
+  font-family: "CircularStd", sans-serif;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #2727E5; }
+  @media only screen and (max-width: 768px) {
+    h4 {
+      font-size: 18px; } }
+
 .btn {
   font-family: "CircularStd", sans-serif;
   font-size: 18px;
@@ -413,6 +422,82 @@ footer {
     transform: translateY(-20px); }
   60% {
     transform: translateY(-10px); } }
+
+/* --------------------------------------------------------------------- 
+        PÁGINA SOBRE EL ARCHIVO 
+ ---------------------------------------------------------------------*/
+.img-sobre img {
+  width: 100%;
+  height: 700px;
+  object-fit: contain; }
+  @media only screen and (max-width: 992px) {
+    .img-sobre img {
+      height: 500px; } }
+
+.pag-sobre p {
+  margin-top: 2em;
+  line-height: 2; }
+
+.pag-sobre img {
+  max-width: 100%;
+  height: auto; }
+
+.pag-sobre .btn {
+  margin-top: 25px; }
+  @media only screen and (max-width: 992px) {
+    .pag-sobre .btn {
+      margin-top: 15px; } }
+
+.carrusel .intro {
+  text-align: center;
+  font-family: "CircularStd", sans-serif;
+  font-size: 24px;
+  line-height: 1.5; }
+  @media only screen and (max-width: 768px) {
+    .carrusel .intro {
+      font-size: 18px; } }
+
+.carrusel .fecha p {
+  margin-top: 0; }
+
+.carrusel img {
+  max-height: 300px; }
+
+.carrusel .flex {
+  display: flex;
+  align-items: center; }
+
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  padding: 0;
+  cursor: pointer;
+  color: transparent;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #2727E5;
+  content: none;
+  border: none;
+  visibility: hidden; }
+  .slick-prev:after,
+  .slick-next:after {
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: ">"; }
+
+.slick-prev {
+  left: -25px; }
+
+.slick-next {
+  right: -25px; }
 
 /* ------------ FUENTES ------------- */
 @font-face {
