@@ -359,9 +359,6 @@ footer {
     margin-top: 2em;
     text-align: center; } }
 
-.piezas-fondo .prev-pieza {
-  padding-left: 0; }
-
 .piezas-fondo .italic {
   font-style: italic;
   color: #A9A9A9;
@@ -472,6 +469,10 @@ footer {
 .carrusel .flex {
   display: flex;
   align-items: center; }
+
+.largo {
+  padding-right: 20px;
+  padding-left: 20px; }
 
 .slick-prev,
 .slick-next {
