@@ -688,13 +688,15 @@ footer {
 /* --------------------------------------------------------------------- 
         PÁGINA SOBRE EL ARCHIVO 
  ---------------------------------------------------------------------*/
- .img-sobre img {
-    width: 100%;
-    height: 700px;
-    object-fit: contain;
-
-    @media #{$large-and-down} { 
-        height: 500px;
+ .img-sobre {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ 
+        img {
+        width: 100%;
+        max-width: 800px;
+        object-fit: contain;
     }
 }
 
@@ -703,12 +705,6 @@ footer {
     p {
         margin-top: 2em;
         line-height: 2;
-    }
-
-    img {
-    max-width: 100%;
-    height: auto;
-
     }
 
     .btn {

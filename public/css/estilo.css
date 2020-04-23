@@ -429,21 +429,18 @@ footer {
 /* --------------------------------------------------------------------- 
         PÁGINA SOBRE EL ARCHIVO 
  ---------------------------------------------------------------------*/
-.img-sobre img {
-  width: 100%;
-  height: 700px;
-  object-fit: contain; }
-  @media only screen and (max-width: 992px) {
-    .img-sobre img {
-      height: 500px; } }
+.img-sobre {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .img-sobre img {
+    width: 100%;
+    max-width: 800px;
+    object-fit: contain; }
 
 .pag-sobre p {
   margin-top: 2em;
   line-height: 2; }
-
-.pag-sobre img {
-  max-width: 100%;
-  height: auto; }
 
 .pag-sobre .btn {
   margin-top: 25px; }
