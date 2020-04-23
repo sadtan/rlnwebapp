@@ -448,6 +448,10 @@ footer {
     .pag-sobre .btn {
       margin-top: 15px; } }
 
+@media only screen and (min-width: 767px) {
+  .carrusel .carrusel-item {
+    padding-left: 30px; } }
+
 .carrusel .intro {
   text-align: center;
   font-family: "CircularStd", sans-serif;
@@ -470,6 +474,10 @@ footer {
 .largo {
   padding-right: 20px;
   padding-left: 20px; }
+
+/* SLICK */
+.slick-container {
+  position: relative; }
 
 .slick-prev,
 .slick-next {
@@ -495,13 +503,66 @@ footer {
     position: absolute;
     top: 0;
     left: 0;
-    content: ">"; }
+    height: 20px;
+    width: 20px;
+    background-image: url("/img/icons/chevron_down.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    content: " "; }
 
 .slick-prev {
-  left: -25px; }
+  left: -30px; }
+  .slick-prev:after {
+    transform: rotate(90deg); }
 
 .slick-next {
-  right: -25px; }
+  right: -30px; }
+  .slick-next:after {
+    transform: rotate(270deg); }
+
+/* Dots */
+.slick-slider {
+  margin-bottom: 30px; }
+
+.slick-dots {
+  position: absolute;
+  bottom: -45px;
+  display: block;
+  width: 100%;
+  padding: 0;
+  list-style: none;
+  text-align: center; }
+
+.slick-dots li {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
+  padding: 0;
+  cursor: pointer; }
+
+.slick-dots li button {
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  width: 10px;
+  height: 10px;
+  padding: 5px;
+  border-radius: 100%;
+  cursor: pointer;
+  border: solid 1px #FEDB31;
+  background-color: #FEDB31;
+  outline: none; }
+
+.slick-dots li.slick-active button {
+  background-color: #2727E5;
+  border-color: #2727E5; }
+
+.slick-dots li button:hover,
+.slick-dots li button:focus {
+  outline: none; }
 
 /* ------------ FUENTES ------------- */
 @font-face {

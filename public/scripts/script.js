@@ -19,7 +19,12 @@ $( document ).ready(function() {
     
     $('.slick-carrousel').slick({
         'setting-name': 'setting-value',
-        'dots': 'true'
+        dots: true,
+        arrows: true,
+        autoplay: false,
+        autoplaySpeed: 8000,
+        appendArrows: $('.slick-container'),
+        appendDots: $('.slick-container')
       });
 
     //ocultar y mostrar texto de contexto sociopolitico
