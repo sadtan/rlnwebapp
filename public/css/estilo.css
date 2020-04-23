@@ -459,13 +459,20 @@ footer {
   line-height: 1.5; }
   @media only screen and (max-width: 768px) {
     .carrusel .intro {
-      font-size: 18px; } }
+      font-size: 16px; } }
 
 .carrusel .fecha p {
   margin-top: 0; }
 
 .carrusel img {
   max-height: 300px; }
+  @media only screen and (max-width: 992px) {
+    .carrusel img {
+      margin-bottom: 4em; } }
+  @media only screen and (max-width: 768px) {
+    .carrusel img {
+      max-height: 200px;
+      margin-bottom: 2em; } }
 
 .carrusel .flex {
   display: flex;
@@ -497,6 +504,10 @@ footer {
   content: none;
   border: none;
   visibility: hidden; }
+  @media only screen and (max-width: 768px) {
+    .slick-prev,
+    .slick-next {
+      top: 20%; } }
   .slick-prev:after,
   .slick-next:after {
     visibility: visible;
@@ -513,11 +524,17 @@ footer {
 
 .slick-prev {
   left: -30px; }
+  @media only screen and (max-width: 768px) {
+    .slick-prev {
+      left: 10; } }
   .slick-prev:after {
     transform: rotate(90deg); }
 
 .slick-next {
   right: -30px; }
+  @media only screen and (max-width: 768px) {
+    .slick-next {
+      right: 10; } }
   .slick-next:after {
     transform: rotate(270deg); }
 

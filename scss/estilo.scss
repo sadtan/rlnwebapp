@@ -729,7 +729,7 @@ footer {
         line-height: 1.5;
 
         @media #{$medium-and-down} { 
-            font-size: 18px;
+            font-size: 16px;
         }
     }
 
@@ -741,6 +741,15 @@ footer {
 
     img {
         max-height: 300px;
+
+        @media #{$large-and-down} { 
+            margin-bottom: 4em;
+        }
+        
+        @media #{$medium-and-down} { 
+            max-height: 200px;
+            margin-bottom: 2em;
+        }
     }
 
     .flex {
@@ -762,6 +771,10 @@ footer {
 
 .slick-prev,
 .slick-next {
+
+    @media #{$medium-and-down} { 
+        top: 20%;
+    }
     
     position: absolute;
     top: 50%;
@@ -802,6 +815,10 @@ footer {
 .slick-prev
 {
     left: -30px;
+
+    @media #{$medium-and-down} { 
+        left: 10;
+    }
     
     &:after {
         transform: rotate(90deg);
@@ -811,6 +828,10 @@ footer {
 .slick-next
 {
     right: -30px;
+
+    @media #{$medium-and-down} { 
+        right: 10;
+    }
 
     &:after {
         transform: rotate(270deg);
