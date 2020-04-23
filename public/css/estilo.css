@@ -138,9 +138,6 @@ h4 {
     height: auto;
     padding: 0;
     margin: 20px; }
-    .header .burguer:hover {
-      margin: 19px;
-      width: 42px; }
     @media only screen and (max-width: 576px) {
       .header .burguer {
         width: 30px; } }
@@ -218,8 +215,6 @@ footer {
       footer .bottom-footer .icons a {
         text-decoration: none;
         padding-right: 15px; }
-        footer .bottom-footer .icons a:hover img {
-          padding: 0.5px; }
   footer .arrow {
     position: absolute;
     width: 36px;
@@ -344,7 +339,8 @@ footer {
   object-fit: cover; }
   @media only screen and (max-width: 992px) {
     .img-fondo img {
-      height: 500px; } }
+      height: 500px;
+      max-height: 50vh; } }
 
 .caracterizacion-fondo img {
   display: block;
