@@ -16,12 +16,12 @@ class JsonParser
         this.idJsonInput = idJsonInput;
 
         this.attrList = attrList;
-        console.log(attrList);
+        //console.log(attrList);
     }
 
     WorkParser()
     {
-        console.log("¡¡¡¡¡¡")
+        //console.log("¡¡¡¡¡¡")
         this.btnOpenModal.addEventListener("click", e =>
         {
             e.preventDefault();
@@ -31,7 +31,7 @@ class JsonParser
             this.jsonString = document.getElementById(this.jsonString_).value;
             
             this.jsonString  = this.jsonString.replace(/"/g, '&quot;')
-            console.log("JSON STRING", this.jsonString);
+            //console.log("JSON STRING", this.jsonString);
             this.jsonString = this.jsonString.replace(/(\r\n|\n|\r|')/gm, '"');
             
             
@@ -80,7 +80,7 @@ class JsonParser
                 }
             } else
             {
-                console.log("JSON NOTHING")
+                //console.log("JSON NOTHING")
                 var row = this.docTable.insertRow(0);
                 var rowIndex = 0;
                 var cell
@@ -164,7 +164,7 @@ class JsonParser
             else 
                 document.getElementById(this.idJsonInput).value = "-";
             
-            console.log( finalObj );
+            //console.log( finalObj );
             this.modal.style.display = "none";
         });
 
@@ -208,11 +208,6 @@ class JsonParser
                 //docTable.rows[i].cells[rowInputIndex].innerHTML = docTable.rows[i].cells[rowInputIndex].innerHTML.substring(0, docTable.rows[i].cells[rowInputIndex].innerHTML.length - 3) + i + '">';
                 ++rowInputIndex;
             }
-        }
-
-        function RemoveEvent()
-        {
-            console.log("Event Removed");
         }
 
         //self.UpdateDeleted();

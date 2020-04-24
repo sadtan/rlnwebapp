@@ -151,7 +151,10 @@ module.exports = (pool, table) =>
 
                     m_fields = m_fields.substring(0, m_fields.length - 1);
 
-                    var queryStr = "SELECT " + m_fields +" FROM " + table + " WHERE " + fk_field + " = " + fk_n;
+                    //var queryStr = "SELECT " + m_fields +" FROM " + table + " WHERE " + fk_field + " = " + fk_n;
+                    var queryStr = "SELECT " + m_fields +" FROM " + table;
+                    if (fk_n)
+                        queryStr += " WHERE " + fk_field + " = " + fk_n;
 
                     var data = await sql.query(queryStr, fields);
 

@@ -1,15 +1,16 @@
 let imagePaths;
 
+
 window.addEventListener("load", (event) => {
     imagePaths = document.querySelectorAll(".s3_img");
-
     createObserver();
 }, false);
 
 function createObserver() {
     let observer;
 
-    let options = {
+    let options = 
+    {
         root: null,
         rootMargin: "200px",
     };
@@ -60,4 +61,10 @@ async function gets3url(url, method, data) {
         }
     });
     
+}
+
+function restart()
+{
+    imagePaths = document.querySelectorAll(".s3_img");
+    createObserver();
 }

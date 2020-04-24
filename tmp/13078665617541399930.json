@@ -1,0 +1,4 @@
+{
+    "value": "[{\"id\":1,\"nombre\":\"Mujeres Tejiendo Sueños y Sabores de Paz \",\"fk_lugar\":4},{\"id\":2,\"nombre\":\"Costurero Tejedoras por la Memoria de Sonsón\",\"fk_lugar\":2},{\"id\":3,\"nombre\":\"Grupo de Artesanías Choibá  \",\"fk_lugar\":1},{\"id\":4,\"nombre\":\"Grupo de Artesanías Guayacán  \",\"fk_lugar\":5},{\"id\":10,\"nombre\":\"Creador De Prueba\",\"fk_lugar\":1}]",
+    "expire": "1587711885010"
+}

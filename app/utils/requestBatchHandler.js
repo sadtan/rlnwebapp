@@ -60,7 +60,10 @@ module.exports.AttachCustom = async (data, fields, fk_field, pool, fk_table, tab
     {
         try
         {
-            data[table][0][fk_table]= await customModel.getCustom(fields, fk_field, data[table][0]['id'])
+            if (data[table][0])
+                data[table][0][fk_table]= await customModel.getCustom(fields, fk_field, data[table][0]['id'])
+            else
+                data[table][0]= await customModel.getCustom(fields)
             resolve(data);
         }
         catch (error)
