@@ -147,6 +147,10 @@ h4 {
     margin-top: 10vh;
 }
 
+.half-top {
+    margin-top: 5vh;
+}
+
 .btm {
     margin-bottom: 10vh;
 }
@@ -759,6 +763,9 @@ footer {
 
  .pag-pieza {
      .intro-pieza {
+         h2 {
+             margin-bottom: 0;
+         }
         .italic {
             font-style: italic;
             color: $gris;

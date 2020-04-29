@@ -83,6 +83,9 @@ h4 {
 .top {
   margin-top: 10vh; }
 
+.half-top {
+  margin-top: 5vh; }
+
 .btm {
   margin-bottom: 10vh; }
 
@@ -481,6 +484,9 @@ footer {
 /* --------------------------------------------------------------------- 
         PÁGINA PIEZA 
  ---------------------------------------------------------------------*/
+.pag-pieza .intro-pieza h2 {
+  margin-bottom: 0; }
+
 .pag-pieza .intro-pieza .italic {
   font-style: italic;
   color: #A9A9A9;
