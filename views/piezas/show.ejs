@@ -1,6 +1,56 @@
 <%- include('../partials/header') -%>
-<h3>PIEZAS</h3>
-<% 
+
+<div class="container pag-fondo">
+  <% 
   pieza = data.data['piezas'][0];
-  console.log(pieza)
-  %>
+  creador = pieza['dep']['creador'][0]
+  descriptores = pieza['descriptores'].split(", ");
+  console.log('Pieza', pieza)
+  console.log('Descriptores', descriptores)
+%>
+  <!-- Imagen del fondo -->
+  <section class="section-fondo img-fondo top">
+    <img class="s3_img" src="<%=pieza['imagen_path']%>" alt="">
+  </section>
+
+  <!-- Titulo y datos básicos -->
+  <section class="top section-fondo intro-fondo">
+    <h2>
+      <%=pieza['titulo']%>  
+    </h2>
+    <p class="italic"> 
+      <%=creador['nombre']%>  
+      (<%=pieza['fecha']%>)
+    </p> 
+
+    <ul>
+      <li><b> Técnicas: </b> <%=pieza['tecnicas']%></li>
+      <li><b> Materiales: </b><%=pieza['materiales']%></li>
+      <li><b> Dimensiones: </b> 
+        <%=pieza['ancho']%> x
+        <%=pieza['alto']%> x
+        <%=pieza['espesor']%>
+      </li>
+    </ul>
+
+    <ul>
+    <% for(var i = 0; i < descriptores.length; i++) { %>
+      <li> <%=descriptores[i]%> </li>
+    <% } %>
+    </ul>
+  </section>
+
+  <section class="section-fondo top">
+    <h2>
+      Descripción
+    </h2>
+
+    <p>
+      <%=pieza['relato_pieza']%>
+    </p>
+
+  </section>
+
+</div>
+
+<%- include('../partials/footer') -%>
