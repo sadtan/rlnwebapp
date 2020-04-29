@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /* ----- VARIABLES ----- */
 /* ----- ESTILOS GENERALES ----- */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap");
 body {
   width: 100%;
   margin: 0;
@@ -477,6 +477,41 @@ footer {
 .largo {
   padding-right: 20px;
   padding-left: 20px; }
+
+/* --------------------------------------------------------------------- 
+        PÁGINA PIEZA 
+ ---------------------------------------------------------------------*/
+.pag-pieza .intro-pieza .italic {
+  font-style: italic;
+  color: #A9A9A9;
+  margin-top: 0; }
+
+.pag-pieza .intro-pieza .datos-basicos {
+  padding-inline-start: 0;
+  list-style-type: none;
+  line-height: 1.7;
+  margin-top: 2em; }
+  .pag-pieza .intro-pieza .datos-basicos b {
+    font-weight: 600; }
+
+.pag-pieza .intro-pieza .descriptores {
+  padding-inline-start: 0;
+  list-style-type: none; }
+  .pag-pieza .intro-pieza .descriptores li {
+    font-family: "CircularStd", sans-serif;
+    display: inline-flex;
+    color: #2727E5;
+    background: white;
+    border: 2px solid #2727E5;
+    padding: 2px 25px;
+    margin-right: 10px;
+    border-radius: 20px;
+    margin-top: 1em;
+    text-transform: capitalize;
+    cursor: pointer; }
+    .pag-pieza .intro-pieza .descriptores li:hover {
+      color: white;
+      background: #2727E5; }
 
 /* SLICK */
 .slick-container {
