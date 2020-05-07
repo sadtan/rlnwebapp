@@ -809,6 +809,45 @@ footer {
             }
         }
      }
+
+    .detalle-piezas {
+        .detalle {
+            margin-bottom: 15px;
+            
+            img {
+                max-height: 170px;
+                width: 100%;
+                object-position: center;
+                object-fit: cover;
+            }
+
+            .blue {
+                width: calc(100% - 30px);
+                height: 100%;
+                position: absolute;
+                background-color: $azul;
+                mix-blend-mode: color;
+                opacity: 0;
+            }
+
+            &:hover {
+                .blue {
+                    opacity: 50%;
+                }
+            }
+        }
+    }
+
+    .hecho {
+        padding-inline-start: 0;
+        list-style-type: none;
+        line-height: 1.7;
+        margin-top: 2em;
+        
+        b {
+            font-weight: 600;
+        }
+    }
  }
 
 
