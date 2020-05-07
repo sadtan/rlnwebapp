@@ -814,13 +814,16 @@ footer {
         .detalle {
             margin-bottom: 15px;
             cursor: pointer;
+            @media #{$large-and-down} { 
+                padding-left: 10px;
+                padding-right: 10px;
+            }
             
             img {
                 max-height: 170px;
                 width: 100%;
                 object-position: center;
                 object-fit: cover;
-                
             }
 
             .blue {
