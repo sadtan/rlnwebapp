@@ -47,12 +47,14 @@
       <div class="col-6 detalle-piezas">
         <div class="row">
           <% for(var i = 0; i < descriptores.length; i++) { %>
-          <div class="col-6 detalle">
-            <div class="blue"></div>
-            <img class="s3_img" src="<%=pieza['galeria'][i]%>">
+          <div class="col-6 detalle detalle-modal">
+           
+            <a>
+              <div class="blue"></div>
+              <img class="s3_img" src="<%=pieza['galeria'][i]%>">
+            </a>
           </div>
           <% } %>
-          <div class="col-6"></div>
         </div>
       </div>
 
@@ -77,10 +79,15 @@
           </p>
       </div>
     </div>
-  </div>
-
   </section>
+
+  <div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content"></div>   
+    <div class="modal-close">Cerrar</div>   
+  </div>
 
 </div>
 <script src="/scripts/s3ImageUrl.js"></script>
+<script src="/scripts/modal.js"></script>
 <%- include('../partials/footer') -%>
