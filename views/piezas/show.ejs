@@ -52,7 +52,9 @@
             <div class="col col-6 detalle detalle-modal">
               <a>
                 <div class="blue"></div>
-                <img class="s3_img" src="<%=pieza['galeria'][i]%>">
+                <%if (pieza['galeria'][i]) { %>
+                  <img class="s3_img" src="<%=pieza['galeria'][i]%>">
+                <% } %>
               </a>
             </div>
             <% } %>
