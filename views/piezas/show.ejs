@@ -6,7 +6,8 @@
   creador = pieza['dep']['creador'][0]
   descriptores = pieza['descriptores'].split(", ");
   hecho = pieza['dep']['hecho'][0]
-  console.log('lugar', lugar)
+  console.log('Galeria', pieza['galeria'])
+
   
 
 %>
@@ -44,17 +45,18 @@
 
   <section class="section-fondo top">
     <div class="row">
-      <div class="col-6 detalle-piezas">
-        <div class="row">
-          <% for(var i = 0; i < descriptores.length; i++) { %>
-          <div class="col-6 detalle detalle-modal">
-           
-            <a>
-              <div class="blue"></div>
-              <img class="s3_img" src="<%=pieza['galeria'][i]%>">
-            </a>
-          </div>
-          <% } %>
+      <div class="col-6 detalle-piezas" >
+        <div class="row sticky-top">
+
+            <% for(var i = 0; i < descriptores.length; i++) { %>
+            <div class="col-6 detalle detalle-modal">
+              <a>
+                <div class="blue"></div>
+                <img class="s3_img" src="<%=pieza['galeria'][i]%>">
+              </a>
+            </div>
+            <% } %>
+
         </div>
       </div>
 

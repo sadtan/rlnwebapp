@@ -545,6 +545,9 @@ footer {
   .pag-pieza .hecho b {
     font-weight: 600; }
 
+.sticky-top {
+  top: 20px; }
+
 /* --------- MODAL ------*/
 .modal {
   display: none; }
