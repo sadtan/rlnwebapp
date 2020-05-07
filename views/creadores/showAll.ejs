@@ -8,7 +8,7 @@
                 <h2 class="about-text">
                     Un espacio digital abierto para la documentación, conservación y consulta de textiles que narran la vida en medio del conflicto armado en Colombia.
                 </h2>
-                <button class="btn white" href="#">
+                <button type="button" class="btn white" onclick="location.href='/acerca-de';">
                     Saber más 
 
                     <img class="arrow-btn" src="/img/icons/arrow-btn.svg">
@@ -45,8 +45,8 @@
             <%  if (creadores[i]['dep'] != undefined) { %>
             <div class="text col col-12 col-lg-5 btm">
             <h3 class="lugar">
-                    <%=lugar['departamento']%>, 
-                    <%=lugar['localidad']%>
+                    <%=lugar['localidad']%>,
+                    <%=lugar['departamento']%>
                 </p> 
             <%
                 }

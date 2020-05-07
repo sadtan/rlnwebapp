@@ -30,7 +30,7 @@
 
   <!-- Piezas del fondo -->
   <section class="top section-fondo piezas-fondo">
-    <h2>
+    <h2 class="col">
       Piezas
     </h2>
 
@@ -42,7 +42,7 @@
 
           <div class="blue"></div> 
 
-          <a href="#">
+          <a href="/piezas/<%=fondo['piezas'][i]['id']%>" >
             <button class ="btn white">
               Ver Pieza
             </button>
@@ -63,21 +63,21 @@
   <!-- Contexto sociopolitico -->
   <section class="top btm section-fondo contexto-fondo">
     <h2>
-      Contexto sociopolitico
+      Contexto sociopolítico
     </h2>
 
-    <div class="row">
+    <div class="row corto">
       <div class="col col-12 col-lg-6 texto">
         
         <p>
           <%
-          var txt = fondo['sociopolitico'].substring(0, 1000) + "...";
+          var txt = fondo['sociopolitico'].substring(0, 900) + "...";
           txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
           %>
           <%=txt%>
         </p>
 
-        <button class ="btn blue">
+        <button class ="btn blue" id="mas-socio">
           Conocer más
         </button>
 
@@ -86,6 +86,17 @@
       <div class="col col-12 col-lg-6 img">
         <img class="mx-auto" src="/img/500x600.png">
       </div>
+    </div>
+
+    <div class="row largo hide">
+      <p class="dos-col">
+        <%=fondo['sociopolitico']%>  
+      </p>
+
+      <button class ="btn blue" id="menos-socio">
+        Mostrar menos
+      </button>
+
     </div>
 
   </section>
