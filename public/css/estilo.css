@@ -515,6 +515,10 @@ footer {
     margin-top: 1em;
     text-transform: capitalize;
     cursor: pointer; }
+    @media only screen and (max-width: 992px) {
+      .pag-pieza .intro-pieza .descriptores li {
+        padding: 0 10px;
+        margin-right: 5px; } }
     .pag-pieza .intro-pieza .descriptores li:hover {
       color: white;
       background: #2727E5; }

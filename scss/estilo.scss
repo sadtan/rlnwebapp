@@ -579,12 +579,11 @@ footer {
 }
 
 .piezas-fondo {
-        .italic {
-        font-style: italic;
-        color: $gris;
-        margin-top: 1em;
+    .italic {
+    font-style: italic;
+    color: $gris;
+    margin-top: 1em;
     }
-
     .container-img {
         position: relative;
         width: 100%;
@@ -595,7 +594,6 @@ footer {
         @media #{$medium-and-down} { 
             height: 350px;
         }
-
 
         img {
             width: 100%;
@@ -801,6 +799,11 @@ footer {
 
                 text-transform: capitalize;
                 cursor: pointer;
+
+                @media #{$large-and-down} { 
+                    padding: 0 10px;
+                    margin-right: 5px;
+                }
 
                 &:hover {
                     color: white;
