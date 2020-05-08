@@ -9,6 +9,9 @@ module.exports = function (app) {
     const resHandler = new ResHandler();
 
     // Login Get
+    app.get("/search", async (req, res) => {
+        res.render("buscar.ejs");
+    })
     app.post("/gets3presignedurl", async (req, res) => {
         try {
             if (process.env.STAGE == "development") {
