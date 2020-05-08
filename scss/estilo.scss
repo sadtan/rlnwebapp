@@ -11,6 +11,10 @@ $gris: #A9A9A9;
 $circular: "CircularStd", sans-serif;
 $inter: 'Inter', sans-serif;
 
+$alto-header: 130px;
+$alto-header-sticky: 90px;
+$alto-header-movil: 80px;
+
 $small-screen: 576px !default;
 $medium-screen: 768px !default;
 $large-screen: 992px !default;
@@ -147,6 +151,7 @@ h4 {
     margin-top: 10vh;
 }
 
+
 .half-top {
     margin-top: 5vh;
 }
@@ -193,14 +198,25 @@ h4 {
 
 .header {
     background-color: $azul;
-    height: 130px;
+    height: $alto-header;
     transition: height 1s;
-    position: relative;
+    position: fixed;
     width: 100%;
     z-index: 1000;
+    top:0;
 
     @media #{$large-and-down} { 
-        height: 80px;
+        height: $alto-header-movil;
+    }
+
+    @media #{$extra-large-only} {
+        &.small-header {
+            height: $alto-header-sticky;
+            .logo {
+                transition: font-size 1s;
+                font-size: 22px;
+            }
+        }
     }
 
     .container, .row {
@@ -859,7 +875,8 @@ footer {
  }
 
  .sticky-top {
-     top: 20px;
+     top: $alto-header-sticky + 20px;
+     z-index: -1;
  }
 /* --------- MODAL ------*/
 .modal {

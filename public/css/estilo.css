@@ -117,12 +117,19 @@ h4 {
   background-color: #2727E5;
   height: 130px;
   transition: height 1s;
-  position: relative;
+  position: fixed;
   width: 100%;
-  z-index: 1000; }
+  z-index: 1000;
+  top: 0; }
   @media only screen and (max-width: 992px) {
     .header {
       height: 80px; } }
+  @media only screen and (min-width: 993px) and (max-width: 1200px) {
+    .header.small-header {
+      height: 90px; }
+      .header.small-header .logo {
+        transition: font-size 1s;
+        font-size: 22px; } }
   .header .container, .header .row {
     height: 100%; }
   .header .col {
@@ -554,7 +561,8 @@ footer {
     font-weight: 600; }
 
 .sticky-top {
-  top: 20px; }
+  top: 110px;
+  z-index: -1; }
 
 /* --------- MODAL ------*/
 .modal {
