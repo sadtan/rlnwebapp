@@ -577,13 +577,15 @@ footer {
   list-style-type: none;
   display: flex;
   flex-direction: row;
-  justify-content: center; }
+  justify-content: center;
+  flex-wrap: wrap; }
   .botones-filtros li {
     font-family: "CircularStd", sans-serif;
+    position: relative;
     color: #2727E5;
     background: white;
     border: 2px solid #2727E5;
-    padding: 2px 25px;
+    padding: 2px 40px 2px 25px;
     margin-right: 10px;
     border-radius: 20px;
     margin-top: 1em;
@@ -591,11 +593,21 @@ footer {
     cursor: pointer; }
     @media only screen and (max-width: 992px) {
       .botones-filtros li {
-        padding: 0 10px;
+        padding: 2px 30px 2px 15px;
         margin-right: 5px; } }
-    .botones-filtros li:hover {
-      color: white;
-      background: #2727E5; }
+    .botones-filtros li:after {
+      visibility: visible;
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      height: 15px;
+      width: 15px;
+      background-image: url("/img/icons/chevron_down.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      content: " ";
+      transform: translate(0, -40%); }
 
 /* --------- MODAL ------*/
 .modal {
