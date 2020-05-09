@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-    console.log( "ready!" );
 
     //Dropdown menu
     $('.burguer').click( function() {
@@ -23,6 +22,7 @@ $( document ).ready(function() {
 
     $(window).scroll(function(){
         if ($(window).scrollTop() > 130) {
+            console.log( "ready!" );
             $(".header").addClass("small-header");
              h = $(".header").height();
             $("body").css("padding-top", h);

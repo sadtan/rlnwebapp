@@ -209,7 +209,7 @@ h4 {
         height: $alto-header-movil;
     }
 
-    @media #{$extra-large-only} {
+    @media #{$extra-large-and-up} {
         &.small-header {
             height: $alto-header-sticky;
             .logo {
