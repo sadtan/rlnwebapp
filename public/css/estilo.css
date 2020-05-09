@@ -110,6 +110,11 @@ h4 {
 .show {
   display: flex; }
 
+.italic {
+  font-style: italic;
+  color: #A9A9A9;
+  margin-top: 1em; }
+
 /* ---------------------------------------------------------------------
     ESTILOS HEADER 
 ---------------------------------------------------------------------*/
@@ -563,6 +568,34 @@ footer {
 .sticky-top {
   top: 110px;
   z-index: -1; }
+
+/* --------------------------------------------------------------------- 
+        PÁGINA BUSQUEDA
+ ---------------------------------------------------------------------*/
+.botones-filtros {
+  padding-inline-start: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center; }
+  .botones-filtros li {
+    font-family: "CircularStd", sans-serif;
+    color: #2727E5;
+    background: white;
+    border: 2px solid #2727E5;
+    padding: 2px 25px;
+    margin-right: 10px;
+    border-radius: 20px;
+    margin-top: 1em;
+    text-transform: capitalize;
+    cursor: pointer; }
+    @media only screen and (max-width: 992px) {
+      .botones-filtros li {
+        padding: 0 10px;
+        margin-right: 5px; } }
+    .botones-filtros li:hover {
+      color: white;
+      background: #2727E5; }
 
 /* --------- MODAL ------*/
 .modal {

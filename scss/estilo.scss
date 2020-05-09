@@ -190,6 +190,12 @@ h4 {
     display: flex;
 }
 
+.italic {
+    font-style: italic;
+    color: $gris;
+    margin-top: 1em;
+}
+
 
 
 /* ---------------------------------------------------------------------
@@ -878,6 +884,44 @@ footer {
      top: $alto-header-sticky + 20px;
      z-index: -1;
  }
+
+/* --------------------------------------------------------------------- 
+        PÁGINA BUSQUEDA
+ ---------------------------------------------------------------------*/
+
+ .botones-filtros {
+    padding-inline-start: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    li {
+        font-family: $circular;
+        //display: inline-flex;
+        color: $azul;
+        background: white;
+        border: 2px solid $azul;
+
+        padding: 2px 25px;
+        margin-right: 10px;
+        border-radius: 20px;
+        margin-top: 1em;
+
+        text-transform: capitalize;
+        cursor: pointer;
+
+        @media #{$large-and-down} { 
+            padding: 0 10px;
+            margin-right: 5px;
+        }
+
+        &:hover {
+            color: white;
+            background: $azul;
+        }
+    }
+}
 /* --------- MODAL ------*/
 .modal {
     display: none;
