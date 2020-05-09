@@ -81,13 +81,13 @@ h4 {
       padding: 4px 16px; } }
 
 .top {
-  margin-top: 10vh; }
+  margin-top: 8vh; }
 
 .half-top {
   margin-top: 5vh; }
 
 .btm {
-  margin-bottom: 10vh; }
+  margin-bottom: 8vh; }
 
 @media only screen and (max-width: 992px) {
   .order-1-lg {
@@ -608,6 +608,15 @@ footer {
       background-position: center;
       content: " ";
       transform: translate(0, -40%); }
+
+.resultados {
+  margin-top: 4vh; }
+  .resultados .resultado-pieza {
+    margin-bottom: 2em; }
+    .resultados .resultado-pieza img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover; }
 
 /* --------- MODAL ------*/
 .modal {
