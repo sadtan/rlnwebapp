@@ -370,26 +370,26 @@ footer {
     margin-top: 2em;
     text-align: center; } }
 
-.piezas-fondo .italic {
+.italic {
   font-style: italic;
   color: #A9A9A9;
   margin-top: 1em; }
 
-.piezas-fondo .container-img {
+.container-img {
   position: relative;
   width: 100%;
   height: 250px;
   margin-top: 2em;
   overflow: visible; }
   @media only screen and (max-width: 768px) {
-    .piezas-fondo .container-img {
+    .container-img {
       height: 350px; } }
-  .piezas-fondo .container-img img {
+  .container-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     position: absolute; }
-  .piezas-fondo .container-img .btn {
+  .container-img .btn {
     position: absolute;
     margin-top: 0;
     background-color: white;
@@ -397,20 +397,19 @@ footer {
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: 0; }
-  .piezas-fondo .container-img .blue {
+  .container-img .blue {
     width: 100%;
     height: 100%;
     position: absolute;
     background-color: #2727E5;
     mix-blend-mode: color;
     opacity: 0; }
-  .piezas-fondo .container-img:hover .btn {
+  .container-img:hover .btn {
     opacity: 1; }
-  .piezas-fondo .container-img:hover img {
+  .container-img:hover img {
     -webkit-filter: grayscale(100%);
-    /* Safari 6.0 - 9.0 */
     filter: grayscale(100%); }
-  .piezas-fondo .container-img:hover .blue {
+  .container-img:hover .blue {
     opacity: 50%; }
 
 .lista-docs {
@@ -613,10 +612,21 @@ footer {
   margin-top: 4vh; }
   .resultados .resultado-pieza {
     margin-bottom: 2em; }
-    .resultados .resultado-pieza img {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover; }
+    .resultados .resultado-pieza .container-img {
+      height: 400px; }
+      .resultados .resultado-pieza .container-img a {
+        position: absolute;
+        margin-top: 0;
+        height: 100%;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2; }
+        .resultados .resultado-pieza .container-img a .btn {
+          margin-top: 0; }
+      .resultados .resultado-pieza .container-img img {
+        z-index: 0; }
 
 /* --------- MODAL ------*/
 .modal {
