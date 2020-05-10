@@ -607,6 +607,21 @@ footer {
       background-position: center;
       content: " ";
       transform: translate(0, -40%); }
+    .botones-filtros li select {
+      display: none; }
+    .botones-filtros li .select-items div, .botones-filtros li .select-selected {
+      color: #ffffff;
+      padding: 8px 16px;
+      border: 1px solid transparent;
+      border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+      cursor: pointer; }
+    .botones-filtros li .select-items {
+      position: absolute;
+      background-color: DodgerBlue;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 99; }
 
 .resultados {
   margin-top: 4vh; }

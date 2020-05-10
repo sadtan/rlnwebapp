@@ -56,5 +56,5 @@ $( document ).ready(function() {
 
         $('.corto').removeClass('hide');
         $('.corto').addClass('show');
-    });
+    }); 
 });
