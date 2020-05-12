@@ -1,0 +1,4 @@
+{
+    "value": "[{\"id\":1,\"nombre\":\"Mujeres Tejiendo Sueños y Sabores de Paz \",\"fk_lugar\":4},{\"id\":2,\"nombre\":\"Costurero Tejedoras por la Memoria de Sonsón\",\"fk_lugar\":2},{\"id\":3,\"nombre\":\"Grupo de Artesanías Choibá  \",\"fk_lugar\":1},{\"id\":4,\"nombre\":\"Grupo de Artesanías Guayacán  \",\"fk_lugar\":5},{\"id\":10,\"nombre\":\"Asociación de Familiares Detenidos y Desaparecidos ASFADDES Medellín\",\"fk_lugar\":10},{\"id\":12,\"nombre\":\"Madres de la Candelaria - Línea Fundadora\",\"fk_lugar\":10},{\"id\":14,\"nombre\":\"Sueños Justos SUJU\",\"fk_lugar\":10},{\"id\":15,\"nombre\":\"Lo que cuentan los retazos \",\"fk_lugar\":11}]",
+    "expire": "1589319340670"
+}
