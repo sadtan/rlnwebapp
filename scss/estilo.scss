@@ -939,6 +939,16 @@ margin-top: 1em;
                 content: none;
             }
         }
+
+        .dropdown-menu {
+            margin-top: 10px;
+            border: 2px solid $azul;
+
+            .dropdown-item {
+                padding: 5px 15px;
+                
+            }
+        }
     }
 }
 

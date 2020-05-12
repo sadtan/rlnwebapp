@@ -612,6 +612,11 @@ footer {
       color: #2727E5; }
       .botones-filtros li .nav-link:after {
         content: none; }
+    .botones-filtros li .dropdown-menu {
+      margin-top: 10px;
+      border: 2px solid #2727E5; }
+      .botones-filtros li .dropdown-menu .dropdown-item {
+        padding: 5px 15px; }
 
 .resultados {
   margin-top: 4vh; }
