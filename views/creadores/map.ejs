@@ -1,0 +1,93 @@
+<%- include('../partials/header') -%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+<script src="lib/p5.min.js"></script>
+<style>
+    main {
+        display: flex;
+        flex-direction: row;
+        max-width: 100%;
+    }
+
+    .map-div {
+        max-width: 50%;
+    }
+</style>
+<main>
+    <div class="map-div">
+        <div id='container'></div>
+        <script>
+            let sketch = function (p) 
+            {
+                p.setup = function () 
+                {
+                    p.createCanvas(100, 100);
+                    p.background(255, 255, 255);
+                   
+                }
+                p.draw = function ()
+                {
+                    p.ellipse(50, 50, 80, 80);
+                }
+            };
+            new p5(sketch, window.document.getElementById('container'));
+        </script>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum veniam dolore, consectetur itaque quaerat
+        cupiditate harum quo saepe cum perferendis incidunt consequatur explicabo in adipisci! Modi ullam pariatur quae
+        inventore corporis doloribus quo, fugiat amet temporibus quaerat accusantium sunt mollitia porro minus ad magnam
+        quibusdam debitis itaque repudiandae distinctio placeat rerum. Est incidunt magni a cumque eveniet voluptas
+        earum natus, illum itaque sequi atque aut pariatur obcaecati provident? Ipsum cum nobis maiores recusandae at
+        deserunt vero, saepe ad voluptatibus expedita. Numquam eligendi similique quas, dolor porro molestiae ea ad
+        alias illo, libero in eius officiis quod natus sunt mollitia! Quod asperiores fugiat iure dolorum dolores autem
+        fugit inventore recusandae corporis earum ipsa dolorem excepturi vitae voluptatum officiis, at eligendi
+        assumenda magnam eos. Odio cupiditate natus mollitia sapiente culpa perferendis sed doloremque soluta! Qui
+        veniam molestiae, deleniti ipsam quasi voluptate. A corporis consequuntur pariatur quae corrupti quisquam
+        numquam perferendis et, ipsam, reprehenderit voluptates totam quasi ipsa explicabo possimus officia? Fuga
+        adipisci incidunt, consectetur labore nemo ullam earum molestias maxime similique ratione officiis illum dolorem
+        repudiandae, numquam, sed omnis perspiciatis placeat obcaecati natus! Aut, quod, aperiam qui nulla animi ut
+        quasi aspernatur molestias repudiandae velit libero. Alias repudiandae numquam veniam ab minus!
+    </div>
+    <section class="home-section preview-fondos container top ">
+        <% 
+        var creadores = data.data[data.data['main']]
+        for (var i = 0; i < creadores.length; ++i) {
+        if (creadores[i]['dep'] != undefined)
+            dep = creadores[i]['dep']
+        lugar = dep['lugar'][0]
+        %>
+
+        <div class="fondo row align-items-center btm">
+            <div class="img col col-12 col-lg-6">
+                <img class="linea" src="/img/linea_mampujan.jpg" alt="">
+                <img class="azul" src="/img/azul_mampujan.jpg" alt="">
+            </div>
+
+            <%  if (creadores[i]['dep'] != undefined) { %>
+            <div class="text col col-12 col-lg-5 btm">
+                <h3 class="lugar">
+                    <%=lugar['localidad']%>,
+                    <%=lugar['departamento']%>
+                    </p>
+                    <%
+                }
+            %>
+                    <h2><%=creadores[i]['nombre']%></h2>
+                    <p>
+                        <%
+                    var txt = creadores[i]['caracterizacion'].substring(0, 230) + "L";
+                    txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
+                    %>
+                        <%=txt%>
+                    </p>
+                    <a href="/creadores/<%=creadores[i]['id']%>">
+                        <button class="btn blue">Conocer más</button>
+                    </a>
+            </div>
+        </div>
+        <%
+            }
+        %>
+
+    </section>
+</main>
+
+<%- include('../partials/footer') -%>
