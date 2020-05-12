@@ -1,5 +1,4 @@
 (function ($, root, undefined) {
-    console.log('modal ready');
 
     $('.detalle-modal a').on('click', function() {
 

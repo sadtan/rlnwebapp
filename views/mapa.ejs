@@ -1,1 +1,36 @@
-<h1>hola</h1>
+<%- include('./partials/header') -%> 
+
+<section class="home-section preview-fondos container top">
+       
+    <div class="fondo row align-items-center btm"> 
+        <div class="col col-12 col-lg-6">
+            <div id="canvasp5">
+                <!--canvas del mapa -->
+            </div>
+        </div>
+        
+        <div class="text col col-12 col-lg-5 btm">
+            <img src="/img/azul_mampujan.jpg" alt="">
+            
+            <h3 class="lugar half-top">
+                    Localidad,
+                    Departamento
+            </h3> 
+
+            <h2>Mujeres Tejiendo Sueños y Sabores de Paz</h2>
+            <p>
+                Este grupo está conformado principalmente por mujeres afrodescendientes adultas y jóvenes víctimas del desplazamiento de Mampuján y ahora residentes en el barrio Rosas de Mampuján, así como por mujeres solidarias del barrio...
+            </p>
+            <a href="#">
+                <button class ="btn blue">Conocer más</button>
+            </a>
+        </div>
+        
+    </div>
+
+</section>
+
+<script src="/scripts/mapa.js"></script>
+<script src="/scripts/s3ImageUrl.js"></script>
+
+<%- include('./partials/footer') -%> 
