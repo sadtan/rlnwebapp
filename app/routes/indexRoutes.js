@@ -29,6 +29,11 @@ module.exports = (app) =>
     //     res.redirect("/admin-login");
     // })
 
+    app.get("/mapa", (req, res) => 
+    {
+        res.render("mapa");
+    });
+    
     app.get("/acerca-de", (req, res) => 
     {
         res.render("about");
@@ -38,6 +43,7 @@ module.exports = (app) =>
     {
         res.redirect("/creadores");
     });
+    
     
     app.get("/aws-health", (_, res) => 
     {
