@@ -579,9 +579,7 @@ footer {
   justify-content: center;
   flex-wrap: wrap; }
   .botones-filtros li {
-    font-family: "CircularStd", sans-serif;
     position: relative;
-    color: #2727E5;
     background: white;
     border: 2px solid #2727E5;
     padding: 2px 40px 2px 25px;
@@ -607,21 +605,13 @@ footer {
       background-position: center;
       content: " ";
       transform: translate(0, -40%); }
-    .botones-filtros li select {
-      display: none; }
-    .botones-filtros li .select-items div, .botones-filtros li .select-selected {
-      color: #ffffff;
-      padding: 8px 16px;
-      border: 1px solid transparent;
-      border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-      cursor: pointer; }
-    .botones-filtros li .select-items {
-      position: absolute;
-      background-color: DodgerBlue;
-      top: 100%;
-      left: 0;
-      right: 0;
-      z-index: 99; }
+    .botones-filtros li .nav-link {
+      padding: 0;
+      padding-right: 10px;
+      font-family: "CircularStd", sans-serif;
+      color: #2727E5; }
+      .botones-filtros li .nav-link:after {
+        content: none; }
 
 .resultados {
   margin-top: 4vh; }

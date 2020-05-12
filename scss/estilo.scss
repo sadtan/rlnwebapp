@@ -898,12 +898,9 @@ margin-top: 1em;
     flex-wrap: wrap;
 
     li {
-        font-family: $circular;
         position: relative;
-        color: $azul;
         background: white;
         border: 2px solid $azul;
-
         padding: 2px 40px 2px 25px;
         margin-right: 10px;
         border-radius: 20px;
@@ -931,29 +928,17 @@ margin-top: 1em;
             content: " ";
 
             transform: translate(0, -40%);
+        }  
+        .nav-link {
+            padding: 0;
+            padding-right: 10px;
+            font-family: $circular;
+            color: $azul;
+
+            &:after {
+                content: none;
+            }
         }
-
-        select {
-            display: none;
-        }
-
-        .select-items div,.select-selected {
-            color: #ffffff;
-            padding: 8px 16px;
-            border: 1px solid transparent;
-            border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-            cursor: pointer;
-          }
-
-          .select-items {
-            position: absolute;
-            background-color: DodgerBlue;
-            top: 100%;
-            left: 0;
-            right: 0;
-            z-index: 99;
-          }
-          
     }
 }
 
