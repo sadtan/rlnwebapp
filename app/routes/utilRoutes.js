@@ -4,14 +4,10 @@ var reqBatchHandler = require("../utils/requestBatchHandler");
 var AWSUtils = require("../utils/awsConfig.js")("archivorln");
 var awsUtils = new AWSUtils();
 
-module.exports = function (app) {
+module.exports = function (app, pool) {
     const ResHandler = require("../utils/responseHandler.js").ResHandler();
     const resHandler = new ResHandler();
 
-    // Login Get
-    app.get("/search", async (req, res) => {
-        res.render("buscar.ejs");
-    })
     app.post("/gets3presignedurl", async (req, res) => {
         try {
             if (process.env.STAGE == "development") {
