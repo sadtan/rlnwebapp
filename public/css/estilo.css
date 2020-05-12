@@ -84,7 +84,7 @@ h4 {
   margin-top: 8vh; }
 
 .half-top {
-  margin-top: 5vh; }
+  margin-top: 4vh; }
 
 .btm {
   margin-bottom: 8vh; }
@@ -579,9 +579,7 @@ footer {
   justify-content: center;
   flex-wrap: wrap; }
   .botones-filtros li {
-    font-family: "CircularStd", sans-serif;
     position: relative;
-    color: #2727E5;
     background: white;
     border: 2px solid #2727E5;
     padding: 2px 40px 2px 25px;

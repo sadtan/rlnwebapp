@@ -8,6 +8,23 @@ module.exports = function (app, pool) {
     const ResHandler = require("../utils/responseHandler.js").ResHandler();
     const resHandler = new ResHandler();
 
+    app.get("/buscar", async (req, res) =>
+    {
+        var data = {};
+        data['piezas'] = [];
+        data['lugares'] = [];
+        data['creadores'] = [];
+        data['hechos'] = [];
+        data = await reqBatchHandler.AttachCustom(data, ['id', 'titulo', 'imagen_path', 'fecha', 'fk_creador', 'fk_hecho', 'tematicas', 'tecnicas'], "", pool, "piezas", "piezas")
+        //console.log(data['piezas']);
+        data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre'], "", pool, "lugares", "lugares")
+        data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre', 'fk_lugar'], "", pool, "creadores", "creadores")
+        data = await reqBatchHandler.AttachCustom(data, ['id', 'modalidad'], "", pool, "hechos", "hechos")
+
+        //res.render("buscar")
+        res.render("search.ejs", {data});
+    })
+
     app.post("/gets3presignedurl", async (req, res) => {
         try {
             if (process.env.STAGE == "development") {

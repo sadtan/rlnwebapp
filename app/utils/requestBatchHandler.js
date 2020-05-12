@@ -49,6 +49,32 @@ module.exports.AttachDependencies = async (data, m_table, pool) =>
     })
 }
 
+
+
+module.exports.AttachCustom = async (data, fields, fk_field, pool, fk_table, table) =>
+{
+    var CustomModel = CreateCustomModel(pool, fk_table);
+    var customModel = new CustomModel();
+
+    return new Promise(async (resolve, reject) => 
+    {
+        try
+        {
+            if (data[table][0])
+                data[table][0][fk_table]= await customModel.getCustom(fields, fk_field, data[table][0]['id'])
+            else
+                data[table][0]= await customModel.getCustom(fields)
+            resolve(data);
+        }
+        catch (error)
+        {
+            console.log(error)
+            reject(error);
+        }
+    })
+    
+}
+
 function CreateCustomController(pool, table, alias)
 {
     return require("../controller/customController.js")(pool, table, alias);

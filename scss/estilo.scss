@@ -153,7 +153,7 @@ h4 {
 
 
 .half-top {
-    margin-top: 5vh;
+    margin-top: 4vh;
 }
 
 .btm {
@@ -898,12 +898,9 @@ margin-top: 1em;
     flex-wrap: wrap;
 
     li {
-        font-family: $circular;
         position: relative;
-        color: $azul;
         background: white;
         border: 2px solid $azul;
-
         padding: 2px 40px 2px 25px;
         margin-right: 10px;
         border-radius: 20px;
@@ -931,10 +928,16 @@ margin-top: 1em;
             content: " ";
 
             transform: translate(0, -40%);
-        }
+        }  
+        .nav-link {
+            padding: 0;
+            padding-right: 10px;
+            font-family: $circular;
+            color: $azul;
 
-        select {
-            display: none;
+            &:after {
+                content: none;
+            }
         }
 
         .dropdown-menu {
