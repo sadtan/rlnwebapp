@@ -86,6 +86,7 @@ class App
         require("./app/routes/adminRoutes.js")(this.app, AdminPool, "lugares");
         require("./app/routes/adminRoutes.js")(this.app, AdminPool, "hechos");
         require("./app/routes/adminRoutes.js")(this.app, AdminPool, "colecciones");
+        require("./app/routes/adminRoutes.js")(this.app, AdminPool, "piezas");
         require("./app/routes/adminLoginRoutes.js")(this.app, passport);
         
 
@@ -102,7 +103,7 @@ class App
 
 
         require("./app/routes/indexRoutes.js" )(this.app);
-    }
+    }   
 
     run()
     {

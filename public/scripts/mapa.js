@@ -19,7 +19,6 @@ function setup() {
   } else {
     image(mySvg, width/2, height/2, width, mySvg.height*width/mySvg.width);
   } 
-  
 
   ////////////////////////////////////////
   //top-left reference point
@@ -67,7 +66,7 @@ function setup() {
   }
   
 
-  //image(azul, pos.x, pos.y);
+  // draw points
   console.log(latLongArr)
   for (let i = 0; i < latLongArr.length; ++i)
   {

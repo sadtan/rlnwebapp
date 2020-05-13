@@ -4,6 +4,11 @@ main
     justify-content: space-between;
 }
 
+.form-class
+{
+    margin-top: 10%;
+}
+
 .form-class, .admin-cards
 {
     width: 100%;
@@ -60,7 +65,7 @@ input[type=text], input[type=number]
     outline: none;
 }
 
-.admin-cards button, .form-class button 
+.admin-cards button, .form-class button, button
 {
     background-color: #FFF; 
     border: 1px solid #0202F7;
@@ -84,41 +89,36 @@ input[type=text], input[type=number]
 }
 
 
-/* The Modal (background) */
 .modal {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
-    padding-top: 100px;
-    /* Location of the box */
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
-}
+    width: 70%; /* Full width */
+    height: 70%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
 
 /* Modal Content */
 .modal-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
     background-color: #fefefe;
-    margin: auto;
+    margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-}
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+
 
 /* The Close Button */
-.close {
+.close, .close1, .close2, .close3 {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
@@ -126,7 +126,13 @@ input[type=text], input[type=number]
 }
 
 .close:hover,
-.close:focus {
+.close:focus, 
+.close1:hover, 
+.close1:focus,
+.close2:hover, 
+.close2:focus, 
+.close3:hover,
+.close3:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
@@ -134,4 +140,15 @@ input[type=text], input[type=number]
 
 #json-input {
     display: none;
+}
+
+.scroll
+{
+    margin:4px, 4px; 
+    padding:4px; 
+    width: 80%; 
+    height: 50%; 
+    overflow-x: hidden; 
+    overflow-x: auto; 
+    text-align:justify; 
 }

@@ -48,7 +48,6 @@ module.exports = (BucketName) =>
                             this.bucketParams.Delimiter = data[table][0][field];
                             this.bucketParams.Prefix = data[table][0][field];
                             data[table][0]['galeria'] = [];
-                            console.log(this.bucketParams.Delimiter);
                             s3.listObjectsV2(this.bucketParams, function(err, s3Data) {
                                 if (err) throw new Error(err);
                                 s3Data.Contents.forEach((file) => {
