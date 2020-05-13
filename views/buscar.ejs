@@ -207,6 +207,9 @@ console.log("tematicas", tematicas)
                 </div>
             </li>
         </ul> 
+        <p class="italic text-center" id="filtros" style="margin: 0; padding: 0;">
+            no hay filtros aplicados
+        </p>  
     </section>
 
     <section class="section-fondo resultados">
@@ -354,6 +357,7 @@ console.log("tematicas", tematicas)
 <script src="/scripts/s3ImageUrl.js"></script>
 
 <script>
+    var filtros = document.getElementById("filtros");
     var piezas = document.getElementsByClassName("resultado-pieza");
     console.log(piezas);
     var piezasList = [];
@@ -417,6 +421,22 @@ console.log("tematicas", tematicas)
 
     function filter()
         {
+            //filtros.innerHTML = "HELLO"
+            var hasFilter = false;
+            filtros.innerHTML = "";
+            for (param in searchParams)
+            {
+                if (searchParams[param] != "")
+                {
+                    filtros.innerHTML += param + ": " + searchParams[param] + ", ";
+                    hasFilter = true;
+                }
+            }
+
+            filtros.innerHTML = filtros.innerHTML.substring(0, filtros.innerHTML.length - 2);
+            if (!hasFilter)
+                filtros.innerHTML = "no hay filtros aplicados"
+
             for (result in piezasList)
             {
                 piezasList[result]['isInResults'] = false;
