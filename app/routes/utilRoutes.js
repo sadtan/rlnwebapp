@@ -20,9 +20,8 @@ module.exports = function (app, pool) {
         data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre'], "", pool, "lugares", "lugares")
         data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre', 'fk_lugar'], "", pool, "creadores", "creadores")
         data = await reqBatchHandler.AttachCustom(data, ['id', 'modalidad'], "", pool, "hechos", "hechos")
-
-        //res.render("buscar")
-        res.render("search.ejs", {data});
+        //res.render("search.ejs", {data});
+        res.render("buscar", {data})
     })
 
     app.post("/gets3presignedurl", async (req, res) => {
