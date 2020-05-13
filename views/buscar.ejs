@@ -95,8 +95,6 @@ for (var pieza in piezas)
         }
     }
 }
-console.log("TECNICAS", tecnicas)
-console.log("tematicas", tematicas)
 
 %>
 <div class="container pag-sobre">
@@ -215,7 +213,6 @@ console.log("tematicas", tematicas)
     <section class="section-fondo resultados">
         <div class="row" id="results">
             <% for(var i = 0; i < piezas.length; i++) { 
-            console.log("PIEZA", piezas[i])
             %>
             <div class="col col-12 col-md-6 resultado-pieza" >
                 <div class="container-img">
@@ -359,7 +356,6 @@ console.log("tematicas", tematicas)
 <script>
     var filtros = document.getElementById("filtros");
     var piezas = document.getElementsByClassName("resultado-pieza");
-    console.log(piezas);
     var piezasList = [];
     for (let i = 0; i < piezas.length; ++i)
         {
@@ -388,16 +384,20 @@ console.log("tematicas", tematicas)
             'tecnica': '',
             'tematica': '',
         }
+    var originalNames = [];
+    attachParam(document.getElementsByClassName("select-anio"), 'fecha', false, 0);
+    attachParam(document.getElementsByClassName("select-creador"), 'creador', true, 1);
+    attachParam(document.getElementsByClassName("select-tematica"), 'tematica', false, 2);
+    attachParam(document.getElementsByClassName("select-tecnica"), 'tecnica', false, 3);
+    attachParam(document.getElementsByClassName("select-lugar"), 'lugar', true, 4);
+    attachParam(document.getElementsByClassName("select-hecho"), 'hecho', false, 5);
+    
 
-    attachParam(document.getElementsByClassName("select-anio"), 'fecha');
-    attachParam(document.getElementsByClassName("select-creador"), 'creador', true);
-    attachParam(document.getElementsByClassName("select-tematica"), 'tematica');
-    attachParam(document.getElementsByClassName("select-tecnica"), 'tecnica');
-    attachParam(document.getElementsByClassName("select-lugar"), 'lugar', true);
-    attachParam(document.getElementsByClassName("select-hecho"), 'hecho');
-
-    function attachParam(dropList, name, id = false)
+    function attachParam(dropList, name, id = false, index)
         {
+            if (originalNames.indexOf(document.getElementsByClassName("dropdown-toggle")[index].innerHTML) == -1)
+                originalNames.push(document.getElementsByClassName("dropdown-toggle")[index].innerHTML);
+        
             for (let i = 0; i < dropList.length; ++i)
             {
                 if (dropList[i].innerText.toLowerCase() == "todos")
@@ -405,6 +405,7 @@ console.log("tematicas", tematicas)
                     searchParams[name] = ''
                     dropList[i].addEventListener('click', function ()
                     {
+                        document.getElementsByClassName("dropdown-toggle")[index].innerHTML = originalNames[index];
                         searchParams[name] = ''
                         filter();
                     });
@@ -412,12 +413,14 @@ console.log("tematicas", tematicas)
                 {
                     dropList[i].addEventListener('click', function ()
                     {
+                        document.getElementsByClassName("dropdown-toggle")[index].innerHTML = dropList[i].innerText;
                         id ? searchParams[name] = dropList[i].attributes.value.textContent : searchParams[name] = dropList[i].innerText.toLowerCase();
                         filter();
                     });
                 }
             }
         }
+
 
     function filter()
         {
@@ -440,10 +443,8 @@ console.log("tematicas", tematicas)
             for (result in piezasList)
             {
                 piezasList[result]['isInResults'] = false;
-                console.log(piezasList[result]['isInResults']);
             }
 
-            console.log(searchParams);
             results.innerHTML = "";
             var bHasResult = false;
 
@@ -493,7 +494,6 @@ console.log("tematicas", tematicas)
                     if (searchParams[param] != '')
                         conditionList.push(param);
                 }
-                console.log(conditionList);
                 var aprovedAll = true;
 
                 if (conditionList.indexOf('fecha') != -1)
