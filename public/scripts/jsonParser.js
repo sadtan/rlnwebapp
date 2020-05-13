@@ -55,7 +55,6 @@ class JsonParser
                     var cell;
                     for (var attr in this.jsonObj[index])
                     {
-                        
                         cell = row.insertCell(rowIndex);
                         var idFirstLetter = attr.substring(0, 1);
 
@@ -67,6 +66,7 @@ class JsonParser
                         input.setAttribute("id", idFirstLetter + index );
                         input.setAttribute('class', 'text-input');
                         input.setAttribute('value', this.jsonObj[index][attr].toString().replace(/&quot;/g, '\"'));
+                        input.setAttribute('placeholder', attr);
 
                         cell.appendChild(input);
 
@@ -95,6 +95,7 @@ class JsonParser
                     input.setAttribute("id", idFirstLetter + 0 );
                     input.setAttribute('class', 'text-input');
                     input.setAttribute('value', "");
+                    input.setAttribute('placeholder', attr);
 
                     cell.appendChild(input);
                     this.objAttrs[attr] = '';
@@ -125,6 +126,7 @@ class JsonParser
                 input.setAttribute("id", idFirstLetter + lastRow );
                 input.setAttribute('class', 'text-input');
                 input.setAttribute('value', "");
+                input.setAttribute('placeholder', attr);
 
                 cell.appendChild(input);
 
