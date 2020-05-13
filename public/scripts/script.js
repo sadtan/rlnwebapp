@@ -1,10 +1,9 @@
 $( document ).ready(function() {
-    console.log( "ready!" );
 
     //Dropdown menu
     $('.burguer').click( function() {
         $('.dropdown').toggleClass("down");
-        $("body").toggleClass("disable-scroll");
+        $(".header").toggleClass("sticky-header");
     });
 
     //Go up
@@ -15,6 +14,21 @@ $( document ).ready(function() {
     //Go up
     $('#subir').click( function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    //reduce header size
+    var h = $(".header").height();
+    $("body").css("padding-top", h);
+
+    $(window).scroll(function(){
+        if ($(window).scrollTop() > 130) {
+            console.log( "ready!" );
+            $(".header").addClass("small-header");
+             h = $(".header").height();
+            $("body").css("padding-top", h);
+        } else {
+            $(".header").removeClass("small-header");
+        }
     });
     
     $('.slick-carrousel').slick({
@@ -42,5 +56,5 @@ $( document ).ready(function() {
 
         $('.corto').removeClass('hide');
         $('.corto').addClass('show');
-    });
+    }); 
 });

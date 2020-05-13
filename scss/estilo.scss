@@ -11,6 +11,10 @@ $gris: #A9A9A9;
 $circular: "CircularStd", sans-serif;
 $inter: 'Inter', sans-serif;
 
+$alto-header: 130px;
+$alto-header-sticky: 90px;
+$alto-header-movil: 80px;
+
 $small-screen: 576px !default;
 $medium-screen: 768px !default;
 $large-screen: 992px !default;
@@ -144,15 +148,16 @@ h4 {
 }
 
 .top {
-    margin-top: 10vh;
+    margin-top: 8vh;
 }
 
+
 .half-top {
-    margin-top: 5vh;
+    margin-top: 4vh;
 }
 
 .btm {
-    margin-bottom: 10vh;
+    margin-bottom: 8vh;
 }
 
 
@@ -185,6 +190,12 @@ h4 {
     display: flex;
 }
 
+.italic {
+    font-style: italic;
+    color: $gris;
+    margin-top: 1em;
+}
+
 
 
 /* ---------------------------------------------------------------------
@@ -193,14 +204,25 @@ h4 {
 
 .header {
     background-color: $azul;
-    height: 130px;
+    height: $alto-header;
     transition: height 1s;
-    position: relative;
+    position: fixed;
     width: 100%;
     z-index: 1000;
+    top:0;
 
     @media #{$large-and-down} { 
-        height: 80px;
+        height: $alto-header-movil;
+    }
+
+    @media #{$extra-large-and-up} {
+        &.small-header {
+            height: $alto-header-sticky;
+            .logo {
+                transition: font-size 1s;
+                font-size: 22px;
+            }
+        }
     }
 
     .container, .row {
@@ -578,69 +600,67 @@ footer {
     }
 }
 
-.piezas-fondo {
-        .italic {
-        font-style: italic;
-        color: $gris;
-        margin-top: 1em;
+
+.italic {
+font-style: italic;
+color: $gris;
+margin-top: 1em;
+}
+.container-img {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    margin-top: 2em;
+    overflow: visible;
+
+    @media #{$medium-and-down} { 
+        height: 350px;
     }
 
-    .container-img {
-        position: relative;
+    img {
         width: 100%;
-        height: 250px;
-        margin-top: 2em;
-        overflow: visible;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+    }
 
-        @media #{$medium-and-down} { 
-            height: 350px;
+    .btn {
+        position: absolute;
+        margin-top: 0;
+        background-color: white;
+
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity:0
+    }
+
+
+    .blue {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: $azul;
+        mix-blend-mode: color;
+        opacity: 0;
+    }
+
+    &:hover {
+        .btn {
+            opacity:1;
         }
-
 
         img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
+            -webkit-filter: grayscale(100%);
+            filter: grayscale(100%);
         }
-
-        .btn {
-            position: absolute;
-            margin-top: 0;
-            background-color: white;
-
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity:0
-        }
-
 
         .blue {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            background-color: $azul;
-            mix-blend-mode: color;
-            opacity: 0;
-        }
-
-        &:hover {
-            .btn {
-                opacity:1;
-            }
-
-            img {
-                -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-                filter: grayscale(100%);
-            }
-
-            .blue {
-                opacity: 50%;
-            }
+            opacity: 50%;
         }
     }
 }
+
 
 .lista-docs {
     margin-top: 2em;
@@ -802,6 +822,11 @@ footer {
                 text-transform: capitalize;
                 cursor: pointer;
 
+                @media #{$large-and-down} { 
+                    padding: 0 10px;
+                    margin-right: 5px;
+                }
+
                 &:hover {
                     color: white;
                     background: $azul;
@@ -856,8 +881,106 @@ footer {
  }
 
  .sticky-top {
-     top: 20px;
+     top: $alto-header-sticky + 20px;
+     z-index: -1;
  }
+
+/* --------------------------------------------------------------------- 
+        PÁGINA BUSQUEDA
+ ---------------------------------------------------------------------*/
+
+ .botones-filtros {
+    padding-inline-start: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    li {
+        position: relative;
+        background: white;
+        border: 2px solid $azul;
+        padding: 2px 40px 2px 25px;
+        margin-right: 10px;
+        border-radius: 20px;
+        margin-top: 1em;
+
+        text-transform: capitalize;
+        cursor: pointer;
+
+        @media #{$large-and-down} { 
+            padding: 2px 30px 2px 15px;
+            margin-right: 5px;
+        }
+
+        &:after {
+            visibility: visible;
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            height: 15px;
+            width: 15px;
+            background-image: url('/img/icons/chevron_down.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            content: " ";
+
+            transform: translate(0, -40%);
+        }  
+        .nav-link {
+            padding: 0;
+            padding-right: 10px;
+            font-family: $circular;
+            color: $azul;
+
+            &:after {
+                content: none;
+            }
+        }
+
+        .dropdown-menu {
+            margin-top: 10px;
+            border: 2px solid $azul;
+
+            .dropdown-item {
+                padding: 5px 15px;
+                
+            }
+        }
+    }
+}
+
+.resultados {
+    margin-top: 4vh;
+     .resultado-pieza {
+        margin-bottom: 2em;
+        .container-img {
+            height: 400px;
+
+            a {
+                position: absolute;
+                margin-top: 0;
+                height: 100%;
+                width: 100%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 2;
+
+                .btn {
+                    margin-top: 0;
+                }
+            }
+
+            img {
+                z-index: 0;
+            }
+        }
+    }
+}
+
 /* --------- MODAL ------*/
 .modal {
     display: none;
