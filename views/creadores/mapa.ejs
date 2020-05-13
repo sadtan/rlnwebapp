@@ -1,0 +1,69 @@
+<%- include('../partials/header') -%> 
+
+<section class="home-section preview-fondos container top">
+       
+    <div class="fondo row align-items-center btm"> 
+        <div class="col col-12 col-lg-6">
+            <div id="canvasp5" >
+                <!--canvas del mapa -->
+            </div>
+        </div>
+            <% 
+            var creadores = data.data[data.data['main']]
+            for (var i = 0; i < creadores.length; ++i) {
+            if (creadores[i]['dep'] != undefined)
+                dep = creadores[i]['dep']
+            lugar = dep['lugar'][0]
+            %>
+            <div class="text col col-12 col-lg-5 btm">
+            <img src="<%= creadores[i]['imagen_path'] %>" alt="" class="s3_img">
+            
+            <%  if (creadores[i]['dep'] != undefined) { %>
+            <div class="text col col-12 col-lg-5 btm">
+                <h3 class="lugar half-top">
+                        <%=lugar['localidad']%>,
+                        <%=lugar['departamento']%>
+                </h3> 
+                <ul class="latlong" style="display: none;">
+                    <li><%=lugar['lat']%></li>
+                    <li><%=lugar['longf']%></li>
+                </ul>
+            <%
+                }
+            %>
+        </div>
+            <h2><%=creadores[i]['nombre']%></h2>
+            <p>
+                <%
+                    var txt = creadores[i]['caracterizacion'].substring(0, 230) + "L";
+                    txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
+                    %>
+                    <%=txt%>
+            </p>
+            <a href="/creadores/<%=creadores[i]['id']%>">
+                    <button class ="btn blue">Conocer más</button>
+                </a>
+        </div>
+            <%
+            }
+            %>
+    </div>
+
+</section>
+<script>
+    var docLatLong = document.getElementsByClassName("latlong");
+    var latLongArr = [];
+    for (_latLong in docLatLong)
+        if (docLatLong[_latLong].children)
+        {
+            var lat = docLatLong[_latLong].children[0].innerText;
+            var long = docLatLong[_latLong].children[1].innerText;
+            latLongArr.push({lat, long})
+            
+        }
+    
+</script>
+<script src="/scripts/mapa.js"></script>
+<script src="/scripts/s3ImageUrl.js"></script>
+
+<%- include('../partials/footer') -%> 

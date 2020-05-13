@@ -7,6 +7,27 @@ var awsUtils = new AWSUtils();
 module.exports = function (app, pool) {
     const ResHandler = require("../utils/responseHandler.js").ResHandler();
     const resHandler = new ResHandler();
+    const MainController  = require("../controller/customController.js")(pool, 'creadores');
+    const controller      = new MainController();
+
+    app.get("/mapa", async (req, res) => 
+    {
+        var data = {};
+        var resFormat = {};
+        try 
+        {
+            data['creadores'] = await controller.getAll();
+            data = await reqBatchHandler.AttachDependencies(data, 'creadores', pool);
+
+            resFormat = resHandler.setResponse(200, null, data);
+            resHandler.handleResponse(req, res, resFormat, 'creadores', "mapa");
+
+        } catch (error)
+        {
+            resFormat = resHandler.setResponse(error.errno, error);
+            resHandler.handleResponse(req, res, resFormat, "utils", "error");
+        }
+    })
 
     app.get("/buscar", async (req, res) =>
     {
