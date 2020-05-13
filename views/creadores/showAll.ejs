@@ -29,17 +29,36 @@
 
     <section class="home-section preview-fondos container top ">
         <% 
+        var order = [3, 2, 4, 1]
         var creadores = data.data[data.data['main']]
-        for (var i = 0; i < creadores.length; ++i) {
+        for (o in order)
+        {
+            for (var i = 0; i < creadores.length; ++i) {
+                if (creadores[i]['id'] == order[o])
+                {
         if (creadores[i]['dep'] != undefined)
             dep = creadores[i]['dep']
         lugar = dep['lugar'][0]
+        
+        
         %>
 
         <div class="fondo row align-items-center btm">
             <div class="img col col-12 col-lg-6">
+            <% 
+            if (creadores[i]['img_linea_path'] != "" || creadores[i]['img_linea_path'] != "-")
+            {
+            %>
+                <img class="linea s3_img" src="<%=creadores[i]['img_linea_path']%>" alt="" class=""> 
+                <img class="azul s3_img" src="<%=creadores[i]['img_azul_path']%>" alt="" class="s3_img">
+            <%
+            } else {
+            %>
                 <img class="linea" src="/img/linea_mampujan.jpg" alt=""> 
                 <img class="azul" src="/img/azul_mampujan.jpg" alt="">
+            <%
+                }
+            %>
             </div>
 
             <%  if (creadores[i]['dep'] != undefined) { %>
@@ -65,7 +84,10 @@
             </div>
         </div>
         <%
+        break;
+                }
             }
+        }
         %>
         
     </section>
@@ -98,5 +120,5 @@
         </div>
     </div>
 </section>
-
+<script src="/scripts/s3ImageUrl.js"></script>
 <%- include('../partials/footer') -%>
