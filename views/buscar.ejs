@@ -395,8 +395,8 @@ for (var pieza in piezas)
 
     function attachParam(dropList, name, id = false, index)
         {
-            if (originalNames.indexOf(document.getElementsByClassName("dropdown-toggle")[index].innerHTML) == -1)
-                originalNames.push(document.getElementsByClassName("dropdown-toggle")[index].innerHTML);
+            // if (originalNames.indexOf(document.getElementsByClassName("dropdown-toggle")[index].innerHTML) == -1)
+            //     originalNames.push(document.getElementsByClassName("dropdown-toggle")[index].innerHTML);
         
             for (let i = 0; i < dropList.length; ++i)
             {
@@ -405,7 +405,7 @@ for (var pieza in piezas)
                     searchParams[name] = ''
                     dropList[i].addEventListener('click', function ()
                     {
-                        document.getElementsByClassName("dropdown-toggle")[index].innerHTML = originalNames[index];
+                        // document.getElementsByClassName("dropdown-toggle")[index].innerHTML = originalNames[index];
                         searchParams[name] = ''
                         filter();
                     });
@@ -413,7 +413,7 @@ for (var pieza in piezas)
                 {
                     dropList[i].addEventListener('click', function ()
                     {
-                        document.getElementsByClassName("dropdown-toggle")[index].innerHTML = dropList[i].innerText;
+                        // document.getElementsByClassName("dropdown-toggle")[index].innerHTML = dropList[i].innerText;
                         id ? searchParams[name] = dropList[i].attributes.value.textContent : searchParams[name] = dropList[i].innerText.toLowerCase();
                         filter();
                     });
