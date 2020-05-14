@@ -518,6 +518,10 @@ footer {
 }
 
 .universidades {
+    max-width: 1134px;
+    margin-left: auto;
+    margin-right: auto;
+
     .col {
         margin-bottom: 50px;
     }
@@ -536,7 +540,7 @@ footer {
         }
 
         img {
-            height: 70px;
+            height: 50px;
         }
     }
 
@@ -546,7 +550,7 @@ footer {
         }
 
         img {
-        height: 60px;
+        height: 40px;
         }
     }
 }

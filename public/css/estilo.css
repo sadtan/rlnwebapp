@@ -318,24 +318,23 @@ footer {
         font-size: 24px;
         padding: 80px 0; } }
 
-.universidades .col {
-  margin-bottom: 50px; }
-
-@media only screen and (max-width: 992px) {
-  .universidades h2 {
-    text-align: center; } }
-
-.universidades .desarrollo h2 {
-  font-size: 24px; }
-
-.universidades .desarrollo img {
-  height: 70px; }
-
-.universidades .apoyo h2 {
-  font-size: 20px; }
-
-.universidades .apoyo img {
-  height: 60px; }
+.universidades {
+  max-width: 1134px;
+  margin-left: auto;
+  margin-right: auto; }
+  .universidades .col {
+    margin-bottom: 50px; }
+  @media only screen and (max-width: 992px) {
+    .universidades h2 {
+      text-align: center; } }
+  .universidades .desarrollo h2 {
+    font-size: 24px; }
+  .universidades .desarrollo img {
+    height: 50px; }
+  .universidades .apoyo h2 {
+    font-size: 20px; }
+  .universidades .apoyo img {
+    height: 40px; }
 
 /* --------------------------------------------------------------------- 
         PÁGINA FONDO 
