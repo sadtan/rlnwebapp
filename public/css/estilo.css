@@ -241,6 +241,12 @@ footer {
 .home-section .col {
   margin-bottom: 5vh; }
 
+.home-section .ver-mas {
+  display: flex; }
+  .home-section .ver-mas button {
+    margin-left: auto;
+    margin-right: auto; }
+
 .home-section .text .btn {
   margin-top: 25px; }
   .home-section .text .btn img {
