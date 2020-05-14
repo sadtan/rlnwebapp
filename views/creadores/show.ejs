@@ -3,6 +3,7 @@
 <div class="container pag-fondo">
   <% 
   fondo = data.data[data.data['main']][0];
+  console.log ('fondo', fondo);
   %>
 
   <!-- Imagen del fondo -->
@@ -39,6 +40,7 @@
         <% for(var i = 0; i < fondo['piezas'].length; i++) { %>
         <div class="col col-12 col-md-6 col-lg-4 prev-pieza">
           <div class="container-img">
+            
             
             <img src="<%=fondo['piezas'][i]['imagen_path']%>" class="s3_img"> 
   
@@ -85,7 +87,18 @@
       </div>
 
       <div class="col col-12 col-lg-6 img">
+        <% 
+        if (fondo['il_1_path'] != "" || fondo['il_1_path'] != "-")
+        {
+        %>
+        <img class="mx-auto s3_img" src="<%=fondo['il_1_path']%>">
+        <%
+        } else {
+        %>
         <img class="mx-auto" src="/img/casa.png">
+        <%
+            }
+        %>
       </div>
     </div>
 
@@ -105,7 +118,18 @@
   <!-- Caracterización colectivo -->
   <section class="top section-fondo caracterizacion-fondo">
     
-    <img class="mx-auto" src="/img/muneca.png">
+    <% 
+        if (fondo['il_2_path'] != "" || fondo['il_2_path'] != "-")
+        {
+        %>
+        <img class="mx-auto s3_img" src="<%=fondo['il_2_path']%>">
+        <%
+        } else {
+        %>
+        <img class="mx-auto" src="/img/muneca.png">
+        <%
+            }
+        %>
 
     <h2>
       Caracterización del colectivo

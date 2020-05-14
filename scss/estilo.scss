@@ -583,6 +583,10 @@ footer {
         display: block;
         margin-top: 2em;
         margin-bottom: 2em;
+
+        @media #{$extra-large-and-up} { 
+            max-width: 500px;
+        }
     }
 }
 
