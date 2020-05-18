@@ -515,8 +515,9 @@ footer {
 
 .pag-pieza .intro-pieza .italic {
   font-style: italic;
-  color: #A9A9A9;
-  margin-top: 0; }
+  color: #656565;
+  margin-top: 0;
+  font-size: 20px; }
 
 .pag-pieza .intro-pieza .datos-basicos {
   padding-inline-start: 0;
@@ -526,26 +527,27 @@ footer {
   .pag-pieza .intro-pieza .datos-basicos b {
     font-weight: 600; }
 
-.pag-pieza .intro-pieza .descriptores {
-  padding-inline-start: 0;
-  list-style-type: none; }
-  .pag-pieza .intro-pieza .descriptores li {
+.pag-pieza .descriptores {
+  padding-inline-start: 10px;
+  list-style-type: none;
+  margin-top: 1em; }
+  .pag-pieza .descriptores li {
     font-family: "CircularStd", sans-serif;
     display: inline-flex;
     color: #2727E5;
     background: white;
     border: 2px solid #2727E5;
-    padding: 2px 25px;
-    margin-right: 10px;
+    padding: 0 10px;
+    margin-right: 5px;
     border-radius: 20px;
     margin-top: 1em;
     text-transform: capitalize;
     cursor: pointer; }
     @media only screen and (max-width: 992px) {
-      .pag-pieza .intro-pieza .descriptores li {
+      .pag-pieza .descriptores li {
         padding: 0 10px;
         margin-right: 5px; } }
-    .pag-pieza .intro-pieza .descriptores li:hover {
+    .pag-pieza .descriptores li:hover {
       color: white;
       background: #2727E5; }
 
