@@ -948,8 +948,6 @@ margin-top: 1em;
         margin-right: 10px;
         border-radius: 20px;
         margin-top: 1em;
-
-        text-transform: capitalize;
         cursor: pointer;
 
         @media #{$large-and-down} { 
@@ -957,30 +955,32 @@ margin-top: 1em;
             margin-right: 5px;
         }
 
-        &:after {
-            visibility: visible;
-            position: absolute;
-            top: 50%;
-            right: 15px;
-            height: 15px;
-            width: 15px;
-            background-image: url('/img/icons/chevron_down.svg');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            content: " ";
-
-            transform: translate(0, -40%);
-        }  
+        
         .nav-link {
             padding: 0;
             padding-right: 10px;
             font-family: $circular;
             color: $azul;
+        }
 
+        .dropdown-toggle {
             &:after {
-                content: none;
-            }
+                 visibility: visible;
+                 position: absolute;
+                 top: 50%;
+                 right: 15px;
+                 height: 15px;
+                 width: 15px;
+                 background-image: url('/img/icons/chevron_down.svg');
+                 background-size: contain;
+                 background-repeat: no-repeat;
+                 background-position: center;
+                 content: " ";
+                 transform: translate(0, -40%);
+
+                 border: 0;
+                 margin: 0;
+             }
         }
 
         .dropdown-menu {
@@ -1020,6 +1020,24 @@ margin-top: 1em;
             img {
                 z-index: 0;
             }
+        }
+
+        .titulo {
+            font-family: circularStd;
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 5px;
+            margin-bottom: 0;
+            line-height: 1.4;
+
+            @media #{$medium-and-down} { 
+                font-size: 20px;
+            }
+        }
+
+        .creador {
+            margin-top: 0;
+            font-style: italic;
         }
     }
 }

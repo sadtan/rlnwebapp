@@ -206,7 +206,7 @@ for (var pieza in piezas)
             </li>
         </ul> 
         <p class="italic text-center" id="filtros" style="margin: 0; padding: 0;">
-            no hay filtros aplicados
+            No hay filtros aplicados
         </p>  
     </section>
 
@@ -223,8 +223,10 @@ for (var pieza in piezas)
                     </a>
                     <img src="<%=piezas[i]['imagen_path']%>" class="s3_img">
                     <div class="blue"></div> 
-
                 </div>
+                <p class="titulo"><%=piezas[i]['titulo']%> (<%=piezas[i]['fecha']%>) </p>
+                <p class="creador"> Artesanías Guayacán </p>
+
                 <ul style="display: none;">
                 <li><%=piezas[i]['fecha']%></li>
                 <% 
