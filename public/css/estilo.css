@@ -203,6 +203,13 @@ footer {
     line-height: 1.3; }
     footer a:hover {
       color: #FEDB31; }
+      footer a:hover .cc path {
+        fill: #FEDB31; }
+    footer a .cc {
+      margin-top: -3px;
+      margin-right: 5px; }
+      footer a .cc path {
+        fill: white; }
   footer .right-footer a {
     display: block;
     padding: 0 0 5px 0; }
