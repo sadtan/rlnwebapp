@@ -225,7 +225,24 @@ for (var pieza in piezas)
                     <div class="blue"></div> 
                 </div>
                 <p class="titulo"><%=piezas[i]['titulo']%> (<%=piezas[i]['fecha']%>) </p>
-                <p class="creador"> Artesanías Guayacán </p>
+
+                <% 
+                for (var creador in creadores) 
+                {
+                    
+                %>
+                    <%
+                    if (piezas[i]['fk_creador'] == creadores[creador]['id']) {
+                        var m_creador = creadores[creador]['nombre'];
+                    %>
+                    <p class="creador"> <%=m_creador%> </p>
+                    <%
+                    }
+                    %>
+                <%
+                }
+                %>
+                
 
                 <ul style="display: none;">
                 <li><%=piezas[i]['fecha']%></li>
@@ -452,7 +469,7 @@ for (var pieza in piezas)
 
             for (result in piezasList)
             {
-                var attrList = piezasList[result]['pieza'].children[1];
+                var attrList = piezasList[result]['pieza'].children[3];
                 var m_fecha = attrList.children[0].innerText;
                 var m_creador = attrList.children[1].innerText;
                 var m_tematicas = [];
