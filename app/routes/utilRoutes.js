@@ -36,13 +36,34 @@ module.exports = function (app, pool) {
         data['lugares'] = [];
         data['creadores'] = [];
         data['hechos'] = [];
-        data = await reqBatchHandler.AttachCustom(data, ['id', 'titulo', 'imagen_path', 'fecha', 'fk_creador', 'fk_hecho', 'tematicas', 'tecnicas'], "", pool, "piezas", "piezas")
+        data = await reqBatchHandler.AttachCustom(data, ['id', 'titulo', 'imagen_path', 'fecha', 'fk_creador', 'fk_hecho', 'tematicas', 'tecnicas', 'descriptores'], "", pool, "piezas", "piezas")
         //console.log(data['piezas']);
         data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre'], "", pool, "lugares", "lugares")
         data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre', 'fk_lugar'], "", pool, "creadores", "creadores")
         data = await reqBatchHandler.AttachCustom(data, ['id', 'modalidad'], "", pool, "hechos", "hechos")
         //res.render("search.ejs", {data});
-        res.render("buscar", {data})
+        res.render("buscar", {data, descriptor: ""})
+    })
+
+    app.post("/buscar", async (req, res) =>
+    {
+        console.log(req.body)
+
+        ////////////////////
+        var data = {};
+        data['piezas'] = [];
+        data['lugares'] = [];
+        data['creadores'] = [];
+        data['hechos'] = [];
+        data = await reqBatchHandler.AttachCustom(data, ['id', 'titulo', 'imagen_path', 'fecha', 'fk_creador', 'fk_hecho', 'tematicas', 'tecnicas', 'descriptores'], "", pool, "piezas", "piezas")
+        //console.log(data['piezas']);
+        data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre'], "", pool, "lugares", "lugares")
+        data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre', 'fk_lugar'], "", pool, "creadores", "creadores")
+        data = await reqBatchHandler.AttachCustom(data, ['id', 'modalidad'], "", pool, "hechos", "hechos")
+
+
+        res.render("buscar", {data, descriptor: req.body.descriptor});
+        //res.send("");
     })
 
     app.post("/gets3presignedurl", async (req, res) => {

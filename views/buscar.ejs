@@ -24,6 +24,7 @@ for (var pieza in piezas)
     }
 }
 
+
 var modalidades = [];
 for (var hecho in hechos) 
 {
@@ -44,6 +45,29 @@ for (var hecho in hechos)
         if (modalidades.indexOf(m_modalidades[i]) < 0)
         {
             modalidades.push(m_modalidades[i]);
+        }
+    }
+}
+
+var descriptores = [];
+for (var pieza in piezas) 
+{
+    var m_descriptores = piezas[pieza].descriptores.split(", ");
+    for (let i = 0; i < m_descriptores.length; ++i)
+    {
+        if (m_descriptores[i][0] == " ")
+        {
+            m_descriptores[i] = m_descriptores[i].substring(1, m_descriptores[i].length)
+        }
+        if (m_descriptores[i].substring(m_descriptores[i].length - 1) == " ")
+        {
+            m_descriptores[i] = m_descriptores[i].substring(0, m_descriptores[i].length - 1)
+        }
+        m_descriptores[i] = m_descriptores[i].toLowerCase();
+
+        if (descriptores.indexOf(m_descriptores[i]) < 0 && m_descriptores[i] != "-" && m_descriptores[i] != "_")
+        {
+            descriptores.push(m_descriptores[i]);
         }
     }
 }
@@ -199,6 +223,21 @@ for (var pieza in piezas)
                     {
                     %>
                     <a class="dropdown-item select-hecho"><%= modalidades[hecho] %></a>
+                    <%
+                    }
+                    %>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Descriptor</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item select-descriptor">todos</a>
+                    <% 
+                    for (var descrip in descriptores) 
+                    {
+                    %>
+                    <a class="dropdown-item select-descriptor"><%= descriptores[descrip] %></a>
                     <%
                     }
                     %>
@@ -364,6 +403,30 @@ for (var pieza in piezas)
                     }
                     %>
                 </ul>
+                <ul>
+                    <%
+                    var m_descriptores = piezas[i].descriptores.split(", ");
+                    for (let i = 0; i < m_descriptores.length; ++i)
+                    {
+                        if (m_descriptores[i][0] == " ")
+                        {
+                            m_descriptores[i] = m_descriptores[i].substring(1, m_descriptores[i].length)
+                        }
+                        if (m_descriptores[i].substring(m_descriptores[i].length - 1) == " ")
+                        {
+                            m_tecnicas[i] = m_descriptores[i].substring(0, m_descriptores[i].length - 1)
+                        }
+                        m_descriptores[i] = m_descriptores[i].toLowerCase();
+                        
+                    }
+                    for (var descrip in m_descriptores) 
+                    {
+                    %>
+                        <li><%=m_descriptores[descrip]%></li>
+                    <%
+                    }
+                    %>
+                </ul>
             </ul>
             </div>
             <% } %>
@@ -402,14 +465,19 @@ for (var pieza in piezas)
             'creador': '',
             'tecnica': '',
             'tematica': '',
+            'descriptor': ''
         }
     var originalNames = [];
+    var creadores_list = [];
+    var lugares_list = [];
     attachParam(document.getElementsByClassName("select-anio"), 'fecha', false, 0);
     attachParam(document.getElementsByClassName("select-creador"), 'creador', true, 1);
     attachParam(document.getElementsByClassName("select-tematica"), 'tematica', false, 2);
     attachParam(document.getElementsByClassName("select-tecnica"), 'tecnica', false, 3);
     attachParam(document.getElementsByClassName("select-lugar"), 'lugar', true, 4);
     attachParam(document.getElementsByClassName("select-hecho"), 'hecho', false, 5);
+    attachParam(document.getElementsByClassName("select-descriptor"), 'descriptor', false, 6);
+    
     
 
     function attachParam(dropList, name, id = false, index)
@@ -430,6 +498,14 @@ for (var pieza in piezas)
                     });
                 } else 
                 {
+                    if (name == "creador")
+                    {
+                        creadores_list.push(dropList[i].innerText.toLowerCase());
+                    }
+                    if (name == "lugar")
+                    {
+                        lugares_list.push(dropList[i].innerText.toLowerCase());
+                    }
                     dropList[i].addEventListener('click', function ()
                     {
                         // document.getElementsByClassName("dropdown-toggle")[index].innerHTML = dropList[i].innerText;
@@ -439,6 +515,14 @@ for (var pieza in piezas)
                 }
             }
         }
+
+    var DESCRIPTOR = "<%= descriptor %>";
+
+    if (DESCRIPTOR != "")
+    {
+        searchParams['descriptor'] = DESCRIPTOR;
+        filter();
+    }
 
 
     function filter()
@@ -450,8 +534,21 @@ for (var pieza in piezas)
             {
                 if (searchParams[param] != "")
                 {
-                    filtros.innerHTML += param + ": " + searchParams[param] + ", ";
-                    hasFilter = true;
+                    if (param == "creador")
+                    {
+                        filtros.innerHTML += param + ": " + creadores_list[searchParams[param] -1] + ", ";
+                        hasFilter = true;
+
+                    } else if (param == "lugar")
+                    {
+                        filtros.innerHTML += param + ": " + lugares_list[searchParams[param] -1] + ", ";
+                        hasFilter = true;
+
+                    } else 
+                    {
+                        filtros.innerHTML += param + ": " + searchParams[param] + ", ";
+                        hasFilter = true;
+                    }
                 }
             }
 
@@ -505,6 +602,16 @@ for (var pieza in piezas)
                     }
                 }
 
+                var m_descriptores = [];
+                for (var _descrip in attrList.children[6].children)
+                {
+                    
+                    if (!isNaN(_descrip))
+                    {
+                        m_descriptores.push(attrList.children[6].children[_descrip].innerText);
+                    }
+                }
+
 
                 // RESULTS //
                 var conditionList = [];
@@ -548,6 +655,12 @@ for (var pieza in piezas)
                 if (conditionList.indexOf('hecho') != -1)
                 {
                     if (m_hechos.indexOf(searchParams['hecho']) == -1)
+                        aprovedAll = false;
+                }
+
+                if (conditionList.indexOf('descriptor') != -1)
+                {
+                    if (m_descriptores.indexOf(searchParams['descriptor']) == -1)
                         aprovedAll = false;
                 }
 

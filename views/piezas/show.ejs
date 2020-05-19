@@ -15,8 +15,7 @@
   //Cambiar los nombres de los filtros
   //Hecho del comflicto
   //Quitar el nombre de los filtros
-  //EL nombre en la pieza es muy clano
-  //EL nombre en la pieza es muy clano
+  //EL nombre en la pieza es muy claro
 
   //DICCIONARIO???????''
   
@@ -67,11 +66,30 @@
             <% } %>
             <ul class="descriptores lista btm">
               <% for(var i = 0; i < descriptores.length; i++) { %>
-                <li> <%=descriptores[i]%> </li>
+                <li class="descriptor-li"> <%=descriptores[i]%> </li>
               <% } %>
             </ul>
+            <form action="/buscar" method="POST" id="descriptor-form" style="display: none;">
+              <input type="text" name="descriptor" id="descriptor-field">
+            </form>
         </div>
       </div>
+      <script>
+        var docDescList = document.getElementsByClassName("descriptor-li");
+        var descForm = document.getElementById("descriptor-form");
+        var descInput = document.getElementById("descriptor-field");
+
+        var descList = [];
+
+        for (let i = 0; i < docDescList.length; ++i)
+        {
+          docDescList[i].addEventListener("click", function()
+          {
+            descInput.value = docDescList[i].innerText.toLowerCase();
+            descForm.submit();
+          })
+        }
+      </script>
 
       <div class="col-12 col-md-6">
           <h2>
