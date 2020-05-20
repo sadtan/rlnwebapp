@@ -86,6 +86,9 @@ function setup() {
 } 
 
 
+    // min(width, height) === height
+    //     ? image(mySvg, width/2, height/2, mySvg.width * height/mySvg.height, height)
+    //     : image(mySvg, width/2, height/2, width, mySvg.height*width/mySvg.width);
 
 
 function windowResized() { 
