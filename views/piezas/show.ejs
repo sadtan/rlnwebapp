@@ -6,6 +6,7 @@
   creador = pieza['dep']['creador'][0]
   descriptores = pieza['descriptores'].split(", ");
   hecho = pieza['dep']['hecho'][0]
+  console.log(creador);
   //console.log('pieza', pieza);
   %>
   <!-- Imagen del fondo -->
@@ -25,7 +26,7 @@
 
     <ul class="datos-basicos">
       <li><b> Autoras: </b> <%=pieza['autores']%></li>
-      <li><b> Lugar: </b> Lugar lugar lugar</li>
+      <li><b> Lugar: </b> <%=creador['localidad']%>, <%=creador['departamento']%> - <%=creador['pais']%></li>
       <li><b> Temáticas: </b> <%=pieza['tematicas']%></li>
       <li><b> Técnicas: </b> <%=pieza['tecnicas']%></li>
       <li><b> Materiales: </b><%=pieza['materiales']%></li>

@@ -28,6 +28,12 @@ module.exports = (pool, table) =>
             return new Promise(async (resolve, reject) => {
                 try {
                     var queryStr = "SELECT * FROM " + table  +" WHERE id = ?";
+                    
+                    if (table == "creadores")
+                    {
+                        var queryStr = "SELECT *, localidad FROM " + table  +" INNER JOIN lugares ON (creadores.fk_lugar = lugares.id) WHERE creadores.id = ? ";
+                        console.log(queryStr);
+                    }
                     var data = await sql.query(queryStr, id);
                     
                     if (!data[0]) throw new Errors.NotFound("Sitio no encontrado");
