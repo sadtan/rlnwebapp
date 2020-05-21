@@ -80,97 +80,80 @@
         }
       </script>
 
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-6 acordeon" id="accordion">
 
-        <div id="accordion">
           <!-- relato pieza -->
-          <div class="card">
-            <div class="card-header" id="headingOne">
-              <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <div class ="sec-pieza">
+            <div class="boton" id="headingOne">
+              <h2 data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                   Cómo se hizo
-                </button>
-              </h5>
+              </h2>
             </div>
         
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-              <div class="card-body">
+            <div id="collapseOne" class="contenido collapse" aria-labelledby="headingOne" data-parent="#accordion">
+              <p>
                 <%=pieza['relato_pieza']%>
-              </div>
+              </p>
             </div>
           </div>
 
           <!-- relato hecho -->
-          <div class="card">
-            <div class="card-header" id="headingTwo">
-              <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <div class ="sec-pieza">
+            <div class="boton" id="headingTwo">
+                <h2 data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                   Qué nos cuenta
-                </button>
-              </h5>
+                </h2>
             </div>
         
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-              <div class="card-body">
+            <div id="collapseTwo" class="contenido collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                 <ul class="hecho">
                   <li><b> Año: </b> <%=hecho['fecha']%></li>
                   <li><b> Modalidad: </b> <%=hecho['modalidad']%></li>
                   <li><b> Actores: </b> <%=hecho['actores']%></li>
                 </ul>
-      
                 <p>
                   <%=pieza['hecho_relato']%>
                 </p>
-              </div>
             </div>
           </div>
 
           <!-- Trayectoria -->
-          <div class="card">
-            <div class="card-header" id="headingThree">
-              <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseTwo">
+          <div class ="sec-pieza">
+            <div class="boton" id="headingThree">
+              <h2 data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">
                   Trayectoría
-                </button>
-              </h5>
+              </h2>
             </div>
         
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-              <div class="card-body">
-                <%=pieza['usos']%>
-              </div>
+            <div id="collapseThree" class="contenido collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <p><%=pieza['usos']%> </p>
             </div>
           </div>
 
           <!-- Conservación -->
-          <div class="card">
-            <div class="card-header" id="headingFour">
-              <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+          <div class ="sec-pieza">
+            <div class="boton" id="headingFour">
+              <h2 data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                   Conservación
-                </button>
-              </h5>
+              </h2>
             </div>
         
-            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-              <div class="card-body">
+            <div id="collapseFour" class="contenido collapse" aria-labelledby="headingFour" data-parent="#accordion">
+              <p>
                 <%=pieza['conservacion']%>
-              </div>
+              </p>
             </div>
           </div>
 
           <!-- Eventos -->
-          <div class="card">
-            <div class="card-header" id="headingFour">
-              <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+          <div class ="sec-pieza">
+            <div class="boton" id="headingFive">
+              <h2 data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                   Eventos
-                </button>
-              </h5>
+              </h2>
             </div>
         
-            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
-              <div class="card-body">
+            <div id="collapseFive" class="contenido collapse" aria-labelledby="headingFive" data-parent="#accordion">
                 <ul>
                   <%var eventos = JSON.parse(pieza['eventos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
                   for (let i = 0; i < eventos.length; ++i)
@@ -178,26 +161,22 @@
                     var evento = eventos[i]
                   %>
                   <li> 
-                    <p> <%=evento['name']%>,<%=evento['place']%>,<%=evento['date']%> </p>
+                    <p> <%=evento['name']%>, <%=evento['place']%>, <%=evento['date']%> </p>
                   </li>
                   <% } %>
                 </ul>
-              </div>
             </div>
           </div>
 
           <!-- Eventos -->
-          <div class="card">
-            <div class="card-header" id="headingFour">
-              <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+          <div class ="sec-pieza">
+            <div class="boton" id="headingSix">
+              <h2 data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                   Documentos
-                </button>
-              </h5>
+              </h2>
             </div>
         
-            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
-              <div class="card-body">
+            <div id="collapseSix" class="contenido collapse" aria-labelledby="headingSix" data-parent="#accordion">
                 <ul>
                   <%var documentos = JSON.parse(pieza['documentos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
                   for (let i = 0; i < documentos.length; ++i)
@@ -209,10 +188,8 @@
                   </li>
                   <% } %>
                 </ul>
-              </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
     
