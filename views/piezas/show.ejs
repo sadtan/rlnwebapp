@@ -7,18 +7,7 @@
   descriptores = pieza['descriptores'].split(", ");
   hecho = pieza['dep']['hecho'][0]
 
-    console.log('pieza', pieza);
-  //choiba soson guayacan mapujan
-  //3 2 4 1
-  //Filtro descriptores
-  //Buscar por localidad
-  //Cambiar los nombres de los filtros
-  //Hecho del comflicto
-  //Quitar el nombre de los filtros
-  //EL nombre en la pieza es muy claro
-
-  //DICCIONARIO???????''
-  
+  //console.log('pieza', pieza);
   %>
   <!-- Imagen del fondo -->
   <section class="section-fondo img-fondo top">
@@ -36,7 +25,7 @@
     </p> 
 
     <ul class="datos-basicos">
-      <li><b> Autores: </b> <%=pieza['autores']%></li>
+      <li><b> Autoras: </b> <%=pieza['autores']%></li>
       <li><b> Temáticas: </b> <%=pieza['tematicas']%></li>
       <li><b> Técnicas: </b> <%=pieza['tecnicas']%></li>
       <li><b> Materiales: </b><%=pieza['materiales']%></li>
@@ -93,23 +82,80 @@
 
       <div class="col-12 col-md-6">
           <h2>
-            Descripción
+            Cómo se hizo
           </h2>
           <p>
             <%=pieza['relato_pieza']%>
           </p>
 
           <h2 class="half-top">
-            Hecho asociado al conflicto
+            Qué nos cuenta
           </h2>
           <ul class="hecho">
             <li><b> Año: </b> <%=hecho['fecha']%></li>
             <li><b> Modalidad: </b> <%=hecho['modalidad']%></li>
             <li><b> Actores: </b> <%=hecho['actores']%></li>
           </ul>
+
           <p>
             <%=pieza['hecho_relato']%>
           </p>
+
+          <h2>
+            Trayectoria
+          </h2>
+          <p>
+            <%=pieza['usos']%>
+          </p>
+
+          <h2>
+            Conservación
+          </h2>
+          <p>
+            <%=pieza['conservacion']%>
+          </p>
+
+          <h2>
+            Eventos
+          </h2>
+          <p>
+            <ul>
+            <%var eventos = JSON.parse(pieza['eventos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
+            //console.log(eventos)
+            for (let i = 0; i < eventos.length; ++i)
+            {
+              var evento = eventos[i]
+           
+            
+            %>
+            <li> 
+              <p> <%=evento['name']%>,<%=evento['place']%>,<%=evento['date']%> </p>
+            </li>
+      
+            <% } %>
+            
+          </ul>
+
+          <h2>
+            Documentos
+          </h2>
+          <p>
+            <ul>
+            <%var documentos = JSON.parse(pieza['documentos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
+            console.log(documentos)
+            for (let i = 0; i < documentos.length; ++i)
+            {
+              var documento = documentos[i]
+           
+            
+            %>
+            <li> 
+              <a target="_blank" href="<%=documento['url']%>"> <%=documento['name']%></a> </li>
+            </li>
+      
+            <% } %>
+            
+          </ul>
       </div>
     </div>
   </section>
