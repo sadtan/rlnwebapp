@@ -37,10 +37,44 @@ function setup ()
 
     canvas.parent('canvasp5');
 
+    // for (let i = 0; i < latLongArr.length; ++i)
+    // {
+        
+    //     for (let j = 0; j < latLongArr.length; ++j)
+    //     {
+    //         if (i != j)
+    //         {
+    //             var dPos1 = cHelper.latlngToScreenXY(latLongArr[i].lat, latLongArr[i].long);
+    //             var dPos2 = cHelper.latlngToScreenXY(latLongArr[j].lat, latLongArr[j].long);
+
+    //             var yDir = dPos1.y - dPos2.y;
+    //             var xDir = dPos1.x - dPos2.x;
+
+    //             var D = Math.sqrt
+    //             ( 
+    //                 Math.pow(xDir, 2)
+    //                 +  Math.pow(yDir, 2)
+    //             );
+
+    //             console.log("Y DIR", dPos1.y - dPos2.y);
+                
+    //             var dF = 0.2;
+    //             if (D < 100)
+    //             {
+    //                 yDir < 0 ? latLongArr[i].lat += dF : latLongArr[i].lat += dF;
+    //                 xDir < 0 ? latLongArr[i].long += dF : latLongArr[i].long += dF;   
+    //             }
+    //         }
+            
+    //     }
+    //     if (i == 0) break;
+    // }
+
     for (let i = 0; i < latLongArr.length; ++i)
     {   
         wayPoints.push(new WayPoint(latLongArr[i].lat, latLongArr[i].long, latLongArr[i].id))
     }
+    
 }
 
 function draw ()
@@ -104,6 +138,50 @@ function draw ()
     for (let i = 0; i < wayPoints.length; ++i)
     {
         wayPoints[i].draw();
+    }
+
+    var compList = [];
+    for (let i = 0; i < wayPoints.length; ++i)
+    {
+        for (let j = 0; j < wayPoints.length; ++j)
+        {
+            if (i != j && !IsCompared(i, j))
+            {
+                var dPos1 = wayPoints[i].coords;
+                var dPos2 = wayPoints[j].coords;
+
+                var yDir = dPos1.y - dPos2.y;
+                var xDir = dPos1.x - dPos2.x;
+                var D = Math.sqrt
+                ( 
+                    Math.pow(xDir, 2)
+                    +  Math.pow(yDir, 2)
+                );
+
+                var dF = 0.6;
+
+                if (D < 0.5)
+                {
+                    wayPoints[j].coords.x -= dF;
+                    wayPoints[j].coords.y -= dF * (W/H);
+                }
+                //break;
+                compList.push({i, j});
+            } else break;
+            
+        }
+    }
+
+    function IsCompared(i, j)
+    {
+        for (let c = 0; c < compList.length; ++c)
+        {
+            if ((compList[c]['i'] == i && compList[c]['j'] == j) || (compList[c]['j'] == i && compList[c]['i'] == j))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
@@ -182,7 +260,6 @@ function mouseReleased()
         if (wayPoints[i].IsMouseOver())
             selectedPlace = wayPoints[i].index;
     }
-    console.log("SELECTED PLACE", selectedPlace)
 
     for (let i = 0; i < docCreadores.length; ++i)
     {
@@ -193,7 +270,6 @@ function mouseReleased()
     {
         if (docCreadores[i].children[1].children[1].children[2].innerText == selectedPlace)
             docCreadores[i].classList.remove("d-none");
-        console.log(docCreadores[i].children[1].children[1].children[2].innerText);
     }
 }
 
