@@ -23,7 +23,24 @@ for (var pieza in piezas)
         anios.push(_anio);
     }
 }
+var localidades = [];
+for (var lugar in lugares) 
+{
+    var _localidad = lugares[lugar].localidad;
 
+    if (_localidad == " ")
+    {
+        _localidad = _localidad.substring(1, _localidad.length)
+    }
+    if (_localidad.substring(_localidad.length - 1) == " ")
+    {
+        _localidad  = _localidad.substring(0, _anio.localidad - 1)
+    }
+    if (localidades.indexOf(_localidad) < 0 && _localidad != '')
+    {
+        localidades.push(_localidad);
+    }
+}
 
 var modalidades = [];
 for (var hecho in hechos) 
@@ -204,11 +221,16 @@ for (var pieza in piezas)
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     <a class="dropdown-item select-lugar">todos</a>
                     <% 
-                    for (var lugar in lugares) 
+                    for (var _localidad in localidades)
                     {
+                        for (var lugar in lugares)  {
+                            if (lugares[lugar].localidad == localidades[_localidad])
+                            {
                     %>
-                    <a class="dropdown-item select-lugar" value ="<%= lugares[lugar].id %>" ><%= lugares[lugar].nombre %></a>
-                    <%
+                        <a class="dropdown-item select-lugar" value="<%= lugares[lugar]['id'] %>"><%= localidades[_localidad] %></a>
+                    <%  break;
+                            }
+                        }
                     }
                     %>
                 </div>
@@ -359,13 +381,13 @@ for (var pieza in piezas)
                         var m_creador = creadores[creador]['id'];
                         for (var lugar in lugares) 
                         {
-                            if (lugares[lugar]['id'] == m_creador) {
+                            if (lugares[lugar]['id'] == m_creador) 
+                            {
                                 m_lugar = lugares[lugar]['id'];
-                            
-                    %>
-                        <li><%=m_lugar%></li>
-                    <%
-                            }
+                            %>
+                                <li><%=m_lugar%></li>
+                            <%
+                            } 
                         }
                     }
                     %>
@@ -383,7 +405,6 @@ for (var pieza in piezas)
                             {
                                 if (m_modalidades[i][0] == " ")
                                 {
-                                    
                                     m_modalidades[i] = m_modalidades[i].substring(1, m_modalidades[i].length)
                                 }
                                 if (m_modalidades[i].substring(m_modalidades[i].length - 1) == " ")

@@ -1,48 +1,77 @@
 <%- include('../partials/header') -%> 
 
 <section class="home-section preview-fondos container top">
-       
-    <div class="fondo row align-items-center btm"> 
-        <div class="col col-12 col-lg-6">
+    <div class="">
+        <h1>Geografías Textiles</h1>
+        <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat iure, consequuntur accusamus reprehenderit est debitis similique dolores, delectus odit cumque nihil quas repellat aut aliquam itaque rem et modi provident!</p>
+    </div>
+    <div class="fondo row align-items-center btm justify-content-center"> 
+        <div class="col col-12 col-lg-5 col-sm-6">
             <div id="canvasp5" >
                 <!--canvas del mapa -->
             </div>
+            <button class="btn blue" id="btn-zoom-out">-</button>
+            <button class="btn blue" id="btn-zoom-in">+</button>
+            
         </div>
+        
             <% 
-            var creadores = data.data[data.data['main']]
-            for (var i = 0; i < creadores.length; ++i) {
+            var creadores = data.data[data.data['main']];
+            for (var i = 0; i < creadores.length; ++i) 
+            {
             if (creadores[i]['dep'] != undefined)
                 dep = creadores[i]['dep']
-            lugar = dep['lugar'][0]
+                lugar = dep['lugar'][0]
             %>
-            <div class="text col col-12 col-lg-5 btm">
-            <img src="<%= creadores[i]['imagen_path'] %>" alt="" class="s3_img">
+            <div class="text col col-12 col-lg-5 btm creador mt-5">
             
-            <%  if (creadores[i]['dep'] != undefined) { %>
-            <div class="text col col-12 col-lg-5 btm">
-                <h3 class="lugar half-top">
+            <div class="img col col-12 col-lg-12">
+            <%
+            if (creadores[i]['imagen_path'].toString().indexOf("/") != -1)
+            {
+            %>
+                <img src="<%=creadores[i]['img_azul_path']%>" alt="" class="s3_img "> 
+            <%
+            } 
+            else 
+            {
+            %>
+                <img src="/img/azul_mampujan.jpg" alt="" class=""> 
+            <%
+            }
+            %>
+            </div>
+            <%  
+            if (creadores[i]['dep'] != undefined) 
+            { 
+            %>
+            <div class="text col col-12 col-lg-12 btm">
+                <h3 class="lugar">
                         <%=lugar['localidad']%>,
                         <%=lugar['departamento']%>
                 </h3> 
                 <ul class="latlong" style="display: none;">
                     <li><%=lugar['lat']%></li>
                     <li><%=lugar['longf']%></li>
+                    <li><%=lugar['id']%></li>
                 </ul>
-            <%
-                }
-            %>
-        </div>
-            <h2><%=creadores[i]['nombre']%></h2>
-            <p>
                 <%
-                    var txt = creadores[i]['caracterizacion'].substring(0, 230) + "L";
-                    txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
-                    %>
-                    <%=txt%>
-            </p>
-            <a href="/creadores/<%=creadores[i]['id']%>">
+                }
+                %>
+            
+                <h2><%=creadores[i]['nombre']%></h2>
+                <p>
+                    <%
+                        var txt = creadores[i]['caracterizacion'].substring(0, 230) + "L";
+                        txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
+                        %>
+                        <%=txt%>
+                </p>
+                <a href="/creadores/<%=creadores[i]['id']%>">
                     <button class ="btn blue">Conocer más</button>
                 </a>
+            </div>
+            
         </div>
             <%
             }
@@ -52,18 +81,40 @@
 </section>
 <script>
     var docLatLong = document.getElementsByClassName("latlong");
+    var docCreadores = document.getElementsByClassName("creador");
+
+    for (let i = 0; i < docCreadores.length; ++i)
+    {
+        docCreadores[i].classList.add("d-none");
+    }
+
     var latLongArr = [];
+    
     for (_latLong in docLatLong)
         if (docLatLong[_latLong].children)
         {
             var lat = docLatLong[_latLong].children[0].innerText;
             var long = docLatLong[_latLong].children[1].innerText;
-            latLongArr.push({lat, long})
-            
+            var id = docLatLong[_latLong].children[2].innerText;
+            var ltobj = {lat, long, id}
+
+            var hasCoord = false;
+           
+            for (let i = 0; i < latLongArr.length; ++i)
+            {
+                if (latLongArr[i]['lat'] == ltobj['lat'] && latLongArr[i]['long'] == ltobj['long'])
+                    hasCoord = true;
+            }
+
+            if (!hasCoord)
+                latLongArr.push({lat, long, id})
         }
     
 </script>
-<script src="/scripts/mapa.js"></script>
+
+<script src="/scripts/mapa/coordUtils.js"></script>
+<script src="/scripts/mapa/wayPoint.js"></script>
+<script src="/scripts/mapa/mainp5.js"></script>
 <script src="/scripts/s3ImageUrl.js"></script>
 
 <%- include('../partials/footer') -%> 

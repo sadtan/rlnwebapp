@@ -4,7 +4,7 @@ main
     justify-content: space-between;
 }
 
-.form-class
+.form-class, .admin-cards
 {
     margin-top: 10%;
 }
