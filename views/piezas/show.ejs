@@ -6,7 +6,6 @@
   creador = pieza['dep']['creador'][0]
   descriptores = pieza['descriptores'].split(", ");
   hecho = pieza['dep']['hecho'][0]
-
   //console.log('pieza', pieza);
   %>
   <!-- Imagen del fondo -->
@@ -26,6 +25,7 @@
 
     <ul class="datos-basicos">
       <li><b> Autoras: </b> <%=pieza['autores']%></li>
+      <li><b> Lugar: </b> Lugar lugar lugar</li>
       <li><b> Temáticas: </b> <%=pieza['tematicas']%></li>
       <li><b> Técnicas: </b> <%=pieza['tecnicas']%></li>
       <li><b> Materiales: </b><%=pieza['materiales']%></li>
@@ -86,7 +86,7 @@
           <div class ="sec-pieza">
             <div class="boton" id="headingOne">
               <h2 data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                  Cómo se hizo
+                  Cómo se hizo la pieza
               </h2>
             </div>
         
@@ -101,7 +101,7 @@
           <div class ="sec-pieza">
             <div class="boton" id="headingTwo">
                 <h2 data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Qué nos cuenta
+                  Qué nos cuenta la pieza
                 </h2>
             </div>
         
@@ -154,14 +154,14 @@
             </div>
         
             <div id="collapseFive" class="contenido collapse" aria-labelledby="headingFive" data-parent="#accordion">
-                <ul>
+                <ul class="hecho evento">
                   <%var eventos = JSON.parse(pieza['eventos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
                   for (let i = 0; i < eventos.length; ++i)
                   {
                     var evento = eventos[i]
                   %>
                   <li> 
-                    <p> <%=evento['name']%>, <%=evento['place']%>, <%=evento['date']%> </p>
+                    <p> <b> <%=evento['name']%></b>, <%=evento['place']%>, <%=evento['date']%> </p>
                   </li>
                   <% } %>
                 </ul>
@@ -177,14 +177,15 @@
             </div>
         
             <div id="collapseSix" class="contenido collapse" aria-labelledby="headingSix" data-parent="#accordion">
-                <ul>
+                <ul class="hecho documento">
                   <%var documentos = JSON.parse(pieza['documentos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
                   for (let i = 0; i < documentos.length; ++i)
                   {
                     var documento = documentos[i]
                   %>
                   <li> 
-                    <a target="_blank" href="<%=documento['url']%>"> <%=documento['name']%></a> </li>
+                   <p>
+                     <a target="_blank" href="<%=documento['url']%>"> <%=documento['name']%></a> </p> 
                   </li>
                   <% } %>
                 </ul>
