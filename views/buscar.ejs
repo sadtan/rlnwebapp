@@ -41,7 +41,6 @@ for (var lugar in lugares)
         localidades.push(_localidad);
     }
 }
-console.log(localidades)
 
 var modalidades = [];
 for (var hecho in hechos) 
@@ -227,8 +226,6 @@ for (var pieza in piezas)
                         for (var lugar in lugares)  {
                             if (lugares[lugar].localidad == localidades[_localidad])
                             {
-                                console.log(lugares[lugar]['id'])
-                                //console.log()
                     %>
                         <a class="dropdown-item select-lugar" value="<%= lugares[lugar]['id'] %>"><%= localidades[_localidad] %></a>
                     <%  break;
