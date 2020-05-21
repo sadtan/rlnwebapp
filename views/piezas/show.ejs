@@ -81,83 +81,141 @@
       </script>
 
       <div class="col-12 col-md-6">
-          <h2>
-            Cómo se hizo
-          </h2>
-          <p>
-            <%=pieza['relato_pieza']%>
-          </p>
 
-          <h2 class="half-top">
-            Qué nos cuenta
-          </h2>
-          <ul class="hecho">
-            <li><b> Año: </b> <%=hecho['fecha']%></li>
-            <li><b> Modalidad: </b> <%=hecho['modalidad']%></li>
-            <li><b> Actores: </b> <%=hecho['actores']%></li>
-          </ul>
+        <div id="accordion">
+          <!-- relato pieza -->
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Cómo se hizo
+                </button>
+              </h5>
+            </div>
+        
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                <%=pieza['relato_pieza']%>
+              </div>
+            </div>
+          </div>
 
-          <p>
-            <%=pieza['hecho_relato']%>
-          </p>
-
-          <h2>
-            Trayectoria
-          </h2>
-          <p>
-            <%=pieza['usos']%>
-          </p>
-
-          <h2>
-            Conservación
-          </h2>
-          <p>
-            <%=pieza['conservacion']%>
-          </p>
-
-          <h2>
-            Eventos
-          </h2>
-          <p>
-            <ul>
-            <%var eventos = JSON.parse(pieza['eventos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
-            //console.log(eventos)
-            for (let i = 0; i < eventos.length; ++i)
-            {
-              var evento = eventos[i]
-           
-            
-            %>
-            <li> 
-              <p> <%=evento['name']%>,<%=evento['place']%>,<%=evento['date']%> </p>
-            </li>
+          <!-- relato hecho -->
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                  Qué nos cuenta
+                </button>
+              </h5>
+            </div>
+        
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+                <ul class="hecho">
+                  <li><b> Año: </b> <%=hecho['fecha']%></li>
+                  <li><b> Modalidad: </b> <%=hecho['modalidad']%></li>
+                  <li><b> Actores: </b> <%=hecho['actores']%></li>
+                </ul>
       
-            <% } %>
-            
-          </ul>
+                <p>
+                  <%=pieza['hecho_relato']%>
+                </p>
+              </div>
+            </div>
+          </div>
 
-          <h2>
-            Documentos
-          </h2>
-          <p>
-            <ul>
-            <%var documentos = JSON.parse(pieza['documentos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
-            console.log(documentos)
-            for (let i = 0; i < documentos.length; ++i)
-            {
-              var documento = documentos[i]
-           
-            
-            %>
-            <li> 
-              <a target="_blank" href="<%=documento['url']%>"> <%=documento['name']%></a> </li>
-            </li>
-      
-            <% } %>
-            
-          </ul>
+          <!-- Trayectoria -->
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseTwo">
+                  Trayectoría
+                </button>
+              </h5>
+            </div>
+        
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+              <div class="card-body">
+                <%=pieza['usos']%>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conservación -->
+          <div class="card">
+            <div class="card-header" id="headingFour">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                  Conservación
+                </button>
+              </h5>
+            </div>
+        
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+              <div class="card-body">
+                <%=pieza['conservacion']%>
+              </div>
+            </div>
+          </div>
+
+          <!-- Eventos -->
+          <div class="card">
+            <div class="card-header" id="headingFour">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                  Eventos
+                </button>
+              </h5>
+            </div>
+        
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+              <div class="card-body">
+                <ul>
+                  <%var eventos = JSON.parse(pieza['eventos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
+                  for (let i = 0; i < eventos.length; ++i)
+                  {
+                    var evento = eventos[i]
+                  %>
+                  <li> 
+                    <p> <%=evento['name']%>,<%=evento['place']%>,<%=evento['date']%> </p>
+                  </li>
+                  <% } %>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Eventos -->
+          <div class="card">
+            <div class="card-header" id="headingFour">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                  Documentos
+                </button>
+              </h5>
+            </div>
+        
+            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+              <div class="card-body">
+                <ul>
+                  <%var documentos = JSON.parse(pieza['documentos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
+                  for (let i = 0; i < documentos.length; ++i)
+                  {
+                    var documento = documentos[i]
+                  %>
+                  <li> 
+                    <a target="_blank" href="<%=documento['url']%>"> <%=documento['name']%></a> </li>
+                  </li>
+                  <% } %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    
   </section>
 
   <div class="modal">
@@ -167,6 +225,13 @@
   </div>
 
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+
 <script src="/scripts/s3ImageUrl.js"></script>
 <script src="/scripts/modal.js"></script>
 <%- include('../partials/footer') -%>
