@@ -3,12 +3,26 @@
 <div class="container pag-fondo">
   <% 
   fondo = data.data[data.data['main']][0];
-  console.log ('fondo', fondo);
   %>
 
   <!-- Imagen del fondo -->
   <section class="section-fondo img-fondo top">
+    <% 
+    //if (creadores[i]['img_linea_path'] != "" || creadores[i]['img_linea_path'] != "_")
+    if (fondo['imagen_path'].toString().indexOf("/") != -1)
+    {
+    %>
     <img class="s3_img" src="<%=fondo['imagen_path']%>" alt="">    
+    <%
+    } 
+    else 
+    {
+    %>
+      <img src="">
+    <%
+    }
+    %>
+
   </section>
 
   <!-- Titulo, lugar y reseña -->
@@ -88,7 +102,7 @@
 
       <div class="col col-12 col-lg-6 img">
         <% 
-        if (fondo['il_1_path'] != "" || fondo['il_1_path'] != "-")
+        if (fondo['il_1_path'].toString().indexOf("/") != -1)
         {
         %>
         <img class="mx-auto s3_img" src="<%=fondo['il_1_path']%>">
@@ -119,7 +133,7 @@
   <section class="top section-fondo caracterizacion-fondo">
     
     <% 
-        if (fondo['il_2_path'] != "" || fondo['il_2_path'] != "-")
+        if (fondo['il_2_path'].toString().indexOf("/") != -1)
         {
         %>
         <img class="mx-auto s3_img" src="<%=fondo['il_2_path']%>">

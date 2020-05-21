@@ -32,7 +32,6 @@ module.exports = (pool, table) =>
                     if (table == "creadores")
                     {
                         var queryStr = "SELECT *, localidad FROM " + table  +" INNER JOIN lugares ON (creadores.fk_lugar = lugares.id) WHERE creadores.id = ? ";
-                        console.log(queryStr);
                     }
                     var data = await sql.query(queryStr, id);
                     
@@ -85,7 +84,6 @@ module.exports = (pool, table) =>
                     values = values.substring(0, values.length - 1);
 
                     var queryStr = "INSERT INTO " + table + "(" + names + ")" + " VALUES (" + values + " ) ";
-                    console.log(queryStr);
                     var data = await sql.querySearch(queryStr);
                     resolve(data);                    
 

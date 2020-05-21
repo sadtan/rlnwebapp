@@ -47,8 +47,6 @@ module.exports = function (app, pool) {
 
     app.post("/buscar", async (req, res) =>
     {
-        console.log(req.body)
-
         ////////////////////
         var data = {};
         data['piezas'] = [];
@@ -61,7 +59,6 @@ module.exports = function (app, pool) {
         data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre', 'fk_lugar'], "", pool, "creadores", "creadores")
         data = await reqBatchHandler.AttachCustom(data, ['id', 'modalidad'], "", pool, "hechos", "hechos")
         //res.render("search.ejs", {data});
-
 
         res.render("buscar", {data, descriptor: req.body.descriptor});
         //res.send("");

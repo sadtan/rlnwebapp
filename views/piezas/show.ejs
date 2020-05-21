@@ -6,12 +6,24 @@
   creador = pieza['dep']['creador'][0]
   descriptores = pieza['descriptores'].split(", ");
   hecho = pieza['dep']['hecho'][0]
-  console.log(creador);
-  //console.log('pieza', pieza);
   %>
   <!-- Imagen del fondo -->
   <section class="section-fondo img-fondo top">
-    <img class="s3_img" src="<%=pieza['imagen_path']%>">
+    <% 
+    //if (creadores[i]['img_linea_path'] != "" || creadores[i]['img_linea_path'] != "_")
+    if (pieza['imagen_path'].toString().indexOf("/") != -1)
+    {
+    %>
+      <img class="s3_img" src="<%=pieza['imagen_path']%>">
+    <%
+    } 
+    else 
+    {
+    %>
+      <img src="">
+    <%
+    }
+    %>
   </section>
 
   <!-- Titulo y datos básicos -->
@@ -47,7 +59,22 @@
                 
             <div class="col col-6 detalle detalle-modal">
               <a>
+                  
+                  <% 
+                  //if (creadores[i]['img_linea_path'] != "" || creadores[i]['img_linea_path'] != "_")
+                  if (pieza['galeria'][i].toString().indexOf("/") != -1)
+                  {
+                  %>
                   <img class="s3_img" src="<%=pieza['galeria'][i]%>">
+                  <%
+                  } 
+                  else 
+                  {
+                  %>
+                    <img src="">
+                  <%
+                  }
+                  %>
                 
                 <div class="blue"></div>
               </a>
