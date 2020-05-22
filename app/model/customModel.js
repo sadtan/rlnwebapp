@@ -31,7 +31,7 @@ module.exports = (pool, table) =>
                     
                     if (table == "creadores")
                     {
-                        var queryStr = "SELECT *, localidad FROM " + table  +" INNER JOIN lugares ON (creadores.fk_lugar = lugares.id) WHERE creadores.id = ? ";
+                        var queryStr = "SELECT creadores.*, localidad, pais, departamento FROM " + table  +" INNER JOIN lugares ON (creadores.fk_lugar = lugares.id) WHERE creadores.id = ? ";
                     }
                     var data = await sql.query(queryStr, id);
                     
