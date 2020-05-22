@@ -6,6 +6,9 @@
   creador = pieza['dep']['creador'][0]
   descriptores = pieza['descriptores'].split(", ");
   hecho = pieza['dep']['hecho'][0]
+
+  console.log('-------PIEZA------');
+  console.log(pieza);
   %>
   <!-- Imagen del fondo -->
   <section class="section-fondo img-fondo top">
@@ -15,6 +18,9 @@
     {
     %>
       <img class="s3_img" src="<%=pieza['imagen_path']%>">
+      <p class='italic margin-1'>
+        <%=pieza['imagen_descripcion']%>
+      </p>
     <%
     } 
     else 

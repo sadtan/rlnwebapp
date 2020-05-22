@@ -349,6 +349,8 @@ footer {
 .section-fondo p {
   margin-top: 2em;
   line-height: 2; }
+  .section-fondo p.margin-1 {
+    margin-top: 1em; }
 
 .section-fondo img {
   max-width: 100%;
