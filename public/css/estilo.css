@@ -781,7 +781,8 @@ footer {
           max-height: 60vh; } }
     .modal .modal-content p.info {
       display: block;
-      text-align: left; }
+      text-align: left;
+      color: #656565; }
 
 /* SLICK */
 .slick-container {

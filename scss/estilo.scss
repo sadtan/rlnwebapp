@@ -7,6 +7,7 @@ $negro: #161616;
 $blanco: #FFF;
 $gris-claro: #C2C2C2;
 $gris: #A9A9A9;
+$gris-oscuro: #656565;
 
 $circular: "CircularStd", sans-serif;
 $inter: 'Inter', sans-serif;
@@ -822,7 +823,7 @@ margin-top: 1em;
          }
         .italic {
             font-style: italic;
-            color: #656565;
+            color: $gris-oscuro;
             margin-top: 0;
             font-size: 20px;
         }
@@ -1206,6 +1207,7 @@ margin-top: 1em;
         p.info {
             display: block;
             text-align: left;
+            color: $gris-oscuro;
         }
     }
 }
