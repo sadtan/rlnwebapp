@@ -1084,6 +1084,8 @@ margin-top: 1em;
         .dropdown-menu {
             margin-top: 10px;
             border: 2px solid $azul;
+            max-height: 40vh;
+            overflow: scroll;
 
             .dropdown-item {
                 padding: 5px 15px;

@@ -692,7 +692,9 @@ footer {
       margin: 0; }
     .botones-filtros li .dropdown-menu {
       margin-top: 10px;
-      border: 2px solid #2727E5; }
+      border: 2px solid #2727E5;
+      max-height: 40vh;
+      overflow: scroll; }
       .botones-filtros li .dropdown-menu .dropdown-item {
         padding: 5px 15px; }
 
