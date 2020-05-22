@@ -881,6 +881,10 @@ margin-top: 1em;
             padding-left: 5px;
             padding-right: 5px;
 
+            .info {
+                display: none;
+            }
+
             a {
                 position: absolute;
                 width:calc(100% - 20px);
@@ -975,7 +979,6 @@ margin-top: 1em;
     
             h2 {
                 font-weight: 400;
-                font-size: 28px;
                 margin-bottom: 0.3em;
                 margin-top: 0.3em;
                 padding: 5px;
@@ -983,11 +986,16 @@ margin-top: 1em;
                 color: blue;
                 position: relative;
 
+                @media #{$large-and-up} { 
+                    font-size: 28px;
+                }
+                
+
                 &:after {
                     visibility: visible;
                     position: absolute;
                     top: 50%;
-                    right: 35px;
+                    right: 5%;
                     height: 20px;
                     width: 20px;
                     background-image: url('/img/icons/chevron_down.svg');
@@ -1195,12 +1203,9 @@ margin-top: 1em;
             }
         }
 
-        p {
-            max-width: calc(100% - 20px);
-
-            &.info{
-                margin-top: 0;
-            }
+        p.info {
+            display: block;
+            text-align: left;
         }
     }
 }
