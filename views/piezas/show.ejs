@@ -6,6 +6,9 @@
   creador = pieza['dep']['creador'][0]
   descriptores = pieza['descriptores'].split(", ");
   hecho = pieza['dep']['hecho'][0]
+
+  console.log('-------PIEZA------');
+  console.log(pieza);
   %>
   <!-- Imagen del fondo -->
   <section class="section-fondo img-fondo top">
@@ -15,6 +18,9 @@
     {
     %>
       <img class="s3_img" src="<%=pieza['imagen_path']%>">
+      <p class='italic margin-1'>
+        <%=pieza['imagen_descripcion']%>
+      </p>
     <%
     } 
     else 
@@ -66,6 +72,10 @@
                   {
                   %>
                   <img class="s3_img" src="<%=pieza['galeria'][i]%>">
+                  <p class='info italic container'>
+                    <!-- Descripcion_detalle-->
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
                   <%
                   } 
                   else 
@@ -239,7 +249,7 @@
   </div>
 
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 

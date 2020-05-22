@@ -7,6 +7,7 @@ $negro: #161616;
 $blanco: #FFF;
 $gris-claro: #C2C2C2;
 $gris: #A9A9A9;
+$gris-oscuro: #656565;
 
 $circular: "CircularStd", sans-serif;
 $inter: 'Inter', sans-serif;
@@ -576,6 +577,10 @@ footer {
     p {
         margin-top: 2em;
         line-height: 2;
+
+       &.margin-1 {
+            margin-top: 1em;
+        }
     }
 
     img {
@@ -818,7 +823,7 @@ margin-top: 1em;
          }
         .italic {
             font-style: italic;
-            color: #656565;
+            color: $gris-oscuro;
             margin-top: 0;
             font-size: 20px;
         }
@@ -876,6 +881,10 @@ margin-top: 1em;
             position: relative;
             padding-left: 5px;
             padding-right: 5px;
+
+            .info {
+                display: none;
+            }
 
             a {
                 position: absolute;
@@ -971,7 +980,6 @@ margin-top: 1em;
     
             h2 {
                 font-weight: 400;
-                font-size: 28px;
                 margin-bottom: 0.3em;
                 margin-top: 0.3em;
                 padding: 5px;
@@ -979,11 +987,16 @@ margin-top: 1em;
                 color: blue;
                 position: relative;
 
+                @media #{$large-and-up} { 
+                    font-size: 28px;
+                }
+                
+
                 &:after {
                     visibility: visible;
                     position: absolute;
                     top: 50%;
-                    right: 35px;
+                    right: 5%;
                     height: 20px;
                     width: 20px;
                     background-image: url('/img/icons/chevron_down.svg');
@@ -1071,14 +1084,45 @@ margin-top: 1em;
         .dropdown-menu {
             margin-top: 10px;
             border: 2px solid $azul;
+            max-height: 40vh;
+            overflow: scroll;
 
             .dropdown-item {
                 padding: 5px 15px;
                 
             }
+           
+            //menu movil
+            &.show {
+                @media #{$small-and-down} { 
+                    position: fixed !important;
+                    top: 50% !important;
+                    right: 50% !important;
+                    left: 50% !important;
+                    transform: translate(-50%, -50%) !important;
+                    width: auto;
+                    max-width: 90% !important;
+                    height: auto !important;
+                    max-height: 60vh !important;
+                }
+            }
         }
     }
 }
+
+//background menu móvil
+.background {
+    display: none;
+    background-color: $azul;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+}
+
 
 .resultados {
     margin-top: 4vh;
@@ -1191,12 +1235,10 @@ margin-top: 1em;
             }
         }
 
-        p {
-            max-width: calc(100% - 20px);
-
-            &.info{
-                margin-top: 0;
-            }
+        p.info {
+            display: block;
+            text-align: left;
+            color: $gris-oscuro;
         }
     }
 }

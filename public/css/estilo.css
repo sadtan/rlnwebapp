@@ -349,6 +349,8 @@ footer {
 .section-fondo p {
   margin-top: 2em;
   line-height: 2; }
+  .section-fondo p.margin-1 {
+    margin-top: 1em; }
 
 .section-fondo img {
   max-width: 100%;
@@ -559,6 +561,8 @@ footer {
   position: relative;
   padding-left: 5px;
   padding-right: 5px; }
+  .pag-pieza .detalle-piezas .detalle .info {
+    display: none; }
   .pag-pieza .detalle-piezas .detalle a {
     position: absolute;
     width: calc(100% - 20px);
@@ -613,18 +617,20 @@ footer {
     cursor: pointer; }
     .acordeon .sec-pieza .boton h2 {
       font-weight: 400;
-      font-size: 28px;
       margin-bottom: 0.3em;
       margin-top: 0.3em;
       padding: 5px;
       padding-left: 0;
       color: blue;
       position: relative; }
+      @media only screen and (min-width: 767px) {
+        .acordeon .sec-pieza .boton h2 {
+          font-size: 28px; } }
       .acordeon .sec-pieza .boton h2:after {
         visibility: visible;
         position: absolute;
         top: 50%;
-        right: 35px;
+        right: 5%;
         height: 20px;
         width: 20px;
         background-image: url("/img/icons/chevron_down.svg");
@@ -686,9 +692,33 @@ footer {
       margin: 0; }
     .botones-filtros li .dropdown-menu {
       margin-top: 10px;
-      border: 2px solid #2727E5; }
+      border: 2px solid #2727E5;
+      max-height: 40vh;
+      overflow: scroll; }
       .botones-filtros li .dropdown-menu .dropdown-item {
         padding: 5px 15px; }
+      @media only screen and (max-width: 576px) {
+        .botones-filtros li .dropdown-menu.show {
+          position: fixed !important;
+          top: 50% !important;
+          right: 50% !important;
+          left: 50% !important;
+          transform: translate(-50%, -50%) !important;
+          width: auto;
+          max-width: 90% !important;
+          height: auto !important;
+          max-height: 60vh !important; } }
+
+.background {
+  display: none;
+  background-color: #2727E5;
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 0; }
 
 .resultados {
   margin-top: 4vh; }
@@ -773,10 +803,10 @@ footer {
       @media screen and (max-width: 650px) {
         .modal .modal-content img {
           max-height: 60vh; } }
-    .modal .modal-content p {
-      max-width: calc(100% - 20px); }
-      .modal .modal-content p.info {
-        margin-top: 0; }
+    .modal .modal-content p.info {
+      display: block;
+      text-align: left;
+      color: #656565; }
 
 /* SLICK */
 .slick-container {
