@@ -183,7 +183,10 @@
         
             <div id="collapseFive" class="contenido collapse" aria-labelledby="headingFive" data-parent="#accordion">
                 <ul class="hecho evento">
-                  <%var eventos = JSON.parse(pieza['eventos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
+                  <%
+                  if (pieza['eventos_json'] != "" && pieza['eventos_json'] != "-" && pieza['eventos_json'] != "_")
+                  {
+                  var eventos = JSON.parse(pieza['eventos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
                   for (let i = 0; i < eventos.length; ++i)
                   {
                     var evento = eventos[i]
@@ -191,7 +194,8 @@
                   <li> 
                     <p> <b> <%=evento['name']%></b>, <%=evento['place']%>, <%=evento['date']%> </p>
                   </li>
-                  <% } %>
+                  <% }
+                 } %>
                 </ul>
             </div>
           </div>
@@ -206,7 +210,10 @@
         
             <div id="collapseSix" class="contenido collapse" aria-labelledby="headingSix" data-parent="#accordion">
                 <ul class="hecho documento">
-                  <%var documentos = JSON.parse(pieza['documentos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
+                  <%
+                  if (pieza['documentos_json'] != "" && pieza['documentos_json'] != "-" && pieza['documentos_json'] != "_")
+                  {
+                  var documentos = JSON.parse(pieza['documentos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
                   for (let i = 0; i < documentos.length; ++i)
                   {
                     var documento = documentos[i]
@@ -215,7 +222,8 @@
                    <p>
                      <a target="_blank" href="<%=documento['url']%>"> <%=documento['name']%></a> </p> 
                   </li>
-                  <% } %>
+                  <% }
+                 } %>
                 </ul>
             </div>
           </div>

@@ -3,7 +3,6 @@
 <div class="container pag-fondo">
   <% 
   fondo = data.data[data.data['main']][0];
-  console.log(fondo)
   %>
 
   <!-- Imagen del fondo -->
@@ -52,10 +51,10 @@
 
     
       <div class="row">
-        <% for(var i = 0; i < fondo['piezas'].length; i++) { %>
+        <% for(var i = 0; i < fondo['piezas'].length; i++) { 
+          console.log(fondo['piezas'][i]['id'])%>
         <div class="col col-12 col-md-6 col-lg-4 prev-pieza">
           <div class="container-img">
-            
             
             <img src="<%=fondo['piezas'][i]['imagen_path']%>" class="s3_img"> 
   

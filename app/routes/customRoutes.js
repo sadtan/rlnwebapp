@@ -49,6 +49,7 @@ module.exports = function (app, pool, m_table)
             if (m_table == "piezas")
             {
                 data = await awsUtils.AttachGallery(data, "piezas");
+                
             }
                 
                 //awsUtils.listFiles();

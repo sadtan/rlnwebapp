@@ -39,8 +39,10 @@ module.exports = (BucketName) =>
         {
             return new Promise((resolve, reject) =>
             {
+                
                 try
                 {
+                    var hasResolved = false;
                     for (var field in data[table][0])
                     {
                         if (field == 'galeria_path')
@@ -61,12 +63,16 @@ module.exports = (BucketName) =>
                                         ))
                                         {
                                             data[table][0]['galeria'].push(file["Key"]);
+                                            hasResolved = true;
                                             resolve(data);
                                         }
                                 })
                             });
                         }
                     }
+
+                    if (!hasResolved)
+                        resolve(data)
                     
                 } catch (error)
                 {

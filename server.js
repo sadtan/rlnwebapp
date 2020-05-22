@@ -98,9 +98,7 @@ class App
         require("./app/routes/customRoutes.js")(this.app, Pool, "hechos");
         require("./app/routes/customRoutes.js")(this.app, Pool, "piezas");
         
-
         //require("./app/routes/adminRoutes.js")(this.app, AdminPool, "creadores");
-
 
         require("./app/routes/indexRoutes.js" )(this.app);
     }   
