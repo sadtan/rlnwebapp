@@ -1091,9 +1091,38 @@ margin-top: 1em;
                 padding: 5px 15px;
                 
             }
+           
+            //menu movil
+            &.show {
+                @media #{$small-and-down} { 
+                    position: fixed !important;
+                    top: 50% !important;
+                    right: 50% !important;
+                    left: 50% !important;
+                    transform: translate(-50%, -50%) !important;
+                    width: auto;
+                    max-width: 90% !important;
+                    height: auto !important;
+                    max-height: 60vh !important;
+                }
+            }
         }
     }
 }
+
+//background menu móvil
+.background {
+    display: none;
+    background-color: $azul;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+}
+
 
 .resultados {
     margin-top: 4vh;

@@ -56,4 +56,17 @@ $( document ).ready(function() {
         $('.corto').removeClass('hide');
         $('.corto').addClass('show');
     }); 
+
+
+    // dropdown-menu mobile
+    $('.nav-item').click( function() {
+        $('.background').fadeIn(300);
+        $('html').css('overflow', 'hidden');
+    });
+
+    $('.background, .dropdown-menu').click( function() {
+        console.log ('click');
+        $('.background').fadeOut(300);
+        $('html').css('overflow', 'auto');
+    }); 
 });
