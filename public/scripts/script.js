@@ -66,6 +66,7 @@ $( document ).ready(function() {
             $('.background').fadeIn(300);
             $('.background').addClass('clicked');
             $('html').css('overflow', 'hidden');
+            
         });
 
         //salir
