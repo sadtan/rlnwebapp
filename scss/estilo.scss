@@ -1170,6 +1170,24 @@ margin-top: 1em;
     }
 }
 
+#filtros {
+     a {
+         color: $azul;
+         text-decoration: underline;
+     }
+}
+
+.tooltip {
+    .arrow::before {
+        border-bottom-color: $azul;
+    }
+
+    .tooltip-inner {
+        background-color: $azul;
+    }
+}
+
+
 /* --------- MODAL ------*/
 .modal {
     display: none;

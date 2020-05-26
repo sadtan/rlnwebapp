@@ -752,6 +752,16 @@ footer {
       margin-top: 0;
       font-style: italic; }
 
+#filtros a {
+  color: #2727E5;
+  text-decoration: underline; }
+
+.tooltip .arrow::before {
+  border-bottom-color: #2727E5; }
+
+.tooltip .tooltip-inner {
+  background-color: #2727E5; }
+
 /* --------- MODAL ------*/
 .modal {
   display: none; }

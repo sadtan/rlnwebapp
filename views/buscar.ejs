@@ -267,9 +267,19 @@ for (var pieza in piezas)
                 </div>
             </li>
         </ul> 
-        <p class="italic text-center" id="filtros" style="margin: 0; padding: 0;">
+        <!--<p class="italic text-center" id="filtros" style="margin: 0; padding: 0;">
             No hay filtros aplicados
+        </p>  -->
+
+        <!-- Descripción filtros-->
+        <p class="italic text-center" id="filtros" style="margin: 0; padding: 0;">
+            Modalidad: <a data-toggle="tooltip" data-placement="bottom" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"> desplazamiento forzado</a>
         </p>  
+        <script>
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+        </script>
     </section>
 
     <section class="section-fondo resultados">
@@ -588,7 +598,7 @@ for (var pieza in piezas)
 
             filtros.innerHTML = filtros.innerHTML.substring(0, filtros.innerHTML.length - 2);
             if (!hasFilter)
-                filtros.innerHTML = "no hay filtros aplicados"
+                filtros.innerHTML = "No hay filtros aplicados"
 
             for (result in piezasList)
             {
