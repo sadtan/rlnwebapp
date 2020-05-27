@@ -47,6 +47,7 @@ module.exports = (BucketName) =>
                     {
                         if (field == 'galeria_path')
                         {
+                            
                             this.bucketParams.Delimiter = data[table][0][field];
                             this.bucketParams.Prefix = data[table][0][field];
                             data[table][0]['galeria'] = [];
@@ -64,15 +65,18 @@ module.exports = (BucketName) =>
                                         {
                                             data[table][0]['galeria'].push(file["Key"]);
                                             hasResolved = true;
-                                            resolve(data);
+                                            
                                         }
                                 })
+                                resolve(data);
                             });
+                            
+                            
                         }
                     }
-
-                    if (!hasResolved)
-                        resolve(data)
+                //    if (!hasResolved)
+                //     resolve(data);
+                   
                     
                 } catch (error)
                 {

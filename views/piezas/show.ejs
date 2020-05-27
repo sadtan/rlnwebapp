@@ -7,8 +7,7 @@
   descriptores = pieza['descriptores'].split(", ");
   hecho = pieza['dep']['hecho'][0]
 
-  console.log('-------PIEZA------');
-  console.log(pieza);
+  // console.log('-------PIEZA------');
   %>
   <!-- Imagen del fondo -->
   <section class="section-fondo img-fondo top">
@@ -67,16 +66,27 @@
               <a>
                   
                   <% 
-                  //if (creadores[i]['img_linea_path'] != "" || creadores[i]['img_linea_path'] != "_")
                   if (pieza['galeria'][i].toString().indexOf("/") != -1)
                   {
                   %>
                   <img class="s3_img" src="<%=pieza['galeria'][i]%>">
-                  <p class='info italic container'>
-                    <!-- Descripcion_detalle-->
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  </p>
                   <%
+                  if (pieza['imagenes_descripcion_json'].toString().indexOf("'") != -1) {
+                    var descripciones = JSON.parse(pieza['imagenes_descripcion_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
+                    for (let j = 0; j < descripciones.length; ++j)
+                    {
+                      var descripcion = descripciones[j];
+                      
+                      if (pieza['galeria'][i].toString().includes(descripcion.s3key)) {
+                    %>
+
+                    <p class='info italic container'>
+                      <%=descripcion.desc%>
+                    </p>
+                  <%
+                  }
+                  }
+                  }
                   } 
                   else 
                   {
