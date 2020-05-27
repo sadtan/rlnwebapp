@@ -81,7 +81,7 @@
                     %>
 
                     <p class='info italic container'>
-                      <%=descripcion.desc%>
+                      <%=descripcion.desc.replace(/&quot;/g, '\"')%>
                     </p>
                   <%
                   }
