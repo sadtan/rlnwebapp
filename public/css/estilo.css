@@ -704,8 +704,7 @@ footer {
           right: 50% !important;
           left: 50% !important;
           transform: translate(-50%, -50%) !important;
-          width: auto;
-          max-width: 90% !important;
+          width: 80% !important;
           height: auto !important;
           max-height: 60vh !important; } }
 
@@ -752,6 +751,16 @@ footer {
     .resultados .resultado-pieza .creador {
       margin-top: 0;
       font-style: italic; }
+
+#filtros a {
+  color: #2727E5;
+  text-decoration: underline; }
+
+.tooltip .arrow::before {
+  border-bottom-color: #2727E5; }
+
+.tooltip .tooltip-inner {
+  background-color: #2727E5; }
 
 /* --------- MODAL ------*/
 .modal {

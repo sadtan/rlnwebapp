@@ -59,14 +59,29 @@ $( document ).ready(function() {
 
 
     // dropdown-menu mobile
-    $('.nav-item').click( function() {
-        $('.background').fadeIn(300);
-        $('html').css('overflow', 'hidden');
-    });
+    if ($(window).width() < 600) {
+        
+        //entrar
+        $('.nav-item').click( function() {
+            $('.background').fadeIn(300);
+            $('.background').addClass('clicked');
+            $('html').css('overflow', 'hidden');
+            
+        });
 
-    $('.background, .dropdown-menu').click( function() {
-        console.log ('click');
-        $('.background').fadeOut(300);
-        $('html').css('overflow', 'auto');
-    }); 
+        //salir
+        $('.background, .dropdown-menu').click( function() {
+
+            if ($('.background').hasClass('clicked')){
+
+                $('.background').fadeOut(300);
+                $('html').css('overflow', 'auto');
+                $('.dropdown-menu').removeClass('show');
+                $('.background').removeClass('clicked');
+                
+                return false;
+            }
+        }); 
+    }
+
 });

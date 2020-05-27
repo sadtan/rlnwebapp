@@ -1100,8 +1100,7 @@ margin-top: 1em;
                     right: 50% !important;
                     left: 50% !important;
                     transform: translate(-50%, -50%) !important;
-                    width: auto;
-                    max-width: 90% !important;
+                    width: 80% !important;
                     height: auto !important;
                     max-height: 60vh !important;
                 }
@@ -1170,6 +1169,24 @@ margin-top: 1em;
         }
     }
 }
+
+#filtros {
+     a {
+         color: $azul;
+         text-decoration: underline;
+     }
+}
+
+.tooltip {
+    .arrow::before {
+        border-bottom-color: $azul;
+    }
+
+    .tooltip-inner {
+        background-color: $azul;
+    }
+}
+
 
 /* --------- MODAL ------*/
 .modal {
