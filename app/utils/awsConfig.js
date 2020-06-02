@@ -171,7 +171,7 @@ module.exports = (BucketName) =>
                 {
                     Bucket: BucketName,
                     Key: KeyValue,
-                    Expires: 60
+                    Expires: 600
                 }
                 
                 return(s3.getSignedUrl('getObject', fileParams));

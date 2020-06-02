@@ -142,13 +142,12 @@
         
             <div id="collapseOne" class="contenido collapse" aria-labelledby="headingOne" data-parent="#accordion">
               <% 
-                if (pieza['audio_path'] != "" && pieza['audio_path'] != "_") {
-                console.log(pieza['audio_path']);
+                if (pieza['audio_path'].toString().indexOf("/") != -1) {
               %>
+              <i src="<%=pieza['audio_path']%>" type="audio/mpeg" class="s3_audio"></i>
               <button class ="btn blue" id="playAudio">Escuchar relato</button>
               <!-- audio del relato de la pieza-->
               <audio id="audio"> 
-                <source src="<%=pieza['audio_path']%>" type="audio/mpeg">
               </audio>
               <% 
                 }
