@@ -106,7 +106,15 @@
         {
         %>
         <img class="mx-auto s3_img pad" src="<%=fondo['il_1_path']%>">
-        <p class="italic"> Texto de descripción de esta ilustración</p>
+
+        <% 
+        if (fondo['il_1_desc'] && fondo['il_1_desc'].toString() != "-" && fondo['il_1_desc'].toString() != "_")
+        {
+        %>
+        <p class="italic"> <%=fondo['il_1_desc']%> </p>
+        <%
+        } 
+        %>
         <%
         } else {
         %>
@@ -138,7 +146,17 @@
         {
         %>
         <img class="mx-auto s3_img pad" src="<%=fondo['il_2_path']%>">
-        <p class="italic"> Texto de descripción de esta ilustración</p>
+
+        <% 
+        if (fondo['il_2_desc'] && fondo['il_2_desc'].toString() != "-" && fondo['il_2_desc'].toString() != "_")
+        {
+        %>
+        <p class="italic"> <%=fondo['il_2_desc']%> </p>
+        <%
+        } 
+        %>
+
+        
         <%
         } else {
         %>
