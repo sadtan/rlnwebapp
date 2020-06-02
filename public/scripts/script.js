@@ -70,7 +70,7 @@ $( document ).ready(function() {
         });
 
         //salir
-        $('.background, .dropdown-menu').click( function() {
+        $(window).click( function() {
 
             if ($('.background').hasClass('clicked')){
 
