@@ -598,6 +598,25 @@ footer {
   .pag-pieza .detalle-piezas .detalle:hover .blue {
     opacity: 50%; }
 
+.pag-pieza #playAudio {
+  padding-left: 50px;
+  position: relative; }
+  .pag-pieza #playAudio.playing:after {
+    background-image: url("/img/icons/pause.svg"); }
+  .pag-pieza #playAudio:after {
+    visibility: visible;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    height: 15px;
+    width: 15px;
+    background-image: url("/img/icons/play.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translate(0, -50%);
+    content: " "; }
+
 .pag-pieza .hecho {
   padding-inline-start: 0;
   list-style-type: none;

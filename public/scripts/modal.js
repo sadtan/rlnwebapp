@@ -1,7 +1,6 @@
 (function ($, root, undefined) {
 
     $('.detalle-modal a').on('click', function() {
-        console.log('hola');
 
         $('.modal-content').html($(this).html());
         

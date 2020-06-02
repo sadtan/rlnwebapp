@@ -7,8 +7,10 @@
   descriptores = pieza['descriptores'].split(", ");
   hecho = pieza['dep']['hecho'][0]
 
-  // console.log('-------PIEZA------');
+  //console.log('-------PIEZA------');
+  //console.log(pieza);
   %>
+
   <!-- Imagen del fondo -->
   <section class="section-fondo img-fondo top">
     <% 
@@ -139,6 +141,18 @@
             </div>
         
             <div id="collapseOne" class="contenido collapse" aria-labelledby="headingOne" data-parent="#accordion">
+              <% 
+                if (pieza['audio_path'] != "" && pieza['audio_path'] != "_") {
+                console.log(pieza['audio_path']);
+              %>
+              <button class ="btn blue" id="playAudio">Escuchar relato</button>
+              <!-- audio del relato de la pieza-->
+              <audio id="audio"> 
+                <source src="<%=pieza['audio_path']%>" type="audio/mpeg">
+              </audio>
+              <% 
+                }
+              %>
               <p>
                 <%=pieza['relato_pieza']%>
               </p>
@@ -268,4 +282,5 @@
 
 <script src="/scripts/s3ImageUrl.js"></script>
 <script src="/scripts/modal.js"></script>
+<script src="/scripts/audio.js"></script>
 <%- include('../partials/footer') -%>
