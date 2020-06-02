@@ -794,6 +794,9 @@ footer {
 .tooltip .tooltip-inner {
   background-color: #2727E5; }
 
+.pagina-mapa img {
+  margin-bottom: 1em; }
+
 /* --------- MODAL ------*/
 .modal {
   display: none; }

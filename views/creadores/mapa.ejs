@@ -1,52 +1,50 @@
 <%- include('../partials/header') -%> 
 
-<section class="home-section preview-fondos container top">
-    <div class="">
-        <h1>Geografías Textiles</h1>
-        <!--descripción del mapa del mapa -->
-        <p></p>
-    </div>
+<section class="home-section preview-fondos container top pagina-mapa">
+    
     <div class="fondo row align-items-center btm justify-content-center"> 
+        <!--mapa-->
         <div class="col col-12 col-lg-5 col-sm-6">
             <div id="canvasp5" >
                 <!--canvas del mapa -->
             </div>
-            <button class="btn blue" id="btn-zoom-out">-</button>
-            <button class="btn blue" id="btn-zoom-in">+</button>
+            <button class="btn blue" id="btn-zoom-out">Alejar - </button>
+            <button class="btn blue" id="btn-zoom-in">Acercar + </button>
             
         </div>
-        
-            <% 
-            var creadores = data.data[data.data['main']];
-            for (var i = 0; i < creadores.length; ++i) 
-            {
-            if (creadores[i]['dep'] != undefined)
-                dep = creadores[i]['dep']
-                lugar = dep['lugar'][0]
-            %>
-            <div class="text col col-12 col-lg-5 btm creador mt-5">
+
+        <% 
+        var creadores = data.data[data.data['main']];
+        for (var i = 0; i < creadores.length; ++i) 
+        {
+        if (creadores[i]['dep'] != undefined)
+            dep = creadores[i]['dep']
+            lugar = dep['lugar'][0]
+        %>
+        <div class="text col col-12 col-lg-5 btm creador mt-5">
             
-            <div class="img col col-12 col-lg-12">
-            <%
-            if (creadores[i]['img_azul_path'].toString().indexOf("/") != -1)
-            {
-            %>
-                <img src="<%=creadores[i]['img_azul_path']%>" alt="" class="s3_img"> 
-            <%
-            } 
-            else 
-            {
-            %>
-                <img src="/img/azul_mampujan.jpg" alt="" class=""> 
-            <%
-            }
-            %>
+            <div class="img">
+                <%
+                if (creadores[i]['img_azul_path'].toString().indexOf("/") != -1)
+                {
+                %>
+                    <img src="<%=creadores[i]['img_azul_path']%>" alt="" class="s3_img"> 
+                <%
+                } 
+                else 
+                {
+                %>
+                    <img src="/img/azul_mampujan.jpg" alt="" class=""> 
+                <%
+                }
+                %>
             </div>
             <%  
             if (creadores[i]['dep'] != undefined) 
             { 
             %>
-            <div class="text col col-12 col-lg-12 btm">
+
+            <div>
                 <h3 class="lugar">
                         <%=lugar['localidad']%>,
                         <%=lugar['departamento']%>
@@ -74,9 +72,16 @@
             </div>
             
         </div>
-            <%
-            }
-            %>
+        <%
+        }
+        %>
+        <div class="col col-12 col-lg-5 col-sm-6 offset-lg-1" id="intro-mapa">
+            <h2> Biografías Textiles</h2>
+            <p>
+                En Colombia hemos identificado cerca de 42 iniciativas que configuran una red de tejedoras por la memoria y la vida que se entrelaza en los departamentos de Antioquia, Bolívar, Cauca, Cundinamarca, Chocó, Putumayo, Nariño y Valle del Cauca. 
+                Hasta el momento hacen parte de este archivo digital de textiles testimoniales 12 de ellas para su consulta. 
+            </p>
+        </div>
     </div>
 
 </section>
