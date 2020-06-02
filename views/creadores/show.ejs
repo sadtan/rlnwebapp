@@ -13,6 +13,7 @@
     {
     %>
     <img class="s3_img" src="<%=fondo['imagen_path']%>" alt="">    
+    <p class="italic"> <%=fondo['imagen_descripcion']%></p>
     <%
     } 
     else 
@@ -51,8 +52,7 @@
 
     
       <div class="row">
-        <% for(var i = 0; i < fondo['piezas'].length; i++) { 
-          console.log(fondo['piezas'][i]['id'])%>
+        <% for(var i = 0; i < fondo['piezas'].length; i++) { %>
         <div class="col col-12 col-md-6 col-lg-4 prev-pieza">
           <div class="container-img">
             
@@ -106,6 +106,7 @@
         {
         %>
         <img class="mx-auto s3_img pad" src="<%=fondo['il_1_path']%>">
+        <p class="italic"> Texto de descripción de esta ilustración</p>
         <%
         } else {
         %>
@@ -137,6 +138,7 @@
         {
         %>
         <img class="mx-auto s3_img pad" src="<%=fondo['il_2_path']%>">
+        <p class="italic"> Texto de descripción de esta ilustración</p>
         <%
         } else {
         %>

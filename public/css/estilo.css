@@ -359,6 +359,9 @@ footer {
     padding: 50px;
     max-width: 500px; } }
 
+.section-fondo .italic {
+  margin-top: 10px; }
+
 .section-fondo img {
   max-width: 100%;
   height: auto; }
@@ -397,6 +400,9 @@ footer {
 .italic {
   font-style: italic;
   color: #A9A9A9;
+  margin-top: 1em; }
+
+.piezas-fondo .italic {
   margin-top: 1em; }
 
 .container-img {
