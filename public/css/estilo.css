@@ -354,6 +354,11 @@ footer {
   .section-fondo p.margin-1 {
     margin-top: 1em; }
 
+@media only screen and (min-width: 577px) {
+  .section-fondo .pad {
+    padding: 50px;
+    max-width: 500px; } }
+
 .section-fondo img {
   max-width: 100%;
   height: auto; }

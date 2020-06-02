@@ -584,6 +584,13 @@ footer {
         }
     }
 
+    .pad {
+        @media #{$medium-and-up} { 
+            padding: 50px;
+            max-width: 500px;
+        }
+    }
+
     img {
     max-width: 100%;
     height: auto;
