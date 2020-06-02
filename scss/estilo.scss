@@ -1231,6 +1231,20 @@ margin-top: 1em;
     }
 }
 
+//PAGINA MAPA //
+.pagina-mapa {
+    img {
+        margin-bottom: 1em;
+    }
+
+    #canvasp5 {
+        cursor: pointer;
+    }
+
+    .boton-zoom {
+        margin-top: 2px;
+    }
+}
 
 /* --------- MODAL ------*/
 .modal {

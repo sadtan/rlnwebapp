@@ -794,6 +794,15 @@ footer {
 .tooltip .tooltip-inner {
   background-color: #2727E5; }
 
+.pagina-mapa img {
+  margin-bottom: 1em; }
+
+.pagina-mapa #canvasp5 {
+  cursor: pointer; }
+
+.pagina-mapa .boton-zoom {
+  margin-top: 2px; }
+
 /* --------- MODAL ------*/
 .modal {
   display: none; }

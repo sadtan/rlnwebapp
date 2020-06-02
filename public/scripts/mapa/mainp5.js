@@ -1,10 +1,9 @@
-var Zoom = 0;
-var zFactor = 0.2;
+
 var cHelper;
 var IsDragging = false;
 var W;
 var H;
-var F = 12;
+var F = 2;
 var clickedMousePos = {x: 0, y: 0};
 var lastMousePos = {x: 0, y: 0};
 var IsClicked = false;
@@ -202,8 +201,8 @@ document.getElementById("btn-zoom-in").addEventListener('click', ZoomIn)
 function ZoomIn ()
 {
     Zoom += zFactor;
-    Zoom = clamp(Zoom, 0, 4);
-    if (Zoom !=  0 && Zoom != 4)
+    Zoom = clamp(Zoom, 0, 3);
+    if (Zoom !=  0 && Zoom != 3)
     {
         cHelper.p1.scrX += (Zoom * 30 * W/H + 20) / F;
         cHelper.p1.scrY += (Zoom * 30) / F;
@@ -214,8 +213,8 @@ function ZoomIn ()
 function ZoomOut ()
 {
     Zoom -= zFactor;
-    Zoom = clamp(Zoom, 0, 4);
-    if (Zoom !=  0 && Zoom != 4)
+    Zoom = clamp(Zoom, 0, 3);
+    if (Zoom !=  0 && Zoom != 3)
     {
         cHelper.p1.scrX -= (Zoom * 30 * W/H + 20) / F;
         cHelper.p1.scrY -= (Zoom * 30) / F;
@@ -271,7 +270,11 @@ function mouseReleased()
     for (let i = 0; i < docCreadores.length; ++i)
     {
         if (docCreadores[i].children[1].children[1].children[2].innerText == selectedPlace)
+        {
             docCreadores[i].classList.remove("d-none");
+            document.getElementById('intro-mapa').classList.add('d-none');
+        }
+            
     }
 }
 
