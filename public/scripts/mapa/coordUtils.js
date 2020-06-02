@@ -1,5 +1,4 @@
-var Zoom = 0;
-var zFactor = 0.2;
+
 
 class CoordHelper
 {

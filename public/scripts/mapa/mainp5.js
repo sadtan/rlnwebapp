@@ -1,4 +1,5 @@
-
+var Zoom = 0;
+var zFactor = 0.2;
 var cHelper;
 var IsDragging = false;
 var W;
@@ -37,6 +38,10 @@ function setup ()
 
     canvas.parent('canvasp5');
 
+    for (let i = 0; i < latLongArr.length; ++i)
+        wayPoints.push(new WayPoint(latLongArr[i].lat, latLongArr[i].long, latLongArr[i].id));
+
+
     // for (let i = 0; i < latLongArr.length; ++i)
     // {
         
@@ -70,10 +75,7 @@ function setup ()
     //     if (i == 0) break;
     // }
 
-    for (let i = 0; i < latLongArr.length; ++i)
-    {   
-        wayPoints.push(new WayPoint(latLongArr[i].lat, latLongArr[i].long, latLongArr[i].id))
-    }
+    
     
 }
 

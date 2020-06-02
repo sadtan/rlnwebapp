@@ -37,10 +37,6 @@ class WayPoint
             image(this.blue, this.pos.x - this.wpW / 2, this.pos.y - this.wpH, this.wpW, this.wpH)
         }
         
-        // if (this.IsMouseOver())
-        //     console.log(this.IsMouseOver());
-        
-        //point(this.pos.x, this.pos.y);
     }
 
     IsMouseOver ()
