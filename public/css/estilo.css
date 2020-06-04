@@ -488,6 +488,9 @@ footer {
     .pag-sobre .btn {
       margin-top: 15px; } }
 
+.pag-sobre .universidades {
+  margin-top: 12vh; }
+
 @media only screen and (min-width: 767px) {
   .carrusel .carrusel-item {
     padding-left: 30px; } }
