@@ -23,7 +23,10 @@
     function playAudio() {
         $botPlay.removeClass('playing').removeClass('paused');
         $botPlay.addClass('playing');
-        audio.play();
+        audio.oncanplay = () => {
+            audio.play();
+        }
+
         $text.hide();
         $reproductor.show();
         
@@ -51,8 +54,8 @@
         s -= h*3600;
         var m = Math.floor(s/60);
         s -= m*60;
-
         s = Math.floor(s);
+        
         return (m)+":"+(s < 10 ? '0'+ s : s);
     }
 
