@@ -604,8 +604,22 @@ footer {
   .pag-pieza .detalle-piezas .detalle:hover .blue {
     opacity: 50%; }
 
+.pag-pieza .escuchar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 2em; }
+  .pag-pieza .escuchar h2 {
+    margin: 0;
+    font-weight: 400;
+    font-size: 24px;
+    color: #2727E5; }
+
 .pag-pieza #playAudio {
-  padding-left: 50px;
+  height: 50px;
+  width: 50px;
+  margin-right: 20px;
+  margin-top: 0;
   position: relative; }
   .pag-pieza #playAudio.playing:after {
     background-image: url("/img/icons/pause.svg"); }
@@ -613,15 +627,47 @@ footer {
     visibility: visible;
     position: absolute;
     top: 50%;
-    left: 20px;
+    left: 50%;
     height: 15px;
     width: 15px;
     background-image: url("/img/icons/play.svg");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    transform: translate(0, -50%);
+    transform: translate(-50%, -50%);
     content: " "; }
+
+.pag-pieza .reproductor {
+  padding-top: 40px;
+  width: 250px;
+  text-align: center;
+  margin-left: 10%; }
+  .pag-pieza .reproductor .time {
+    background: #5f5f5f;
+    width: 50%;
+    text-align: center;
+    padding: 5px;
+    border-radius: 30px;
+    font-size: 0.75em;
+    color: #999;
+    margin: 0 auto; }
+  .pag-pieza .reproductor .slider {
+    position: relative;
+    height: 5px;
+    margin-bottom: 10px;
+    margin-left: 5px; }
+    .pag-pieza .reproductor .slider .total {
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      top: 100%;
+      margin-top: -1px;
+      background: #A9A9A9; }
+    .pag-pieza .reproductor .slider .current {
+      position: absolute;
+      height: 4px;
+      top: 0.5px;
+      background: white; }
 
 .pag-pieza .hecho {
   padding-inline-start: 0;

@@ -21,7 +21,6 @@
     function playAudio() {
         $botPlay.removeClass('playing').removeClass('paused');
         $botPlay.addClass('playing');
-        $botPlay.html("Pausar relato");
         audio.play();
     }
 
@@ -29,7 +28,6 @@
     function pauseAudio() {
       $botPlay.removeClass('playing').removeClass('paused');
       $botPlay.addClass('paused');
-      $botPlay.html("Escuchar relato");
       audio.pause();
     }
 
