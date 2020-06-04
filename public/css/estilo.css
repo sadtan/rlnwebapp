@@ -356,8 +356,11 @@ footer {
 
 @media only screen and (min-width: 577px) {
   .section-fondo .pad {
-    padding: 50px;
-    max-width: 500px; } }
+    padding: 40px;
+    max-width: 450px; } }
+
+.section-fondo .pad.img-caracterizacion {
+  max-width: 400px; }
 
 .section-fondo .italic {
   margin-top: 10px; }
