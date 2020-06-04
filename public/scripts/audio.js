@@ -23,10 +23,7 @@
     function playAudio() {
         $botPlay.removeClass('playing').removeClass('paused');
         $botPlay.addClass('playing');
-        audio.oncanplay = () => {
-            audio.play();
-        }
-
+        audio.play();
         $text.hide();
         $reproductor.show();
         
@@ -51,12 +48,6 @@
         $('.reproductor .current').attr('style', 'width: '+porcentaje+'%');
         $('.reproductor .select').attr('style', 'left: '+porcentaje+'%');
         $('.reproductor .time').html(secondsTimeSpanToHMS(current) + '/' + secondsTimeSpanToHMS(total));
-
-        if (audio.currentTime == audio.duration -0.5) {
-            console.log('audio.ended');
-            //audio.currentTime = 0;
-            //audio.pause();
-        }
     }
 
     //Función para convertir el tiempo a formato minutos y segundos
@@ -71,6 +62,7 @@
 
 
     $('#reproductor .slider').click(updateProgressBar);
+    $('#reproductor .slider').click(updateProgressBar);
 
     function updateProgressBar(event) {
         
@@ -83,12 +75,6 @@
         var newTime = (percentage * timeTotal) / 100
 
         audio.currentTime = newTime;
-
-        if (audio.ended) {
-            console.log(audio.ended);
-            //audio.currentTime = 0;
-            //playPauseAudio();
-        }
     }
 
 })(jQuery, this);

@@ -649,7 +649,8 @@ footer {
     position: relative;
     height: 5px;
     margin-right: 20px;
-    width: 80%; }
+    width: 80%;
+    cursor: pointer; }
     .pag-pieza .reproductor .slider:hover .select {
       height: 12px;
       width: 12px; }
@@ -673,8 +674,7 @@ footer {
       border-radius: 100%;
       position: absolute;
       top: 50%;
-      transform: translate(-50%, -50%);
-      cursor: pointer; }
+      transform: translate(-50%, -50%); }
 
 .pag-pieza .hecho {
   padding-inline-start: 0;
