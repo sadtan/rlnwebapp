@@ -586,12 +586,11 @@ footer {
 
     .pad {
         @media #{$medium-and-up} { 
-            padding: 40px;
-            max-width: 450px;
+            max-width: 400px;
         }
 
         &.img-caracterizacion {
-            max-width: 400px;
+            max-width: 350px;
         }
     }
 
@@ -600,6 +599,7 @@ footer {
     }
 
     img {
+    display: flex;
     max-width: 100%;
     height: auto;
 

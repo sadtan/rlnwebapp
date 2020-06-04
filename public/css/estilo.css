@@ -356,16 +356,16 @@ footer {
 
 @media only screen and (min-width: 577px) {
   .section-fondo .pad {
-    padding: 40px;
-    max-width: 450px; } }
+    max-width: 400px; } }
 
 .section-fondo .pad.img-caracterizacion {
-  max-width: 400px; }
+  max-width: 350px; }
 
 .section-fondo .italic {
   margin-top: 10px; }
 
 .section-fondo img {
+  display: flex;
   max-width: 100%;
   height: auto; }
 
