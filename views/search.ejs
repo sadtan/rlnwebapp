@@ -1,0 +1,578 @@
+<%- include('./partials/header') -%>
+<% 
+var piezas = data['piezas'][0];
+var creadores = data['creadores'][0];
+var lugares = data['lugares'][0];
+var hechos = data['hechos'][0];
+console.log(piezas)
+
+var anios = [];
+for (var pieza in piezas) 
+{
+    var _anio = piezas[pieza].fecha;
+
+    if (_anio == " ")
+    {
+        _anio = _anio.substring(1, _anio.length)
+    }
+    if (_anio.substring(_anio.length - 1) == " ")
+    {
+        _anio  = _anio.substring(0, _anio.length - 1)
+    }
+    if (anios.indexOf(_anio) < 0)
+    {
+        anios.push(_anio);
+    }
+}
+
+var modalidades = [];
+for (var hecho in hechos) 
+{
+    var m_modalidades = hechos[hecho].modalidad.split("; ");
+    for (let i = 0; i < m_modalidades.length; ++i)
+    {
+        if (m_modalidades[i][0] == " ")
+        {
+            
+            m_modalidades[i] = m_modalidades[i].substring(1, m_modalidades[i].length)
+        }
+        if (m_modalidades[i].substring(m_modalidades[i].length - 1) == " ")
+        {
+            m_modalidades[i] = m_modalidades[i].substring(0, m_modalidades[i].length - 1)
+        }
+        m_modalidades[i] = m_modalidades[i].toLowerCase();
+
+        if (modalidades.indexOf(m_modalidades[i]) < 0)
+        {
+            modalidades.push(m_modalidades[i]);
+        }
+    }
+}
+
+var tecnicas = [];
+for (var pieza in piezas) 
+{
+    var m_tecnicas = piezas[pieza].tecnicas.split(", ");
+    for (let i = 0; i < m_tecnicas.length; ++i)
+    {
+        if (m_tecnicas[i][0] == " ")
+        {
+            m_tecnicas[i] = m_tecnicas[i].substring(1, m_tecnicas[i].length)
+        }
+        if (m_tecnicas[i].substring(m_tecnicas[i].length - 1) == " ")
+        {
+            m_tecnicas[i] = m_tecnicas[i].substring(0, m_tecnicas[i].length - 1)
+        }
+        m_tecnicas[i] = m_tecnicas[i].toLowerCase();
+
+        if (tecnicas.indexOf(m_tecnicas[i]) < 0 && m_tecnicas[i] != "-" && m_tecnicas[i] != "_")
+        {
+            tecnicas.push(m_tecnicas[i]);
+        }
+    }
+}
+
+var tematicas = [];
+
+for (var pieza in piezas) 
+{
+    var m_tematicas = piezas[pieza].tematicas.split(", ");
+    
+    for (let i = 0; i < m_tematicas.length; ++i)
+    {
+        if (m_tematicas[i][0] == " ")
+        {
+            m_tematicas[i] = m_tematicas[i].substring(1, m_tematicas[i].length)
+        }
+        if (m_tematicas[i].substring(m_tematicas[i].length - 1) == " ")
+        {
+            m_tematicas[i] = m_tematicas[i].substring(0, m_tematicas[i].length - 1)
+        }
+        m_tematicas[i] = m_tematicas[i].toLowerCase();
+
+        if (tematicas.indexOf(m_tematicas[i]) < 0 && m_tematicas[i] != "-" && m_tematicas[i] != "_")
+        {
+            tematicas.push(m_tematicas[i]);
+        }
+    }
+}
+console.log("TECNICAS", tecnicas)
+console.log("tematicas", tematicas)
+
+%>
+
+<style>
+    .piezas-fondo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+</style>
+<div class="container pag-fondo">
+
+    <h3>BUSCAR</h3>
+    <select name="obj[anio]" class="select-search" id="select-anio">
+        <option value="">año</option>
+        <% 
+        for (var _anio in anios) 
+        {
+        %>
+        <option value="<%= anios[_anio] %>"><%= anios[_anio] %></option>
+        <%
+        }
+        %>
+    </select>
+    <select id="select-creador" name="obj[creador]" class="select-search">
+        <option value="">creador</option>
+        <% 
+        for (var creador in creadores) 
+        {
+        %>
+        <option value="<%= creadores[creador].id %>"><%= creadores[creador].nombre %></option>
+        <%
+        }
+        %>
+    </select>
+    <select id="select-tematica" name="obj[lugar]" class="select-search">
+        <option value="">temáticas</option>
+        <% 
+        for (var tematica in tematicas)
+        {
+        %>
+        <option value="<%= tematicas[tematica] %>"><%= tematicas[tematica] %></option>
+        <%
+        }
+        %>
+    </select>
+    <select id="select-tecnica" name="obj[lugar]" class="select-search">
+        <option value="">técnica textil</option>
+        <% 
+        for (var tecnica in tecnicas)
+        {
+        %>
+        <option value="<%= tecnicas[tecnica] %>"><%= tecnicas[tecnica] %></option>
+        <%
+        }
+        %>
+    </select>
+    <select id="select-lugar" name="obj[lugar]" class="select-search">
+        <option value="">lugar</option>
+        <% 
+        for (var lugar in lugares) 
+        {
+        %>
+        <option value="<%= lugares[lugar].id %>"><%= lugares[lugar].nombre %></option>
+        <%
+        }
+        %>
+    </select>
+    <select id="select-hecho" name="obj[lugar]" class="select-search">
+        <option value="">hecho del conflicto</option>
+        <% 
+        for (var hecho in modalidades) 
+        {
+        %>
+        <option value="<%= modalidades[hecho] %>"><%= modalidades[hecho] %></option>
+        <%
+        }
+        %>
+    </select>
+
+    <section class="top section-fondo piezas-fondo" id="results">
+        <% for(var i = 0; i < piezas.length; i++) { 
+        console.log("PIEZA", piezas[i])
+        %>
+
+        <div class="col col-12 col-md-6 col-lg-4 prev-pieza">
+            <div class="container-img">
+
+                <img src="<%=piezas[i]['imagen_path']%>" class="s3_img">
+
+                <div class="blue"></div>
+
+                <a href="#">
+                    <button class="btn white">
+                        Ver Pieza
+                    </button>
+                </a>
+
+            </div>
+            <p class="italic"> <%=piezas[i]['titulo']%>
+                (<%=piezas[i]['fecha']%>)
+            </p>
+            <ul style="display: none;">
+                <li><%=piezas[i]['fecha']%></li>
+                <% 
+                for (var creador in creadores) 
+                {
+                    
+                %>
+                    <%
+                    if (piezas[i]['fk_creador'] == creadores[creador]['id']) {
+                        var m_creador = creadores[creador]['id'];
+                    %>
+                    <li><%=m_creador%></li>
+                    <%
+                    }
+                    %>
+                <%
+                }
+                %>
+                <ul>
+                <% 
+                var m_tematicas = piezas[i].tematicas.split(", ");
+                for (let i = 0; i < m_tematicas.length; ++i)
+                {
+                    if (m_tematicas[i][0] == " ")
+                    {
+                        m_tematicas[i] = m_tematicas[i].substring(1, m_tematicas[i].length)
+                    }
+                    if (m_tematicas[i].substring(m_tematicas[i].length - 1) == " ")
+                    {
+                        m_tematicas[i] = m_tematicas[i].substring(0, m_tematicas[i].length - 1)
+                    }
+                    m_tematicas[i] = m_tematicas[i].toLowerCase();
+                }
+
+                for (var tematica in m_tematicas) 
+                {
+                %>
+                    <li><%=m_tematicas[tematica]%></li>
+                <%
+                }
+                %>
+                </ul>
+                <ul>
+                    <%
+                    var m_tecnicas = piezas[i].tecnicas.split(", ");
+                    for (let i = 0; i < m_tecnicas.length; ++i)
+                    {
+                        if (m_tecnicas[i][0] == " ")
+                        {
+                            m_tecnicas[i] = m_tecnicas[i].substring(1, m_tecnicas[i].length)
+                        }
+                        if (m_tecnicas[i].substring(m_tecnicas[i].length - 1) == " ")
+                        {
+                            m_tecnicas[i] = m_tecnicas[i].substring(0, m_tecnicas[i].length - 1)
+                        }
+                        m_tecnicas[i] = m_tecnicas[i].toLowerCase();
+                        
+                    }
+                    for (var tecnica in m_tecnicas) 
+                    {
+                    %>
+                        <li><%=m_tecnicas[tecnica]%></li>
+                    <%
+                    }
+                    %>
+                </ul>
+                <% 
+                for (var creador in creadores) 
+                {
+                    
+                %>
+                    <%
+                    if (piezas[i]['fk_creador'] == creadores[creador]['id']) {
+                        var m_creador = creadores[creador]['id'];
+                        for (var lugar in lugares) 
+                        {
+                            if (lugares[lugar]['id'] == m_creador) {
+                                m_lugar = lugares[lugar]['id'];
+                            
+                    %>
+                        <li><%=m_lugar%></li>
+                    <%
+                            }
+                        }
+                    }
+                    %>
+                <%
+                }
+                %>
+                <ul>
+                    <% 
+                    for (var hecho in hechos) 
+                    {
+                        if (hechos[hecho]['id'] == piezas[i]['fk_hecho']) {
+                            var m_modalidades = hechos[hecho].modalidad.split("; ");
+                        
+                            for (let i = 0; i < m_modalidades.length; ++i)
+                            {
+                                if (m_modalidades[i][0] == " ")
+                                {
+                                    
+                                    m_modalidades[i] = m_modalidades[i].substring(1, m_modalidades[i].length)
+                                }
+                                if (m_modalidades[i].substring(m_modalidades[i].length - 1) == " ")
+                                {
+                                    m_modalidades[i] = m_modalidades[i].substring(0, m_modalidades[i].length - 1)
+                                }
+                                m_modalidades[i] = m_modalidades[i].toLowerCase();
+                            }
+
+                            for (var modalidad in m_modalidades) 
+                            {
+                    %>
+                            <li><%=m_modalidades[modalidad]%></li>
+                    <%
+                            }
+                        }
+                    }
+                    %>
+                </ul>
+            </ul>
+        </div>
+        <% } %>
+    </section>
+
+</div>
+<script src="/scripts/s3ImageUrl.js"></script>
+
+<script>
+        setTimeout(function()
+        {
+            var piezas = document.getElementsByClassName("prev-pieza");
+        //var piezasClone = piezas.cloneNode(true);
+        var piezasList = [];
+        for (let i = 0; i < piezas.length; ++i)
+        {
+            var newResult = {};
+            newResult['pieza'] = piezas[i].cloneNode(true);
+            newResult['isInResults'] = false;
+            piezasList.push(newResult);
+            //piezasList.push(piezas[i].cloneNode(true));
+        }
+
+        var dropDowns = document.getElementsByClassName("select-search");
+        var docResults = document.getElementById("results");
+
+        for (let i = 0; i < dropDowns.length; ++i)
+        {
+            dropDowns[i].addEventListener('change', function ()
+            {
+                filter();
+            })
+        }
+
+        function filter ()
+        {
+            for (result in piezasList)
+            {
+                piezasList[result]['isInResults'] = false;
+                console.log(piezasList[result]['isInResults']);
+            }
+
+            var fecha = document.getElementById('select-anio').value;
+            var creador = document.getElementById('select-creador').value;
+            var tematica = document.getElementById('select-tematica').value;
+            var tecnica = document.getElementById('select-tecnica').value;
+            var lugar = document.getElementById('select-lugar').value;
+            var hecho = document.getElementById('select-hecho').value;
+
+            var conditionObj = {};
+            if (fecha != "")
+                conditionObj['fecha'] = false;
+            if (creador != "")
+                conditionObj['creador'] = false;
+            if (tematica != "")
+                conditionObj['tematica'] = false;
+            if (tecnica != "")
+                conditionObj['tecnica'] = false;
+            if (lugar != "")
+                conditionObj['lugar'] = false;
+            if (hecho != "")
+                conditionObj['hecho'] = false;
+
+            console.log("conditionObj", conditionObj);
+
+            results.innerHTML = "";
+            //console.log(tematica);
+            //console.log("LISTA", piezasList);
+            var bHasResult = false;
+            for (result in piezasList)
+            {
+                //console.log(result);
+                var attrList = piezasList[result]['pieza'].children[2];
+                
+                var m_fecha = attrList.children[0].innerText;
+                var m_creador = attrList.children[1].innerText;
+                var m_tematicas = [];
+                
+                for (var _tematica in attrList.children[2].children)
+                {
+                    
+                    if (!isNaN(_tematica))
+                    {
+                        m_tematicas.push(attrList.children[2].children[_tematica].innerText);
+                    }
+                }
+
+                var m_tecnicas = [];
+                for (var _tecnica in attrList.children[3].children)
+                {
+                    
+                    if (!isNaN(_tecnica))
+                    {
+                        m_tecnicas.push(attrList.children[3].children[_tecnica].innerText);
+                    }
+                }
+
+                var m_lugar = attrList.children[4].innerText;
+
+                var m_hechos = [];
+                for (var _hecho in attrList.children[5].children)
+                {
+                    
+                    if (!isNaN(_hecho))
+                    {
+                        m_hechos.push(attrList.children[5].children[_hecho].innerText);
+                    }
+                }
+                
+                //if (fecha != "" && m_fecha == fecha)
+                // if (m_fecha == fecha)
+                // {
+                //     var attrList = piezasList[result]['isInResults'] = true;
+                //     bHasResult = true;
+                // }
+                // if (m_creador == creador)
+                // {
+                //     var attrList = piezasList[result]['isInResults'] = true;
+                //     bHasResult = true;
+                // }
+                // console.log(m_tematicas, tematica);
+
+                // for (_tematica in m_tematicas)
+                // {
+                //     if (m_tematicas[_tematica] == tematica)
+                //     {
+                //         var attrList = piezasList[result]['isInResults'] = true;
+                //         bHasResult = true;
+                //     }
+                // }
+
+                // for (_tecnica in m_tecnicas)
+                // {
+                //     if (m_tecnicas[_tematica] == tematica)
+                //     {
+                //         var attrList = piezasList[result]['isInResults'] = true;
+                //         bHasResult = true;
+                //     }
+                // }
+                // var _isResult = true;
+                // for (condition in conditionArr)
+                // {
+                    
+                // }
+                
+                    // FECHA
+                if (conditionObj['fecha'] != undefined)
+                {
+                    if (m_fecha == fecha)
+                    {
+                        conditionObj['fecha'] = true;
+                    }
+                }
+
+                if (conditionObj['creador'] != undefined)
+                {
+                   if (m_creador == creador)
+                    {
+                        conditionObj['creador'] = true;
+                    }
+                }
+
+                if (conditionObj['tematica'] != undefined)
+                {
+                   for (_tematica in m_tematicas)
+                    {
+                        if (m_tematicas[_tematica] == tematica)
+                        {
+                            conditionObj['tematica'] = true
+                        }
+                    }
+                }
+
+                if (conditionObj['tecnica'] != undefined)
+                {
+                   for (_tecnica in m_tecnicas)
+                    {
+                        if (m_tecnicas[_tecnica] == tecnica)
+                        {
+                            conditionObj['tecnica'] = true;
+                        }
+                    }
+                }
+
+                if (conditionObj['lugar'] != undefined)
+                {
+                    if (m_lugar == lugar)
+                    {
+                        conditionObj['lugar'] = true;
+                    }
+                }
+
+                if (conditionObj['hecho'] != undefined)
+                {
+                    for (_hecho in m_hechos)
+                    {
+                        if (m_hechos[_hecho] == hecho)
+                        {
+                            conditionObj['hecho'] = true;
+                        }
+                    }
+                }
+
+                console.log("processed", conditionObj)
+                var aprovedAll = true;
+                for (cnd in conditionObj)
+                {
+                    if (!conditionObj[cnd])
+                        aprovedAll = false;
+                }
+
+                if (aprovedAll)
+                {
+                    bHasResult = true;
+                    piezasList[result]['isInResults'] = true;
+                }
+
+                for (cnd in conditionObj)
+                {
+                    conditionObj[cnd] = false;
+                }
+            }
+
+            // EVALUATE CONDITIONS
+
+            for (result in piezasList)
+            {
+                if (bHasResult)
+                {
+                    if (piezasList[result]['isInResults'])
+                        results.appendChild(piezasList[result]['pieza']);
+                }
+                else if (Object.keys(conditionObj).length == 0)
+                {
+                    results.appendChild(piezasList[result]['pieza']);
+                }
+                else
+                {
+                    console.log("NO result")
+                    //results.appendChild(piezasList[result]['pieza']);
+                }
+            }
+                
+            //console.log(fecha, creador, tematica, tecnica, lugar, hecho);
+            restart()
+        }
+        
+        //console.log(piezas);
+        }, 2000);
+        
+</script>
+
+
+<%- include('./partials/footer') -%> 

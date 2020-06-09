@@ -1,0 +1,85 @@
+<%- include('../../partials/header') -%>
+<link rel="stylesheet" href="/stylesheets/admin.css">
+<main>
+    <div class="admin-cards">
+
+        <h3>Lugares</h3>
+        <table>
+            <% 
+            var lugares = data.data['lugares'];
+            for (var i = 0; i < lugares.length; ++i) {
+            %>
+            <tr>
+                <td style="padding: 0px 15px 0 30">
+                    <p><%=lugares[i]['id']%></ap>
+                </td>
+                <td>
+                    <p><%=lugares[i]['nombre'].substring(0, 40)%></ap>
+                </td>
+                <td>
+                    <form method="get" action="/admin/lugares/edit/<%=lugares[i]['id']%>">
+                        <button style="color: blue; border-color: blue;" type="submit">editar</button>
+                    </form>
+                <td>
+                    <form method="post" action="/admin/lugares/delete/<%=lugares[i]['id']%>?_method=DELETE">
+                        <button style="color: red; border-color: red;" type="submit">eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            <%
+            }
+            %>
+        </table>
+    </div>
+
+    <div class="form-class">
+        <form action="/admin/lugares/new" method="POST">
+            <h3>Nuevo Lugar</h3>
+            <table>
+                <tr>
+                    <td><label for="pass">nombre</label></td>
+                    <td><input type="text" name="obj[nombre]" class="text-input" required></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">país</label></td>
+                    <td><input type="text" name="obj[pais]" class="text-input"></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">departamento</label></td>
+                    <td><input type="text" name="obj[departamento]" class="text-input"></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">localidad</label></td>
+                    <td><input type="text" name="obj[localidad]" class="text-input"></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">dirección</label></td>
+                    <td><input type="text" name="obj[direccion]" class="text-input"></td>
+                </tr>
+                </tr>
+                <tr>
+                    <td><label for="pass">latitud</label></td>
+                    <td><input type="number" name="obj[lat]" class="text-input" step="0.000001"></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">longitud</label></td>
+                    <td><input type="number" name="obj[longf]" class="text-input" step="0.000001"></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">tipo</label></td>
+                    <td>
+                        <select id="tipo" name="obj[tipo]">
+                            <option value="0">privado</option>
+                            <option value="1">publico</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+
+
+            <br>
+            <button type="submit">Crear</button>
+        </form>
+    </div>
+
+</main>

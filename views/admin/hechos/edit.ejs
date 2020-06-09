@@ -1,0 +1,115 @@
+<%- include('../../partials/header') -%>
+<link rel="stylesheet" href="/stylesheets/admin.css">
+<% 
+hecho = data['hechos'][0];
+var tipos = ['violento', 'resistencia', 'sobrevivencia']
+ %>
+<div class="form-class">
+    <form action="/admin/hechos/edit/<%=hecho['id']%>?_method=PUT" method="post">
+        <h3>Editar Hecho</h3>
+        <table>
+            <tr>
+                <td><label for="pass">tipo (actual: <%=tipos[hecho['tipo']]%>)</label></p></td>
+                <td>
+                    <select id="tipo" name="obj[tipo]" required>
+                        <option value="0">violento</option>
+                        <option value="1">resistencia</option>
+                        <option value="2">sobrevivencia</option>
+                    </select>
+                </td>
+                <tr>
+                    <td><label for="pass">actores</label></td>
+                    <td><input type="text" name="obj[actores]" class="text-input" value="<%=hecho['actores']%>"></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">modalidad (;)</label></td>
+                    <td>
+                        <input type="text" name="obj[modalidad]" class="text-input" value="<%=hecho['modalidad']%>" required id="input-modalidades"> <br>
+                        <select id="drop-modalidades" class="mt-4">
+                            <option style="display: none;">Añadir modalidades</option>
+                        </select>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><label for="pass">acciones de <br> resistencia y sobrevivencia (;)</label></td>
+                    <td>
+                        <input type="text" name="obj[acciones_resistencia_sobrevivencia]" class="text-input" value="<%=hecho['acciones_resistencia_sobrevivencia']%>" id="input-acciones"> <br>
+                        <select id="drop-acciones" class="mt-4">
+                            <option style="display: none;">Añadir acciones</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="pass">relato</label></td>
+                    <td><textarea name="obj[relato]" id="" cols="33" rows="5" ><%=hecho['relato']%></textarea></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">fecha</label></td>
+                    <td><input type="text" name="obj[fecha]" class="text-input" value="<%=hecho['fecha']%>"></td>
+                </tr>
+                <tr>
+                    
+                    <td><label for="pass">lugar id</label><a href="/admin/lugares" target="_blank"> (Ver Lugares)</a></td>
+                    <td><input type="number" name="obj[fk_lugar]" class="text-input" value="<%=hecho['fk_lugar']%>" required></td>
+                </tr>
+            </tr>
+        </table>
+
+
+        <br>
+        <button type="submit">editar</button>
+        <br>
+        <a href="/admin/hechos">
+            Cancelar
+        </a>
+    </form>
+</div>
+
+<script>
+    var acciones = 
+    ['marchas', 'plantones', 'rituales colectivos', 'conmemoraciones', 'altares', 'asambleas comunitarias', 'tomas y festivales culturales'];
+    
+    var modalidades = 
+    ['desplazamiento forzado', 'asesinato selectivo', 'desaparición forzada', 'secuestro', 'masacre', 'acciones bélicas', 'ataques a bienes civiles', 'sevicia y tortura', 'despojo y extorsiones', 'reclutamiento ilícito', 'atentados terroristas', 'amenazas', 'minas antipersonal (MAP)', 'artefactos explosivos (AEI)', 'municiones sin explosionar (MUSE)', 'bloqueos', 'confinamiento', 'violencia sexual'];
+    var docAcciones = document.getElementById("drop-acciones");
+    var docModalidades = document.getElementById("drop-modalidades");
+
+    for (let i = 0; i < acciones.length; ++i)
+    {
+        var option = document.createElement("option");
+        option.text = acciones[i];
+        docAcciones.add(option);
+    }
+
+    for (let i = 0; i < modalidades.length; ++i)
+    {
+        var option = document.createElement("option");
+        option.text = modalidades[i];
+        docModalidades.add(option);
+    }
+
+    docAcciones.addEventListener('change', function()
+    {
+        AddToInput('input-acciones', docAcciones);
+    })
+
+    docModalidades.addEventListener('change', function()
+    {
+        AddToInput('input-modalidades', docModalidades);
+    })
+    
+    function AddToInput(inputId, drop)
+    {
+        var docInput = document.getElementById(inputId);
+
+        var docInputValue = docInput.value.toString();
+
+        console.log(docInputValue.substr(-2));
+        if (docInputValue.substr(-2) == "; " || docInputValue.length == 0 || docInputValue.substr(-1) == "; ")
+            docInput.value += " " + drop.value + "; ";
+        else 
+            docInput.value += "; " + drop.value + "; ";
+    }
+    
+</script>

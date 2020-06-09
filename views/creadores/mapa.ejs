@@ -1,0 +1,126 @@
+<%- include('../partials/header') -%> 
+
+<section class="home-section preview-fondos container top pagina-mapa">
+    
+    <div class="fondo row align-items-center btm justify-content-center"> 
+        <!--mapa-->
+        <div class="col col-12 col-lg-5 col-sm-6">
+            <div id="canvasp5" >
+                <!--canvas del mapa -->
+            </div>
+            <button class="btn blue boton-zoom" id="btn-zoom-out"> <b>- </b>   Alejar  </button>
+            <button class="btn blue boton-zoom" id="btn-zoom-in"> <b>+ </b>  Acercar  </button>
+            
+        </div>
+
+        <% 
+        var creadores = data.data[data.data['main']];
+        for (var i = 0; i < creadores.length; ++i) 
+        {
+        if (creadores[i]['dep'] != undefined)
+            dep = creadores[i]['dep']
+            lugar = dep['lugar'][0]
+        %>
+        <div class="text col col-12 col-lg-5 btm creador mt-5">
+            
+            <div class="img">
+                <%
+                if (creadores[i]['img_azul_path'].toString().indexOf("/") != -1)
+                {
+                %>
+                    <img src="<%=creadores[i]['img_azul_path']%>" alt="" class="s3_img"> 
+                <%
+                } 
+                else 
+                {
+                %>
+                    <img src="/img/azul_mampujan.jpg" alt="" class=""> 
+                <%
+                }
+                %>
+            </div>
+            <%  
+            if (creadores[i]['dep'] != undefined) 
+            { 
+            %>
+
+            <div>
+                <h3 class="lugar">
+                        <%=lugar['localidad']%>,
+                        <%=lugar['departamento']%>
+                </h3> 
+                <ul class="latlong" style="display: none;">
+                    <li><%=lugar['lat']%></li>
+                    <li><%=lugar['longf']%></li>
+                    <li><%=lugar['id']%></li>
+                </ul>
+                <%
+                }
+                %>
+            
+                <h2><%=creadores[i]['nombre']%></h2>
+                <p>
+                    <%
+                        var txt = creadores[i]['caracterizacion'].substring(0, 230) + "L";
+                        txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
+                        %>
+                        <%=txt%>
+                </p>
+                <a href="/creadores/<%=creadores[i]['id']%>">
+                    <button class ="btn blue">Conocer más</button>
+                </a>
+            </div>
+            
+        </div>
+        <%
+        }
+        %>
+        <div class="col col-12 col-lg-5 col-sm-12 offset-lg-1" id="intro-mapa">
+            <h2> Biografías Textiles</h2>
+            <p>
+                En Colombia hemos identificado cerca de 42 iniciativas que configuran una red de tejedoras por la memoria y la vida que se entrelaza en los departamentos de Antioquia, Bolívar, Cauca, Cundinamarca, Chocó, Putumayo, Nariño y Valle del Cauca. 
+                Hasta el momento hacen parte de este archivo digital de textiles testimoniales 12 de ellas para su consulta. 
+            </p>
+        </div>
+    </div>
+
+</section>
+<script>
+    var docLatLong = document.getElementsByClassName("latlong");
+    var docCreadores = document.getElementsByClassName("creador");
+
+    for (let i = 0; i < docCreadores.length; ++i)
+    {
+        docCreadores[i].classList.add("d-none");
+    }
+
+    var latLongArr = [];
+    
+    for (_latLong in docLatLong)
+        if (docLatLong[_latLong].children)
+        {
+            var lat = docLatLong[_latLong].children[0].innerText;
+            var long = docLatLong[_latLong].children[1].innerText;
+            var id = docLatLong[_latLong].children[2].innerText;
+            var ltobj = {lat, long, id}
+
+            var hasCoord = false;
+           
+            for (let i = 0; i < latLongArr.length; ++i)
+            {
+                if (latLongArr[i]['lat'] == ltobj['lat'] && latLongArr[i]['long'] == ltobj['long'])
+                    hasCoord = true;
+            }
+
+            if (!hasCoord)
+                latLongArr.push({lat, long, id})
+        }
+    
+</script>
+
+<script src="/scripts/mapa/coordUtils.js"></script>
+<script src="/scripts/mapa/wayPoint.js"></script>
+<script src="/scripts/mapa/mainp5.js"></script>
+<script src="/scripts/s3ImageUrl.js"></script>
+
+<%- include('../partials/footer') -%> 

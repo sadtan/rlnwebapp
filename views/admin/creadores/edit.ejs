@@ -1,0 +1,160 @@
+<%- include('../../partials/header') -%>
+<link rel="stylesheet" href="/stylesheets/admin.css">
+<script src="/scripts/ejs.js"></script>
+<% 
+creador = data['creadores'][0];
+var tipos = ['público', 'privado', 'mixto']
+ %>
+<div class="form-class">
+    <form action="/admin/creadores/edit/<%=creador['id']%>?_method=PUT" method="post">
+        <h3>Editar creador</h3>
+        <table>
+            <tr>
+                <td><label for="pass">nombre</label></td>
+                <td><input type="text" name="obj[nombre]" class="text-input" required value="<%=creador['nombre']%>">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pass">imagen (s3 key)</label></td>
+                <td><input type="text" name="obj[imagen_path]" class="text-input" value="<%=creador['imagen_path']%>">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pass">descripción <br> imagen</label></td>
+                <td>
+                    <input type="text" name="obj[imagen_descripcion]" class="text-input"
+                        value="<%=creador['imagen_descripcion']%>">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pass">tipo (actual: <%=tipos[creador['tipo']]%>)</label></td>
+                <td>
+                    <select id="tipo" name="obj[tipo]">
+                        <option value="0">público</option>
+                        <option value="1">privado</option>
+                        <option value="2">mixto</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pass">reseña</label></td>
+                <td><textarea name="obj[resena]" cols="33" rows="5"><%=creador['resena']%></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="pass">sociopolítico</label></td>
+                <td><textarea name="obj[sociopolitico]" ols="33"
+                        rows="7"><%=creador['sociopolitico']%></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="pass">caracterización</label></td>
+                <td><textarea name="obj[caracterizacion]" cols="33"
+                        rows="7"><%=creador['caracterizacion']%></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="pass">documentos</label></td>
+                <td>
+                    <button id="myBtn" style="width: 100%;"> modificar doumentos </button>
+                    <input id="json-input" type="text" name="obj[documentos_json]" class="text-input"
+                        value="<%=creador['documentos_json']%>">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pass">resp nombre</label></td>
+                <td>
+                    <input type="text" name="obj[responsable_nombre]" class="text-input"
+                        value="<%=creador['responsable_nombre']%>">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pass">resp celular</label></td>
+                <td>
+                    <input type="text" name="obj[responsable_celular]" class="text-input"
+                        value="<%=creador['responsable_celular']%>">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pass">resp correo</label></td>
+                <td>
+                    <input type="text" name="obj[responsable_correo]" class="text-input"
+                        value="<%=creador['responsable_correo']%>">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pass">ilustración 1 (s3 key)</label></td>
+                <td>
+                    <input type="text" name="obj[il_1_path]" class="text-input" value="<%=creador['il_1_path']%>">
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="pass">ilustración 1 descripción</label></td>
+                <td>
+                    <input type="text" name="obj[il_1_desc]" class="text-input" value="<%=creador['il_1_desc']%>">
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="pass">ilustración 2 (s3 key)</label></td>
+                <td>
+                    <input type="text" name="obj[il_2_path]" class="text-input" value="<%=creador['il_2_path']%>">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pass">ilustración 2 descripción</label></td>
+                <td>
+                    <input type="text" name="obj[il_2_desc]" class="text-input" value="<%=creador['il_2_desc']%>">
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="pass">imagen linea (s3 key)</label></td>
+                <td>
+                    <input type="text" name="obj[img_linea_path]" class="text-input" value="<%=creador['img_linea_path']%>">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pass">imagen azul (s3 key)</label></td>
+                <td>
+                    <input type="text" name="obj[img_azul_path]" class="text-input" value="<%=creador['img_azul_path']%>">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pass">lugar id</label><a href="/admin/lugares" target="_blank"> (Ver Lugares)</a></td>
+                <td><input type="number" name="obj[fk_lugar]" class="text-input" required
+                        value="<%=creador['fk_lugar']%>"></td>
+            </tr>
+        </table>
+
+
+        <br>
+        <button type="submit">editar</button>
+        <br>
+        <a href="/admin/creadores">
+            Cancelar
+        </a>
+    </form>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+
+            <span class="close">&times;</span>
+            <div class="scroll">
+            <table id="myTable" style="width: 100%;">
+            </table>
+            </div>
+            <button id="myBtnAdd" style="margin-left: 20px;">+</button>
+            <button id="myBtnAcc" style="margin-left: 20px;">Aceptar</button>
+        </div>
+
+    </div>
+
+    <script src="/scripts/jsonParser.js" type="text/javascript"></script>
+    <script> 
+        //parseJsonObj("myTable", "json-input", "myModal", "myBtn", "myBtnAdd", "myBtnAcc", "close");
+        var documentParser = new JsonParser("myTable", "json-input", "myModal", "myBtn", "myBtnAdd", "myBtnAcc", "close", {'name':'', 'url': ''});
+        documentParser.WorkParser();
+    </script>
+</div>

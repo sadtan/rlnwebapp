@@ -1,0 +1,301 @@
+<%- include('../partials/header') -%>
+
+<div class="container pag-pieza">
+  <% 
+  pieza = data.data['piezas'][0];
+  creador = pieza['dep']['creador'][0]
+  descriptores = pieza['descriptores'].split(", ");
+  hecho = pieza['dep']['hecho'][0]
+
+  //console.log('-------PIEZA------');
+  //console.log(pieza);
+  %>
+
+  <!-- Imagen del fondo -->
+  <section class="section-fondo img-fondo top">
+    <% 
+    //if (creadores[i]['img_linea_path'] != "" || creadores[i]['img_linea_path'] != "_")
+    if (pieza['imagen_path'].toString().indexOf("/") != -1)
+    {
+    %>
+      <img class="s3_img" src="<%=pieza['imagen_path']%>">
+      <p class='italic margin-1'>
+        <%=pieza['imagen_descripcion']%>
+      </p>
+    <%
+    } 
+    else 
+    {
+    %>
+      <img src="">
+    <%
+    }
+    %>
+  </section>
+
+  <!-- Titulo y datos básicos -->
+  <section class="half-top section-fondo intro-pieza">
+    <h2>
+      <%=pieza['titulo']%>  
+      (<%=pieza['fecha']%>)
+    </h2>
+    <p class="italic"> 
+      <%=creador['nombre']%>  
+    </p> 
+
+    <ul class="datos-basicos">
+      <li><b> Autoras: </b> <%=pieza['autores']%></li>
+      <li><b> Lugar: </b> <%=creador['localidad']%>, <%=creador['departamento']%> - <%=creador['pais']%></li>
+      <li><b> Temáticas: </b> <%=pieza['tematicas']%></li>
+      <li><b> Técnicas: </b> <%=pieza['tecnicas']%></li>
+      <li><b> Materiales: </b><%=pieza['materiales']%></li>
+      <li><b> Dimensiones: </b> 
+        <%=pieza['ancho']%> x
+        <%=pieza['alto']%> x
+        <%=pieza['espesor']%>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section-fondo top">
+    <div class="row ">
+      <div class="col col-12 col-md-6 detalle-piezas" >
+        <div class="row sticky-top ">
+            <% for(var i = 0; i < descriptores.length; i++) { %>
+              <%if (pieza['galeria'][i]) {  %>
+                
+            <div class="col col-6 detalle detalle-modal">
+              <a>
+                  
+                  <% 
+                  if (pieza['galeria'][i].toString().indexOf("/") != -1)
+                  {
+                  %>
+                  <img class="s3_img" src="<%=pieza['galeria'][i]%>">
+                  <%
+                  if (pieza['imagenes_descripcion_json'].toString().indexOf("'") != -1) {
+                    var descripciones = JSON.parse(pieza['imagenes_descripcion_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
+                    for (let j = 0; j < descripciones.length; ++j)
+                    {
+                      var descripcion = descripciones[j];
+                      
+                      if (pieza['galeria'][i].toString().includes(descripcion.s3key)) {
+                    %>
+
+                    <p class='info italic container'>
+                      <%=descripcion.desc.replace(/&quot;/g, '\"')%>
+                    </p>
+                  <%
+                  }
+                  }
+                  }
+                  } 
+                  else 
+                  {
+                  %>
+                    <img src="">
+                  <%
+                  }
+                  %>
+                
+                <div class="blue"></div>
+              </a>
+            </div>
+            <% } %>
+            <% } %>
+            <ul class="descriptores lista btm">
+              <% for(var i = 0; i < descriptores.length; i++) { %>
+                <li class="descriptor-li"> <%=descriptores[i]%> </li>
+              <% } %>
+            </ul>
+            <form action="/buscar" method="POST" id="descriptor-form" style="display: none;">
+              <input type="text" name="descriptor" id="descriptor-field">
+            </form>
+        </div>
+      </div>
+      <script>
+        var docDescList = document.getElementsByClassName("descriptor-li");
+        var descForm = document.getElementById("descriptor-form");
+        var descInput = document.getElementById("descriptor-field");
+
+        var descList = [];
+
+        for (let i = 0; i < docDescList.length; ++i)
+        {
+          docDescList[i].addEventListener("click", function()
+          {
+            descInput.value = docDescList[i].innerText.toLowerCase();
+            descForm.submit();
+          })
+        }
+      </script>
+
+      <div class="col-12 col-md-6 acordeon" id="accordion">
+
+          <!-- relato pieza -->
+          <div class ="sec-pieza">
+            <div class="boton" id="headingOne">
+              <h2 data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  Cómo se hizo la pieza
+              </h2>
+            </div>
+        
+            <div id="collapseOne" class="contenido collapse" aria-labelledby="headingOne" data-parent="#accordion">
+              <% 
+                if (pieza['audio_path'].toString().indexOf("/") != -1) {
+              %>
+              <i src="<%=pieza['audio_path']%>" type="audio/mpeg" class="s3_audio"></i>
+
+              <div class="escuchar">
+                <button class ="btn blue" id="playAudio"> </button>
+                <h2 id="txt-escuchar"> Escuchar relato </h2>
+                <div class="reproductor" id="reproductor" style="display:none;">
+                  <div class="slider">
+                      <div class="total"></div>
+                      <div class="current"></div>
+                      <div class="select" id="time-select"></div>
+                  </div>
+                  <p class="time">
+                      0:00/0:00
+                  </p>
+              </div>
+              </div>
+              
+
+              <!-- audio del relato de la pieza-->
+              <audio id="audio"> 
+              </audio>
+              <% 
+                }
+              %>
+              <p>
+                <%=pieza['relato_pieza']%>
+              </p>
+            </div>
+          </div>
+
+          <!-- relato hecho -->
+          <div class ="sec-pieza">
+            <div class="boton" id="headingTwo">
+                <h2 data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Qué nos cuenta la pieza
+                </h2>
+            </div>
+        
+            <div id="collapseTwo" class="contenido collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <ul class="hecho">
+                  <li><b> Año: </b> <%=hecho['fecha']%></li>
+                  <li><b> Modalidad: </b> <%=hecho['modalidad']%></li>
+                  <li><b> Actores: </b> <%=hecho['actores']%></li>
+                </ul>
+                <p>
+                  <%=pieza['hecho_relato']%>
+                </p>
+            </div>
+          </div>
+
+          <!-- Trayectoria -->
+          <div class ="sec-pieza">
+            <div class="boton" id="headingThree">
+              <h2 data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">
+                  Trayectoría
+              </h2>
+            </div>
+        
+            <div id="collapseThree" class="contenido collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <p><%=pieza['usos']%> </p>
+            </div>
+          </div>
+
+          <!-- Conservación -->
+          <div class ="sec-pieza">
+            <div class="boton" id="headingFour">
+              <h2 data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  Conservación
+              </h2>
+            </div>
+        
+            <div id="collapseFour" class="contenido collapse" aria-labelledby="headingFour" data-parent="#accordion">
+              <p>
+                <%=pieza['conservacion']%>
+              </p>
+            </div>
+          </div>
+
+          <!-- Eventos -->
+          <div class ="sec-pieza">
+            <div class="boton" id="headingFive">
+              <h2 data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                  Eventos
+              </h2>
+            </div>
+        
+            <div id="collapseFive" class="contenido collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                <ul class="hecho evento">
+                  <%
+                  if (pieza['eventos_json'] != "" && pieza['eventos_json'] != "-" && pieza['eventos_json'] != "_")
+                  {
+                  var eventos = JSON.parse(pieza['eventos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
+                  for (let i = 0; i < eventos.length; ++i)
+                  {
+                    var evento = eventos[i]
+                  %>
+                  <li> 
+                    <p> <b> <%=evento['name']%></b>, <%=evento['place']%>, <%=evento['date']%> </p>
+                  </li>
+                  <% }
+                 } %>
+                </ul>
+            </div>
+          </div>
+
+          <!-- Eventos -->
+          <div class ="sec-pieza">
+            <div class="boton" id="headingSix">
+              <h2 data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                  Documentos
+              </h2>
+            </div>
+        
+            <div id="collapseSix" class="contenido collapse" aria-labelledby="headingSix" data-parent="#accordion">
+                <ul class="hecho documento">
+                  <%
+                  if (pieza['documentos_json'] != "" && pieza['documentos_json'] != "-" && pieza['documentos_json'] != "_")
+                  {
+                  var documentos = JSON.parse(pieza['documentos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
+                  for (let i = 0; i < documentos.length; ++i)
+                  {
+                    var documento = documentos[i]
+                  %>
+                  <li> 
+                   <p>
+                     <a target="_blank" href="<%=documento['url']%>"> <%=documento['name']%></a> </p> 
+                  </li>
+                  <% }
+                 } %>
+                </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+    
+  </section>
+
+  <div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content"></div>   
+    <div class="modal-close">Cerrar</div>   
+  </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+
+<script src="/scripts/s3ImageUrl.js"></script>
+<script src="/scripts/modal.js"></script>
+<script src="/scripts/audio.js"></script>
+<%- include('../partials/footer') -%>

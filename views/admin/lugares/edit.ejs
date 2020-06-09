@@ -1,0 +1,60 @@
+<%- include('../../partials/header') -%>
+<link rel="stylesheet" href="/stylesheets/admin.css">
+<% 
+lugar = data['lugares'][0];
+ %>
+<div class="form-class">
+    
+    <form action="/admin/lugares/edit/<%=lugar['id']%>?_method=PUT" method="post">
+        <h3>Editar Lugar: <%= lugar['nombre'] %></h3>
+        <table>
+            <tr>
+                <td><label for="pass">nombre</label></td>
+                <td><input type="text" name="obj[nombre]" class="text-input" value="<%= lugar['nombre'] %>"></td>
+            </tr>
+            <tr>
+                <td><label for="pass">país</label></td>
+                <td><input type="text" name="obj[pais]" class="text-input" value="<%= lugar['pais'] %>"></td>
+            </tr>
+            <tr>
+                <td><label for="pass">departamento</label></td>
+                <td><input type="text" name="obj[departamento]" class="text-input" value="<%= lugar['departamento'] %>"></td>
+            </tr>
+            <tr>
+                <td><label for="pass">localidad</label></td>
+                <td><input type="text" name="obj[localidad]" class="text-input" value="<%= lugar['localidad'] %>"></td>
+            </tr>
+            <tr>
+                <td><label for="pass">dirección</label></td>
+                <td><input type="text" name="obj[direccion]" class="text-input" value="<%= lugar['direccion'] %>"></td>
+            </tr>
+            </tr>
+            <tr>
+                <td><label for="pass">latitud</label></td>
+                <td><input type="number" name="obj[lat]" class="text-input" step="0.000001" value="<%= lugar['lat'] %>"></td>
+            </tr>
+            <tr>
+                <td><label for="pass">longitud</label></td>
+                <td><input type="number" name="obj[longf]" class="text-input" step="0.000001" value="<%= lugar['longf'] %>"></td>
+            </tr>
+            <tr>
+                <td><label for="pass">tipo</label></td>
+                <td>
+                    <p>actual: <%= (lugar['tipo'] == 0) ? "privado" : "publico" %></p>
+                    <select id="tipo" name="obj[tipo]" value="">
+                        <option value="0">privado</option>
+                        <option value="1">publico</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+
+        <br>
+        <button type="submit">editar</button>
+        <br>
+        <a href="/admin/lugares">
+            Cancelar
+        </a>
+    </form>
+</div>

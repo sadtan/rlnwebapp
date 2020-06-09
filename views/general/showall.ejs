@@ -1,0 +1,35 @@
+<%- include('../partials/header') -%> 
+
+<% var fondos = data.data[data.data['main']] %>
+<% for (var i = 0; i < fondos.length; ++i) { %>
+  <div class="form-container">
+  <% for (field in fondos[i]) {%>
+    <% fieldVal = fondos[i][field]
+    if (field != 'dep') { %>
+      <strong><%=field%>: </strong><%= fieldVal %>
+      <br>
+    <% } else {  %> 
+      <%
+      dep = fondos[i][field]
+      for (let depField in dep) {
+      %>
+      <strong><%=depField%>: </strong>
+      <ul>
+        <%
+        for (depProp in dep[depField][0]) {%>
+          <li>
+            <strong> <%= depProp %>: </strong><%= dep[depField][0][depProp] %>
+          </li>
+        <%
+        } %>
+      </ul>
+      <%
+      } %>
+    <% } %>
+          
+  <% } %>
+  </div>
+  <hr>
+<% } %>
+
+<%- include('../partials/footer') -%>
