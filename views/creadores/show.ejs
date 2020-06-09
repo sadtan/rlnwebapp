@@ -105,7 +105,7 @@
         if (fondo['il_1_path'].toString().indexOf("/") != -1)
         {
         %>
-        <img class="mx-auto s3_img pad" src="<%=fondo['il_1_path']%>">
+        <img class="mx-auto s3_img pad img-sociopolitico" src="<%=fondo['il_1_path']%>">
 
         <% 
         if (fondo['il_1_desc'] && fondo['il_1_desc'].toString() != "-" && fondo['il_1_desc'].toString() != "_")
@@ -140,12 +140,16 @@
 
   <!-- Caracterización colectivo -->
   <section class="top section-fondo caracterizacion-fondo">
+
+    <h2>
+      Caracterización del colectivo
+    </h2>  
     
     <% 
         if (fondo['il_2_path'].toString().indexOf("/") != -1)
         {
         %>
-        <img class="mx-auto s3_img pad" src="<%=fondo['il_2_path']%>">
+        <img class="s3_img pad img-caracterizacion" src="<%=fondo['il_2_path']%>">
 
         <% 
         if (fondo['il_2_desc'] && fondo['il_2_desc'].toString() != "-" && fondo['il_2_desc'].toString() != "_")
@@ -165,9 +169,7 @@
             }
         %>
 
-    <h2>
-      Caracterización del colectivo
-    </h2>  
+    
 
     <p class="dos-col">
       <%=fondo['caracterizacion']%>  

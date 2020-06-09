@@ -145,7 +145,23 @@
                 if (pieza['audio_path'].toString().indexOf("/") != -1) {
               %>
               <i src="<%=pieza['audio_path']%>" type="audio/mpeg" class="s3_audio"></i>
-              <button class ="btn blue" id="playAudio">Escuchar relato</button>
+
+              <div class="escuchar">
+                <button class ="btn blue" id="playAudio"> </button>
+                <h2 id="txt-escuchar"> Escuchar relato </h2>
+                <div class="reproductor" id="reproductor" style="display:none;">
+                  <div class="slider">
+                      <div class="total"></div>
+                      <div class="current"></div>
+                      <div class="select" id="time-select"></div>
+                  </div>
+                  <p class="time">
+                      0:00/0:00
+                  </p>
+              </div>
+              </div>
+              
+
               <!-- audio del relato de la pieza-->
               <audio id="audio"> 
               </audio>

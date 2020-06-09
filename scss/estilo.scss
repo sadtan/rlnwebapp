@@ -586,8 +586,11 @@ footer {
 
     .pad {
         @media #{$medium-and-up} { 
-            padding: 50px;
-            max-width: 500px;
+            max-width: 400px;
+        }
+
+        &.img-caracterizacion {
+            max-width: 350px;
         }
     }
 
@@ -596,6 +599,7 @@ footer {
     }
 
     img {
+    display: flex;
     max-width: 100%;
     height: auto;
 
@@ -762,7 +766,7 @@ margin-top: 1em;
  
         img {
         width: 100%;
-        max-width: 800px;
+        max-width: 600px;
         object-fit: contain;
     }
 }
@@ -780,6 +784,10 @@ margin-top: 1em;
         @media #{$large-and-down} { 
             margin-top: 15px;
         }
+    }
+
+    .universidades {
+        margin-top: 12vh;
     }
 }
 
@@ -937,8 +945,25 @@ margin-top: 1em;
         }
     }
 
+    .escuchar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 2em;
+
+        h2 {
+            margin: 0;
+            font-weight: 400;
+            font-size: 24px;
+            color: $azul;
+        }
+    }
     #playAudio {
-        padding-left: 50px;
+        height: 50px;
+        width: 50px;
+        margin-right: 20px;
+        margin-top: 0;
+        
         position: relative;
 
         &.playing {
@@ -950,18 +975,76 @@ margin-top: 1em;
             visibility: visible;
             position: absolute;
             top: 50%;
-            left: 20px;
+            left: 50%;
             height: 15px;
             width: 15px;
             background-image: url('/img/icons/play.svg');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            transform: translate(0, -50%);
+            transform: translate(-50%, -50%);
             content: " ";
         }   
 
     }
+
+    .reproductor {
+        width: 70%;
+        text-align: center;
+        display: flex;
+        align-items: center;
+
+        .time {
+            color: $gris;
+            margin: 0 !important;
+        }
+
+
+        .slider {
+            position: relative;
+            height: 5px;
+            margin-right: 20px;
+            width: 80%;
+            cursor: pointer;
+
+            &:hover {
+                .select {
+                    height: 12px;
+                    width: 12px;
+                }
+            }
+
+            .total {
+                position: absolute;
+                width: 100%;
+                height: 4px;
+                top: 0;
+                background: $amarillo;
+                border-radius: 2px;
+            }
+
+            .current {
+                position: absolute;
+                height: 4px;
+                top: 0;
+                background: $azul;
+                border-radius: 2px;
+            }
+
+            .select {
+                height: 9px;
+                width: 9px;
+                background-color: $azul;
+                border-radius: 100%;
+                position: absolute;
+                top: 50%;
+                transform:translate(-50%, -50%);
+                
+            }
+
+        }
+    }
+
 
     .hecho {
         padding-inline-start: 0;
@@ -1062,7 +1145,7 @@ margin-top: 1em;
 
         .contenido {
             padding-left: 5px;
-            p, ul {
+            ul {
                 margin-top: 1em !important;
             }
         }
