@@ -644,10 +644,11 @@ footer {
   align-items: center; }
   .pag-pieza .reproductor .time {
     color: #A9A9A9;
-    margin: 0 !important; }
+    margin: 0; }
   .pag-pieza .reproductor .slider {
     position: relative;
     height: 5px;
+    margin-left: 20px;
     margin-right: 20px;
     width: 80%;
     cursor: pointer; }
@@ -735,7 +736,7 @@ footer {
         transform: rotate(180deg); }
   .acordeon .sec-pieza .contenido {
     padding-left: 5px; }
-    .acordeon .sec-pieza .contenido ul {
+    .acordeon .sec-pieza .contenido p, .acordeon .sec-pieza .contenido ul {
       margin-top: 1em !important; }
 
 /* --------------------------------------------------------------------- 
