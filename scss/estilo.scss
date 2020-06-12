@@ -584,13 +584,21 @@ footer {
         }
     }
 
-    .pad {
-        @media #{$medium-and-up} { 
-            max-width: 400px;
-        }
 
-        &.img-caracterizacion {
-            max-width: 350px;
+    .italic {
+        margin-top: 10px;
+    }
+
+    .container-ilus {
+        flex-direction: column;
+        justify-content: space-between;
+        display: flex;
+
+        .italic {
+            margin: auto;
+            text-align: center;
+            font-size: 15px;
+            line-height: 1.7;
         }
     }
 
@@ -599,11 +607,21 @@ footer {
     }
 
     img {
-    display: flex;
-    max-width: 100%;
-    height: auto;
+        display: flex;
+        width: 100%;
+        height: auto;
 
+        &.img-caracterizacion {
+            max-width: 350px;
+        }
+
+        &.img-sociopolitico {
+            @media #{$medium-and-up} {
+                max-width: 400px;
+            }
+        }
     }
+
 
     .btn {
         margin-top: 25px;

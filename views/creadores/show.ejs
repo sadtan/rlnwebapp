@@ -100,12 +100,12 @@
 
       </div>
 
-      <div class="col col-12 col-lg-6 img">
+      <div class="col col-12 col-lg-6 img container-ilus">
         <% 
         if (fondo['il_1_path'].toString().indexOf("/") != -1)
         {
         %>
-        <img class="mx-auto s3_img pad img-sociopolitico" src="<%=fondo['il_1_path']%>">
+        <img class="mx-auto s3_img img-sociopolitico" src="<%=fondo['il_1_path']%>">
 
         <% 
         if (fondo['il_1_desc'] && fondo['il_1_desc'].toString() != "-" && fondo['il_1_desc'].toString() != "_")
