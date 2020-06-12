@@ -172,6 +172,14 @@ h4 {
     }
 }
 
+.order-1 {
+    order: 1;
+}
+
+.order-2 {
+    order: 2;
+}
+
 .dos-col {
     @media #{$extra-large-and-up} {
         -webkit-column-count: 2;
@@ -852,6 +860,11 @@ margin-top: 1em;
 }
 
 .largo {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.largo-carac {
     padding-right: 20px;
     padding-left: 20px;
 }
