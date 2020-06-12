@@ -1358,6 +1358,12 @@ margin-top: 1em;
     .boton-zoom {
         margin-top: 2px;
     }
+
+    .creador {
+        @media #{$medium-and-up} { 
+            padding: 60px;
+        }
+    }
 }
 
 /* --------- MODAL ------*/

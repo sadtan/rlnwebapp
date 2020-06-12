@@ -883,6 +883,10 @@ footer {
 .pagina-mapa .boton-zoom {
   margin-top: 2px; }
 
+@media only screen and (min-width: 577px) {
+  .pagina-mapa .creador {
+    padding: 60px; } }
+
 /* --------- MODAL ------*/
 .modal {
   display: none; }
