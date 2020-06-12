@@ -47,13 +47,14 @@ module.exports = (BucketName) =>
                     {
                         if (field == 'galeria_path')
                         {
-                            
+                            //console.log("FIELD", field);
                             this.bucketParams.Delimiter = data[table][0][field];
                             this.bucketParams.Prefix = data[table][0][field];
                             data[table][0]['galeria'] = [];
                             s3.listObjectsV2(this.bucketParams, function(err, s3Data) {
                                 if (err) throw new Error(err);
                                 s3Data.Contents.forEach((file) => {
+                                    //console.log(file);
                                     if (file["Key"].indexOf("jpg" ) > 0
                                         || file["Key"].indexOf("JPG" ) > 0
                                         || file["Key"].indexOf("png" ) > 0
