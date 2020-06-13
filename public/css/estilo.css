@@ -766,11 +766,7 @@ footer {
         PÁGINA BUSQUEDA
  ---------------------------------------------------------------------*/
 .toggle {
-  display: flex;
-  flex-direction: row;
-  justify-content: center; }
-  .toggle button {
-    margin-left: 20px; }
+  max-width: 500px; }
 
 .botones-filtros {
   padding-inline-start: 0;
