@@ -75,6 +75,9 @@ h4 {
   .btn.blue {
     background-color: #2727E5;
     color: #FFF; }
+  .btn.grey {
+    background-color: #CDCDCD;
+    color: #FFF; }
   @media only screen and (max-width: 576px) {
     .btn {
       font-size: 16px;
@@ -762,6 +765,13 @@ footer {
 /* --------------------------------------------------------------------- 
         PÁGINA BUSQUEDA
  ---------------------------------------------------------------------*/
+.toggle {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; }
+  .toggle button {
+    margin-left: 20px; }
+
 .botones-filtros {
   padding-inline-start: 0;
   list-style-type: none;
@@ -886,6 +896,14 @@ footer {
 @media only screen and (min-width: 577px) {
   .pagina-mapa .creador {
     padding: 60px; } }
+
+.pagina-mapa .botones-mapa {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1em; }
+  .pagina-mapa .botones-mapa button {
+    padding: 3px 15px; }
 
 /* --------- MODAL ------*/
 .modal {

@@ -142,6 +142,11 @@ h4 {
         color: $blanco;
     }
 
+    &.grey {
+        background-color: #CDCDCD;
+        color: $blanco;
+    }
+
     @media #{$small-and-down} { 
         font-size: 16px;
         padding: 4px 16px;
@@ -1187,7 +1192,15 @@ margin-top: 1em;
 /* --------------------------------------------------------------------- 
         PÁGINA BUSQUEDA
  ---------------------------------------------------------------------*/
+.toggle {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 
+    button {
+        margin-left: 20px;
+    }
+}
  .botones-filtros {
     padding-inline-start: 0;
     list-style-type: none;
@@ -1362,6 +1375,17 @@ margin-top: 1em;
     .creador {
         @media #{$medium-and-up} { 
             padding: 60px;
+        }
+    }
+
+    .botones-mapa {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 1em;
+
+        button {
+            padding: 3px 15px;
         }
     }
 }
