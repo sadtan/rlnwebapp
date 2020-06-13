@@ -265,6 +265,7 @@ h4 {
         height: auto;
         padding: 0;
         margin: 20px;
+        cursor: pointer;
 
         @media #{$small-and-down} { 
             width: 30px;

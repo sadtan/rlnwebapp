@@ -161,7 +161,8 @@ h4 {
     width: 40px;
     height: auto;
     padding: 0;
-    margin: 20px; }
+    margin: 20px;
+    cursor: pointer; }
     @media only screen and (max-width: 576px) {
       .header .burguer {
         width: 30px; } }
