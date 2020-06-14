@@ -186,7 +186,19 @@
             <div id="collapseTwo" class="contenido collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                 <ul class="hecho">
                   <li><b> Año: </b> <%=hecho['fecha']%></li>
+                  <%
+                  if ( hecho.tipo == "0" ) 
+                  %>
                   <li><b> Modalidad: </b> <%=hecho['modalidad']%></li>
+                  
+                  <%
+                  } else {
+                  %>
+                  <li><b> Acciones de resistensia y sobreviviencia: </b> <%=hecho['acciones_resistencia_sobrevivencia']%></li>
+                  <%
+                  }
+                  %>
+
                   <li><b> Actores: </b> <%=hecho['actores']%></li>
                 </ul>
                 <p>
