@@ -75,6 +75,9 @@ h4 {
   .btn.blue {
     background-color: #2727E5;
     color: #FFF; }
+  .btn.grey {
+    background-color: #CDCDCD;
+    color: #FFF; }
   @media only screen and (max-width: 576px) {
     .btn {
       font-size: 16px;
@@ -94,6 +97,12 @@ h4 {
     order: 1; }
   .order-2-lg {
     order: 2; } }
+
+.order-1 {
+  order: 1; }
+
+.order-2 {
+  order: 2; }
 
 @media only screen and (min-width: 993px) {
   .dos-col {
@@ -152,7 +161,8 @@ h4 {
     width: 40px;
     height: auto;
     padding: 0;
-    margin: 20px; }
+    margin: 20px;
+    cursor: pointer; }
     @media only screen and (max-width: 576px) {
       .header .burguer {
         width: 30px; } }
@@ -354,20 +364,31 @@ footer {
   .section-fondo p.margin-1 {
     margin-top: 1em; }
 
-@media only screen and (min-width: 577px) {
-  .section-fondo .pad {
-    max-width: 400px; } }
+.section-fondo .italic {
+  margin-top: 10px; }
 
-.section-fondo .pad.img-caracterizacion {
-  max-width: 350px; }
+.section-fondo .container-ilus {
+  flex-direction: column;
+  justify-content: space-between;
+  display: flex; }
+  .section-fondo .container-ilus .italic {
+    margin: auto;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.7; }
 
 .section-fondo .italic {
   margin-top: 10px; }
 
 .section-fondo img {
   display: flex;
-  max-width: 100%;
+  width: 100%;
   height: auto; }
+  .section-fondo img.img-caracterizacion {
+    max-width: 350px; }
+  @media only screen and (min-width: 577px) {
+    .section-fondo img.img-sociopolitico {
+      max-width: 400px; } }
 
 .section-fondo .btn {
   margin-top: 25px; }
@@ -525,6 +546,10 @@ footer {
   align-items: center; }
 
 .largo {
+  padding-right: 20px;
+  padding-left: 20px; }
+
+.largo-carac {
   padding-right: 20px;
   padding-left: 20px; }
 
@@ -741,6 +766,9 @@ footer {
 /* --------------------------------------------------------------------- 
         PÁGINA BUSQUEDA
  ---------------------------------------------------------------------*/
+.toggle {
+  max-width: 500px; }
+
 .botones-filtros {
   padding-inline-start: 0;
   list-style-type: none;
@@ -861,6 +889,18 @@ footer {
 
 .pagina-mapa .boton-zoom {
   margin-top: 2px; }
+
+@media only screen and (min-width: 577px) {
+  .pagina-mapa .creador {
+    padding: 60px; } }
+
+.pagina-mapa .botones-mapa {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1em; }
+  .pagina-mapa .botones-mapa button {
+    padding: 3px 15px; }
 
 /* --------- MODAL ------*/
 .modal {

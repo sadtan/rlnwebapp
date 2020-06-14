@@ -100,12 +100,12 @@
 
       </div>
 
-      <div class="col col-12 col-lg-6 img">
+      <div class="col col-12 col-lg-6 img container-ilus">
         <% 
         if (fondo['il_1_path'].toString().indexOf("/") != -1)
         {
         %>
-        <img class="mx-auto s3_img pad img-sociopolitico" src="<%=fondo['il_1_path']%>">
+        <img class="mx-auto s3_img img-sociopolitico" src="<%=fondo['il_1_path']%>">
 
         <% 
         if (fondo['il_1_desc'] && fondo['il_1_desc'].toString() != "-" && fondo['il_1_desc'].toString() != "_")
@@ -139,17 +139,34 @@
   </section>
 
   <!-- Caracterización colectivo -->
-  <section class="top section-fondo caracterizacion-fondo">
-
-    <h2>
+  <section class="top btm section-fondo contexto-fondo">
+    <h2 class="col col-12 col-lg-6 offset-lg-6 titulo-mover">
       Caracterización del colectivo
-    </h2>  
-    
-    <% 
+    </h2>
+
+    <div class="row corto-carac">
+      <div class="col col-12 col-lg-6 texto order-2">
+        
+        <p>
+          <%
+          var txt = fondo['caracterizacion'].substring(0, 900) + "...";
+          txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
+          %>
+          <%=txt%>
+        </p>
+
+        <button class ="btn blue" id="mas-carac">
+          Conocer más
+        </button>
+
+      </div>
+
+      <div class="col col-12 col-lg-6 img container-ilus order-1">
+        <% 
         if (fondo['il_2_path'].toString().indexOf("/") != -1)
         {
         %>
-        <img class="s3_img pad img-caracterizacion" src="<%=fondo['il_2_path']%>">
+        <img class="mx-auto s3_img img-sociopolitico" src="<%=fondo['il_2_path']%>">
 
         <% 
         if (fondo['il_2_desc'] && fondo['il_2_desc'].toString() != "-" && fondo['il_2_desc'].toString() != "_")
@@ -159,24 +176,30 @@
         <%
         } 
         %>
-
-        
         <%
         } else {
         %>
-        <img class="mx-auto" src="/img/muneca.png">
+        <img class="mx-auto" src="/img/casa.png">
         <%
             }
         %>
+      </div>
+    </div>
 
-    
+    <div class="row largo-carac hide">
+      <p class="dos-col">
+        <%=fondo['caracterizacion']%>  
+      </p>
 
-    <p class="dos-col">
-      <%=fondo['caracterizacion']%>  
-    </p>
+      <button class ="btn blue" id="menos-carac">
+        Mostrar menos
+      </button>
+
+    </div>
 
   </section>
 
+  
   <!-- Documentos y enlaces -->
   <section class="top section-fondo documentos-fondo">
     <h2>

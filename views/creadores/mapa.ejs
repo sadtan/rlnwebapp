@@ -4,12 +4,21 @@
     
     <div class="fondo row align-items-center btm justify-content-center"> 
         <!--mapa-->
-        <div class="col col-12 col-lg-5 col-sm-6">
+        <div class="col col-12 col-lg-6 canvas">
             <div id="canvasp5" >
                 <!--canvas del mapa -->
             </div>
-            <button class="btn blue boton-zoom" id="btn-zoom-out"> <b>- </b>   Alejar  </button>
-            <button class="btn blue boton-zoom" id="btn-zoom-in"> <b>+ </b>  Acercar  </button>
+            <div class="botones-mapa"> 
+                <div class="zoom"> 
+                    <button class="btn blue boton-zoom" id="btn-zoom-out"> <b>- </b> </button>
+                    <button class="btn blue boton-zoom" id="btn-zoom-in"> <b>+ </b></button>
+                </div>
+
+                <div class="toggle"> 
+                    <button class="btn blue">Ver piezas </button>
+                    <button class="btn grey">Ver creadores</button>
+                </div>
+            </div>
             
         </div>
 
@@ -21,7 +30,7 @@
             dep = creadores[i]['dep']
             lugar = dep['lugar'][0]
         %>
-        <div class="text col col-12 col-lg-5 btm creador mt-5">
+        <div class="col col-12 col-lg-6 btm creador mapa">
             
             <div class="img">
                 <%
@@ -76,7 +85,7 @@
         }
         %>
         <div class="col col-12 col-lg-5 col-sm-12 offset-lg-1" id="intro-mapa">
-            <h2> Biografías Textiles</h2>
+            <h2> Geografías Textiles</h2>
             <p>
                 En Colombia hemos identificado cerca de 42 iniciativas que configuran una red de tejedoras por la memoria y la vida que se entrelaza en los departamentos de Antioquia, Bolívar, Cauca, Cundinamarca, Chocó, Putumayo, Nariño y Valle del Cauca. 
                 Hasta el momento hacen parte de este archivo digital de textiles testimoniales 12 de ellas para su consulta. 
