@@ -4,24 +4,61 @@
     
     <div class="fondo row align-items-center btm justify-content-center"> 
         <!--mapa-->
-        <div class="col col-12 col-lg-5 col-sm-6">
+        <div class="col col-12 col-lg-6 canvas">
             <div id="canvasp5" >
                 <!--canvas del mapa -->
             </div>
-            <button class="btn blue boton-zoom" id="btn-zoom-out"> <b>- </b>   Alejar  </button>
-            <button class="btn blue boton-zoom" id="btn-zoom-in"> <b>+ </b>  Acercar  </button>
+            <div class="botones-mapa"> 
+                <div class="zoom"> 
+                    <button class="btn blue boton-zoom" id="btn-zoom-out"> <b>- </b> </button>
+                    <button class="btn blue boton-zoom" id="btn-zoom-in"> <b>+ </b></button>
+                </div>
+
+                <div class="toggle"> 
+                    <button class="btn blue" id="filter-piezas">Ver piezas</button>
+                    <button class="btn grey" id="filter-creadores">Ver creadores</button>
+                </div>
+            </div>
             
         </div>
 
         <% 
+        var piezas = data.data['piezas'];
+
+        for (var i = 0; i < piezas.length; ++i) 
+        {
+        %>
+            <div class="col col-12 col-lg-6 btm pieza">
+                <div class="img">
+                    <img src="<%=piezas[i]['imagen_path']%>" alt="" class="s3_img"> 
+                </div>
+                <h2><%=piezas[i]['titulo']%></h2>
+                <p>
+                    <%
+                        var txt = piezas[i]['hecho_relato'].substring(0, 230) + "L";
+                        txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
+                        %>
+                        <%=txt%>
+                </p>
+                <a href="/piezas/<%=piezas[i]['id']%>">
+                    <button class ="btn blue">Conocer más</button>
+                </a>
+                <ul style="display: none;">}
+                    <li><%=piezas[i]['fk_creador']%></li>
+                </ul>
+            </div>
+        <%
+        }
+
         var creadores = data.data[data.data['main']];
+        
         for (var i = 0; i < creadores.length; ++i) 
         {
         if (creadores[i]['dep'] != undefined)
             dep = creadores[i]['dep']
             lugar = dep['lugar'][0]
         %>
-        <div class="text col col-12 col-lg-5 btm creador mt-5">
+        <div class="col col-12 col-lg-6 btm creador mapa">
             
             <div class="img">
                 <%
@@ -53,6 +90,7 @@
                     <li><%=lugar['lat']%></li>
                     <li><%=lugar['longf']%></li>
                     <li><%=lugar['id']%></li>
+                    <li><%=creadores[i]['id']%></li>
                 </ul>
                 <%
                 }
@@ -73,10 +111,11 @@
             
         </div>
         <%
-        }
+        } 
+
         %>
         <div class="col col-12 col-lg-5 col-sm-12 offset-lg-1" id="intro-mapa">
-            <h2> Biografías Textiles</h2>
+            <h2> Geografías Textiles</h2>
             <p>
                 En Colombia hemos identificado cerca de 42 iniciativas que configuran una red de tejedoras por la memoria y la vida que se entrelaza en los departamentos de Antioquia, Bolívar, Cauca, Cundinamarca, Chocó, Putumayo, Nariño y Valle del Cauca. 
                 Hasta el momento hacen parte de este archivo digital de textiles testimoniales 12 de ellas para su consulta. 
@@ -88,10 +127,15 @@
 <script>
     var docLatLong = document.getElementsByClassName("latlong");
     var docCreadores = document.getElementsByClassName("creador");
+    var docPiezas = document.getElementsByClassName("pieza");
 
     for (let i = 0; i < docCreadores.length; ++i)
     {
         docCreadores[i].classList.add("d-none");
+    }
+    for (let i = 0; i < docPiezas.length; ++i)
+    {
+        docPiezas[i].classList.add("d-none");
     }
 
     var latLongArr = [];

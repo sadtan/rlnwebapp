@@ -57,6 +57,27 @@ $( document ).ready(function() {
         $('.corto').addClass('show');
     }); 
 
+    //ocultar y mostrar texto de contexto sociopolitico
+    $('#mas-carac').click( function() {
+        $('.corto-carac').addClass('hide');
+        $('.corto-carac').removeClass('show');
+
+        $('.largo-carac').removeClass('hide');
+        $('.largo-carac').addClass('show');
+
+        $('.titulo-mover').removeClass('offset-lg-6 ');
+    });
+
+    $('#menos-carac').click( function() {
+        $('.largo-carac').addClass('hide');
+        $('.largo-carac').removeClass('show');
+
+        $('.corto-carac').removeClass('hide');
+        $('.corto-carac').addClass('show');
+
+        $('.titulo-mover').addClass('offset-lg-6 ');
+    }); 
+
 
     // dropdown-menu mobile
     if ($(window).width() < 600) {
