@@ -54,13 +54,14 @@ function FilterCreadores() {
 
 function ToggleButton() {
     if (!bFilterCreadores) {
+        document.getElementById("filter-creadores").style.backgroundColor = "#CDCDCD";
+        document.getElementById("filter-piezas").style.backgroundColor = "#2727E5";
+        
+        
+    } else {
         
         document.getElementById("filter-creadores").style.backgroundColor = "#2727E5";
         document.getElementById("filter-piezas").style.backgroundColor = "#CDCDCD";
-        
-    } else {
-        document.getElementById("filter-creadores").style.backgroundColor = "#CDCDCD";
-        document.getElementById("filter-piezas").style.backgroundColor = "#2727E5";
         
 
     }
