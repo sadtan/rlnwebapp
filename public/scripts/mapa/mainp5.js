@@ -27,6 +27,7 @@ var iLastSelected = undefined;
 
 function FilterCreadores() {
     bFilterCreadores = true;
+    ToggleButton();
     if( iLastSelected ) {
         for (let i = 0; i < docCreadores.length; ++i)
         {
@@ -50,8 +51,25 @@ function FilterCreadores() {
 
     }
 }
+
+function ToggleButton() {
+    if (!bFilterCreadores) {
+        
+        document.getElementById("filter-creadores").style.backgroundColor = "#2727E5";
+        document.getElementById("filter-piezas").style.backgroundColor = "#CDCDCD";
+        
+    } else {
+        document.getElementById("filter-creadores").style.backgroundColor = "#CDCDCD";
+        document.getElementById("filter-piezas").style.backgroundColor = "#2727E5";
+        
+
+    }
+}
 function FilterPiezas() {
     bFilterCreadores = false;
+    ToggleButton();
+    
+    
     if( iLastSelected ) {
         for (let i = 0; i < docCreadores.length; ++i)
         {

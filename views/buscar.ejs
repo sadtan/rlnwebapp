@@ -519,12 +519,15 @@ for (var pieza in piezas)
     var bFilterPiezas = true;
 
     function FilterPiezas () {
-        
+        document.getElementById("filter-creadores").style.backgroundColor = "#CDCDCD";
+        document.getElementById("filter-piezas").style.backgroundColor = "#2727E5";
         bFilterPiezas = true;
         filter();
     }
 
     function FilterCreadores() {
+        document.getElementById("filter-creadores").style.backgroundColor = "#2727E5";
+        document.getElementById("filter-piezas").style.backgroundColor = "#CDCDCD";
         bFilterPiezas = false;
         filter();
     }
