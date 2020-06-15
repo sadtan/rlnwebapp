@@ -16,10 +16,7 @@ var wayPoints = [];
 var selectedPlace = -1;
 
 //
-var bFilterCreadores = true;
 
-document.getElementById("filter-creadores").classList.add("d-none")
-document.getElementById("filter-piezas").classList.add("d-none")
 
 document.getElementById("filter-creadores").addEventListener("click", FilterCreadores)
 document.getElementById("filter-piezas").addEventListener("click", FilterPiezas)
@@ -90,7 +87,9 @@ function FilterPiezas() {
 function preload ()
 {
     azul   = loadImage("./img/svg/blue.svg");
+    red   = loadImage("./img/svg/red.svg");
     mySvg  = loadImage("./img/svg/colombia.svg");
+    mySvgRed  = loadImage("./img/svg/colombia_azul.svg");
     blanco = loadImage("./img/svg/white.svg");
 }
 
@@ -156,8 +155,9 @@ function draw ()
     noStroke(); 
     //stroke('black');
     rect(0, 0, width, height);
-
-    image(mySvg, imgOrigin.x, imgOrigin.y, mySvg.width*height/mySvg.height + (Zoom * 30 * W/H), height + (Zoom * 30 ))
+    bFilterCreadores ? 
+    image(mySvg, imgOrigin.x, imgOrigin.y, mySvg.width*height/mySvg.height + (Zoom * 30 * W/H), height + (Zoom * 30 )) :
+    image(mySvgRed, imgOrigin.x, imgOrigin.y, mySvgRed.width*height/mySvgRed.height + (Zoom * 30 * W/H), height + (Zoom * 30 ))
 
     strokeWeight(5); 
     stroke('purple'); 
