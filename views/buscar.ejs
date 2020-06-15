@@ -151,8 +151,8 @@ for (var pieza in piezas)
     <section class="filtros top">
         <div class="container toggle">
             <div class="row justify-content-around">
-                <button class="col col-5 btn blue">Ver piezas </button>
-                <button class="col col-5 btn grey">Ver creadores</button>
+                <button class="col col-5 btn blue" id="filter-piezas">Ver piezas </button>
+                <button class="col col-5 btn grey" id="filter-creadores">Ver creadores</button>
             </div>
         </div>
 
@@ -289,6 +289,42 @@ for (var pieza in piezas)
                 $('[data-toggle="tooltip"]').tooltip()
             })
         </script>
+    </section>
+
+    <section class="section-fondo resultados">
+        <div class="row" id="results-creadores">
+            <%
+            for(var i = 0; i < creadores.length; i++) {
+            %>
+            <div class="col col-12 col-md-6 resultado-creador">
+                <div class="container-img">
+                    <a href="creadores/<%=creadores[i]['id']%>">
+                        <button class ="btn white">
+                        Ver más
+                        </button>
+                        <img src="<%=creadores[i]['imagen_path']%>" class="s3_img">
+                        <div class="blue"></div> 
+                    </a>
+                </div>
+                <a href="creadores/<%=creadores[i]['id']%>" style="color: black;"><p style="font-size: x-large; font-weight: bolder;" ><%=creadores[i]['nombre']%></p></a>
+                <% 
+                for (var lugar in lugares) {
+                    console.log(lugares[lugar])
+                    if (lugares[lugar].id == creadores[i]['fk_lugar']) {
+                %>
+                <p> <%=lugares[lugar]['departamento']%>, <%=lugares[lugar]['localidad']%> </p>
+                <%
+                    }
+                }
+                %>
+                <ul style="display: none;">
+                    <li><%= creadores[i]['id'] %></li>
+                </ul>
+            </div>
+            <%
+            }
+            %>
+        </div>
     </section>
 
     <section class="section-fondo resultados">
@@ -481,19 +517,51 @@ for (var pieza in piezas)
 <script src="/scripts/s3ImageUrl.js"></script>
 
 <script>
+    var bFilterPiezas = true;
+
+    function FilterPiezas () {
+        
+        bFilterPiezas = true;
+        console.log(bFilterPiezas);
+        filter();
+    }
+
+    function FilterCreadores() {
+        bFilterPiezas = false;
+        console.log(bFilterPiezas);
+        filter();
+    }
+    document.getElementById("filter-piezas").addEventListener("click", FilterPiezas)
+    document.getElementById("filter-creadores").addEventListener("click", FilterCreadores)
+
     var filtros = document.getElementById("filtros");
     var piezas = document.getElementsByClassName("resultado-pieza");
+    var creadores = document.getElementsByClassName("resultado-creador");
     var piezasList = [];
+    var creadoresList = [];
+    for (let i = 0; i < creadores.length; ++i)
+        {
+            var newResult = {};
+            newResult['creador'] = creadores[i].cloneNode(true);
+            newResult['isInResults'] = false;
+            creadoresList.push(newResult);
+            creadores[i].innerHTML = ""
+            //piezasList.push(piezas[i].cloneNode(true));
+        }
+        //console.log(creadoresList)
     for (let i = 0; i < piezas.length; ++i)
         {
             var newResult = {};
             newResult['pieza'] = piezas[i].cloneNode(true);
             newResult['isInResults'] = false;
             piezasList.push(newResult);
+
             //piezasList.push(piezas[i].cloneNode(true));
         }
     
     var docResults = document.getElementById("results");
+    var docResultsCreadores = document.getElementById("results-creadores");
+    
 
     var fecha    = "";
     var lugar    = "";
@@ -732,12 +800,32 @@ for (var pieza in piezas)
                 // }
             }
 
+            
+
             for (result in piezasList)
             {
                 if (bHasResult)
                 {
-                    if (piezasList[result]['isInResults'])
-                        results.appendChild(piezasList[result]['pieza']);
+                    if (piezasList[result]['isInResults']) {
+                        if ( bFilterPiezas ) {
+                            results.appendChild(piezasList[result]['pieza']);
+                        }
+                        else {
+                            var cIds = [];
+                            for (resultC in creadoresList)
+                            {
+                                var cId = creadoresList[resultC].creador.children[3].children[0].innerText;
+                                if (cId == piezasList[result].pieza.children[3].children[1].innerText && cIds.indexOf(cId) == -1) {
+                                    results.appendChild(creadoresList[resultC].creador);
+                                    cIds.push(cId);
+                                }
+                                
+                            }
+                        }
+                        //console.log("AID", );
+                        
+                    }
+                        
                 } else 
                 {
                     results.innerHTML = "No Hay Resultados."

@@ -9,6 +9,8 @@ module.exports = function (app, pool) {
     const resHandler = new ResHandler();
     const MainController  = require("../controller/customController.js")(pool, 'creadores');
     const controller      = new MainController();
+    const PController  = require("../controller/customController.js")(pool, 'piezas');
+    const pController      = new PController();
 
     app.get("/mapa", async (req, res) => 
     {
@@ -17,6 +19,7 @@ module.exports = function (app, pool) {
         try 
         {
             data['creadores'] = await controller.getAll();
+            data['piezas'] = await pController.getAll();
             data = await reqBatchHandler.AttachDependencies(data, 'creadores', pool);
 
             resFormat = resHandler.setResponse(200, null, data);
@@ -38,8 +41,8 @@ module.exports = function (app, pool) {
         data['hechos'] = [];
         data = await reqBatchHandler.AttachCustom(data, ['id', 'titulo', 'imagen_path', 'fecha', 'fk_creador', 'fk_hecho', 'tematicas', 'tecnicas', 'descriptores'], "", pool, "piezas", "piezas")
         //console.log(data['piezas']);
-        data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre', 'localidad'], "", pool, "lugares", "lugares")
-        data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre', 'fk_lugar'], "", pool, "creadores", "creadores")
+        data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre', 'localidad', 'departamento'], "", pool, "lugares", "lugares")
+        data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre', 'fk_lugar', 'imagen_path'], "", pool, "creadores", "creadores")
         data = await reqBatchHandler.AttachCustom(data, ['id', 'modalidad'], "", pool, "hechos", "hechos")
         //res.render("search.ejs", {data});
         res.render("buscar", {data, descriptor: ""})

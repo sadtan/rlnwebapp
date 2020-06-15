@@ -15,6 +15,78 @@ var wayPoints = [];
 // 
 var selectedPlace = -1;
 
+//
+var bFilterCreadores = true;
+
+document.getElementById("filter-creadores").classList.add("d-none")
+document.getElementById("filter-piezas").classList.add("d-none")
+
+document.getElementById("filter-creadores").addEventListener("click", FilterCreadores)
+document.getElementById("filter-piezas").addEventListener("click", FilterPiezas)
+var selectedCreadores = [];
+
+var iLastSelected = undefined;
+
+
+function FilterCreadores() {
+    bFilterCreadores = true;
+    if( iLastSelected ) {
+        for (let i = 0; i < docCreadores.length; ++i)
+        {
+            docCreadores[i].classList.add("d-none");
+        }
+        for (let i = 0; i < docCreadores.length; ++i)
+        {
+            docPiezas[i].classList.add("d-none");
+        }
+        for (let i = 0; i < docCreadores.length; ++i)
+        {
+            
+            if (docCreadores[i].children[1].children[1].children[2].innerText == selectedPlace)
+            {
+                iLastSelected = selectedPlace;
+                docCreadores[i].classList.remove("d-none");
+                document.getElementById('intro-mapa').classList.add('d-none');
+            }
+                
+        }
+
+    }
+}
+function FilterPiezas() {
+    bFilterCreadores = false;
+    if( iLastSelected ) {
+        for (let i = 0; i < docCreadores.length; ++i)
+        {
+            docCreadores[i].classList.add("d-none");
+        }
+        for (let i = 0; i < docCreadores.length; ++i)
+        {
+            docPiezas[i].classList.add("d-none");
+        }
+
+        for (let i = 0; i < docCreadores.length; ++i)
+        {
+            
+            if (docCreadores[i].children[1].children[1].children[2].innerText == selectedPlace)
+            {
+                iLastSelected = selectedPlace;
+                for (let j = 0; j < docPiezas.length; ++j)
+                {
+                    if (docPiezas[j].children[4].children[0].innerText  == docCreadores[i].children[1].children[1].children[3].innerText)
+                    {
+                        docPiezas[i].classList.remove("d-none");
+                    }
+                }
+                // docCreadores[i].classList.remove("d-none");
+                document.getElementById('intro-mapa').classList.add('d-none');
+            }
+                
+        }
+        
+    }
+}
+
 function preload ()
 {
     azul   = loadImage("./img/svg/blue.svg");
@@ -140,6 +212,9 @@ function draw ()
         wayPoints[i].draw();
     }
 
+    for (let o = 0; o < 10; ++o)
+    {
+
     var compList = [];
     for (let i = 0; i < wayPoints.length; ++i)
     {
@@ -158,9 +233,9 @@ function draw ()
                     +  Math.pow(yDir, 2)
                 );
 
-                var dF = 0.6;
+                var dF = 0.1;
 
-                if (D < 0.5)
+                if (D < 0.45)
                 {
                     wayPoints[j].coords.x -= dF;
                     wayPoints[j].coords.y -= dF * (W/H);
@@ -170,6 +245,7 @@ function draw ()
             } else break;
             
         }
+    }
     }
 
     function IsCompared(i, j)
@@ -200,8 +276,8 @@ document.getElementById("btn-zoom-in").addEventListener('click', ZoomIn)
 function ZoomIn ()
 {
     Zoom += zFactor;
-    Zoom = clamp(Zoom, 0, 3);
-    if (Zoom !=  0 && Zoom != 3)
+    Zoom = clamp(Zoom, 0, 2);
+    if (Zoom !=  0 && Zoom != 2)
     {
         cHelper.p1.scrX += (Zoom * 30 * W/H + 20) / F;
         cHelper.p1.scrY += (Zoom * 30) / F;
@@ -212,8 +288,8 @@ function ZoomIn ()
 function ZoomOut ()
 {
     Zoom -= zFactor;
-    Zoom = clamp(Zoom, 0, 3);
-    if (Zoom !=  0 && Zoom != 3)
+    Zoom = clamp(Zoom, 0, 2);
+    if (Zoom !=  0 && Zoom != 2)
     {
         cHelper.p1.scrX -= (Zoom * 30 * W/H + 20) / F;
         cHelper.p1.scrY -= (Zoom * 30) / F;
@@ -252,6 +328,9 @@ function mousePressed()
 
 function mouseReleased() 
 {
+    document.getElementById("filter-creadores").classList.remove("d-none")
+    document.getElementById("filter-piezas").classList.remove("d-none")
+
     IsClicked = false;
     IsDragging = false;
 
@@ -265,16 +344,58 @@ function mouseReleased()
     {
         docCreadores[i].classList.add("d-none");
     }
-
     for (let i = 0; i < docCreadores.length; ++i)
     {
-        if (docCreadores[i].children[1].children[1].children[2].innerText == selectedPlace)
-        {
-            docCreadores[i].classList.remove("d-none");
-            document.getElementById('intro-mapa').classList.add('d-none');
-        }
-            
+        docPiezas[i].classList.add("d-none");
     }
+    selectedCreadores = [];
+
+    for (let i = 0; i < docCreadores.length; ++i)
+        if (docCreadores[i].children[1].children[1].children[2].innerText == selectedPlace)
+            selectedCreadores.push(docCreadores[i].children[1].children[1].children[2].innerText);
+
+    if ( bFilterCreadores )
+        for (let i = 0; i < docCreadores.length; ++i)
+        {
+            
+            if (docCreadores[i].children[1].children[1].children[2].innerText == selectedPlace)
+            {
+                iLastSelected = selectedPlace;
+                docCreadores[i].classList.remove("d-none");
+                document.getElementById('intro-mapa').classList.add('d-none');
+            }
+                
+        }
+    else 
+    for (let i = 0; i < docCreadores.length; ++i)
+        {
+            
+            if (docCreadores[i].children[1].children[1].children[2].innerText == selectedPlace)
+            {
+                iLastSelected = selectedPlace;
+                for (let j = 0; j < docPiezas.length; ++j)
+                {
+                    if (docPiezas[j].children[4].children[0].innerText  == docCreadores[i].children[1].children[1].children[3].innerText)
+                    {
+                        docPiezas[i].classList.remove("d-none");
+                    }
+                }
+                // docCreadores[i].classList.remove("d-none");
+                document.getElementById('intro-mapa').classList.add('d-none');
+            }
+                
+        }
+    // for (let i = 0; i < docPiezas.length; ++i)
+    //     {
+    //         console.log(docPiezas[i].children[4].children[0].innerText)
+    //         if ( selectedCreadores.indexOf(docPiezas[i].children[4].children[0].innerText) != -1)
+    //         {
+    //             iLastSelected = selectedPlace;
+    //             docPiezas[i].classList.remove("d-none");
+    //             document.getElementById('intro-mapa').classList.add('d-none');
+    //         }
+                
+    //     }
 }
 
 function noScroll() 
