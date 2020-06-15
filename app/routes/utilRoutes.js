@@ -58,8 +58,8 @@ module.exports = function (app, pool) {
         data['hechos'] = [];
         data = await reqBatchHandler.AttachCustom(data, ['id', 'titulo', 'imagen_path', 'fecha', 'fk_creador', 'fk_hecho', 'tematicas', 'tecnicas', 'descriptores'], "", pool, "piezas", "piezas")
         //console.log(data['piezas']);
-        data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre', 'localidad'], "", pool, "lugares", "lugares")
-        data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre', 'fk_lugar'], "", pool, "creadores", "creadores")
+        data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre', 'localidad', 'departamento'], "", pool, "lugares", "lugares")
+        data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre', 'fk_lugar', 'imagen_path'], "", pool, "creadores", "creadores")
         data = await reqBatchHandler.AttachCustom(data, ['id', 'modalidad'], "", pool, "hechos", "hechos")
         //res.render("search.ejs", {data});
 

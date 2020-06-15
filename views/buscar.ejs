@@ -587,6 +587,8 @@ for (var pieza in piezas)
     attachParam(document.getElementsByClassName("select-lugar"), 'lugar', true, 4);
     attachParam(document.getElementsByClassName("select-hecho"), 'hecho', false, 5);
     attachParam(document.getElementsByClassName("select-descriptor"), 'descriptor', false, 6);
+
+    
     
     
 
@@ -631,6 +633,13 @@ for (var pieza in piezas)
     if (DESCRIPTOR != "")
     {
         searchParams['descriptor'] = DESCRIPTOR;
+        filter();
+    }
+    
+    if (window.localStorage.getItem("lastSearch"))
+    {
+        //console.log(JSON.parse(window.localStorage.getItem("lastSearch")))
+        searchParams = JSON.parse(window.localStorage.getItem("lastSearch"));
         filter();
     }
 
@@ -827,6 +836,7 @@ for (var pieza in piezas)
                 {
                     results.innerHTML = "No Hay Resultados."
                 }
+                window.localStorage.setItem("lastSearch",  JSON.stringify(searchParams));
             }
 
             restart()
