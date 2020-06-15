@@ -17,7 +17,7 @@ var parsedCredentials = {
  
     //verbose: true,
 
-    TTL: 40,
+    TTL: 60,
  
     caching: true,
     cacheProvider: 'file',
