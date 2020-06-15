@@ -1,3 +1,5 @@
+
+var bFilterCreadores = true;
 class WayPoint
 {
     constructor (x, y, i)
@@ -8,6 +10,7 @@ class WayPoint
         this.pos = cHelper.latlngToScreenXY(this.coords.x, this.coords.y);
         this.white = loadImage("./img/svg/white.svg");
         this.blue = loadImage("./img/svg/blue.svg");
+        this.red = loadImage("./img/svg/red.svg");
 
         this.wpW = this.white.width * 2 / 5;
         this.wpH = this.white.height * 2 / 5;
@@ -34,7 +37,9 @@ class WayPoint
         }
         else 
         {
-            image(this.blue, this.pos.x - this.wpW / 2, this.pos.y - this.wpH, this.wpW, this.wpH)
+            bFilterCreadores ? 
+            image(this.blue, this.pos.x - this.wpW / 2, this.pos.y - this.wpH, this.wpW, this.wpH) :
+            image(this.red, this.pos.x - this.wpW / 2, this.pos.y - this.wpH, this.wpW, this.wpH);
         }
         
         // if (this.IsMouseOver())
