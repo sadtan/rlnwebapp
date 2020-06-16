@@ -231,7 +231,7 @@ function draw ()
                 cHelper.p1.scrX += speed.x;
             }
 
-            cHelper.p0.scrX = imgOrigin.x - 17;
+            cHelper.p0.scrX = imgOrigin.x - 15;
             cHelper.p0.scrY = imgOrigin.y;
 
         }
@@ -310,13 +310,13 @@ function ZoomIn ()
     console.log("ZOOM", Zoom)
     //zFactor = clamp(zFactor, 0, zFactor * 2);
 
-    if (Zoom >=  0 &&  Zoom <= zFactor * 3)
+    if (Zoom >=  0 &&  Zoom <= zFactor * 15)
     {
         cHelper.p1.scrX += (zFactor * 10 * W/H);
         cHelper.p1.scrY += (zFactor * 10);
         console.log("IN", zFactor * 10)
     }
-    Zoom = clamp(Zoom, 0, zFactor * 3);
+    Zoom = clamp(Zoom, 0, zFactor * 15);
 }
 
 
@@ -328,14 +328,21 @@ function ZoomOut ()
     console.log("ZOOM", Zoom)
     //zFactor = clamp(zFactor, 0, zFactor * 2);
 
-    if (Zoom >=  0 &&  Zoom <= zFactor * 3)
+    if (Zoom >=  0 &&  Zoom <= zFactor * 15)
     {
         cHelper.p1.scrX -= (zFactor * 10 * W/H);
         cHelper.p1.scrY -= (zFactor * 10);
         console.log("OUT", zFactor * 10)
     }
-    Zoom = clamp(Zoom, 0, zFactor * 3);
+    Zoom = clamp(Zoom, 0, zFactor * 15);
 }
+
+// var dZ = 0.1;
+// var bZooming = false;
+// function ZoomDraw()
+// {
+
+// }
 
 function ToggleBtnZoom() {
     if ( Zoom == zFactor * 3 ) {
