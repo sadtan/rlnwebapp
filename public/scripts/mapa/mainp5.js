@@ -3,7 +3,7 @@ var cHelper;
 var IsDragging = false;
 var W;
 var H;
-var F = 2;
+var F = 1.2;
 var clickedMousePos = {x: 0, y: 0};
 var lastMousePos = {x: 0, y: 0};
 var IsClicked = false;
@@ -119,7 +119,7 @@ function setup ()
     parentW = $parent.width();
 
     //imageMode(CENTER);
-    W = mySvg.width*windowHeight * 0.6/mySvg.height;
+    W = mySvg.width * windowHeight * 0.6 / mySvg.height;
     H = windowHeight * 0.6;
 
     var canvas = createCanvas( W, H );
@@ -171,12 +171,22 @@ function setup ()
 function draw ()
 {
     
+    ToggleBtnZoom()
     noStroke(); 
     //stroke('black');
     rect(0, 0, width, height);
-    bFilterCreadores ? 
-    image(mySvg, imgOrigin.x, imgOrigin.y, mySvg.width*height/mySvg.height + (Zoom * 30 * W/H), height + (Zoom * 30 )) :
-    image(mySvgRed, imgOrigin.x, imgOrigin.y, mySvgRed.width*height/mySvgRed.height + (Zoom * 30 * W/H), height + (Zoom * 30 ))
+    if (bFilterCreadores) {
+        W = mySvg.width * windowHeight * 0.6 / mySvg.height;
+        H = windowHeight * 0.6;
+        image(mySvg,    imgOrigin.x, imgOrigin.y, W + ( Zoom * 10 * W/H), height + (Zoom * 10 ))
+    }
+    
+    else {
+        W = mySvg.width * windowHeight * 0.6 / mySvg.height;
+        H = windowHeight * 0.6;
+        image(mySvgRed, imgOrigin.x, imgOrigin.y, W + ( Zoom * 10 * W/H), height + (Zoom * 10 ))
+    }
+    
 
     strokeWeight(5); 
     stroke('purple'); 
@@ -209,8 +219,8 @@ function draw ()
             imgOrigin.x += speed.x;
             imgOrigin.y += speed.y;
             
-            imgOrigin.x = clamp(imgOrigin.x, -width, 0);
-            imgOrigin.y = clamp(imgOrigin.y, -height, 0);
+            imgOrigin.x = clamp(imgOrigin.x, -width - ( Zoom * 10 * W/H), 0);
+            imgOrigin.y = clamp(imgOrigin.y, -height - (Zoom * 10 ));
 
             if (imgOrigin.y != 0)
             {
@@ -221,7 +231,7 @@ function draw ()
                 cHelper.p1.scrX += speed.x;
             }
 
-            cHelper.p0.scrX = imgOrigin.x;
+            cHelper.p0.scrX = imgOrigin.x - 15;
             cHelper.p0.scrY = imgOrigin.y;
 
         }
@@ -255,7 +265,7 @@ function draw ()
 
                 var dF = 0.1;
 
-                if (D < 0.45)
+                if (D < 0.1)
                 {
                     wayPoints[j].coords.x -= dF;
                     wayPoints[j].coords.y -= dF * (W/H);
@@ -296,24 +306,50 @@ document.getElementById("btn-zoom-in").addEventListener('click', ZoomIn)
 function ZoomIn ()
 {
     Zoom += zFactor;
-    Zoom = clamp(Zoom, 0, 2);
-    if (Zoom !=  0 && Zoom != 2)
+    
+    console.log("ZOOM", Zoom)
+    //zFactor = clamp(zFactor, 0, zFactor * 2);
+
+    if (Zoom >=  0 &&  Zoom <= zFactor * 3)
     {
-        cHelper.p1.scrX += (Zoom * 30 * W/H + 20) / F;
-        cHelper.p1.scrY += (Zoom * 30) / F;
+        cHelper.p1.scrX += (zFactor * 10 * W/H);
+        cHelper.p1.scrY += (zFactor * 10);
+        console.log("IN", zFactor * 10)
     }
+    Zoom = clamp(Zoom, 0, zFactor * 3);
 }
 
 
 function ZoomOut ()
 {
     Zoom -= zFactor;
-    Zoom = clamp(Zoom, 0, 2);
-    if (Zoom !=  0 && Zoom != 2)
+    
+    
+    console.log("ZOOM", Zoom)
+    //zFactor = clamp(zFactor, 0, zFactor * 2);
+
+    if (Zoom >=  0 &&  Zoom <= zFactor * 3)
     {
-        cHelper.p1.scrX -= (Zoom * 30 * W/H + 20) / F;
-        cHelper.p1.scrY -= (Zoom * 30) / F;
+        cHelper.p1.scrX -= (zFactor * 10 * W/H);
+        cHelper.p1.scrY -= (zFactor * 10);
+        console.log("OUT", zFactor * 10)
     }
+    Zoom = clamp(Zoom, 0, zFactor * 3);
+}
+
+function ToggleBtnZoom() {
+    if ( Zoom == zFactor * 3 ) {
+        
+        document.getElementById("btn-zoom-in").style.backgroundColor = "#CDCDCD";
+    } else {
+        document.getElementById("btn-zoom-in").style.backgroundColor = "#2727E5";
+    }
+    if ( Zoom == 0 )
+        document.getElementById("btn-zoom-out").style.backgroundColor = "#CDCDCD";
+    else {
+        document.getElementById("btn-zoom-out").style.backgroundColor = "#2727E5" 
+    }
+    
 }
 
 function clamp(num, min, max) 

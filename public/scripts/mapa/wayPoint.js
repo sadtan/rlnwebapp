@@ -27,8 +27,10 @@ class WayPoint
         }
         else 
         {
-            this.wpW = this.white.width * 1 /(Zoom + 2) + 10;
-            this.wpH = this.white.height * 1 /(Zoom + 2) + 15;
+            // this.wpW = this.white.width * 1 / (zFactor / Zoom ) + 10;
+            // this.wpH = this.white.height * 1 / (zFactor / Zoom ) + 15;
+            this.wpW = this.white.width * 1/2 + 10;
+            this.wpH = this.white.height * 1/2 + 15;
         }
         
         if (this.IsMouseOver())
@@ -39,7 +41,7 @@ class WayPoint
         {
             bFilterCreadores ? 
             image(this.blue, this.pos.x - this.wpW / 2, this.pos.y - this.wpH, this.wpW, this.wpH) :
-            image(this.red, this.pos.x - this.wpW / 2, this.pos.y - this.wpH, this.wpW, this.wpH);
+            image(this.red , this.pos.x - this.wpW / 2, this.pos.y - this.wpH, this.wpW, this.wpH);
         }
         
         // if (this.IsMouseOver())
