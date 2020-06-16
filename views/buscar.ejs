@@ -306,18 +306,18 @@ for (var pieza in piezas)
                         <div class="blue"></div> 
                     </a>
                 </div>
-                <a href="creadores/<%=creadores[i]['id']%>" style="color: black;"><p style="font-size: x-large; font-weight: bolder;" ><%=creadores[i]['nombre']%></p></a>
+                <a href="creadores/<%=creadores[i]['id']%>" style="color: black;"><p class="titulo" ><%=creadores[i]['nombre']%></p></a>
                 <% 
                 for (var lugar in lugares) {
                     if (lugares[lugar].id == creadores[i]['fk_lugar']) {
                 %>
-                <p> <%=lugares[lugar]['departamento']%>, <%=lugares[lugar]['localidad']%> </p>
+                <p class="creador">  <%=lugares[lugar]['localidad']%>,<%=lugares[lugar]['departamento']%> </p>
                 <%
                     }
                 }
                 %>
                 <ul style="display: none;">
-                    <li><%= creadores[i]['id'] %></li>
+                    <li ><%= creadores[i]['id'] %></li>
                 </ul>
             </div>
             <%
