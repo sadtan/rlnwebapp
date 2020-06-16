@@ -345,7 +345,7 @@ function ZoomOut ()
 // }
 
 function ToggleBtnZoom() {
-    if ( Zoom == zFactor * 3 ) {
+    if ( Zoom == zFactor * 15 ) {
         
         document.getElementById("btn-zoom-in").style.backgroundColor = "#CDCDCD";
     } else {
