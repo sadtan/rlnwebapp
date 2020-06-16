@@ -892,8 +892,13 @@ footer {
   margin-top: 2px; }
 
 @media only screen and (min-width: 577px) {
-  .pagina-mapa .creador {
+  .pagina-mapa .creador, .pagina-mapa .pieza {
     padding: 60px; } }
+
+.pagina-mapa .pieza img {
+  max-width: 450px;
+  height: 300px;
+  object-fit: cover; }
 
 .pagina-mapa .botones-mapa {
   display: flex;
