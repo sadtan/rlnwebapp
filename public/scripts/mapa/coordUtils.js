@@ -10,7 +10,7 @@ class CoordHelper
 
         this.p0 = 
         {
-            scrX: - 15,            // Minimum X position on screen
+            scrX: - 17,            // Minimum X position on screen
             scrY: 0,            // Minimum Y position on screen
             lat: 12.4748909033, // Latitude
             lng: -79.1635583007 // Longitude

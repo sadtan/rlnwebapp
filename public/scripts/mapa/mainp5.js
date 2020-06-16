@@ -192,21 +192,21 @@ function draw ()
     stroke('purple'); 
     
 
-    // var scrollEnabled = false;
-    // if (IsMouseOnCanvas())
-    // {
-    //     window.addEventListener('scroll', noScroll);
-    //     scrollEnabled = false;
-    // } else 
-    // {
-    //     scrollEnabled = true;
+    var scrollEnabled = false;
+    if (IsMouseOnCanvas())
+    {
+        window.addEventListener('scroll', noScroll);
+        scrollEnabled = false;
+    } else 
+    {
+        scrollEnabled = true;
 
-    //     if (scrollEnabled)
-    //     {
-    //         window.removeEventListener('scroll', noScroll);
-    //         scrollEnabled = false;
-    //     }
-    // }
+        if (scrollEnabled)
+        {
+            window.removeEventListener('scroll', noScroll);
+            scrollEnabled = false;
+        }
+    }
 
     if (IsDragging && IsMouseOnCanvas())
     {
@@ -231,7 +231,7 @@ function draw ()
                 cHelper.p1.scrX += speed.x;
             }
 
-            cHelper.p0.scrX = imgOrigin.x - 15;
+            cHelper.p0.scrX = imgOrigin.x - 17;
             cHelper.p0.scrY = imgOrigin.y;
 
         }
