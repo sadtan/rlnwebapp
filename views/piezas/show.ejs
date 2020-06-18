@@ -187,26 +187,46 @@
         
             <div id="collapseTwo" class="contenido collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                 <ul class="hecho">
+                  <p>
+                  <%=pieza['hecho_relato']%>
+                </p>
                   <li><b> Año: </b> <%=hecho['fecha']%></li>
                   <%
                   if ( hecho.tipo == "0" )  {
+                    var modalidades = hecho['modalidad'].split(";");
+                    var modTXT = "";
+                    for (modalidad_ in modalidades) {
+                      if (modalidades[modalidad_] != " ")
+                      modTXT += modalidades[modalidad_] + ", "
+                    }
+                    modTXT = modTXT.substring(0, modTXT.length - 2)
+                    modTXT += ". "
                   
                   %>
-                  <li><b> Modalidad: </b> <%=hecho['modalidad']%></li>
+                  <li><b> Acontecimiento asociado al conflicto armado: </b> Violencia</li>
+                  <li><b> Modalidad(es): </b> <%= modTXT%></li>
                   
                   <%
                   } else {
+                    if ( hecho.tipo == "1" )  {
+                    
                   %>
-                  <li><b> Acciones de resistensia y sobreviviencia: </b> <%=hecho['acciones_resistencia_sobrevivencia']%></li>
+                  <li><b> Acontecimiento asociado al conflicto armado: </b> Resistencia</li>
+                    <li><b> Acciones: </b> <%=hecho['acciones_resistencia_sobrevivencia']%></li>
                   <%
+                    } else {
+
+                      %>
+                      <li><b> Acontecimiento asociado al conflicto armado: </b> Sobrevivencia</li>
+                      <li><b> Acciones: </b> <%=hecho['acciones_resistencia_sobrevivencia']%></li>
+                      <%
+                    }
                   }
                   %>
 
                   <li><b> Actores: </b> <%=hecho['actores']%></li>
                 </ul>
-                <p>
-                  <%=pieza['hecho_relato']%>
-                </p>
+                
             </div>
           </div>
 
