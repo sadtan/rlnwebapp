@@ -32,11 +32,12 @@
         for (var i = 0; i < piezas.length; ++i) 
         {
         %>
-            <div class="col col-12 col-lg-6 btm pieza">
+            <div class="col col-12 col-lg-6 btm pieza d-none">
                <!-- <div class="img">
                     <img src="<%=piezas[i]['imagen_path']%>" alt="" class="s3_img"> 
                 </div>
             -->
+            <div>
                 <h2><%=piezas[i]['titulo']%></h2>
                 <p>
                     <%
@@ -52,6 +53,7 @@
                     <li><%=piezas[i]['fk_creador']%></li>
                 </ul>
             </div>
+            </div>
         <%
         }
 
@@ -63,7 +65,7 @@
             dep = creadores[i]['dep']
             lugar = dep['lugar'][0]
         %>
-        <div class="col col-12 col-lg-6 btm creador mapa">
+        <div class="col col-12 col-lg-6 btm creador mapa d-none">
             
             <div class="img">
                 <%
@@ -135,6 +137,7 @@
     var docCreadores = document.getElementsByClassName("creador");
     var docPiezas = document.getElementsByClassName("pieza");
 
+
     for (_latLong in docLatLong)
         if (docLatLong[_latLong].children)
         {
@@ -169,16 +172,26 @@
     var markersC = [];
     var markersP = [];
 
+    
+
+    // for (docPieza in docPiezas) {
+        
+    //     if (docPiezas[docPieza].children != undefined) {
+    //         if (docPiezas[docPieza].children[3].children[0].innerText == latLongArr[i].idC) {
+    //             //console.log(docCreadores[docCreador].children);
+    //             markerP.bindPopup(docPiezas[docPieza].innerHTML);
+    //         }
+    //     }
+    // }
+
     for (let i = 0; i < latLongArr.length; ++i)
     {
-        //console.log(latLongArr[i])
         var marker = L.marker([latLongArr[i].lat, latLongArr[i].long]);
         var markerP = L.marker([latLongArr[i].lat, latLongArr[i].long]);
         for (docCreador in docCreadores) {
             
             if (docCreadores[docCreador].children != undefined) {
                 if (docCreadores[docCreador].children[1].children[1].children[3].innerText == latLongArr[i].idC) {
-                    //console.log(docCreadores[docCreador].children)
                     marker.bindPopup(docCreadores[docCreador].children[1].innerHTML);
                 }
             }
@@ -187,11 +200,9 @@
         for (docPieza in docPiezas) {
             
             if (docPiezas[docPieza].children != undefined) {
-                console.log(docPiezas[docPieza].children[3].children[0])
-                if (docPiezas[docPieza].children[3].children[0].innerText == latLongArr[i].idC) {
+                if (docPiezas[docPieza].children[0].children[3].children[0].innerText == latLongArr[i].idC) {
                     //console.log(docCreadores[docCreador].children);
-                    console.log(docPiezas[docPieza].children[3].children[0])
-                    markerP.bindPopup(docPiezas[docPieza].innerHTML);
+                    markerP.bindPopup(docPiezas[docPieza].children[0].innerHTML);
                 }
             }
         }
@@ -202,7 +213,7 @@
     var bFilterCreadores = false;
     document.getElementById("filter-creadores").addEventListener("click", FilterCreadores);
     document.getElementById("filter-piezas").addEventListener("click", FilterPiezas);
-
+    FilterCreadores();
 
     function FilterCreadores() {
         bFilterCreadores = true;
