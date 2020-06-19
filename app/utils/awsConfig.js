@@ -174,7 +174,6 @@ module.exports = (BucketName) =>
                     Key: KeyValue,
                     Expires: 600
                 }
-                
                 return(s3.getSignedUrl('getObject', fileParams));
 
             } catch (headErr)
@@ -185,6 +184,7 @@ module.exports = (BucketName) =>
             
         } catch (err) 
         {
+            
             return(KeyValue);
         }
     }

@@ -1,26 +1,55 @@
 <%- include('../partials/header') -%>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-   crossorigin=""/>
-   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-   crossorigin=""></script> 
+<script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
 <style>
-    #mapid { height: 60vh}
-</style>
+    #mapid { height: 60vh; width: 60vw;}
+    .scroll
+    {
+        width: 100%; 
+        height: 300px; 
+        overflow-y: scroll; 
+        text-align: justify; 
+        padding-right: 20px;
+        margin-top: 20px;
+    }
 
-<section class="home-section preview-fondos container top pagina-mapa">
+    .scroll-content {
+        text-align: left; 
+        width: 80%;
+    }
+    .scroll::-webkit-scrollbar {
+        width: 5px;
+    }
+    .scroll::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey; 
+        border-radius: 10px;
+    }
+    .scroll::-webkit-scrollbar-thumb {
+        background: #2727E5; 
+        border-radius: 10px;
+    }
+    .scroll::-webkit-scrollbar-thumb:hover {
+        background: #2121c2; 
+    }
     
-    <div class="fondo row align-items-center btm justify-content-center"> 
+</style>
+<section class="home-section preview-fondos container top pagina-mapa">
+    <div class="" id="intro-mapa">
+        <h2> Geografías Textiles</h2>
+        <p>
+            En Colombia hemos identificado cerca de 42 iniciativas que configuran una red de tejedoras por la memoria y la vida que se entrelaza en los departamentos de Antioquia, Bolívar, Cauca, Cundinamarca, Chocó, Putumayo, Nariño y Valle del Cauca. 
+            Hasta el momento hacen parte de este archivo digital de textiles testimoniales 12 de ellas para su consulta. 
+        </p>
+    </div>
+    <div class="fondo row align-items-center btm justify-content-center mt-4"> 
         <!--mapa-->
-        <div class="col col-12 col-lg-6 canvas">
-            <div id="mapid"></div>
+        <div class="canvas">
+            <div id="mapid"></div>  
+            
             
             <div class="botones-mapa"> 
 
                 <div class="toggle"> 
-                    <button class="btn grey" id="filter-piezas">Ver piezas</button>
-                    <button class="btn blue" id="filter-creadores">Ver creadores</button>
                 </div>
             </div>
             
@@ -28,32 +57,47 @@
 
         <% 
         var piezas = data.data['piezas'];
+        
 
         for (var i = 0; i < piezas.length; ++i) 
         {
+            //console.log(piezas)
         %>
-            <div class="col col-12 col-lg-6 btm pieza d-none">
-               <!-- <div class="img">
-                    <img src="<%=piezas[i]['imagen_path']%>" alt="" class="s3_img"> 
-                </div>
-            -->
+        <div class="col col-12 col-lg-12 btm pieza d-none">
+            <div class="img">
+                    <img src="<%=piezas[i]['imagen_path']%>" alt="" > 
+            </div>
+            
             <div>
                 <h2><%=piezas[i]['titulo']%></h2>
-                <p>
-                    <%
-                        var txt = piezas[i]['hecho_relato'].substring(0, 230) + "L";
-                        txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
-                        %>
-                        <%=txt%>
-                </p>
+                <% var txt = piezas[i]['hecho_relato'].substring(0, 180) + "L"; txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "..."; %>
+                <p><%=txt%></p>
                 <a href="/piezas/<%=piezas[i]['id']%>">
                     <button class ="btn blue">Conocer más</button>
                 </a>
-                <ul style="display: none;">}
-                    <li><%=piezas[i]['fk_creador']%></li>
+                <ul style="display: none;">
+                    <%
+                    var creadores_m = data.data[data.data['main']];
+                    for (var j = 0; j < creadores_m.length; ++j) 
+                    {
+                        if (creadores_m[j]['dep'] != undefined) {
+                            var dep_m = creadores_m[j]['dep'];
+                            var lugar_m = dep_m['lugar'][0]
+                        
+                            if (piezas[i]['fk_creador'] == creadores_m[j]['id']) {
+                        
+                    %>
+                    <li><%=lugar_m['id']%></li>
+                    <li><%=piezas[i]['id']%></li>
+                    <li><%=creadores_m[j]['nombre']%></li>
+                    <%
+                            }
+                        }
+                    }
+                    %>
                 </ul>
             </div>
-            </div>
+        </div>
         <%
         }
 
@@ -89,10 +133,7 @@
             %>
 
             <div>
-                <h3 class="lugar">
-                        <%=lugar['localidad']%>,
-                        <%=lugar['departamento']%>
-                </h3> 
+                <h3 class="lugar"><%=lugar['localidad']%>, <%=lugar['departamento']%></h3> 
                 <ul class="latlong" style="display: none;">
                     <li><%=lugar['lat']%></li>
                     <li><%=lugar['longf']%></li>
@@ -121,142 +162,16 @@
         } 
 
         %>
-        <div class="col col-12 col-lg-5 col-sm-12 offset-lg-1" id="intro-mapa">
-            <h2> Geografías Textiles</h2>
-            <p>
-                En Colombia hemos identificado cerca de 42 iniciativas que configuran una red de tejedoras por la memoria y la vida que se entrelaza en los departamentos de Antioquia, Bolívar, Cauca, Cundinamarca, Chocó, Putumayo, Nariño y Valle del Cauca. 
-                Hasta el momento hacen parte de este archivo digital de textiles testimoniales 12 de ellas para su consulta. 
-            </p>
-        </div>
+        
     </div>
 
 </section>
+
 <script>
-    var latLongArr = [];
-    var docLatLong = document.getElementsByClassName("latlong");
-    var docCreadores = document.getElementsByClassName("creador");
-    var docPiezas = document.getElementsByClassName("pieza");
-
-
-    for (_latLong in docLatLong)
-        if (docLatLong[_latLong].children)
-        {
-            var lat = docLatLong[_latLong].children[0].innerText;
-            var long = docLatLong[_latLong].children[1].innerText;
-            var id = docLatLong[_latLong].children[2].innerText;
-            var idC = docLatLong[_latLong].children[3].innerText;
-            var ltobj = {lat, long, id}
-            var hasCoord = false;
-           
-            for (let i = 0; i < latLongArr.length; ++i)
-            {
-                if (latLongArr[i]['lat'] == ltobj['lat'] && latLongArr[i]['long'] == ltobj['long'])
-                    hasCoord = true;
-            }
-            if (!hasCoord)
-                latLongArr.push({lat, long, id, idC})
-        }
-
-    
-
-    var mymap = L.map('mapid').setView([4.7110, -74.0721], 7);
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox/streets-v11',
-        tileSize: 512,
-        zoomOffset: -1,
-        accessToken: 'pk.eyJ1Ijoic2FkdGFuIiwiYSI6ImNrYmt6ZjVpaDBmMGcydXBpeTQ0YWE1bTEifQ.KG2taHfe7j3bNm0nj2Bgug'
-    }).addTo(mymap);
-
-    var markersC = [];
-    var markersP = [];
-
-    
-
-    // for (docPieza in docPiezas) {
-        
-    //     if (docPiezas[docPieza].children != undefined) {
-    //         if (docPiezas[docPieza].children[3].children[0].innerText == latLongArr[i].idC) {
-    //             //console.log(docCreadores[docCreador].children);
-    //             markerP.bindPopup(docPiezas[docPieza].innerHTML);
-    //         }
-    //     }
-    // }
-
-    for (let i = 0; i < latLongArr.length; ++i)
-    {
-        var marker = L.marker([latLongArr[i].lat, latLongArr[i].long]);
-        var markerP = L.marker([latLongArr[i].lat, latLongArr[i].long]);
-        for (docCreador in docCreadores) {
-            
-            if (docCreadores[docCreador].children != undefined) {
-                if (docCreadores[docCreador].children[1].children[1].children[3].innerText == latLongArr[i].idC) {
-                    marker.bindPopup(docCreadores[docCreador].children[1].innerHTML);
-                }
-            }
-        }
-
-        for (docPieza in docPiezas) {
-            
-            if (docPiezas[docPieza].children != undefined) {
-                if (docPiezas[docPieza].children[0].children[3].children[0].innerText == latLongArr[i].idC) {
-                    //console.log(docCreadores[docCreador].children);
-                    markerP.bindPopup(docPiezas[docPieza].children[0].innerHTML);
-                }
-            }
-        }
-        markersC.push(marker);
-        markersP.push(markerP);
-    }
-
-    var bFilterCreadores = false;
-    document.getElementById("filter-creadores").addEventListener("click", FilterCreadores);
-    document.getElementById("filter-piezas").addEventListener("click", FilterPiezas);
-    FilterCreadores();
-
-    function FilterCreadores() {
-        bFilterCreadores = true;
-        ToggleButton();
-        for (let i = 0; i < markersP.length; ++i) {
-            markersP[i].remove();
-
-        }
-        for (let i = 0; i < markersC.length; ++i) {
-            markersC[i].addTo(mymap);
-        }
-    }
-    function FilterPiezas() {
-        bFilterCreadores = false;
-        ToggleButton();
-        for (let i = 0; i < markersP.length; ++i) {
-            markersP[i].addTo(mymap);;
-
-        }
-        for (let i = 0; i < markersC.length; ++i) {
-            markersC[i].remove();
-        }
-    }
-
-    function ToggleButton() {
-        if (!bFilterCreadores) {
-            document.getElementById("filter-creadores").style.backgroundColor = "#CDCDCD";
-            document.getElementById("filter-piezas").style.backgroundColor = "#2727E5";
-            
-            
-        } else {
-            
-            document.getElementById("filter-creadores").style.backgroundColor = "#2727E5";
-            document.getElementById("filter-piezas").style.backgroundColor = "#CDCDCD";
-            
-
-        }
-    }
-    
-    
+                
+                
 </script>
-
-
+<script src="/scripts/mapa/map.js"></script>
 <script src="/scripts/s3ImageUrl.js"></script>
 
 <%- include('../partials/footer') -%> 
