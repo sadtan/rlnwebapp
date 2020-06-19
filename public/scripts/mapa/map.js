@@ -6,19 +6,28 @@ var docCreadores = document.getElementsByClassName("creador");
 
 var geoJson = [];
 var latLongArr = [];
-var mymap = L.map('mapid').setView([6.2486, -75.5742], 6).addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
+var mymap = L.map('mapid', { zoomControl: false }).setView([6.2486, -75.5742], 6);
+//var mymap = L.map('mapid').setView([6.2486, -75.5742], 6).addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    // attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    
     id: 'mapbox/light-v10',
     tileSize: 512,
-    
+    opacity: 0,
     zoomOffset: -1,
+    
     maxBounds: L.latLngBounds(L.latLng(17.0354698214, -79.1635583007), L.latLng(-4.23168726, -66.85119071)),
-    accessToken: 'pk.eyJ1Ijoic2FkdGFuIiwiYSI6ImNrYmt6ZjVpaDBmMGcydXBpeTQ0YWE1bTEifQ.KG2taHfe7j3bNm0nj2Bgug'
+    accessToken: 'pk.eyJ1Ijoic2FkdGFuIiwiYSI6ImNrYmt6ZjVpaDBmMGcydXBpeTQ0YWE1bTEifQ.KG2taHfe7j3bNm0nj2Bgug',
+    zoomControl: false,
 }).addTo(mymap);
 
 mymap.setMinZoom(6);
 mymap.setMaxBounds(L.latLngBounds(L.latLng(17.0354698214, -79.1635583007), L.latLng(-4.23168726, -66.85119071)))
+
+mymap.setZoomControl
+L.control.zoom({
+    position: 'bottomright'
+}).addTo(mymap);
 
 function style(feature) {
     return {
@@ -111,28 +120,155 @@ for (var creador in docCreadores) {
 
     }
 }
+var lugaresLayer = L.mapbox.featureLayer().setGeoJSON(geoJson, {
+    onEachFeature: function(feature, featureLayer) {
+        //featureLayer.bindPopup(feature.properties.name);
+        console.log(featureLayer.getPopup())
+        featureLayer.on("mouseover", function() {
+            featureLayer.getPopup().update();
+        })
+    }
+}).addTo(mymap);
 
-var lugaresLayer = L.mapbox.featureLayer().setGeoJSON(geoJson).addTo(mymap);
-lugaresLayer.bindPopup(function (layer) {
+
+lugaresLayer.bindTooltip(function (layer) {
     
     var _piezas = layer.feature.properties.piezas;
-    var finalTXT = '<div> <h3> ' + _piezas[0]['lugar'] + ' </h3> <div class="scroll">  ';
-    for (var i = 0; i < _piezas.length; ++i) {
 
-        
-        finalTXT += '<a href="/piezas/' + _piezas[i]['idPieza'] + '"><h1 class="scroll-content"> ' + _piezas[i]['titulo'] + ' </h1></a> '
-        finalTXT += '<a href="/creadores/' + _piezas[i]['idCreador'] + '" class="scroll-content"> ' + _piezas[i]['nombreCreador'] + ' </a> '
-        finalTXT += '<p class="mt-2 ">' + _piezas[i].relatoHecho + '</p>'
-        if (i != _piezas.length - 1)
-        finalTXT += "<hr>"
-        
+    layer.on('mouseover', function (e) {
+        //repeat();
+        this.openTooltip();
+    });
+    layer.on('mouseout', function (e) {
+        this.closeTooltip();
+    });
+    
+    for (var i = 0; i < _piezas.length; ++i) {
+        return L.Util.template(_piezas[0]['lugar']);
     }
-    finalTXT += "</div></div>";
+    
+    
+})
+
+lugaresLayer.bindPopup(function (layer) {
+    //
+    var _piezas = layer.feature.properties.piezas;
+    
+    var finalTXT = '<div > <h3> ' + _piezas[0]['lugar'] + ' </h3> <div class="scroll">  ';
+  
+        for (var i = 0; i < _piezas.length; ++i) {
+
+            finalTXT += '<img src="' + _piezas[i]['img_s3_key'] + '" class="s3_img_" > '
+            finalTXT += '<a href="/piezas/' + _piezas[i]['idPieza'] + '"><h1 class="scroll-content"> ' + _piezas[i]['titulo'] + ' </h1></a> '
+            finalTXT += '<a href="/creadores/' + _piezas[i]['idCreador'] + '" class="scroll-content"> ' + _piezas[i]['nombreCreador'] + ' </a> '
+            finalTXT += '<p class="mt-2 ">' + _piezas[i].relatoHecho + '</p>'
+            if (i != _piezas.length - 1)
+            finalTXT += "<hr>"
+            
+        }
+    
+    finalTXT += '</div></div>';
     return L.Util.template(finalTXT);
 })
 
+var iLastLoc = -1;
+
+async function repeat() {
+    var s3imgs = document.getElementsByClassName("s3_img_");
+    //conso
+    for (let i = 0; i < s3imgs.length; ++i) {
+
+        if (s3imgs[i])
+        {
+            if (s3imgs[i].getAttribute("src").indexOf("https") < 0) {
+                console.log("loading img");
+                var newUrl = await gets3url("/gets3presignedurl", "POST", { data: s3imgs[i].getAttribute("src") });
+                s3imgs[i].setAttribute("src", newUrl.data)
+            }
+        }
+        
+    }
+    setTimeout(repeat, 100);
+}
+
+repeat();
 
 
+
+// function repeat() {
+//     lugaresLayer.bindPopup(function (layer) {
+//         //
+//         var _piezas = layer.feature.properties.piezas;
+        
+//         var finalTXT = '<div > <h3> ' + _piezas[0]['lugar'] + ' </h3> <div class="scroll">  ';
+      
+//             for (var i = 0; i < _piezas.length; ++i) {
+    
+//                // console.log(_piezas[i]['img_s3_key'])
+//                //if (_piezas[i]['img_s3_key'].toString().indexOf("https") < 0);
+//                 //setTimeout(repeat, 500);
+    
+//                 finalTXT += '<img src="' + _piezas[i]['img_s3_key'] + '" class="s3_img" > '
+//                 finalTXT += '<a href="/piezas/' + _piezas[i]['idPieza'] + '"><h1 class="scroll-content"> ' + _piezas[i]['titulo'] + ' </h1></a> '
+//                 finalTXT += '<a href="/creadores/' + _piezas[i]['idCreador'] + '" class="scroll-content"> ' + _piezas[i]['nombreCreador'] + ' </a> '
+//                 finalTXT += '<p class="mt-2 ">' + _piezas[i].relatoHecho + '</p>'
+//                 if (i != _piezas.length - 1)
+//                 finalTXT += "<hr>"
+                
+//             }
+        
+//         finalTXT += '</div></div>';
+        
+//         // layer.on('mouseover', function (e) {
+//         //     console.log("ASD")
+//         // });
+//         restart();
+//         return L.Util.template(finalTXT);
+//     })
+// }
+
+// async function gets3url(url, method, data) {
+//     return new Promise( async (resolve, reject) => 
+//     {
+//         try {
+//             var response = {};
+//             response = await fetch(url, {
+//                 method,
+//                 mode: "cors",
+//                 //cache: 'no-cache',
+//                 //credentials: 'omit',
+//                 headers: {
+//                     "Content-Type": "application/json"
+//                 },
+//                 //redirect: 'follow',
+//                 //referrerPolicy: 'no-referrer',
+//                 body: JSON.stringify(data)
+//             });
+//             resolve(response.json());
+//         } catch (error) {
+//             reject(error);
+//         }
+//     });
+    
+// }
+
+
+// console.log(geoJson[0].properties.piezas)
+// for (let i = 0; i < geoJson.length; ++i)
+// {
+//     var marker = new L.marker([geoJson[i].geometry.coordinates[1], geoJson[i].geometry.coordinates[0]], { opacity: 0.01 });
+//     marker.bindTooltip(geoJson[i].properties.piezas[0].lugar, {permanent: false, className: "my-label", offset: [0, 0] });
+//     marker.on('mouseover', function (e) {
+//         this.openTooltip();
+//     });
+//     marker.on('mouseout', function (e) {
+//         this.closeTooltip();
+//     });
+//     marker.addTo(mymap);
+    
+//     console.log(marker)
+
+// }
 
 
 
