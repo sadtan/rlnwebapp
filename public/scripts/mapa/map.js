@@ -9,12 +9,16 @@ var latLongArr = [];
 var mymap = L.map('mapid').setView([6.2486, -75.5742], 6).addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
     id: 'mapbox/light-v11',
     tileSize: 512,
+    
     zoomOffset: -1,
+    maxBounds: L.latLngBounds(L.latLng(17.0354698214, -79.1635583007), L.latLng(-4.23168726, -66.85119071)),
     accessToken: 'pk.eyJ1Ijoic2FkdGFuIiwiYSI6ImNrYmt6ZjVpaDBmMGcydXBpeTQ0YWE1bTEifQ.KG2taHfe7j3bNm0nj2Bgug'
 }).addTo(mymap);
+
+mymap.setMinZoom(6);
+mymap.setMaxBounds(L.latLngBounds(L.latLng(17.0354698214, -79.1635583007), L.latLng(-4.23168726, -66.85119071)))
 
 function style(feature) {
     return {
@@ -22,7 +26,7 @@ function style(feature) {
         opacity: 1,
         color: 'white',
         dashArray: '3',
-        fillOpacity: 1.0,
+        fillOpacity: 0.8,
         fillColor: '#FC4141'
     };
 }
@@ -145,13 +149,13 @@ lugaresLayer.bindPopup(function (layer) {
 
 
 // // control that shows state info on hover
-// var info = L.control();
+var info = L.control();
 
-// info.onAdd = function (map) {
-//     this._div = L.DomUtil.create('div', 'info');
-//     this.update();
-//     return this._div;
-// };
+info.onAdd = function (mymap) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+};
 
 // info.update = function (props) {
 //     this._div.innerHTML = '<h4>US Population Density</h4>' +  (props ?
@@ -159,7 +163,7 @@ lugaresLayer.bindPopup(function (layer) {
 //         : 'Hover over a state');
 // };
 
-// info.addTo(map);
+info.addTo(mymap);
 
 
 // get color depending on population density value
