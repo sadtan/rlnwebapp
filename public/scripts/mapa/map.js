@@ -9,7 +9,7 @@ var latLongArr = [];
 var mymap = L.map('mapid').setView([6.2486, -75.5742], 6).addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    id: 'mapbox/light-v11',
+    id: 'mapbox/light-v10',
     tileSize: 512,
     
     zoomOffset: -1,
@@ -135,35 +135,6 @@ lugaresLayer.bindPopup(function (layer) {
 
 
 
-// var map = L.map('map').setView([37.8, -96], 4);
-
-// L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-//     maxZoom: 18,
-//     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-//         '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-//         'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-//     id: 'mapbox/light-v9',
-//     tileSize: 512,
-//     zoomOffset: -1
-// }).addTo(map);
-
-
-// // control that shows state info on hover
-var info = L.control();
-
-info.onAdd = function (mymap) {
-    this._div = L.DomUtil.create('div', 'info');
-    this.update();
-    return this._div;
-};
-
-// info.update = function (props) {
-//     this._div.innerHTML = '<h4>US Population Density</h4>' +  (props ?
-//         '<b>' + props.name + '</b><br />' + props.density + ' people / mi<sup>2</sup>'
-//         : 'Hover over a state');
-// };
-
-info.addTo(mymap);
 
 
 // get color depending on population density value
