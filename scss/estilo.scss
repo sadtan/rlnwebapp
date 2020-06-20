@@ -464,6 +464,10 @@ footer {
         margin: 0 auto;
         animation: bounce 2s infinite;
 
+        @media #{$extra-large-and-up} { 
+            margin-top: -80px;
+        }
+        
         @media #{$large-and-down} { 
             margin-top: 5vh;
         }
