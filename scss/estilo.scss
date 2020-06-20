@@ -310,16 +310,18 @@ footer {
     margin-top: 10vh;
     color: $blanco;
     position: relative;
+    font-size: 15px;
 
     .logo {
-        margin-bottom: 30px;
-    }
-
-    @media #{$medium-and-up} { 
-        padding-top: 45px;
+        margin-bottom: 20px;
+        font-size: 20px;
     }
 
     .left-footer {
+        i { 
+            font-size: 14px;
+            color: #ffffffbd;
+            }
         
 
         @media #{$extra-large-and-up} { 
@@ -364,8 +366,9 @@ footer {
 
     .bottom-footer {
         background-color: $negro;
-        padding: 20px 0;
-        margin-top: 15px;
+        padding: 10px 0;
+        margin-top: 10px;
+        font-size: 14px;
 
         p {
             margin-bottom: 0;
@@ -530,8 +533,8 @@ footer {
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: 60vw;
-
+    background-size: 75vw;
+    
     p {
         padding: 150px 0;
         max-width: 450px;

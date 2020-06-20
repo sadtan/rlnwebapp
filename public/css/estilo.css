@@ -196,12 +196,14 @@ footer {
   padding-top: 35px;
   margin-top: 10vh;
   color: #FFF;
-  position: relative; }
+  position: relative;
+  font-size: 15px; }
   footer .logo {
-    margin-bottom: 30px; }
-  @media only screen and (min-width: 577px) {
-    footer {
-      padding-top: 45px; } }
+    margin-bottom: 20px;
+    font-size: 20px; }
+  footer .left-footer i {
+    font-size: 14px;
+    color: #ffffffbd; }
   @media only screen and (min-width: 993px) {
     footer .left-footer p {
       max-width: 60%; } }
@@ -225,8 +227,9 @@ footer {
     padding: 0 0 5px 0; }
   footer .bottom-footer {
     background-color: #161616;
-    padding: 20px 0;
-    margin-top: 15px; }
+    padding: 10px 0;
+    margin-top: 10px;
+    font-size: 14px; }
     footer .bottom-footer p {
       margin-bottom: 0;
       color: #C2C2C2; }
@@ -324,7 +327,7 @@ footer {
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: 60vw; }
+  background-size: 75vw; }
   .hero p {
     padding: 150px 0;
     max-width: 450px;
