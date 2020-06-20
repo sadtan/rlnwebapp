@@ -512,7 +512,7 @@ footer {
   justify-content: center; }
   .img-sobre img {
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     object-fit: contain; }
 
 .pag-sobre p {
