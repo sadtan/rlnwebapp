@@ -6,7 +6,7 @@ var docCreadores = document.getElementsByClassName("creador");
 
 var geoJson = [];
 var latLongArr = [];
-var mymap = L.map('mapid', { zoomControl: false }).setView([4.2486, -74.5742], 6);
+var mymap = L.map('mapid', { zoomControl: false }).setView([4.2486, -60.5742], 6);
 //var mymap = L.map('mapid').setView([6.2486, -75.5742], 6).addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     // attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -21,7 +21,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     zoomControl: false,
 }).addTo(mymap);
 
-mymap.setMinZoom(6);
+mymap.setMinZoom(5);
 mymap.setMaxBounds(L.latLngBounds(L.latLng(17.0354698214, -79.1635583007), L.latLng(-4.23168726, -66.85119071)))
 
 mymap.setZoomControl
