@@ -892,20 +892,37 @@ footer {
 .pagina-mapa img {
   margin-bottom: 1em; }
 
-.pagina-mapa #canvasp5 {
-  cursor: pointer; }
-
-.pagina-mapa .boton-zoom {
-  margin-top: 2px; }
-
-@media only screen and (min-width: 577px) {
-  .pagina-mapa .creador, .pagina-mapa .pieza {
-    padding: 60px; } }
-
 .pagina-mapa .pieza img {
   max-width: 450px;
   height: 300px;
   object-fit: cover; }
+
+.pagina-mapa .leaflet-popup-content {
+  width: 360px; }
+  .pagina-mapa .leaflet-popup-content p.relato {
+    font-size: 13px;
+    line-height: 1.4; }
+    .pagina-mapa .leaflet-popup-content p.relato a {
+      color: #2727E5; }
+      .pagina-mapa .leaflet-popup-content p.relato a:hover {
+        text-decoration: underline; }
+  .pagina-mapa .leaflet-popup-content h3 {
+    font-size: 13px; }
+  .pagina-mapa .leaflet-popup-content h1 {
+    font-family: "CircularStd", sans-serif;
+    color: #161616;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0; }
+    .pagina-mapa .leaflet-popup-content h1:hover {
+      text-decoration: underline;
+      color: #2727E5; }
+  .pagina-mapa .leaflet-popup-content a.nombre-creador {
+    font-style: italic;
+    color: #656565; }
+  .pagina-mapa .leaflet-popup-content a:hover {
+    text-decoration: underline;
+    color: #2727E5; }
 
 .pagina-mapa .botones-mapa {
   display: flex;

@@ -6,7 +6,7 @@ var docCreadores = document.getElementsByClassName("creador");
 
 var geoJson = [];
 var latLongArr = [];
-var mymap = L.map('mapid', { zoomControl: false }).setView([6.2486, -75.5742], 6);
+var mymap = L.map('mapid', { zoomControl: false }).setView([4.2486, -74.5742], 6);
 //var mymap = L.map('mapid').setView([6.2486, -75.5742], 6).addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     // attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -44,10 +44,11 @@ function highlightFeature(e) {
     var layer = e.target;
 
     layer.setStyle({
-        weight: 5,
+        weight: 3,
         color: '#fff',
         dashArray: '',
-        fillOpacity: 0.7
+        fillOpacity: 0.7,
+        fillColor: '#FEDB31'
     });
 
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
@@ -159,9 +160,9 @@ lugaresLayer.bindPopup(function (layer) {
         for (var i = 0; i < _piezas.length; ++i) {
 
             finalTXT += '<img src="' + _piezas[i]['img_s3_key'] + '" class="s3_img_" > '
-            finalTXT += '<a href="/piezas/' + _piezas[i]['idPieza'] + '"><h1 class="scroll-content"> ' + _piezas[i]['titulo'] + ' </h1></a> '
-            finalTXT += '<a href="/creadores/' + _piezas[i]['idCreador'] + '" class="scroll-content"> ' + _piezas[i]['nombreCreador'] + ' </a> '
-            finalTXT += '<p class="mt-2 ">' + _piezas[i].relatoHecho + '</p>'
+            finalTXT += '<a href="/piezas/' + _piezas[i]['idPieza'] + '"><h1 class="scroll-content nombre-pieza"> ' + _piezas[i]['titulo'] + ' </h1></a> '
+            finalTXT += '<a href="/creadores/' + _piezas[i]['idCreador'] + '" class="scroll-content nombre-creador"> ' + _piezas[i]['nombreCreador'] + ' </a> '
+            finalTXT += '<p class="mt-2 relato">' + _piezas[i].relatoHecho + '<a href="/piezas/' + _piezas[i]['idPieza'] + '">' + 'Ver más' + '</a></p>'
             if (i != _piezas.length - 1)
             finalTXT += "<hr>"
             

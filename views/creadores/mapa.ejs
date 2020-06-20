@@ -2,7 +2,21 @@
 <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
 <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
 <style>
-    #mapid { height: 60vh; width: 60vw;}
+
+    .map-container {
+        width: 100%;
+        height: 70vw;
+        position: relative;
+    }
+
+    #mapid { 
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+    }
+
     @media only screen and (max-width: 800px) {
         #mapid {
             width: 100vw;
@@ -25,7 +39,7 @@
         width: 5px;
     }
     .scroll::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 5px grey; 
+        /*box-shadow: inset 0 0 5px grey; */
         border-radius: 10px;
     }
     .scroll::-webkit-scrollbar-thumb {
@@ -42,135 +56,135 @@
     
 </style>
 <section class="home-section preview-fondos container top pagina-mapa">
-    <div class="" id="intro-mapa">
-        <h2> Geografías Textiles</h2>
-        <p>
-            En Colombia hemos identificado cerca de 42 iniciativas que configuran una red de tejedoras por la memoria y la vida que se entrelaza en los departamentos de Antioquia, Bolívar, Cauca, Cundinamarca, Chocó, Putumayo, Nariño y Valle del Cauca. 
-            Hasta el momento hacen parte de este archivo digital de textiles testimoniales 12 de ellas para su consulta. 
-        </p>
-    </div>
-    <div class="fondo row align-items-center btm justify-content-center mt-4"> 
-        <!--mapa-->
-        <div class="canvas">
-            <div id="mapid"></div>  
-            
-            
-            <div class="botones-mapa"> 
 
-                <div class="toggle"> 
-                </div>
-            </div>
-            
+    <div class="row">
+        <div class="col-12" id="intro-mapa">
+            <h2> Geografías Textiles</h2>
+            <p>
+                En Colombia hemos identificado cerca de 42 iniciativas que configuran una red de tejedoras por la memoria y la vida que se entrelaza en los departamentos de Antioquia, Bolívar, Cauca, Cundinamarca, Chocó, Putumayo, Nariño y Valle del Cauca. 
+                Hasta el momento hacen parte de este archivo digital de textiles testimoniales 12 de ellas para su consulta. 
+            </p>
         </div>
-
-        <% 
-        var piezas = data.data['piezas'];
-        
-
-        for (var i = 0; i < piezas.length; ++i) 
-        {
-            //console.log(piezas)
-        %>
-        <div class="col col-12 col-lg-12 btm pieza d-none">
-            <div class="img">
-                    <img src="<%=piezas[i]['imagen_path']%>" alt="" > 
+    
+    
+        <div class="col-12"> 
+            <!--mapa-->
+            <div class="map-container">
+                <div id="mapid"></div>  
             </div>
             
-            <div>
-                <h2><%=piezas[i]['titulo']%></h2>
-                <% var txt = piezas[i]['hecho_relato'].substring(0, 180) + "L"; txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "..."; %>
-                <p><%=txt%></p>
-                <a href="/piezas/<%=piezas[i]['id']%>">
-                    <button class ="btn blue">Conocer más</button>
-                </a>
-                <ul style="display: none;">
-                    <%
-                    var creadores_m = data.data[data.data['main']];
-                    for (var j = 0; j < creadores_m.length; ++j) 
-                    {
-                        if (creadores_m[j]['dep'] != undefined) {
-                            var dep_m = creadores_m[j]['dep'];
-                            var lugar_m = dep_m['lugar'][0]
-                        
-                            if (piezas[i]['fk_creador'] == creadores_m[j]['id']) {
-                        
-                    %>
-                    <li><%=lugar_m['id']%></li>
-                    <li><%=piezas[i]['id']%></li>
-                    <li><%=creadores_m[j]['nombre']%></li>
-                    <%
+
+
+            <% 
+            var piezas = data.data['piezas'];
+            
+
+            for (var i = 0; i < piezas.length; ++i) 
+            {
+                //console.log(piezas)
+            %>
+            <div class="col col-12 col-lg-12 btm pieza d-none">
+                <div class="img">
+                        <img src="<%=piezas[i]['imagen_path']%>" alt="" > 
+                </div>
+                
+                <div>
+                    <h2><%=piezas[i]['titulo']%></h2>
+                    <% var txt = piezas[i]['hecho_relato'].substring(0, 180) + "L"; txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "..."; %>
+                    <p><%=txt%></p>
+                    <a href="/piezas/<%=piezas[i]['id']%>">
+                        <button class ="btn blue">Conocer más</button>
+                    </a>
+                    <ul style="display: none;">
+                        <%
+                        var creadores_m = data.data[data.data['main']];
+                        for (var j = 0; j < creadores_m.length; ++j) 
+                        {
+                            if (creadores_m[j]['dep'] != undefined) {
+                                var dep_m = creadores_m[j]['dep'];
+                                var lugar_m = dep_m['lugar'][0]
+                            
+                                if (piezas[i]['fk_creador'] == creadores_m[j]['id']) {
+                            
+                        %>
+                        <li><%=lugar_m['id']%></li>
+                        <li><%=piezas[i]['id']%></li>
+                        <li><%=creadores_m[j]['nombre']%></li>
+                        <%
+                                }
                             }
                         }
+                        %>
+                    </ul>
+                </div>
+            </div>
+            <%
+            }
+
+            var creadores = data.data[data.data['main']];
+            
+            for (var i = 0; i < creadores.length; ++i) 
+            {
+            if (creadores[i]['dep'] != undefined)
+                dep = creadores[i]['dep']
+                lugar = dep['lugar'][0]
+            %>
+            <div class="col col-12 col-lg-6 btm creador mapa d-none">
+                
+                <div class="img">
+                    <%
+                    if (creadores[i]['img_azul_path'].toString().indexOf("/") != -1)
+                    {
+                    %>
+                        <img src="<%=creadores[i]['img_azul_path']%>" alt="" class="s3_img"> 
+                    <%
+                    } 
+                    else 
+                    {
+                    %>
+                        <img src="/img/azul_mampujan.jpg" alt="" class=""> 
+                    <%
                     }
                     %>
-                </ul>
-            </div>
-        </div>
-        <%
-        }
+                </div>
+                <%  
+                if (creadores[i]['dep'] != undefined) 
+                { 
+                %>
 
-        var creadores = data.data[data.data['main']];
-        
-        for (var i = 0; i < creadores.length; ++i) 
-        {
-        if (creadores[i]['dep'] != undefined)
-            dep = creadores[i]['dep']
-            lugar = dep['lugar'][0]
-        %>
-        <div class="col col-12 col-lg-6 btm creador mapa d-none">
-            
-            <div class="img">
-                <%
-                if (creadores[i]['img_azul_path'].toString().indexOf("/") != -1)
-                {
-                %>
-                    <img src="<%=creadores[i]['img_azul_path']%>" alt="" class="s3_img"> 
-                <%
-                } 
-                else 
-                {
-                %>
-                    <img src="/img/azul_mampujan.jpg" alt="" class=""> 
-                <%
-                }
-                %>
-            </div>
-            <%  
-            if (creadores[i]['dep'] != undefined) 
-            { 
-            %>
-
-            <div>
-                <h3 class="lugar"><%=lugar['localidad']%>, <%=lugar['departamento']%></h3> 
-                <ul class="latlong" style="display: none;">
-                    <li><%=lugar['lat']%></li>
-                    <li><%=lugar['longf']%></li>
-                    <li><%=lugar['id']%></li>
-                    <li><%=creadores[i]['id']%></li>
-                </ul>
-                <%
-                }
-                %>
-            
-                <h2><%=creadores[i]['nombre']%></h2>
-                <p>
+                <div>
+                    <h3 class="lugar"><%=lugar['localidad']%>, <%=lugar['departamento']%></h3> 
+                    <ul class="latlong" style="display: none;">
+                        <li><%=lugar['lat']%></li>
+                        <li><%=lugar['longf']%></li>
+                        <li><%=lugar['id']%></li>
+                        <li><%=creadores[i]['id']%></li>
+                    </ul>
                     <%
-                        var txt = creadores[i]['caracterizacion'].substring(0, 230) + "L";
-                        txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
-                        %>
-                        <%=txt%>
-                </p>
-                <a href="/creadores/<%=creadores[i]['id']%>">
-                    <button class ="btn blue">Conocer más</button>
-                </a>
+                    }
+                    %>
+                
+                    <h2><%=creadores[i]['nombre']%></h2>
+                    <p>
+                        <%
+                            var txt = creadores[i]['caracterizacion'].substring(0, 230) + "L";
+                            txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
+                            %>
+                            <%=txt%>
+                    </p>
+                    <a href="/creadores/<%=creadores[i]['id']%>">
+                        <button class ="btn blue">Conocer más</button>
+                    </a>
+                </div>
+                
             </div>
+            <%
+            } 
+
+            %>
             
         </div>
-        <%
-        } 
 
-        %>
-        
     </div>
 
 </section>
