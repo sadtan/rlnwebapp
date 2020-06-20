@@ -418,6 +418,13 @@ footer {
 ---------------------------------------------------------------------*/
 
 .home-section {
+
+    &.busqueda {
+        .col {
+            margin-bottom: 1vh;
+        }
+
+    }
     .col {
         margin-bottom: 5vh;
     }
@@ -1214,6 +1221,30 @@ margin-top: 1em;
  .toggle {
     max-width: 500px;
  }
+ .filtros {
+
+    .italic {
+        color: $negro;
+    }
+     .borrar-filtros {
+        cursor: pointer;
+        font-style: italic;
+        line-height: 2;
+        color: $azul;
+        text-decoration: underline;
+        margin-left: 7px;
+
+        &:hover {
+            color: $azul;
+        text-decoration: underline;
+        }
+
+        &:visited {
+            color: $azul;
+        text-decoration: underline;
+        }
+     }
+ }
  .botones-filtros {
     padding-inline-start: 0;
     list-style-type: none;
@@ -1222,11 +1253,12 @@ margin-top: 1em;
     justify-content: center;
     flex-wrap: wrap;
 
+
     li {
         position: relative;
         background: white;
         border: 2px solid $azul;
-        padding: 2px 40px 2px 25px;
+        padding: 2px 35px 2px 20px;
         margin-right: 10px;
         border-radius: 20px;
         margin-top: 1em;
@@ -1309,10 +1341,10 @@ margin-top: 1em;
 
 .resultados {
     margin-top: 4vh;
-     .resultado-pieza, .resultado-creador {
+     .resultado-pieza {
         margin-bottom: 2em;
         .container-img {
-            height: 400px;
+            height: 300px;
 
             a {
                 position: absolute;
@@ -1350,6 +1382,18 @@ margin-top: 1em;
         .creador {
             margin-top: 0;
             font-style: italic;
+            line-height: 1.5;
+
+            cursor: pointer;
+
+            a {
+                color: $negro;
+
+                &:hover {
+                    color: $azul;
+                    text-decoration: underline;
+                }
+            }
         }
     }
 }

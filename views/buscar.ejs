@@ -139,23 +139,25 @@ for (var pieza in piezas)
 
 %>
 <div class="container pag-sobre">
-    <section class="texto-sobre top">
-        <h2 class="text-center">
-            El archivo completo
-        </h2>  
-        <p>
-            Para facilitar la búsqueda y consulta de este material hemos propuesto distintas rutas para acceder a la información de los fondos (colectivos) y sus piezas, respetando el principio de procedencia y orden original en la conformación de archivo. De este modo, puedes filtrar la información por: Año, Fondo, Temática, Técnica textil, Lugar de producción o Hechos asociados al conflicto armado en Colombia. 
-        </p>
-    </section>
 
-    <section class="filtros top">
-        <div class="container toggle">
-            <div class="row justify-content-around">
-                <button class="col col-5 btn blue" id="filter-piezas">Ver piezas </button>
-                <button class="col col-5 btn grey" id="filter-creadores">Ver creadores</button>
+    <section class="home-section busqueda container top home-intro">
+        <div class="row align-items-center">
+            <div class="text col col-12 col-lg-6  order-2-lg">
+                <h2>
+                    El archivo completo
+                </h2>  
+                <p>
+                    Para facilitar la búsqueda y consulta de este material hemos propuesto distintas rutas para acceder a la información de los fondos (colectivos) y sus piezas, respetando el principio de procedencia y orden original en la conformación de archivo. De este modo, puedes filtrar la información por: Año, Fondo, Temática, Técnica textil, Lugar de producción o Hechos asociados al conflicto armado en Colombia. 
+                </p>
+            </div>
+
+            <div class="img first-on-large col col-12 col-lg-6  order-1-lg">
+                <img src="/img/buscar.svg" alt="">
             </div>
         </div>
-
+    </section>
+    <section class="filtros">
+    
         <p class="italic text-center">
             Filtrar por:
         </p>  
@@ -164,7 +166,7 @@ for (var pieza in piezas)
             
         <ul class="botones-filtros">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Año</a>
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Año de creación </a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     <a class="dropdown-item select-anio">todos</a>
                     <% 
@@ -225,7 +227,7 @@ for (var pieza in piezas)
             </li>
 
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lugar</a>
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lugar de creación</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     <a class="dropdown-item select-lugar">todos</a>
                     <% 
@@ -275,8 +277,11 @@ for (var pieza in piezas)
             </li>
         </ul> 
         <p class="italic text-center" id="filtros" style="margin: 0; padding: 0;">
-            No hay filtros aplicados
+            No hay filtros aplicados 
         </p>  
+
+        <!-- Botón para borrar filtros -->
+        <span class="borrar-filtros" id='borrar-filtros'> Borrar filtros </span>
 
         <!-- Descripción filtros-->
         <!--
@@ -292,45 +297,10 @@ for (var pieza in piezas)
     </section>
 
     <section class="section-fondo resultados">
-        <div class="row" id="results-creadores">
-            <%
-            for(var i = 0; i < creadores.length; i++) {
-            %>
-            <div class="col col-12 col-md-6 resultado-creador">
-                <div class="container-img">
-                    <a href="creadores/<%=creadores[i]['id']%>">
-                        <button class ="btn white">
-                        Ver más
-                        </button>
-                        <img src="<%=creadores[i]['imagen_path']%>" class="s3_img">
-                        <div class="blue"></div> 
-                    </a>
-                </div>
-                <a href="creadores/<%=creadores[i]['id']%>" style="color: black;"><p class="titulo" ><%=creadores[i]['nombre']%></p></a>
-                <% 
-                for (var lugar in lugares) {
-                    if (lugares[lugar].id == creadores[i]['fk_lugar']) {
-                %>
-                <p class="creador">  <%=lugares[lugar]['localidad']%>,<%=lugares[lugar]['departamento']%> </p>
-                <%
-                    }
-                }
-                %>
-                <ul style="display: none;">
-                    <li ><%= creadores[i]['id'] %></li>
-                </ul>
-            </div>
-            <%
-            }
-            %>
-        </div>
-    </section>
-
-    <section class="section-fondo resultados">
         <div class="row" id="results">
             <% for(var i = 0; i < piezas.length; i++) { 
             %>
-            <div class="col col-12 col-md-6 resultado-pieza" >
+            <div class="col col-12 col-md-6 col-lg-4 resultado-pieza" >
                 <div class="container-img">
                     <a href="piezas/<%=piezas[i]['id']%>">
                         <button class ="btn white">
@@ -350,8 +320,9 @@ for (var pieza in piezas)
                     <%
                     if (piezas[i]['fk_creador'] == creadores[creador]['id']) {
                         var m_creador = creadores[creador]['nombre'];
+                        var e_creador = creadores[creador]['id'];
                     %>
-                    <p class="creador"> <%=m_creador%> </p>
+                    <p class="creador"> <a href="/creadores/<%=e_creador%>"> <%=m_creador%> </a></p>
                     <%
                     }
                     %>
@@ -531,8 +502,8 @@ for (var pieza in piezas)
         bFilterPiezas = false;
         filter();
     }
-    document.getElementById("filter-piezas").addEventListener("click", FilterPiezas)
-    document.getElementById("filter-creadores").addEventListener("click", FilterCreadores)
+    //document.getElementById("filter-piezas").addEventListener("click", FilterPiezas)
+   //document.getElementById("filter-creadores").addEventListener("click", FilterCreadores)
 
     var filtros = document.getElementById("filtros");
     var piezas = document.getElementsByClassName("resultado-pieza");
