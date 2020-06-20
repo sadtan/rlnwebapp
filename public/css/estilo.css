@@ -323,19 +323,20 @@ footer {
   background-image: url("/img/manos.jpg");
   background-size: contain;
   background-position: center center;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  background-size: 60vw; }
   .hero p {
     padding: 150px 0;
-    max-width: 520px;
+    max-width: 450px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    font-size: 30px; }
+    font-size: 20px; }
   @media only screen and (max-width: 768px) {
     .hero {
       background-size: 150vw; }
       .hero p {
-        font-size: 24px;
+        font-size: 16px;
         padding: 80px 0; } }
 
 .universidades {
