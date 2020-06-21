@@ -42,13 +42,13 @@
         for ( let i = 0; i < 4; ++i ) {
             var newO = Math.floor(Math.random() * ids.length)
             
-            while( order.indexOf(newO) != -1 ) {
+            while( h.indexOf(newO) != -1 ) {
                 newO = Math.floor(Math.random() * ids.length)
             }
             h.push(newO);
             order.push(ids[newO]);
         }
-        
+
         for (o in order)
         {
             for (var i = 0; i < creadores.length; ++i) {
@@ -112,7 +112,7 @@
     <section class="home-section preview-fondos container top" id="ccc">
         <%
         for (var i = 0; i < creadores.length; ++i) {
-            if (order.indexOf(creadores[i]['id']) == -1) 
+            if (order.indexOf(creadores[i]['id']) == -1)
             {
                 if (creadores[i]['dep'] != undefined)
                     dep = creadores[i]['dep']
