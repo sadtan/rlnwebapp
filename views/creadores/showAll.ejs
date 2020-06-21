@@ -29,8 +29,26 @@
 
     <section class="home-section preview-fondos container top ">
         <% 
-        var order = [3, 2, 4, 1]
-        var creadores = data.data[data.data['main']]
+        
+
+        var creadores = data.data[data.data['main']];
+        var ids = [];
+        for (var i = 0; i < creadores.length; ++i) {
+            ids.push(creadores[i]['id']);
+        }
+        //var order = [3, 2, 4, 1];
+        var order = [];
+        var h = [];
+        for ( let i = 0; i < 4; ++i ) {
+            var newO = Math.floor(Math.random() * ids.length)
+            
+            while( order.indexOf(newO) != -1 ) {
+                newO = Math.floor(Math.random() * ids.length)
+            }
+            h.push(newO);
+            order.push(ids[newO]);
+        }
+        
         for (o in order)
         {
             for (var i = 0; i < creadores.length; ++i) {
