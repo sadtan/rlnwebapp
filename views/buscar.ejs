@@ -36,7 +36,7 @@ for (var lugar in lugares)
     {
         _localidad  = _localidad.substring(0, _anio.localidad - 1)
     }
-    if (localidades.indexOf(_localidad) < 0 && _localidad != '')
+    if (localidades.indexOf(_localidad) < 0 && _localidad != '' && _localidad != "-" && _localidad != "_")
     {
         localidades.push(_localidad);
     }
@@ -189,7 +189,7 @@ for (var pieza in piezas)
                     for (var creador in creadores) 
                     {
                     %>
-                    <a class="dropdown-item select-creador" value="<%= creadores[creador].id %>"><%= creadores[creador].nombre %></a>
+                    <a class="dropdown-item select-creador" value="<%= creadores[creador].nombre %>"><%= creadores[creador].nombre %></a>
                     <%
                     }
                     %>
@@ -237,7 +237,7 @@ for (var pieza in piezas)
                             if (lugares[lugar].localidad == localidades[_localidad])
                             {
                     %>
-                        <a class="dropdown-item select-lugar" value="<%= lugares[lugar]['id'] %>"><%= localidades[_localidad] %></a>
+                        <a class="dropdown-item select-lugar" value="<%= localidades[_localidad] %>"><%= localidades[_localidad] %></a>
                     <%  break;
                             }
                         }
@@ -281,7 +281,7 @@ for (var pieza in piezas)
         </p>  
 
         <!-- Botón para borrar filtros -->
-        <span class="borrar-filtros" id='borrar-filtros'> Borrar filtros </span>
+        <!-- <span class="borrar-filtros" id='borrar-filtros' onclick="borrarFiltros()"> Borrar filtros </span> -->
 
         <!-- Descripción filtros-->
         <!--
@@ -333,16 +333,16 @@ for (var pieza in piezas)
 
                 <ul style="display: none;">
                 <li><%=piezas[i]['fecha']%></li>
+                
                 <% 
-                for (var creador in creadores) 
+                var fk_Lugar;
+                for (let j = 0; j < creadores.length; ++j) 
                 {
-                    
                 %>
                     <%
-                    if (piezas[i]['fk_creador'] == creadores[creador]['id']) {
-                        var m_creador = creadores[creador]['id'];
-                    %>
-                    <li><%=m_creador%></li>
+                    if (piezas[i]['fk_creador'] == creadores[j]['id']) {
+                        fk_Lugar = creadores[j]['fk_lugar'];
+                    %><li><%=creadores[j]['nombre'].toLowerCase()%></li>
                     <%
                     }
                     %>
@@ -398,27 +398,22 @@ for (var pieza in piezas)
                     %>
                 </ul>
                 <% 
-                for (var creador in creadores) 
-                {
-                    
                 %>
                     <%
-                    if (piezas[i]['fk_creador'] == creadores[creador]['id']) {
-                        var m_creador = creadores[creador]['id'];
                         for (var lugar in lugares) 
                         {
-                            if (lugares[lugar]['id'] == m_creador) 
+
+                            if (lugares[lugar]['id'] == fk_Lugar )
                             {
-                                m_lugar = lugares[lugar]['id'];
+                                m_lugar = lugares[lugar]['localidad'];
                             %>
-                                <li><%=m_lugar%></li>
+                                <li><%=lugares[lugar]['localidad'].toLowerCase()%></li>
                             <%
                             } 
                         }
-                    }
+                        
                     %>
                 <%
-                }
                 %>
                 <ul>
                     <% 
@@ -519,7 +514,6 @@ for (var pieza in piezas)
             creadores[i].innerHTML = ""
             //piezasList.push(piezas[i].cloneNode(true));
         }
-        //console.log(creadoresList)
     for (let i = 0; i < piezas.length; ++i)
         {
             var newResult = {};
@@ -551,20 +545,30 @@ for (var pieza in piezas)
             'tematica': '',
             'descriptor': ''
         }
+
+    function borrarFiltros() {
+        searchParams = 
+        {
+            'fecha': '',
+            'lugar': '',
+            'hecho': '',
+            'creador': '',
+            'tecnica': '',
+            'tematica': '',
+            'descriptor': ''
+        }
+        filter();
+    }
     var originalNames = [];
     var creadores_list = [];
     var lugares_list = [];
     attachParam(document.getElementsByClassName("select-anio"), 'fecha', false, 0);
-    attachParam(document.getElementsByClassName("select-creador"), 'creador', true, 1);
+    attachParam(document.getElementsByClassName("select-creador"), 'creador', false, 1);
     attachParam(document.getElementsByClassName("select-tematica"), 'tematica', false, 2);
     attachParam(document.getElementsByClassName("select-tecnica"), 'tecnica', false, 3);
-    attachParam(document.getElementsByClassName("select-lugar"), 'lugar', true, 4);
+    attachParam(document.getElementsByClassName("select-lugar"), 'lugar', false, 4);
     attachParam(document.getElementsByClassName("select-hecho"), 'hecho', false, 5);
     attachParam(document.getElementsByClassName("select-descriptor"), 'descriptor', false, 6);
-
-    
-    
-    
 
     function attachParam(dropList, name, id = false, index)
         {
@@ -584,14 +588,14 @@ for (var pieza in piezas)
                     });
                 } else 
                 {
-                    if (name == "creador")
-                    {
-                        creadores_list.push(dropList[i].innerText.toLowerCase());
-                    }
-                    if (name == "lugar")
-                    {
-                        lugares_list.push(dropList[i].innerText.toLowerCase());
-                    }
+                    // if (name == "creador")
+                    // {
+                    //     creadores_list.push(dropList[i].innerText.toLowerCase());
+                    // }
+                    // if (name == "lugar")
+                    // {
+                    //     lugares_list.push(dropList[i].innerText.toLowerCase());
+                    // }
                     dropList[i].addEventListener('click', function ()
                     {
                         // document.getElementsByClassName("dropdown-toggle")[index].innerHTML = dropList[i].innerText;
@@ -601,6 +605,7 @@ for (var pieza in piezas)
                 }
             }
         }
+
 
     var DESCRIPTOR = "<%= descriptor %>";
 
@@ -612,7 +617,6 @@ for (var pieza in piezas)
     
     if (window.localStorage.getItem("lastSearch"))
     {
-        //console.log(JSON.parse(window.localStorage.getItem("lastSearch")))
         searchParams = JSON.parse(window.localStorage.getItem("lastSearch"));
         filter();
     }
@@ -627,33 +631,14 @@ for (var pieza in piezas)
             {
                 if (searchParams[param] != "")
                 {
-                    if (param == "creador")
-                    {
-                        if (creadores_list[searchParams[param] -1] != undefined)
-                        {
-                            filtros.innerHTML += param + ": " + creadores_list[searchParams[param] -1] + ", ";
-                            hasFilter = true;
-                        }
-                        else 
-                        {
-                            filtros.innerHTML += param + ": " + "No hay piezas registradas" + ", ";
-                            hasFilter = true;
-                        }
-
-                    } else if (param == "lugar")
-                    {
-                        filtros.innerHTML += param + ": " + lugares_list[searchParams[param] -1] + ", ";
+                    
+                        filtros.innerHTML += "<b>" +param + "</b>: " + searchParams[param] + ", ";
                         hasFilter = true;
-
-                    } else 
-                    {
-                        filtros.innerHTML += param + ": " + searchParams[param] + ", ";
-                        hasFilter = true;
-                    }
                 }
             }
-
             filtros.innerHTML = filtros.innerHTML.substring(0, filtros.innerHTML.length - 2);
+            filtros.innerHTML += '<span class="borrar-filtros" onclick="borrarFiltros()"> Borrar filtros </span>'
+            
             if (!hasFilter)
                 filtros.innerHTML = "No hay filtros aplicados"
 
@@ -669,7 +654,8 @@ for (var pieza in piezas)
             {
                 var attrList = piezasList[result]['pieza'].children[3];
                 var m_fecha = attrList.children[0].innerText;
-                var m_creador = attrList.children[1].innerText;
+                var m_creador = attrList.children[1].innerText.toString();
+                
                 var m_tematicas = [];
                 
                 for (var _tematica in attrList.children[2].children)
@@ -684,7 +670,6 @@ for (var pieza in piezas)
                 var m_tecnicas = [];
                 for (var _tecnica in attrList.children[3].children)
                 {
-                    
                     if (!isNaN(_tecnica))
                     {
                         m_tecnicas.push(attrList.children[3].children[_tecnica].innerText);
@@ -731,8 +716,10 @@ for (var pieza in piezas)
 
                 if (conditionList.indexOf('creador') != -1)
                 {
-                    if (searchParams['creador'] != m_creador)
+                    
+                    if (!m_creador.toString().includes(searchParams['creador'].toString()))
                         aprovedAll = false;
+                        
                 }
 
                 if (conditionList.indexOf('tematica') != -1)
@@ -749,10 +736,14 @@ for (var pieza in piezas)
                     
                 if (conditionList.indexOf('lugar') != -1)
                 {
-                    if (searchParams['lugar'] != m_lugar)
+                    //if (searchParams['lugar'].toLowerCase() != m_lugar.toLowerCase())
+                    if (!m_lugar.toString().includes(searchParams['lugar']))
                         aprovedAll = false;
+                    //if (!searchParams['lugar'].toLocaleLowerCase().includes(m_lugar.toLocaleLowerCase()))
+                    
+                        
                 }
-
+                
                 if (conditionList.indexOf('hecho') != -1)
                 {
                     if (m_hechos.indexOf(searchParams['hecho']) == -1)
@@ -764,7 +755,6 @@ for (var pieza in piezas)
                     if (m_descriptores.indexOf(searchParams['descriptor']) == -1)
                         aprovedAll = false;
                 }
-
                 if (aprovedAll)
                 {
                     bHasResult = true;
@@ -802,7 +792,6 @@ for (var pieza in piezas)
                                 
                             }
                         }
-                        //console.log("AID", );
                         
                     }
                         
