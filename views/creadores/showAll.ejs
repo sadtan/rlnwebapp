@@ -1,14 +1,14 @@
 <%- include('../partials/header') -%> 
 
 <main>
-
+    
     <section class="home-section container top btm home-intro">
         <div class="row align-items-center">
             <div class="text col col-12 col-lg-6  order-2-lg">
                 <h2 class="about-text">
                     Un espacio digital abierto para la documentación, conservación y consulta de textiles que narran la vida en medio del conflicto armado en Colombia.
                 </h2>
-                <button class="btn white" href="#">
+                <button type="button" class="btn white" onclick="location.href='/acerca-de';">
                     Saber más 
 
                     <img class="arrow-btn" src="/img/icons/arrow-btn.svg">
@@ -29,32 +29,69 @@
 
     <section class="home-section preview-fondos container top ">
         <% 
-        var creadores = data.data[data.data['main']]
+        
+
+        var creadores = data.data[data.data['main']];
+        var ids = [];
         for (var i = 0; i < creadores.length; ++i) {
+            ids.push(creadores[i]['id']);
+        }
+        //var order = [3, 2, 4, 1];
+        var order = [];
+        var h = [];
+        for ( let i = 0; i < 4; ++i ) {
+            var newO = Math.floor(Math.random() * ids.length)
+            
+            while( h.indexOf(newO) != -1 ) {
+                newO = Math.floor(Math.random() * ids.length)
+            }
+            h.push(newO);
+            order.push(ids[newO]);
+        }
+
+        for (o in order)
+        {
+            for (var i = 0; i < creadores.length; ++i) {
+                if (creadores[i]['id'] == order[o])
+                {
         if (creadores[i]['dep'] != undefined)
             dep = creadores[i]['dep']
         lugar = dep['lugar'][0]
+        
+        
         %>
 
         <div class="fondo row align-items-center btm">
             <div class="img col col-12 col-lg-6">
-                <img class="linea" src="/img/linea_mampujan.jpg" alt=""> 
-                <img class="azul" src="/img/azul_mampujan.jpg" alt="">
+            <% 
+            //if (creadores[i]['img_linea_path'] != "" || creadores[i]['img_linea_path'] != "-")
+            if (creadores[i]['img_linea_path'].toString().indexOf("/") != -1)
+            {
+            %>
+                <img class="linea s3_img" src="<%=creadores[i]['img_linea_path']%>" alt="" class=""> 
+                <img class="azul s3_img" src="<%=creadores[i]['img_azul_path']%>" alt="" class="s3_img">
+            <%
+            } else {
+            %>
+                <img class="azul s3_img" src="<%=creadores[i]['img_azul_path']%>" alt="" class="s3_img">
+            <%
+                }
+            %>
             </div>
 
             <%  if (creadores[i]['dep'] != undefined) { %>
             <div class="text col col-12 col-lg-5 btm">
-            <h3 class="lugar">
-                    <%=lugar['departamento']%>, 
-                    <%=lugar['localidad']%>
-                </p> 
+                <h3 class="lugar">
+                        <%=lugar['localidad']%>,
+                        <%=lugar['departamento']%>
+                </h3> 
             <%
                 }
             %>
                 <h2><%=creadores[i]['nombre']%></h2>
                 <p>
                     <%
-                    var txt = creadores[i]['caracterizacion'].substring(0, 230) + "...";
+                    var txt = creadores[i]['caracterizacion'].substring(0, 230) + "L";
                     txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
                     %>
                     <%=txt%>
@@ -65,12 +102,92 @@
             </div>
         </div>
         <%
+        break;
+                }
             }
+        }
         %>
-        
     </section>
 
+    <section class="home-section preview-fondos container top" id="ccc">
+        <%
+        for (var i = 0; i < creadores.length; ++i) {
+            if (order.indexOf(creadores[i]['id']) == -1)
+            {
+                if (creadores[i]['dep'] != undefined)
+                    dep = creadores[i]['dep']
+                lugar = dep['lugar'][0]
+        %>
+        <div class="fondo row align-items-center btm show-more-card">
+            <div class="img col col-12 col-lg-6">
+            <% 
+            //if (creadores[i]['img_linea_path'] != "" || creadores[i]['img_linea_path'] != "_")
+            if (creadores[i]['img_linea_path'].toString().indexOf("/") != -1)
+            {
+            %>
+                <img class="linea s3_img" src="<%=creadores[i]['img_linea_path']%>" alt="" class=""> 
+                <img class="azul s3_img" src="<%=creadores[i]['img_azul_path']%>" alt="" class="s3_img">
+            <%
+            } 
+            else 
+            {
+            %>
+                <img class="linea" src="/img/linea_mampujan.jpg" alt=""> 
+                <img class="azul" src="/img/azul_mampujan.jpg" alt="">
+            <%
+            }
+            %>
+            </div>
+            <%  
+            if (creadores[i]['dep'] != undefined) 
+            { 
+            %>
+            <div class="text col col-12 col-lg-5 btm">
+                <h3 class="lugar">
+                        <%=lugar['localidad']%>,
+                        <%=lugar['departamento']%>
+                </h3> 
+            <%
+            }
+            %>
+            <h2><%=creadores[i]['nombre']%></h2>
+            <p>
+                <%
+                var txt = creadores[i]['caracterizacion'].substring(0, 230) + "L";
+                txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
+                %>
+                <%=txt%>
+            </p>
+            <a href="/creadores/<%=creadores[i]['id']%>">
+                <button class ="btn blue">Conocer más</button>
+            </a>
+            </div>
+        </div>
+        <%
+            }
+        }
+        %>
+
+        
+    </section>
+    <div class="container ver-mas btm d-flex justify-content-center">
+        <button class ="col-auto btn blue center " id="show-more-btn">Ver más</button>
+    </div>
+
 </main>
+
+<script>
+    var showMoreCards = document.getElementsByClassName("show-more-card");
+    document.getElementById("ccc").classList.add("d-none");
+
+
+    document.getElementById("show-more-btn").addEventListener("click", function()
+    {
+        console.log("JS")
+        document.getElementById("ccc").classList.remove("d-none");
+        document.getElementById("show-more-btn").classList.add("d-none");
+    })
+</script>
 
 <section class="hero hands btm">
     <div class="container">
@@ -82,21 +199,16 @@
 
 <section class="universidades">
     <div class="container">
-        <div class="row desarrollo align-items-center btm justify-content-between">
-            <h2 class="col col-12 col-lg"> Desarrollado por </h2>
-            <img class="col col-6 col-lg" src="/img/logos/udea.svg">
-            <img  class="col col-6 col-lg" src="/img/logos/unal.svg">
-            <img  class="col col-6 col-lg" src="/img/logos/militar.svg">
-            <img  class="col col-6 col-lg" src="/img/logos/andes.svg">
-        </div>
-
-        <div class="row apoyo align-items-center btm justify-content-around">
-            <h2 class="col col-12 col-lg"> Con apoyo de </h2>
-            <img  class="col col-4 col-lg" src="/img/logos/lancaster.svg">
-            <img  class="col col-4 col-lg" src="/img/logos/nottingham.svg">
-            <img  class="col col-4 col-lg"src="/img/logos/warwick.svg">
+        <div class="row desarrollo align-items-center justify-content-center btm">
+            <h2 class="col col-12 col-lg-auto"> Desarrollado por </h2>
+            <img class="col col-auto col-lg-auto" src="/img/logos/udea.svg">
+            <img  class="col col-auto col-lg-auto" src="/img/logos/unal.svg">
+            <h2 class="col col-12 col-lg-auto apoyo"> Con apoyo de </h2>
+            <img  class="col col-auto col-lg-auto" src="/img/logos/andes.svg">
+            <img  class="col col-auto col-lg-auto apoyo" src="/img/logos/minciencias.png">
         </div>
     </div>
 </section>
 
+<script src="/scripts/s3ImageUrl.js"></script>
 <%- include('../partials/footer') -%>

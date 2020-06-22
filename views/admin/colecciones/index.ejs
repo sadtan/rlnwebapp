@@ -1,0 +1,109 @@
+<%- include('../../partials/header') -%>
+<link rel="stylesheet" href="/stylesheets/admin.css">
+<main>
+    <div class="admin-cards">
+        <h3>Colecciones</h3>
+        <table>
+            <% 
+            var colecciones = data.data['colecciones']; 
+            var tipos = ['público', 'privado', 'mixto']
+            for (var i = 0; i < colecciones.length; ++i) { 
+            %>
+            <tr>
+                <td style="padding: 0px 15px;">
+                    <p><%=colecciones[i]['id']%></ap>
+                </td>
+                <td>
+                    <p><%=colecciones[i]['nombre'].substring(0, 40)%> (<%=colecciones[i]['creacion']%>)</p>
+                </td>
+                <td>
+                    <form method="get" action="/admin/colecciones/edit/<%=colecciones[i]['id']%>">
+                        <button style="color: blue; border-color: blue;" type="submit">editar</button> </form>
+                <td>
+                    <form method="post" action="/admin/colecciones/delete/<%=colecciones[i]['id']%>?_method=DELETE">
+                        <button style="color: red; border-color: red;" type="submit">eliminar</button> </form>
+                </td>
+            </tr>
+            <% 
+            }
+            %>
+        </table>
+    </div>
+    <div class="form-class">
+        <form action="/admin/colecciones/new" method="POST">
+            <h3>Nueva Colección</h3>
+            <table>
+                <tr>
+                    <td><label for="pass">nombre</label></td>
+                    <td><input type="text" name="obj[nombre]" class="text-input" required></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">código</label></td>
+                    <td><input type="text" name="obj[codigo]" class="text-input" ></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">tipo</label></td>
+                    <td>
+                        <select id="tipo" name="obj[tipo]">
+                            <option value="0">público</option>
+                            <option value="1">privado</option>
+                            <option value="2">mixto</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="cantidad">Cantidad de <br> piezas</label></td>
+                    <td><input type="number" name="obj[cantidad_piezas]" id=""  class="text-input"></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">Año de creación</label></td>
+                    <td><input type="text" name="obj[creacion]" class="text-input" ></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">Contexto</label></td>
+                    <td><textarea name="obj[contexto]" id="" cols="33" rows="7"></textarea></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">documentos</label></td>
+                    <td>
+                        <button id="myBtn" style="width: 100%;"> modificar documentos </button>
+                        <input type="text" id="json-input"name="obj[documentos_json]" class="text-input">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="pass">creador id</label><a href="/admin/creadores" target="_blank"> (Ver Creadores)</a></td>
+                    <td><input type="number" name="obj[fk_creador]" class="text-input" required></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">lugar id</label><a href="/admin/lugares" target="_blank"> (Ver Lugares)</a></td>
+                    <td><input type="number" name="obj[fk_lugar]" class="text-input" required></td>
+                </tr>
+                
+                </table>
+            <br>
+            <button type="submit">Crear</button>
+        </form>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="scroll">
+            <table id="myTable" style="width: 100%;">
+            </table>
+            </div>
+            <button id="myBtnAdd" style="margin-left: 20px;">+</button>
+            <button id="myBtnAcc" style="margin-left: 20px;">Aceptar</button>
+        </div>
+
+    </div>
+</main>
+<script src="/scripts/jsonParser.js" type="text/javascript"></script>
+<script> 
+    //parseJsonObj("myTable", "json-input", "myModal", "myBtn", "myBtnAdd", "myBtnAcc", "close");
+    var documentParser = new JsonParser("myTable", "json-input", "myModal", "myBtn", "myBtnAdd", "myBtnAcc", "close", {'name':'', 'url': ''});
+    documentParser.WorkParser();
+</script>

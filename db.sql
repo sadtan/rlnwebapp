@@ -113,7 +113,7 @@ show tables;
         conservacion TEXT,
         usos TEXT,
         eventos_json TEXT,
-        ducumentos_json TEXT,
+        documentos_json TEXT,
         consentimiento_path TEXT,
         galeria_path TEXT,
         fotografo VARCHAR(150),
@@ -122,6 +122,7 @@ show tables;
         fk_creador INT,
         fk_coleccion INT,
         fk_hecho INT,
+        imagenes_descripcion_json TEXT,
         FOREIGN KEY (fk_creador) REFERENCES creadores (id) ON
     DELETE CASCADE,
         FOREIGN KEY (fk_coleccion) REFERENCES colecciones (id) ON

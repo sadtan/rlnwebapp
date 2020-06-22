@@ -18,20 +18,74 @@ module.exports = (BucketName) =>
         {
             this.bucketParams = {
                 Bucket: BucketName,
-                Delimiter: "/",
-                Prefix: ""
+                Delimiter: "FONDOS/Bojayá/Registro Fotográfico/Fotografía Piezas/",
+                Prefix: "FONDOS/Bojayá/Registro Fotográfico/Fotografía Piezas/"
             }
         }
 
         listFiles() 
         {
-            s3.listObjectsV2(this.bucketParams, function(err, data) {
-                if (err) throw new Error(err);
-                //console.log(data.Contents);
-                data.Contents.forEach((file) => {
-                    console.log(generatePresignedUrl(file["Key"]));
-                })
-            });
+            // s3.listObjectsV2(this.bucketParams, function(err, data) {
+            //     if (err) throw new Error(err);
+            //     //console.log(data.Contents);
+            //     console.log(data);
+            //     data.Contents.forEach((file) => {
+            //         //console.log(generatePresignedUrl(file["Key"]));
+            //     })
+            // });
+        }
+
+        async AttachGallery(data, table)
+        {
+            return new Promise((resolve, reject) =>
+            {
+                
+                try
+                {
+                    var hasResolved = false;
+                    for (var field in data[table][0])
+                    {
+                        if (field == 'galeria_path')
+                        {
+                            //console.log("FIELD", field);
+                            this.bucketParams.Delimiter = data[table][0][field];
+                            this.bucketParams.Prefix = data[table][0][field];
+                            data[table][0]['galeria'] = [];
+                            s3.listObjectsV2(this.bucketParams, function(err, s3Data) {
+                                if (err) throw new Error(err);
+                                s3Data.Contents.forEach((file) => {
+                                    //console.log(file);
+                                    if (file["Key"].indexOf("jpg" ) > 0
+                                        || file["Key"].indexOf("JPG" ) > 0
+                                        || file["Key"].indexOf("png" ) > 0
+                                        || file["Key"].indexOf("PNG" ) > 0
+                                        && (
+                                            file["Key"].indexOf("Detalle" ) > 0
+                                            || file["Key"].indexOf("Plano" ) > 0
+                                        ))
+                                        {
+                                            data[table][0]['galeria'].push(file["Key"]);
+                                            hasResolved = true;
+                                            
+                                        }
+                                })
+                                resolve(data);
+                            });
+                            
+                            
+                        }
+                    }
+                //    if (!hasResolved)
+                //     resolve(data);
+                   
+                    
+                } catch (error)
+                {
+                    reject(error);
+                }
+                
+            })
+            
         }
 
         async getUrl(key)
@@ -118,9 +172,8 @@ module.exports = (BucketName) =>
                 {
                     Bucket: BucketName,
                     Key: KeyValue,
-                    Expires: 60
+                    Expires: 600
                 }
-                
                 return(s3.getSignedUrl('getObject', fileParams));
 
             } catch (headErr)
@@ -131,6 +184,7 @@ module.exports = (BucketName) =>
             
         } catch (err) 
         {
+            
             return(KeyValue);
         }
     }

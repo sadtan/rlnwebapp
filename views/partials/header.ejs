@@ -1,5 +1,5 @@
 <!DOCTYPE>
-<lang="en">
+<lang="es">
 
     <head>
         <meta charset="UTF-8">
@@ -10,8 +10,19 @@
         <!-- bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
         <!-- jquery -->
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+        <!--slick carrousel -->
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+ 
+       <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>	
+
+       <!-- p5.js -->
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/addons/p5.dom.min.js"></script>
+
         <!-- estilos -->
         <link rel="stylesheet" href="/css/estilo.css">
 
@@ -30,19 +41,21 @@
 
                         <a href="/" class="logo">
 
-                            _ARCHIVO DIGITAL DE <br> TEXTILES TESTIMONIALES
+                            ARCHIVO DIGITAL DE <br> TEXTILES TESTIMONIALES
 
                         </a>
 
                     </h1>
 
                     <nav class="menu col col-lg-6 col-md-7 d-none d-md-block">
+                        
+                        <a href="/buscar"> Buscar </a>
 
-                        <a href="/search"> Búsqueda </a>
+                        <a href="/mapa"> Mapa </a>
 
-                        <a href="/lugares"> Mapa </a>
+                        <a href="/acerca-de"> Sobre el archivo </a>
 
-                        <a href="/"> Sobre el archivo </a>
+                        <a href="/creadores"> Inicio </a>
 
                     </nav>
 
@@ -57,11 +70,11 @@
         <section class="dropdown">
 
             <nav class="menu">
-
-                <a href="/search"> Búsqueda </a>
-                <a href="/lugares"> Mapa </a>
-                <a href="/"> Sobre el archivo </a>
-
+                <a href="/"> Inicio </a>
+                <a href="/acerca-de"> Sobre el archivo </a>
+                <a href="/mapa"> Mapa </a>
+                <a href="/buscar"> Buscar </a>
+                
             </nav>
 
         </section>
@@ -80,7 +93,7 @@
 
                         <a href="/" class="logo">
 
-                            _ARCHIVO DIGITAL DE <br> TEXTILES TESTIMONIALES
+                            ARCHIVO DIGITAL DE <br> TEXTILES TESTIMONIALES <br> ADMINISTRADOR <br> 
 
                         </a>
 
@@ -89,10 +102,10 @@
                     <nav class="menu col col-lg-6 col-md-7 d-none d-md-block">
 
                         <a href="/admin/creadores">creadores</a>
-                        <!-- <a href="/admin/colecciones">colecciones</a> -->
+                        <a href="/admin/colecciones">colecciones</a>
                         <a href="/admin/lugares">lugares</a>
                         <a href="/admin/hechos">hechos</a>
-                        <!-- <a href="/admin/piezas">piezas</a> -->
+                        <a href="/admin/piezas">piezas</a>
                         <a href="/admin-logout">salir</a>
 
                     </nav>
@@ -110,10 +123,10 @@
             <nav class="menu">
 
                 <a href="/admin/creadores">creadores</a>
-                <!-- <a href="/admin/colecciones">colecciones</a> -->
+                <a href="/admin/colecciones">colecciones</a>
                 <a href="/admin/lugares">lugares</a>
                 <a href="/admin/hechos">hechos</a>
-                <!-- <a href="/admin/piezas">piezas</a> -->
+                <a href="/admin/piezas">piezas</a>
                 <a href="/admin-logout">salir</a>
 
             </nav>

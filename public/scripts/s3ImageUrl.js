@@ -1,15 +1,30 @@
 let imagePaths;
+let audioPaths;
+
 
 window.addEventListener("load", (event) => {
     imagePaths = document.querySelectorAll(".s3_img");
+    audioPaths = document.querySelectorAll(".s3_audio");
 
+    audioPaths.forEach( async audioPath => {
+
+        if ( audioPath.getAttribute("src").toString().indexOf("https") < 0 ) {
+            var x = document.createElement("SOURCE");
+            x.setAttribute('type', 'audio/mpeg');
+            var tempUrl = audioPath.getAttribute("src");
+            var newUrl = await gets3url("/gets3presignedurl", "POST", { data: tempUrl });
+            x.setAttribute('src', newUrl.data);
+            document.getElementById('audio').appendChild(x);
+        }
+    } );
     createObserver();
 }, false);
 
 function createObserver() {
     let observer;
 
-    let options = {
+    let options = 
+    {
         root: null,
         rootMargin: "200px",
     };
@@ -60,4 +75,12 @@ async function gets3url(url, method, data) {
         }
     });
     
+}
+
+
+
+function restart()
+{
+    imagePaths = document.querySelectorAll(".s3_img");
+    createObserver();
 }

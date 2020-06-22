@@ -28,11 +28,17 @@ module.exports = (app) =>
     //     app.locals.admin.isLogged = false;
     //     res.redirect("/admin-login");
     // })
+    
+    app.get("/acerca-de", (req, res) => 
+    {
+        res.render("about");
+    });
 
     app.get("/", (req, res) => 
     {
         res.redirect("/creadores");
     });
+    
     
     app.get("/aws-health", (_, res) => 
     {

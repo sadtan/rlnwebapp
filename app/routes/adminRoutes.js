@@ -28,7 +28,7 @@ module.exports = function (app, pool, m_table)
         try 
         {
             data[m_table] = await controller.getAll();
-            data = await reqBatchHandler.AttachDependencies(data, m_table, pool);
+            //data = await reqBatchHandler.AttachDependencies(data, m_table, pool);
 
             resFormat = resHandler.setResponse(200, null, data);
             resHandler.handleResponse(req, res, resFormat, "admin/" + m_table, "index");

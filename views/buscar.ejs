@@ -1,0 +1,822 @@
+<%- include('./partials/header') -%> 
+<% 
+var piezas = data['piezas'][0];
+var creadores = data['creadores'][0];
+var lugares = data['lugares'][0];
+var hechos = data['hechos'][0];
+
+var anios = [];
+for (var pieza in piezas) 
+{
+    var _anio = piezas[pieza].fecha;
+
+    if (_anio == " ")
+    {
+        _anio = _anio.substring(1, _anio.length)
+    }
+    if (_anio.substring(_anio.length - 1) == " ")
+    {
+        _anio  = _anio.substring(0, _anio.length - 1)
+    }
+    if (anios.indexOf(_anio) < 0)
+    {
+        anios.push(_anio);
+    }
+}
+var localidades = [];
+for (var lugar in lugares) 
+{
+    var _localidad = lugares[lugar].localidad;
+
+    if (_localidad == " ")
+    {
+        _localidad = _localidad.substring(1, _localidad.length)
+    }
+    if (_localidad.substring(_localidad.length - 1) == " ")
+    {
+        _localidad  = _localidad.substring(0, _anio.localidad - 1)
+    }
+    if (localidades.indexOf(_localidad) < 0 && _localidad != '' && _localidad != "-" && _localidad != "_")
+    {
+        localidades.push(_localidad);
+    }
+}
+
+var modalidades = [];
+for (var hecho in hechos) 
+{
+    var m_modalidades = hechos[hecho].modalidad.split("; ");
+    for (let i = 0; i < m_modalidades.length; ++i)
+    {
+        if (m_modalidades[i][0] == " ")
+        {
+            
+            m_modalidades[i] = m_modalidades[i].substring(1, m_modalidades[i].length)
+        }
+        if (m_modalidades[i].substring(m_modalidades[i].length - 1) == " ")
+        {
+            m_modalidades[i] = m_modalidades[i].substring(0, m_modalidades[i].length - 1)
+        }
+        m_modalidades[i] = m_modalidades[i].toLowerCase();
+
+        if (modalidades.indexOf(m_modalidades[i]) < 0)
+        {
+            modalidades.push(m_modalidades[i]);
+        }
+    }
+}
+
+var descriptores = [];
+for (var pieza in piezas) 
+{
+    var m_descriptores = piezas[pieza].descriptores.split(", ");
+    for (let i = 0; i < m_descriptores.length; ++i)
+    {
+        if (m_descriptores[i][0] == " ")
+        {
+            m_descriptores[i] = m_descriptores[i].substring(1, m_descriptores[i].length)
+        }
+        if (m_descriptores[i].substring(m_descriptores[i].length - 1) == " ")
+        {
+            m_descriptores[i] = m_descriptores[i].substring(0, m_descriptores[i].length - 1)
+        }
+        m_descriptores[i] = m_descriptores[i].toLowerCase();
+
+        if (descriptores.indexOf(m_descriptores[i]) < 0 && m_descriptores[i] != "-" && m_descriptores[i] != "_")
+        {
+            descriptores.push(m_descriptores[i]);
+        }
+    }
+}
+
+var tecnicas = [];
+for (var pieza in piezas) 
+{
+    var m_tecnicas = piezas[pieza].tecnicas.split(", ");
+    for (let i = 0; i < m_tecnicas.length; ++i)
+    {
+        if (m_tecnicas[i][0] == " ")
+        {
+            m_tecnicas[i] = m_tecnicas[i].substring(1, m_tecnicas[i].length)
+        }
+        if (m_tecnicas[i].substring(m_tecnicas[i].length - 1) == " ")
+        {
+            m_tecnicas[i] = m_tecnicas[i].substring(0, m_tecnicas[i].length - 1)
+        }
+        m_tecnicas[i] = m_tecnicas[i].toLowerCase();
+
+        if (tecnicas.indexOf(m_tecnicas[i]) < 0 && m_tecnicas[i] != "-" && m_tecnicas[i] != "_")
+        {
+            tecnicas.push(m_tecnicas[i]);
+        }
+    }
+}
+
+var tematicas = [];
+
+for (var pieza in piezas) 
+{
+    var m_tematicas = piezas[pieza].tematicas.split(", ");
+    
+    for (let i = 0; i < m_tematicas.length; ++i)
+    {
+        if (m_tematicas[i][0] == " ")
+        {
+            m_tematicas[i] = m_tematicas[i].substring(1, m_tematicas[i].length)
+        }
+        if (m_tematicas[i].substring(m_tematicas[i].length - 1) == " ")
+        {
+            m_tematicas[i] = m_tematicas[i].substring(0, m_tematicas[i].length - 1)
+        }
+        m_tematicas[i] = m_tematicas[i].toLowerCase();
+
+        if (tematicas.indexOf(m_tematicas[i]) < 0 && m_tematicas[i] != "-" && m_tematicas[i] != "_")
+        {
+            tematicas.push(m_tematicas[i]);
+        }
+    }
+}
+
+%>
+<div class="container pag-sobre">
+
+    <section class="home-section busqueda container top home-intro">
+        <div class="row align-items-center">
+            <div class="text col col-12 col-lg-6  order-2-lg">
+                <h2>
+                    El archivo completo
+                </h2>  
+                <p>
+                    Para facilitar la búsqueda y consulta de este material hemos propuesto distintas rutas para acceder a la información de los fondos (colectivos) y sus piezas, respetando el principio de procedencia y orden original en la conformación de archivo. De este modo, puedes filtrar la información por: Año, Fondo, Temática, Técnica textil, Lugar de producción o Hechos asociados al conflicto armado en Colombia. 
+                </p>
+            </div>
+
+            <div class="img first-on-large col col-12 col-lg-6  order-1-lg">
+                <img src="/img/buscar.svg" alt="">
+            </div>
+        </div>
+    </section>
+    <section class="filtros">
+    
+        <p class="italic text-center">
+            Filtrar por:
+        </p>  
+       
+       <div class="botones-filtros">
+            
+        <ul class="botones-filtros">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Año de creación </a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item select-anio">todos</a>
+                    <% 
+                    for (var _anio in anios) 
+                    {
+                    %>
+                    <a class="dropdown-item select-anio"><%= anios[_anio] %></a>
+                    <%
+                    }
+                    %>
+                </div>
+            </li>
+
+            <!--- test data boundary-->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Creadoras</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item select-creador">todos</a>
+                    <% 
+                    for (var creador in creadores) 
+                    {
+                    %>
+                    <a class="dropdown-item select-creador" value="<%= creadores[creador].nombre %>"><%= creadores[creador].nombre %></a>
+                    <%
+                    }
+                    %>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Temática</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item select-tematica">todos</a>
+                    <% 
+                    for (var tematica in tematicas)
+                    {
+                    %>
+                    <a class="dropdown-item select-tematica"><%= tematicas[tematica] %></a>
+                    <%
+                    }
+                    %>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Técnica textil</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item select-tecnica">todos</a>
+                    <% 
+                    for (var tecnica in tecnicas)
+                    {
+                    %>
+                    <a class="dropdown-item select-tecnica"><%= tecnicas[tecnica] %></a>
+                    <%
+                    }
+                    %>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lugar de creación</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item select-lugar">todos</a>
+                    <% 
+                    for (var _localidad in localidades)
+                    {
+                        for (var lugar in lugares)  {
+                            if (lugares[lugar].localidad == localidades[_localidad])
+                            {
+                    %>
+                        <a class="dropdown-item select-lugar" value="<%= localidades[_localidad] %>"><%= localidades[_localidad] %></a>
+                    <%  break;
+                            }
+                        }
+                    }
+                    %>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hecho del conflicto</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item select-hecho">todos</a>
+                    <% 
+                    for (var hecho in modalidades) 
+                    {
+                    %>
+                    <a class="dropdown-item select-hecho"><%= modalidades[hecho] %></a>
+                    <%
+                    }
+                    %>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Descriptor</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item select-descriptor">todos</a>
+                    <% 
+                    for (var descrip in descriptores) 
+                    {
+                    %>
+                    <a class="dropdown-item select-descriptor"><%= descriptores[descrip] %></a>
+                    <%
+                    }
+                    %>
+                </div>
+            </li>
+        </ul> 
+        <p class="italic text-center" id="filtros" style="margin: 0; padding: 0;">
+            No hay filtros aplicados 
+        </p>  
+
+        <!-- Botón para borrar filtros -->
+        <!-- <span class="borrar-filtros" id='borrar-filtros' onclick="borrarFiltros()"> Borrar filtros </span> -->
+
+        <!-- Descripción filtros-->
+        <!--
+        <p class="italic text-center" id="filtros" style="margin: 0; padding: 0;">
+            Modalidad: <a data-toggle="tooltip" data-placement="bottom" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"> desplazamiento forzado</a>
+        </p>  
+        -->
+        <script>
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+        </script>
+    </section>
+
+    <section class="section-fondo resultados">
+        <div class="row" id="results">
+            <% for(var i = 0; i < piezas.length; i++) { 
+            %>
+            <div class="col col-12 col-md-6 col-lg-4 resultado-pieza" >
+                <div class="container-img">
+                    <a href="piezas/<%=piezas[i]['id']%>">
+                        <button class ="btn white">
+                        Ver Pieza
+                        </button>
+                    </a>
+                    <img src="<%=piezas[i]['imagen_path']%>" class="s3_img">
+                    <div class="blue"></div> 
+                </div>
+                <p class="titulo"><%=piezas[i]['titulo']%> (<%=piezas[i]['fecha']%>) </p>
+
+                <% 
+                for (var creador in creadores) 
+                {
+                    
+                %>
+                    <%
+                    if (piezas[i]['fk_creador'] == creadores[creador]['id']) {
+                        var m_creador = creadores[creador]['nombre'];
+                        var e_creador = creadores[creador]['id'];
+                    %>
+                    <p class="creador"> <a href="/creadores/<%=e_creador%>"> <%=m_creador%> </a></p>
+                    <%
+                    }
+                    %>
+                <%
+                }
+                %>
+                
+
+                <ul style="display: none;">
+                <li><%=piezas[i]['fecha']%></li>
+                
+                <% 
+                var fk_Lugar;
+                for (let j = 0; j < creadores.length; ++j) 
+                {
+                %>
+                    <%
+                    if (piezas[i]['fk_creador'] == creadores[j]['id']) {
+                        fk_Lugar = creadores[j]['fk_lugar'];
+                    %><li><%=creadores[j]['nombre'].toLowerCase()%></li>
+                    <%
+                    }
+                    %>
+                <%
+                }
+                %>
+                <ul>
+                <% 
+                var m_tematicas = piezas[i].tematicas.split(", ");
+                for (let i = 0; i < m_tematicas.length; ++i)
+                {
+                    if (m_tematicas[i][0] == " ")
+                    {
+                        m_tematicas[i] = m_tematicas[i].substring(1, m_tematicas[i].length)
+                    }
+                    if (m_tematicas[i].substring(m_tematicas[i].length - 1) == " ")
+                    {
+                        m_tematicas[i] = m_tematicas[i].substring(0, m_tematicas[i].length - 1)
+                    }
+                    m_tematicas[i] = m_tematicas[i].toLowerCase();
+                }
+
+                for (var tematica in m_tematicas) 
+                {
+                %>
+                    <li><%=m_tematicas[tematica]%></li>
+                <%
+                }
+                %>
+                </ul>
+                <ul>
+                    <%
+                    var m_tecnicas = piezas[i].tecnicas.split(", ");
+                    for (let i = 0; i < m_tecnicas.length; ++i)
+                    {
+                        if (m_tecnicas[i][0] == " ")
+                        {
+                            m_tecnicas[i] = m_tecnicas[i].substring(1, m_tecnicas[i].length)
+                        }
+                        if (m_tecnicas[i].substring(m_tecnicas[i].length - 1) == " ")
+                        {
+                            m_tecnicas[i] = m_tecnicas[i].substring(0, m_tecnicas[i].length - 1)
+                        }
+                        m_tecnicas[i] = m_tecnicas[i].toLowerCase();
+                        
+                    }
+                    for (var tecnica in m_tecnicas) 
+                    {
+                    %>
+                        <li><%=m_tecnicas[tecnica]%></li>
+                    <%
+                    }
+                    %>
+                </ul>
+                <% 
+                %>
+                    <%
+                        for (var lugar in lugares) 
+                        {
+
+                            if (lugares[lugar]['id'] == fk_Lugar )
+                            {
+                                m_lugar = lugares[lugar]['localidad'];
+                            %>
+                                <li><%=lugares[lugar]['localidad'].toLowerCase()%></li>
+                            <%
+                            } 
+                        }
+                        
+                    %>
+                <%
+                %>
+                <ul>
+                    <% 
+                    for (var hecho in hechos) 
+                    {
+                        if (hechos[hecho]['id'] == piezas[i]['fk_hecho']) {
+                            var m_modalidades = hechos[hecho].modalidad.split("; ");
+                        
+                            for (let i = 0; i < m_modalidades.length; ++i)
+                            {
+                                if (m_modalidades[i][0] == " ")
+                                {
+                                    m_modalidades[i] = m_modalidades[i].substring(1, m_modalidades[i].length)
+                                }
+                                if (m_modalidades[i].substring(m_modalidades[i].length - 1) == " ")
+                                {
+                                    m_modalidades[i] = m_modalidades[i].substring(0, m_modalidades[i].length - 1)
+                                }
+                                m_modalidades[i] = m_modalidades[i].toLowerCase();
+                            }
+
+                            for (var modalidad in m_modalidades) 
+                            {
+                    %>
+                            <li><%=m_modalidades[modalidad]%></li>
+                    <%
+                            }
+                        }
+                    }
+                    %>
+                </ul>
+                <ul>
+                    <%
+                    var m_descriptores = piezas[i].descriptores.split(", ");
+                    for (let i = 0; i < m_descriptores.length; ++i)
+                    {
+                        if (m_descriptores[i][0] == " ")
+                        {
+                            m_descriptores[i] = m_descriptores[i].substring(1, m_descriptores[i].length)
+                        }
+                        if (m_descriptores[i].substring(m_descriptores[i].length - 1) == " ")
+                        {
+                            m_tecnicas[i] = m_descriptores[i].substring(0, m_descriptores[i].length - 1)
+                        }
+                        m_descriptores[i] = m_descriptores[i].toLowerCase();
+                        
+                    }
+                    for (var descrip in m_descriptores) 
+                    {
+                    %>
+                        <li><%=m_descriptores[descrip]%></li>
+                    <%
+                    }
+                    %>
+                </ul>
+            </ul>
+            </div>
+            <% } %>
+        </div>
+    <section>
+</div>
+
+<div class="background"> </div>
+
+
+<script src="/scripts/s3ImageUrl.js"></script>
+<script>
+    var bFilterPiezas = true;
+
+    function FilterPiezas () {
+        document.getElementById("filter-creadores").style.backgroundColor = "#CDCDCD";
+        document.getElementById("filter-piezas").style.backgroundColor = "#2727E5";
+        bFilterPiezas = true;
+        filter();
+    }
+
+    function FilterCreadores() {
+        document.getElementById("filter-creadores").style.backgroundColor = "#2727E5";
+        document.getElementById("filter-piezas").style.backgroundColor = "#CDCDCD";
+        bFilterPiezas = false;
+        filter();
+    }
+    //document.getElementById("filter-piezas").addEventListener("click", FilterPiezas)
+   //document.getElementById("filter-creadores").addEventListener("click", FilterCreadores)
+
+    var filtros = document.getElementById("filtros");
+    var piezas = document.getElementsByClassName("resultado-pieza");
+    var creadores = document.getElementsByClassName("resultado-creador");
+    var piezasList = [];
+    var creadoresList = [];
+    for (let i = 0; i < creadores.length; ++i)
+        {
+            var newResult = {};
+            newResult['creador'] = creadores[i].cloneNode(true);
+            newResult['isInResults'] = false;
+            creadoresList.push(newResult);
+            creadores[i].innerHTML = ""
+            //piezasList.push(piezas[i].cloneNode(true));
+        }
+    for (let i = 0; i < piezas.length; ++i)
+        {
+            var newResult = {};
+            newResult['pieza'] = piezas[i].cloneNode(true);
+            newResult['isInResults'] = false;
+            piezasList.push(newResult);
+
+            //piezasList.push(piezas[i].cloneNode(true));
+        }
+    
+    var docResults = document.getElementById("results");
+    var docResultsCreadores = document.getElementById("results-creadores");
+    
+
+    var fecha    = "";
+    var lugar    = "";
+    var hecho    = "";
+    var creador  = "";
+    var tecnica  = "";
+    var tematica = "";
+
+    var searchParams = 
+        {
+            'fecha': '',
+            'lugar': '',
+            'hecho': '',
+            'creador': '',
+            'tecnica': '',
+            'tematica': '',
+            'descriptor': ''
+        }
+
+    function borrarFiltros() {
+        searchParams = 
+        {
+            'fecha': '',
+            'lugar': '',
+            'hecho': '',
+            'creador': '',
+            'tecnica': '',
+            'tematica': '',
+            'descriptor': ''
+        }
+        filter();
+    }
+    var originalNames = [];
+    var creadores_list = [];
+    var lugares_list = [];
+    attachParam(document.getElementsByClassName("select-anio"), 'fecha', false, 0);
+    attachParam(document.getElementsByClassName("select-creador"), 'creador', false, 1);
+    attachParam(document.getElementsByClassName("select-tematica"), 'tematica', false, 2);
+    attachParam(document.getElementsByClassName("select-tecnica"), 'tecnica', false, 3);
+    attachParam(document.getElementsByClassName("select-lugar"), 'lugar', false, 4);
+    attachParam(document.getElementsByClassName("select-hecho"), 'hecho', false, 5);
+    attachParam(document.getElementsByClassName("select-descriptor"), 'descriptor', false, 6);
+
+    function attachParam(dropList, name, id = false, index)
+        {
+            // if (originalNames.indexOf(document.getElementsByClassName("dropdown-toggle")[index].innerHTML) == -1)
+            //     originalNames.push(document.getElementsByClassName("dropdown-toggle")[index].innerHTML);
+        
+            for (let i = 0; i < dropList.length; ++i)
+            {
+                if (dropList[i].innerText.toLowerCase() == "todos")
+                {
+                    searchParams[name] = ''
+                    dropList[i].addEventListener('click', function ()
+                    {
+                        // document.getElementsByClassName("dropdown-toggle")[index].innerHTML = originalNames[index];
+                        searchParams[name] = ''
+                        filter();
+                    });
+                } else 
+                {
+                    // if (name == "creador")
+                    // {
+                    //     creadores_list.push(dropList[i].innerText.toLowerCase());
+                    // }
+                    // if (name == "lugar")
+                    // {
+                    //     lugares_list.push(dropList[i].innerText.toLowerCase());
+                    // }
+                    dropList[i].addEventListener('click', function ()
+                    {
+                        // document.getElementsByClassName("dropdown-toggle")[index].innerHTML = dropList[i].innerText;
+                        id ? searchParams[name] = dropList[i].attributes.value.textContent : searchParams[name] = dropList[i].innerText.toLowerCase();
+                        filter();
+                    });
+                }
+            }
+        }
+
+
+    var DESCRIPTOR = "<%= descriptor %>";
+
+    if (DESCRIPTOR != "")
+    {
+        searchParams['descriptor'] = DESCRIPTOR;
+        filter();
+    }
+    
+    if (window.localStorage.getItem("lastSearch"))
+    {
+        searchParams = JSON.parse(window.localStorage.getItem("lastSearch"));
+        filter();
+    }
+
+
+    function filter()
+        {
+            //filtros.innerHTML = "HELLO"
+            var hasFilter = false;
+            filtros.innerHTML = "";
+            for (param in searchParams)
+            {
+                if (searchParams[param] != "")
+                {
+                    
+                        filtros.innerHTML += "<b>" +param + "</b>: " + searchParams[param] + ", ";
+                        hasFilter = true;
+                }
+            }
+            filtros.innerHTML = filtros.innerHTML.substring(0, filtros.innerHTML.length - 2);
+            filtros.innerHTML += '<span class="borrar-filtros" onclick="borrarFiltros()">Borrar filtros </span>'
+            
+            if (!hasFilter)
+                filtros.innerHTML = "No hay filtros aplicados"
+
+            for (result in piezasList)
+            {
+                piezasList[result]['isInResults'] = false;
+            }
+
+            results.innerHTML = "";
+            var bHasResult = false;
+
+            for (result in piezasList)
+            {
+                var attrList = piezasList[result]['pieza'].children[3];
+                var m_fecha = attrList.children[0].innerText;
+                var m_creador = attrList.children[1].innerText.toString();
+                
+                var m_tematicas = [];
+                
+                for (var _tematica in attrList.children[2].children)
+                {
+                    
+                    if (!isNaN(_tematica))
+                    {
+                        m_tematicas.push(attrList.children[2].children[_tematica].innerText);
+                    }
+                }
+
+                var m_tecnicas = [];
+                for (var _tecnica in attrList.children[3].children)
+                {
+                    if (!isNaN(_tecnica))
+                    {
+                        m_tecnicas.push(attrList.children[3].children[_tecnica].innerText);
+                    }
+                }
+
+                var m_lugar = attrList.children[4].innerText;
+
+                var m_hechos = [];
+                for (var _hecho in attrList.children[5].children)
+                {
+                    
+                    if (!isNaN(_hecho))
+                    {
+                        m_hechos.push(attrList.children[5].children[_hecho].innerText);
+                    }
+                }
+
+                var m_descriptores = [];
+                for (var _descrip in attrList.children[6].children)
+                {
+                    
+                    if (!isNaN(_descrip))
+                    {
+                        m_descriptores.push(attrList.children[6].children[_descrip].innerText);
+                    }
+                }
+
+
+                // RESULTS //
+                var conditionList = [];
+                for (param in searchParams)
+                {
+                    if (searchParams[param] != '')
+                        conditionList.push(param);
+                }
+                var aprovedAll = true;
+
+                if (conditionList.indexOf('fecha') != -1)
+                {
+                    if (searchParams['fecha'] != m_fecha)
+                        aprovedAll = false;
+                }
+
+                if (conditionList.indexOf('creador') != -1)
+                {
+                    
+                    if (!m_creador.toString().includes(searchParams['creador'].toString()))
+                        aprovedAll = false;
+                        
+                }
+
+                if (conditionList.indexOf('tematica') != -1)
+                {
+                    if (m_tematicas.indexOf(searchParams['tematica']) == -1)
+                        aprovedAll = false;
+                }
+
+                if (conditionList.indexOf('tecnica') != -1)
+                {
+                    if (m_tecnicas.indexOf(searchParams['tecnica']) == -1)
+                        aprovedAll = false;
+                }
+                    
+                if (conditionList.indexOf('lugar') != -1)
+                {
+                    //if (searchParams['lugar'].toLowerCase() != m_lugar.toLowerCase())
+                    if (!m_lugar.toString().includes(searchParams['lugar']))
+                        aprovedAll = false;
+                    //if (!searchParams['lugar'].toLocaleLowerCase().includes(m_lugar.toLocaleLowerCase()))
+                    
+                        
+                }
+                
+                if (conditionList.indexOf('hecho') != -1)
+                {
+                    if (m_hechos.indexOf(searchParams['hecho']) == -1)
+                        aprovedAll = false;
+                }
+
+                if (conditionList.indexOf('descriptor') != -1)
+                {
+                    if (m_descriptores.indexOf(searchParams['descriptor']) == -1)
+                        aprovedAll = false;
+                }
+                if (aprovedAll)
+                {
+                    bHasResult = true;
+                    piezasList[result]['isInResults'] = true;
+                }
+
+                // if (searchParams['fecha'] != '')
+                // {
+                //     if (m_fecha == searchParams['fecha'])
+                //     {
+                //         conditionObj['fecha'] = true;
+                //     }
+                // }
+            }
+
+            
+
+            for (result in piezasList)
+            {
+                if (bHasResult)
+                {
+                    if (piezasList[result]['isInResults']) {
+                        if ( bFilterPiezas ) {
+                            results.appendChild(piezasList[result]['pieza']);
+                        }
+                        else {
+                            var cIds = [];
+                            for (resultC in creadoresList)
+                            {
+                                var cId = creadoresList[resultC].creador.children[3].children[0].innerText;
+                                if (cId == piezasList[result].pieza.children[3].children[1].innerText && cIds.indexOf(cId) == -1) {
+                                    results.appendChild(creadoresList[resultC].creador);
+                                    cIds.push(cId);
+                                }
+                                
+                            }
+                        }
+                        
+                    }
+                        
+                } else 
+                {
+                    results.innerHTML = "No Hay Resultados."
+                }
+                window.localStorage.setItem("lastSearch",  JSON.stringify(searchParams));
+            }
+
+            restart()
+        }
+
+</script>
+<script>
+    // $('.burguer').click( function() {
+    //     $('.dropdown').toggleClass("down");
+    //     $(".header").toggleClass("sticky-header");
+    // });
+    
+    // $('.burguer').click( function() {
+    //     $('.dropdown').toggleClass("down");
+    //     $(".header").toggleClass("sticky-header");
+    // });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<%- include('./partials/footer') -%> 

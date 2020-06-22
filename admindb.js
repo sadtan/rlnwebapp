@@ -11,14 +11,13 @@ var parsedCredentials = {
  
     stdoutErrors: true,
 
-    connectionLimit: 2,
+    connectionLimit: 3,
 
     hashing: 'farmhash64',
  
     verbose: false,
  
     caching: false,
-       
 }
 
 const mysql = new MysqlCache(parsedCredentials);

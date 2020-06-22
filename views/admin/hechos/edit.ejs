@@ -18,21 +18,31 @@ var tipos = ['violento', 'resistencia', 'sobrevivencia']
                     </select>
                 </td>
                 <tr>
-                    <td><label for="pass">modalidad (;)</label></td>
-                    <td><input type="text" name="obj[modalidad]" class="text-input" value="<%=hecho['modalidad']%>" required></td>
-                </tr>
-                <tr>
-                    <td><label for="pass">relato</label></td>
-                    <td><textarea name="obj[relato]" id="" cols="33" rows="5" ><%=hecho['relato']%></textarea></td>
-                </tr>
-                <tr>
                     <td><label for="pass">actores</label></td>
                     <td><input type="text" name="obj[actores]" class="text-input" value="<%=hecho['actores']%>"></td>
                 </tr>
                 <tr>
-                    <td><label for="pass">acciones de <br> resistencia y sobrevivencia</label></td>
-                    <td><input type="text" name="obj[acciones_resistencia_sobrevivencia]" class="text-input" value="<%=hecho['acciones_resistencia_sobrevivencia']%>" ></td>
+                    <td><label for="pass">modalidad (;)</label></td>
+                    <td>
+                        <input type="text" name="obj[modalidad]" class="text-input" value="<%=hecho['modalidad']%>" required id="input-modalidades"> <br>
+                        <select id="drop-modalidades" class="mt-4">
+                            <option style="display: none;">Añadir modalidades</option>
+                        </select>
+                    </td>
                 </tr>
+                
+                <tr>
+                    <td><label for="pass">acciones de <br> resistencia y sobrevivencia (;)</label></td>
+                    <td>
+                        <input type="text" name="obj[acciones_resistencia_sobrevivencia]" class="text-input" value="<%=hecho['acciones_resistencia_sobrevivencia']%>" id="input-acciones"> <br>
+                        <select id="drop-acciones" class="mt-4">
+                            <option style="display: none;">Añadir acciones</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="pass">relato</label></td>
+                    <td><textarea name="obj[relato]" id="" cols="33" rows="5" ><%=hecho['relato']%></textarea></td>
                 </tr>
                 <tr>
                     <td><label for="pass">fecha</label></td>
@@ -55,3 +65,51 @@ var tipos = ['violento', 'resistencia', 'sobrevivencia']
         </a>
     </form>
 </div>
+
+<script>
+    var acciones = 
+    ['marchas', 'plantones', 'rituales colectivos', 'conmemoraciones', 'altares', 'asambleas comunitarias', 'tomas y festivales culturales'];
+    
+    var modalidades = 
+    ['desplazamiento forzado', 'asesinato selectivo', 'desaparición forzada', 'secuestro', 'masacre', 'acciones bélicas', 'ataques a bienes civiles', 'sevicia y tortura', 'despojo y extorsiones', 'reclutamiento ilícito', 'atentados terroristas', 'amenazas', 'minas antipersonal (MAP)', 'artefactos explosivos (AEI)', 'municiones sin explosionar (MUSE)', 'bloqueos', 'confinamiento', 'violencia sexual'];
+    var docAcciones = document.getElementById("drop-acciones");
+    var docModalidades = document.getElementById("drop-modalidades");
+
+    for (let i = 0; i < acciones.length; ++i)
+    {
+        var option = document.createElement("option");
+        option.text = acciones[i];
+        docAcciones.add(option);
+    }
+
+    for (let i = 0; i < modalidades.length; ++i)
+    {
+        var option = document.createElement("option");
+        option.text = modalidades[i];
+        docModalidades.add(option);
+    }
+
+    docAcciones.addEventListener('change', function()
+    {
+        AddToInput('input-acciones', docAcciones);
+    })
+
+    docModalidades.addEventListener('change', function()
+    {
+        AddToInput('input-modalidades', docModalidades);
+    })
+    
+    function AddToInput(inputId, drop)
+    {
+        var docInput = document.getElementById(inputId);
+
+        var docInputValue = docInput.value.toString();
+
+        console.log(docInputValue.substr(-2));
+        if (docInputValue.substr(-2) == "; " || docInputValue.length == 0 || docInputValue.substr(-1) == "; ")
+            docInput.value += " " + drop.value + "; ";
+        else 
+            docInput.value += "; " + drop.value + "; ";
+    }
+    
+</script>

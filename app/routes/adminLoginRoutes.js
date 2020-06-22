@@ -8,6 +8,7 @@ module.exports = function (app, passport)
     // Login Get
     app.get("/admin-login", (req, res) =>
     {
+        req.logout();
         var resFormat = resHandler.setResponse(404, {});
         resHandler.handleResponse(req, res, resFormat, "admin", "login");
     });

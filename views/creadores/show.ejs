@@ -1,35 +1,226 @@
 <%- include('../partials/header') -%>
 
-<div class="container" style="width: 50%; padding: 20px 4vw">
+<div class="container pag-fondo">
   <% 
   fondo = data.data[data.data['main']][0];
   %>
-  <img src="<%=fondo['imagen_path']%>" alt="" class="s3_img" width="200px">
-  <% for (field in fondo) {%>
-  <% if (field != 'dep') { %>
-      <strong><%= field %>: </strong> <%= fondo[field] %>
-      <br />
-  <% } else {  %> 
-    <%
-    dep = fondo[field]
-      for (let depField in dep) {
-      %>
-      <strong><%=depField%>: </strong>
-      <ul>
-        <%
-        for (depProp in dep[depField][0]) {%>
-          <li>
-            <strong> <%= depProp %>:</strong> <%= dep[depField][0][depProp] %>
-          </li>
-        <%
-        } %>
-      </ul>
-      <%
-      } %>
-    <%
-    } %>
 
-  <% } %>
+  <!-- Imagen del fondo -->
+  <section class="section-fondo img-fondo top">
+    <% 
+    //if (creadores[i]['img_linea_path'] != "" || creadores[i]['img_linea_path'] != "_")
+    if (fondo['imagen_path'].toString().indexOf("/") != -1)
+    {
+    %>
+    <img class="s3_img" src="<%=fondo['imagen_path']%>" alt="">    
+    <p class="italic"> <%=fondo['imagen_descripcion']%></p>
+    <%
+    } 
+    else 
+    {
+    %>
+      <img src="">
+    <%
+    }
+    %>
+
+  </section>
+
+  <!-- Titulo, lugar y reseña -->
+  <section class="top section-fondo intro-fondo">
+
+    <h3>
+      <%=fondo['dep'].lugar[0].departamento%>, 
+      <%=fondo['dep'].lugar[0].localidad%>  
+    </h3>
+
+    <h2>
+      <%=fondo['nombre']%>  
+    </h2>
+
+    <p class="dos-col">
+      <%=fondo['resena']%>  
+    </p>
+
+  </section>
+
+  <!-- Piezas del fondo -->
+  <section class="top section-fondo piezas-fondo">
+    <h2>
+      Piezas
+    </h2>
+
+    
+      <div class="row">
+        <% for(var i = 0; i < fondo['piezas'].length; i++) { %>
+        <div class="col col-12 col-md-6 col-lg-4 prev-pieza">
+          <div class="container-img">
+            
+            <img src="<%=fondo['piezas'][i]['imagen_path']%>" class="s3_img"> 
+  
+            <div class="blue"></div> 
+  
+            <a href="/piezas/<%=fondo['piezas'][i]['id']%>">
+              <button class ="btn white">
+                Ver Pieza
+              </button>
+            </a>
+  
+          </div>
+          <p class="italic"> <%=fondo['piezas'][i]['titulo']%> 
+            (<%=fondo['piezas'][0]['fecha']%>)
+          </p> 
+        </div>
+        <% } %>
+      </div>
+      
+
+  </section>
+
+  <!-- Contexto sociopolitico -->
+  <section class="top btm section-fondo contexto-fondo">
+    <h2>
+      Contexto sociopolítico
+    </h2>
+
+    <div class="row corto">
+      <div class="col col-12 col-lg-6 texto">
+        
+        <p>
+          <%
+          var txt = fondo['sociopolitico'].substring(0, 900) + "...";
+          txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
+          %>
+          <%=txt%>
+        </p>
+
+        <button class ="btn blue" id="mas-socio">
+          Conocer más
+        </button>
+
+      </div>
+
+      <div class="col col-12 col-lg-6 img container-ilus">
+        <% 
+        if (fondo['il_1_path'].toString().indexOf("/") != -1)
+        {
+        %>
+        <img class="mx-auto s3_img img-sociopolitico" src="<%=fondo['il_1_path']%>">
+
+        <% 
+        if (fondo['il_1_desc'] && fondo['il_1_desc'].toString() != "-" && fondo['il_1_desc'].toString() != "_")
+        {
+        %>
+        <p class="italic"> <%=fondo['il_1_desc']%> </p>
+        <%
+        } 
+        %>
+        <%
+        } else {
+        %>
+        <img class="mx-auto img-sociopolitico" src="/img/conte_default.svg">
+        <%
+            }
+        %>
+      </div>
+    </div>
+
+    <div class="row largo hide">
+      <p class="dos-col">
+        <%=fondo['sociopolitico']%>  
+      </p>
+
+      <button class ="btn blue" id="menos-socio">
+        Mostrar menos
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- Caracterización colectivo -->
+  <section class="top btm section-fondo contexto-fondo">
+    <h2 class="col col-12 col-lg-6 offset-lg-6 titulo-mover">
+      Caracterización del colectivo
+    </h2>
+
+    <div class="row corto-carac">
+      <div class="col col-12 col-lg-6 texto order-2">
+        
+        <p>
+          <%
+          var txt = fondo['caracterizacion'].substring(0, 900) + "...";
+          txt = txt.substr(0, Math.min(txt.length, txt.lastIndexOf(" "))) + "...";
+          %>
+          <%=txt%>
+        </p>
+
+        <button class ="btn blue" id="mas-carac">
+          Conocer más
+        </button>
+
+      </div>
+
+      <div class="col col-12 col-lg-6 img container-ilus order-1">
+        <% 
+        if (fondo['il_2_path'].toString().indexOf("/") != -1)
+        {
+        %>
+        <img class="mx-auto s3_img img-sociopolitico" src="<%=fondo['il_2_path']%>">
+
+        <% 
+        if (fondo['il_2_desc'] && fondo['il_2_desc'].toString() != "-" && fondo['il_2_desc'].toString() != "_")
+        {
+        %>
+        <p class="italic"> <%=fondo['il_2_desc']%> </p>
+        <%
+        } 
+        %>
+        <%
+        } else {
+        %>
+        <img class="mx-auto img-sociopolitico" src="/img/carac_default.svg">
+        <%
+            }
+        %>
+      </div>
+    </div>
+
+    <div class="row largo-carac hide">
+      <p class="dos-col">
+        <%=fondo['caracterizacion']%>  
+      </p>
+
+      <button class ="btn blue" id="menos-carac">
+        Mostrar menos
+      </button>
+
+    </div>
+
+  </section>
+
+  
+  <!-- Documentos y enlaces -->
+  <section class="top section-fondo documentos-fondo">
+    <h2>
+      Documentos y enlaces asociados
+    </h2>
+    
+    <ul class="dos-col lista-docs">
+      <%var documentos = JSON.parse(fondo['documentos_json'].replace(/(\r\n|\n|\r|')/gm, '"'))['obj']
+       //console.log(documentos)
+       for (let i = 0; i < documentos.length; ++i)
+       {
+         var documento = documentos[i]
+       
+      %>
+      <li> <a target="_blank" href="<%=documento['url']%>"> <%=documento['name']%></a> </li>
+      
+      <% } %>
+    </ul>
+
+  </section>
+
 </div>
 
 <script src="/scripts/s3ImageUrl.js"></script>

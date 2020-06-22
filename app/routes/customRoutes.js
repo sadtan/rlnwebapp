@@ -37,17 +37,29 @@ module.exports = function (app, pool, m_table)
     {
         var data = {};
         var resFormat = {};
-        
+        awsUtils.listFiles();
         try 
         {
             data[m_table] = await controller.getById(req.params.id);
             data = await reqBatchHandler.AttachDependencies(data, m_table, pool);
+            if (m_table == "creadores")
+            {
+                data = await reqBatchHandler.AttachCustom(data, ['id', 'titulo', 'imagen_path', 'fecha'], "fk_creador", pool, "piezas", "creadores")
+            }
+            if (m_table == "piezas")
+            {
+                data = await awsUtils.AttachGallery(data, "piezas");
+                
+            }
+                
+                //awsUtils.listFiles();
 
             resFormat = resHandler.setResponse(200, null, data);
             resHandler.handleResponse(req, res, resFormat, m_table, "show");
 
         } catch (error)
         {
+            console.log(error);
             resFormat = resHandler.setResponse(error.errno, error);
             resHandler.handleResponse(req, res, resFormat, "utils", "error");
         }
