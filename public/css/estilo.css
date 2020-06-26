@@ -300,6 +300,9 @@ footer {
   @media only screen and (min-width: 993px) {
     .home-section .chevron {
       margin-top: -80px; } }
+  @media only screen and (min-width: 993px) {
+    .home-section .chevron.buscar {
+      margin-top: 0; } }
   @media only screen and (max-width: 992px) {
     .home-section .chevron {
       margin-top: 5vh; } }
