@@ -130,7 +130,7 @@ h4 {
 ---------------------------------------------------------------------*/
 .header {
   background-color: #2727E5;
-  height: 130px;
+  height: 115px;
   transition: height 1s;
   position: fixed;
   width: 100%;
@@ -138,10 +138,10 @@ h4 {
   top: 0; }
   @media only screen and (max-width: 992px) {
     .header {
-      height: 80px; } }
+      height: 70px; } }
   @media only screen and (min-width: 993px) {
     .header.small-header {
-      height: 90px; }
+      height: 80px; }
       .header.small-header .logo {
         transition: font-size 1s;
         font-size: 22px; } }
@@ -300,6 +300,9 @@ footer {
   @media only screen and (min-width: 993px) {
     .home-section .chevron {
       margin-top: -80px; } }
+  @media only screen and (min-width: 993px) {
+    .home-section .chevron.buscar {
+      margin-top: 0; } }
   @media only screen and (max-width: 992px) {
     .home-section .chevron {
       margin-top: 5vh; } }
@@ -743,7 +746,7 @@ footer {
       text-decoration: underline; }
 
 .sticky-top {
-  top: 110px;
+  top: 100px;
   z-index: 0;
   pointer-events: visible; }
 
