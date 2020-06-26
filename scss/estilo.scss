@@ -365,6 +365,10 @@ footer {
         }
     } 
 
+    .correo {
+        overflow-wrap: break-word;
+    }
+
     .bottom-footer {
         background-color: $negro;
         padding: 10px 0;

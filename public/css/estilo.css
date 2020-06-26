@@ -226,6 +226,8 @@ footer {
   footer .right-footer a {
     display: block;
     padding: 0 0 5px 0; }
+  footer .correo {
+    overflow-wrap: break-word; }
   footer .bottom-footer {
     background-color: #161616;
     padding: 10px 0;
