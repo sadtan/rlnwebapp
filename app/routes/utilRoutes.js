@@ -78,9 +78,11 @@ module.exports = function (app, pool) {
                     || req.get('origin') == "devremendarlonuevo.com"
                     || req.get('origin') == "https://devremendarlonuevo.com"
                     || req.get('origin') == "https://remendarlonuevo.com"
+                    || req.get('origin') == "remendarlonuevo.com"
                     || req.get('origin') == "https://textilestestimoniales.org"
-                    || req.get('origin') == "www.textilestestimoniales.org"
+                    || req.get('origin') == "textilestestimoniales.org"
                     || req.get('origin') == "https://www.textilestestimoniales.org"
+                    || req.get('origin') == "www.textilestestimoniales.org"
                     )
             ) {
                 var resFormat = resHandler.setResponse(200, null, await (awsUtils.getUrl(req.body.data)));
