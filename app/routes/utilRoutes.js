@@ -79,9 +79,9 @@ module.exports = function (app, pool) {
                     || req.get('origin') == "https://devremendarlonuevo.com"
                     || req.get('origin') == "https://remendarlonuevo.com"
                     || req.get('origin') == "remendarlonuevo.com"
-                    || req.get('origin') == "https://textilestestimoniales.org"
+                    || req.get('origin') == "http://textilestestimoniales.org"
                     || req.get('origin') == "textilestestimoniales.org"
-                    || req.get('origin') == "https://www.textilestestimoniales.org"
+                    || req.get('origin') == "http://www.textilestestimoniales.org"
                     || req.get('origin') == "www.textilestestimoniales.org"
                     )
             ) {
