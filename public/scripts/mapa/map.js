@@ -98,7 +98,8 @@ for (var creador in docCreadores) {
                     var _pieza = {};
                     _pieza.img_s3_key = docPiezas[pieza].children[0].children[0].getAttribute("src");
                     _pieza.titulo = docPiezas[pieza].children[1].children[0].innerText;
-                    _pieza.idCreador = docPiezas[pieza].children[1].children[3].children[0].innerText;
+                    _pieza.idCreador = docPiezas[pieza].children[1].children[3].children[3].innerText;
+                    console.log( _pieza.idCreador);
                     _pieza.idPieza = docPiezas[pieza].children[1].children[3].children[1].innerText;
                     _pieza.nombreCreador = docPiezas[pieza].children[1].children[3].children[2].innerText;
                     _pieza.relatoHecho = docPiezas[pieza].children[1].children[1].innerText;
