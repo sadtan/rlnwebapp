@@ -6,7 +6,7 @@ var parsedCredentials = {
     user: process.env.SQL_USER,
     password: process.env.SQL_PASS,
     database: "undbtest",
-
+    port:"3306",
     prettyError: true,
  
     stdoutErrors: true,
