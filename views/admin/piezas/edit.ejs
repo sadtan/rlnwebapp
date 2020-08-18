@@ -96,7 +96,12 @@ pieza = data['piezas'][0];
         </tr>
         <tr>
             <td><label for="pass">tecnicas (,)</label></td>
-            <td><input type="text" name="obj[tecnicas]" class="text-input" value="<%= pieza['tecnicas'] %>"></td>
+            <td>
+                <input type="text" name="obj[tecnicas]" class="text-input" value="<%= pieza['tecnicas'] %>"  id="input-tecnicas"><br>
+                <select id="drop-tecnicas" class="mt-4" > 
+                    <option style="display: none;">Añadir Tecnicas</option>
+                </select>
+            </td>
         </tr>
         <tr>
             <td><label for="pass">conservacion</label></td>
@@ -228,6 +233,34 @@ pieza = data['piezas'][0];
 
 <script src="/scripts/jsonParser.js" type="text/javascript"></script>
 <script> 
+
+    // Drop Tecnicas
+    var tecnicas = ["apliques tridimensionales","bordado","costura a mano","costura a máquina","crochet","escultura blanda - muñecas","esténcil sobre tela","pintura sobre tela","sublimación sobre tela","tela sobre icopor o falso patchwork","tela sobre tela"];
+    var docTecnicas = document.getElementById("drop-tecnicas");
+
+    for ( let i = 0; i < tecnicas.length; ++i ) {
+
+        var option = document.createElement("option");
+        option.text = tecnicas[i];
+        docTecnicas.add( option );
+    }
+
+    docTecnicas.addEventListener('change', function()
+    {
+        AnadirOpcion('input-tecnicas', docTecnicas);
+    })
+
+    function AnadirOpcion( inputId, drop ) {
+        var docInput = document.getElementById( inputId ); 
+        var docInputValue = docInput.value.toString();
+
+        
+        if (docInputValue.substr(-2) == ", " || docInputValue.length == 0 || docInputValue.substr(-1) == "; ")
+            docInput.value += " " + drop.value + ", ";
+        else 
+            docInput.value += ", " + drop.value + ", ";
+    }
+
     //parseJsonObj("myTable", "json-input", "myModal", "myBtn", "myBtnAdd", "myBtnAcc", "close");
     var entParser = new JsonParser("myTableEnt", "json-input-ent", "myModalEnt", "myBtnEnt", "myBtnAddEnt", "myBtnAccEnt", "close", {'name':'', 'url': ''});
     entParser.WorkParser();
