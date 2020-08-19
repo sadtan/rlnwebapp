@@ -23,6 +23,9 @@ for (var pieza in piezas)
         anios.push(_anio);
     }
 }
+
+anios = anios.sort();
+
 var localidades = [];
 for (var lugar in lugares) 
 {
@@ -42,10 +45,16 @@ for (var lugar in lugares)
     }
 }
 
+localidades = localidades.sort();
+
 var modalidades = [];
+//console.log(hechos);
 for (var hecho in hechos) 
 {
     var m_modalidades = hechos[hecho].modalidad.split("; ");
+    var m_acciones = hechos[hecho].acciones_resistencia_sobrevivencia.split("; ");
+    m_modalidades = m_modalidades.concat(m_acciones);
+    //console.log(m_acciones)
     for (let i = 0; i < m_modalidades.length; ++i)
     {
         if (m_modalidades[i][0] == " ")
@@ -59,12 +68,14 @@ for (var hecho in hechos)
         }
         m_modalidades[i] = m_modalidades[i].toLowerCase();
 
-        if (modalidades.indexOf(m_modalidades[i]) < 0)
+        if (modalidades.indexOf(m_modalidades[i]) < 0 && m_modalidades[i] != "-" && m_modalidades[i] != "_" ) 
         {
             modalidades.push(m_modalidades[i]);
         }
     }
 }
+
+modalidades = modalidades.sort();
 
 var descriptores = [];
 for (var pieza in piezas) 
@@ -89,6 +100,8 @@ for (var pieza in piezas)
     }
 }
 
+descriptores = descriptores.sort();
+
 var tecnicas = [];
 for (var pieza in piezas) 
 {
@@ -111,6 +124,8 @@ for (var pieza in piezas)
         }
     }
 }
+
+tecnicas = tecnicas.sort();
 
 var tematicas = [];
 
@@ -136,6 +151,8 @@ for (var pieza in piezas)
         }
     }
 }
+
+tematicas = tematicas.sort();
 
 %>
 <div class="container pag-sobre">
@@ -187,10 +204,18 @@ for (var pieza in piezas)
 
             <!--- test data boundary-->
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Creadoras</a>
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Colectivos</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     <a class="dropdown-item select-creador">todos</a>
                     <% 
+                    creadores.sort(function(a, b){
+                        var nameA=a.nombre.toLowerCase(), nameB=b.nombre.toLowerCase()
+                        if (nameA < nameB) //sort string ascending
+                            return -1 
+                        if (nameA > nameB)
+                            return 1
+                        return 0 //default return value (no sorting)
+                    })
                     for (var creador in creadores) 
                     {
                     %>
@@ -252,7 +277,7 @@ for (var pieza in piezas)
             </li>
 
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hecho del conflicto</a>
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hechos asociados al conflicto armado</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     <a class="dropdown-item select-hecho">todos</a>
                     <% 
@@ -303,7 +328,15 @@ for (var pieza in piezas)
 
     <section class="section-fondo resultados">
         <div class="row" id="results">
-            <% for(var i = 0; i < piezas.length; i++) { 
+
+            
+            <% 
+            piezas.sort(function(a, b){
+                    
+                return parseInt(a.fecha)-parseInt(b.fecha)
+            })
+
+            for(var i = 0; i < piezas.length; i++) { 
             %>
             <div class="col col-12 col-md-6 col-lg-4 resultado-pieza" >
                 <div class="container-img">
@@ -318,6 +351,9 @@ for (var pieza in piezas)
                 <p class="titulo"><%=piezas[i]['titulo']%> (<%=piezas[i]['fecha']%>) </p>
 
                 <% 
+
+                
+
                 for (var creador in creadores) 
                 {
                     
@@ -426,6 +462,8 @@ for (var pieza in piezas)
                     {
                         if (hechos[hecho]['id'] == piezas[i]['fk_hecho']) {
                             var m_modalidades = hechos[hecho].modalidad.split("; ");
+                            var m_acciones = hechos[hecho].acciones_resistencia_sobrevivencia.split("; ");
+                            m_modalidades = m_modalidades.concat(m_acciones);
                         
                             for (let i = 0; i < m_modalidades.length; ++i)
                             {

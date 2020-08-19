@@ -43,7 +43,7 @@ module.exports = function (app, pool) {
         //console.log(data['piezas']);
         data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre', 'localidad', 'departamento'], "", pool, "lugares", "lugares")
         data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre', 'fk_lugar', 'imagen_path'], "", pool, "creadores", "creadores")
-        data = await reqBatchHandler.AttachCustom(data, ['id', 'modalidad'], "", pool, "hechos", "hechos")
+        data = await reqBatchHandler.AttachCustom(data, ['id', 'modalidad', 'acciones_resistencia_sobrevivencia'], "", pool, "hechos", "hechos")
         //res.render("search.ejs", {data});
         res.render("buscar", {data, descriptor: ""})
     })
@@ -60,7 +60,7 @@ module.exports = function (app, pool) {
         //console.log(data['piezas']);
         data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre', 'localidad', 'departamento'], "", pool, "lugares", "lugares")
         data = await reqBatchHandler.AttachCustom(data, ['id', 'nombre', 'fk_lugar', 'imagen_path'], "", pool, "creadores", "creadores")
-        data = await reqBatchHandler.AttachCustom(data, ['id', 'modalidad'], "", pool, "hechos", "hechos")
+        data = await reqBatchHandler.AttachCustom(data, ['id', 'modalidad', 'acciones_resistencia_sobrevivencia'], "", pool, "hechos", "hechos")
         //res.render("search.ejs", {data});
 
         res.render("buscar", {data, descriptor: req.body.descriptor});
