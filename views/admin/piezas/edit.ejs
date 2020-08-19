@@ -56,7 +56,12 @@ pieza = data['piezas'][0];
         </tr>
         <tr>
             <td><label for="pass">tematicas (,)</label></td>
-            <td><input type="text" name="obj[tematicas]" class="text-input" value="<%= pieza['tematicas'] %>"></td>
+            <td>
+                <input type="text" name="obj[tematicas]" class="text-input" value="<%= pieza['tematicas'] %>" id = "input-tematicas"> <br>
+                <select id="drop-tematicas" class="mt-4" >
+                    <option style="display: none;">Añadir Tematicas</option>
+                </select>
+            </td>
         </tr>
         <tr>
             <td><label for="pass">relato del <br> hecho</label></td>
@@ -72,7 +77,12 @@ pieza = data['piezas'][0];
         </tr>
         <tr>
             <td><label for="pass">descriptores (,)</label></td>
-            <td><input type="text" name="obj[descriptores]" class="text-input" value="<%= pieza['descriptores'] %>"></td>
+            <td>
+                <input type="text" name="obj[descriptores]" class="text-input" value="<%= pieza['descriptores'] %>" id="input-descriptores"> <br>
+                <select id="drop-descriptores" class="mt-4" >
+                    <option style="display: none;">Añadir Descriptores</option>
+                </select>   
+            </td>
         </tr>
         <tr>
             <td><label for="pass">ancho</label></td>
@@ -237,6 +247,17 @@ pieza = data['piezas'][0];
     // Drop Tecnicas
     var tecnicas = ["apliques tridimensionales","bordado","costura a mano","costura a máquina","crochet","escultura blanda - muñecas","esténcil sobre tela","pintura sobre tela","sublimación sobre tela","tela sobre icopor o falso patchwork","tela sobre tela"];
     var docTecnicas = document.getElementById("drop-tecnicas");
+    var tematicas = ["Conmemoraciones","Memorias del dolor y la dignidad","Memorias de resistencia y sobrevivencia","Movilización social","Vida cotidiana"];
+    var docTematicas = document.getElementById("drop-tematicas");
+    var descriptores = ["actores armados","altar a la virgen","animales domésticos","antorchas","años","árbol","árbol de choibá","arroyo","asesinatos","camino","campo","cancha","canoa","cárcel","carro","casa","cazador","ciudad","corazón","cruz","escuela","flor","fosas comunes","gallina","helicóptero","hombre","hombres jugando béisbol","huerta","jóvenes","luna","maíz","mano","mapa","mapa de Colombia","mariposa","mensaje","montañas","mujer","mujer cocinando","música","niña"];
+    var docDescriptores = document.getElementById("drop-descriptores");
+
+    for ( let i = 0; i < tematicas.length; ++i ) {
+
+        var option = document.createElement("option");
+        option.text = tematicas[i];
+        docTematicas.add( option );
+    }
 
     for ( let i = 0; i < tecnicas.length; ++i ) {
 
@@ -245,9 +266,26 @@ pieza = data['piezas'][0];
         docTecnicas.add( option );
     }
 
+    for ( let i = 0; i < descriptores.length; ++i ) {
+
+        var option = document.createElement("option");
+        option.text = descriptores[i];
+        docDescriptores.add( option );
+    }
+
     docTecnicas.addEventListener('change', function()
     {
         AnadirOpcion('input-tecnicas', docTecnicas);
+    })
+
+    docTematicas.addEventListener('change', function()
+    {
+        AnadirOpcion('input-tematicas', docTematicas);
+    })
+
+    docDescriptores.addEventListener('change', function()
+    {
+        AnadirOpcion('input-descriptores', docDescriptores);
     })
 
     function AnadirOpcion( inputId, drop ) {
