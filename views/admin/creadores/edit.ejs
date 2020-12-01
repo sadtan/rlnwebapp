@@ -1,11 +1,14 @@
 <%- include('../../partials/header') -%>
 <link rel="stylesheet" href="/stylesheets/admin.css">
 <script src="/scripts/ejs.js"></script>
+
 <% 
 creador = data['creadores'][0];
 var tipos = ['público', 'privado', 'mixto']
  %>
+
 <div class="form-class">
+    
     <form action="/admin/creadores/edit/<%=creador['id']%>?_method=PUT" method="post">
         <h3>Editar creador</h3>
         <table>

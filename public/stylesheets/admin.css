@@ -4,14 +4,14 @@ main
     justify-content: space-between;
 }
 
-.form-class, .admin-cards
-{
-    margin-top: 10%;
-}
 
 .form-class, .admin-cards
 {
-    width: 100%;
+    width: 100vw;
+}
+
+.form-class {
+    margin-top: 100px;
 }
 
 .admin-cards
@@ -29,7 +29,6 @@ table
 {
     margin: auto;
     margin-top: 30px;
-    
 }
 
 td 
